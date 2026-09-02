@@ -1,0 +1,325 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: learning-trail-map
+version: 2
+title: Learning Trail Map
+description: Build an original educational image that guides a learner through a place, process, or idea using a
+  readable route, distinct stops, and a clearly bounded fact set.
+category: learning-and-explanation
+tags:
+- education
+- map
+- route
+- explanation
+- first-party
+status: starter
+x-publication:
+  status: staged
+  featureStatus: not-featured
+  sourceReviewStatus: first-party-original
+  reuseStatus: no-third-party-reuse
+x-evaluation:
+  status: staged
+  visualQualification: rerun-required
+  featureStatus: not-featured
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: multi-stage
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations:
+  - generate
+  - edit
+  - variation
+  defaultOperation: generate
+  defaultVariationCount: 4
+  preferredMimeTypes:
+  - image/png
+prompt:
+  title: Learning Trail Map
+  body: >-
+    Create a navigable learning image about {{topic}} for {{learner}}. Use {{route_stops}} as route-planning guidance,
+    {{guide_role}} as guide guidance, and {{takeaway}} as the takeaway policy. Make the route and stop order legible at
+    a glance. Treat instructional defaults as directives rather than literal stops, characters, or conclusions. Use
+    only supplied facts unless the factuality mode explicitly allows labeled conceptual interpretation. Keep the
+    illustration welcoming and information-rich without turning it into a dense worksheet. References may anchor a
+    place, palette, or supplied source facts only.
+  negativePrompt: >-
+    No unrelated demo route, guide, or conclusion, fabricated facts, fake citations, unordered route, repeated stop,
+    overwhelming mascot, unreadable paragraphs, copied characters, unrelated logos, signatures, or watermarks.
+  variables:
+  - id: topic
+    label: Topic
+    type: text
+    required: true
+    defaultValue: a user-selected place, process, or idea that can be understood as an ordered journey
+  - id: learner
+    label: Learner
+    type: string
+    required: true
+    defaultValue: the intended audience named by the user
+  - id: route_stops
+    label: Route stops
+    type: text
+    required: true
+    defaultValue: derive four to six ordered stops only from the supplied topic and source notes; do not reuse stops from another example
+  - id: guide_role
+    label: Guide role
+    type: text
+    required: true
+    defaultValue: use an original, understated guide appropriate to the topic, or omit the guide when it would distract
+  - id: takeaway
+    label: Key takeaway
+    type: text
+    required: true
+    defaultValue: summarize only the user-supplied learning objective in one short sentence; do not import a conclusion from another topic
+controls:
+- id: topic
+  label: Topic
+  type: textarea
+  required: true
+  defaultValue: a user-selected place, process, or idea that can be understood as an ordered journey
+  binding:
+    mode: variable
+    target: topic
+- id: learner
+  label: Learner
+  type: text
+  required: true
+  defaultValue: the intended audience named by the user
+  binding:
+    mode: variable
+    target: learner
+- id: route-stops
+  label: Route stops
+  type: textarea
+  required: true
+  defaultValue: derive four to six ordered stops only from the supplied topic and source notes; do not reuse stops from another example
+  binding:
+    mode: variable
+    target: route_stops
+- id: guide-role
+  label: Guide role
+  type: textarea
+  required: true
+  defaultValue: use an original, understated guide appropriate to the topic, or omit the guide when it would distract
+  binding:
+    mode: variable
+    target: guide_role
+- id: takeaway
+  label: Key takeaway
+  type: textarea
+  required: true
+  defaultValue: summarize only the user-supplied learning objective in one short sentence; do not import a conclusion from another topic
+  binding:
+    mode: variable
+    target: takeaway
+- id: route-structure
+  label: Route structure
+  type: enum
+  required: false
+  defaultValue: guided-loop
+  options:
+  - label: Guided loop
+    value: guided-loop
+  - label: Left-to-right journey
+    value: left-to-right-journey
+  - label: Layered system path
+    value: layered-system-path
+  binding:
+    mode: agent-context
+    target: image.composition.route_structure
+- id: learning-density
+  label: Learning density
+  type: range
+  required: false
+  defaultValue: 55
+  min: 20
+  max: 85
+  step: 5
+  binding:
+    mode: agent-context
+    target: image.data.learning_density
+- id: illustration-tone
+  label: Illustration tone
+  type: combobox
+  required: false
+  defaultValue: warm editorial field guide
+  options:
+  - label: Warm editorial field guide
+    value: warm editorial field guide
+  - label: Clear cut-paper landscape
+    value: clear cut-paper landscape
+  - label: Gentle painted diagram
+    value: gentle painted diagram
+  allowCustom: true
+  binding:
+    mode: agent-context
+    target: image.visual.illustration_tone
+- id: factuality-mode
+  label: Factuality mode
+  type: enum
+  required: false
+  defaultValue: supplied
+  options:
+  - label: Supplied facts only
+    value: supplied
+  - label: Mixed facts and labeled concept
+    value: mixed
+  - label: Conceptual learning scene
+    value: conceptual
+  binding:
+    mode: agent-context
+    target: factuality.mode
+- id: source-notes
+  label: Source facts and uncertainty
+  type: textarea
+  required: false
+  defaultValue: Use only the facts supplied in the workspace; label inferred relationships as conceptual.
+  binding:
+    mode: agent-context
+    target: factuality.sourceNotes
+- id: aspect-ratio
+  label: Aspect ratio
+  type: aspect-ratio
+  required: false
+  defaultValue: '16:9'
+  options:
+  - label: '16:9'
+    value: '16:9'
+  - label: '3:2'
+    value: '3:2'
+  - label: '4:3'
+    value: '4:3'
+  - label: '4:5'
+    value: '4:5'
+  binding:
+    mode: generation
+    target: aspectRatio
+references:
+- id: learning-source
+  label: Optional source notes or visual reference
+  role: content
+  required: false
+  multiple: true
+  maxItems: 5
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - user-designated facts
+  - named place features
+  instructions: Treat only user-designated facts as authoritative. Do not copy incidental people, marks, or visual branding.
+- id: palette-reference
+  label: Optional palette reference
+  role: palette
+  required: false
+  multiple: false
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  instructions: Use color relationships only; do not reproduce subject matter, text, or layout.
+preservation:
+- id: learning-facts
+  label: Learning facts
+  description: Preserve supplied stop order, labels, relationships, uncertainty, and the stated learner takeaway.
+  strength: must
+  appliesTo:
+  - learning-source
+  - primary
+workflow:
+  mode: guided
+  entryStageId: outline-route
+  allowAgentAdaptation: true
+  stages:
+  - id: outline-route
+    title: Outline the route
+    kind: compose-prompt
+    instructions: Convert the supplied stops into a readable journey with one observation or idea per stop.
+    produces:
+    - route-outline
+  - id: fact-check
+    title: Check the fact boundary
+    kind: review
+    instructions: Separate supplied facts from conceptual interpretation and remove unsupported claims.
+    inputs:
+    - route-outline
+    produces:
+    - approved-learning-context
+  - id: generate-map
+    title: Generate the learning map
+    kind: generate-image
+    instructions: Generate the navigable learning image through Codex and return it to the primary output slot.
+    inputs:
+    - approved-learning-context
+    produces:
+    - primary
+outputs:
+- id: primary
+  label: Learning trail map
+  role: primary
+  kind: image
+  count: 1
+  operations:
+  - generate
+  - edit
+  layoutHint: hero
+- id: variations
+  label: Learning map variations
+  role: variation
+  kind: image
+  count: 4
+  operations:
+  - variation
+  layoutHint: grid
+- id: outline
+  label: Route outline
+  role: intermediate
+  kind: structured-context
+  count: 1
+  required: false
+blocks:
+- id: learning-prompt-block
+  type: prompt
+  title: Learning direction
+  region: left
+  order: 5
+- id: learning-controls-block
+  type: controls
+  title: Route and fact controls
+  region: left
+  order: 10
+- id: learning-workflow-block
+  type: workflow
+  title: Learning workflow
+  region: center
+  order: 10
+- id: learning-output-block
+  type: output
+  title: Learning trail map
+  sourceId: primary
+  region: right
+  order: 10
+layout:
+  mode: seeded
+  arrangement: workflow-board
+  seed: 205
+  preserveManualGeometry: true
+source:
+  kind: first-party
+  title: Learning Trail Map
+  creator: Prompt Canvas
+  promptUsage: original
+  notes: Independently authored from general educational-illustration and information-route principles; no third-party prompt or source asset reused.
+capabilities:
+- text-to-image
+- image-to-image
+- image-edit
+- variations
+- multiple-references
+- structured-prompt
+- multi-stage-workflow
+- typography

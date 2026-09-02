@@ -1,0 +1,249 @@
+schema: prompt-canvas.starter-pack@2
+id: core-starter-pack
+version: 2
+title: Prompt Canvas Starter Library
+description: Nine original Codex-powered image prompt workspaces for the standalone Prompt Canvas app.
+templateSchema: ../schemas/prompt-workspace-template.schema.json
+templateCount: 9
+templates:
+- id: travel-poster
+  path: templates/travel-poster.workspace.yaml
+  title: Premium City Travel Poster
+  description: Create an original, city-specific minimalist flat-vector travel poster through a long-form prompt,
+    editable presets, and Codex image generation.
+  category: travel-and-place
+  family: composition-first
+  operations:
+  - generate
+  - variation
+  - edit
+  - upscale
+  capabilities:
+  - text-to-image
+  - variations
+  - image-edit
+  - upscale
+  - typography
+  - structured-prompt
+  featured: true
+  order: 1
+  source:
+    creator: Henry Adams
+    title: Premium minimalist flat-vector travel poster
+    url: null
+    promptUsage: original
+
+- id: character-continuity-kit
+  path: templates/character-continuity-kit.workspace.yaml
+  title: Character Continuity Kit
+  description: Develop one original character across coordinated views, expressions, and poses while keeping identity
+    anchors and creative choices explicit.
+  category: character-design
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-to-image
+  - image-edit
+  - variations
+  - upscale
+  - typography
+  featured: false
+  order: 118
+  source:
+    creator: Prompt Canvas
+    title: Character Continuity Kit
+    url: null
+    promptUsage: original
+- id: retail-object-family-study
+  path: templates/retail-object-family-study.workspace.yaml
+  title: Retail Object Family Study
+  description: Explore an original brand system across a coordinated family of retail objects while preserving approved
+    names, marks, silhouettes, and material logic.
+  category: brand-and-packaging
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-to-image
+  - image-edit
+  - variations
+  - upscale
+  - multiple-references
+  - typography
+  featured: false
+  order: 119
+  source:
+    creator: Prompt Canvas
+    title: Retail Object Family Study
+    url: null
+    promptUsage: original
+- id: scene-rhythm-board
+  path: templates/scene-rhythm-board.workspace.yaml
+  title: Scene Rhythm Board
+  description: Turn an original premise into a readable progression of image moments with explicit pacing, coverage,
+    emotional movement, and continuity anchors.
+  category: story-and-sequence
+  family: multi-stage
+  operations:
+  - generate
+  - edit
+  - variation
+  capabilities:
+  - text-to-image
+  - image-to-image
+  - image-edit
+  - variations
+  - multiple-references
+  - structured-prompt
+  - multi-stage-workflow
+  - typography
+  featured: false
+  order: 120
+  source:
+    creator: Prompt Canvas
+    title: Scene Rhythm Board
+    url: null
+    promptUsage: original
+- id: object-logic-atlas
+  path: templates/object-logic-atlas.workspace.yaml
+  title: Object Logic Atlas
+  description: Explain an object, space, or system through an original annotated view that connects exterior form,
+    internal roles, and supplied factual relationships.
+  category: technical-visualization
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 121
+  source:
+    creator: Prompt Canvas
+    title: Object Logic Atlas
+    url: null
+    promptUsage: original
+- id: learning-trail-map
+  path: templates/learning-trail-map.workspace.yaml
+  title: Learning Trail Map
+  description: Build an original educational image that guides a learner through a place, process, or idea using a
+    readable route, distinct stops, and a clearly bounded fact set.
+  category: learning-and-explanation
+  family: multi-stage
+  operations:
+  - generate
+  - edit
+  - variation
+  capabilities:
+  - text-to-image
+  - image-to-image
+  - image-edit
+  - multiple-references
+  - structured-prompt
+  - multi-stage-workflow
+  - variations
+  - typography
+  featured: false
+  order: 122
+  source:
+    creator: Prompt Canvas
+    title: Learning Trail Map
+    url: null
+    promptUsage: original
+- id: wordform-material-study
+  path: templates/wordform-material-study.workspace.yaml
+  title: Wordform Material Study
+  description: Make a short user-provided word the central visual object, with configurable material behavior, setting,
+    scale, contrast, and literal-copy preservation.
+  category: typography-and-campaigns
+  family: composition-first
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-to-image
+  - image-edit
+  - variations
+  - upscale
+  - typography
+  - multiple-references
+  featured: false
+  order: 123
+  source:
+    creator: Prompt Canvas
+    title: Wordform Material Study
+    url: null
+    promptUsage: original
+- id: symbol-language-sheet
+  path: templates/symbol-language-sheet.workspace.yaml
+  title: Symbol Language Sheet
+  description: Create an original set of symbols that shares one configurable visual grammar while keeping each concept
+    distinct, countable, and reviewable.
+  category: brand-systems
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  capabilities:
+  - text-to-image
+  - image-to-image
+  - image-edit
+  - multiple-references
+  - structured-prompt
+  - variations
+  - typography
+  featured: false
+  order: 124
+  source:
+    creator: Prompt Canvas
+    title: Symbol Language Sheet
+    url: null
+    promptUsage: original
+- id: sequential-moment-page
+  path: templates/sequential-moment-page.workspace.yaml
+  title: Sequential Moment Page
+  description: Compose one original visual page where a small cast, deliberate panel rhythm, and concise supplied copy
+    create a complete readable moment.
+  category: sequential-storytelling
+  family: multi-stage
+  operations:
+  - generate
+  - edit
+  - variation
+  capabilities:
+  - text-to-image
+  - image-to-image
+  - image-edit
+  - multiple-references
+  - structured-prompt
+  - multi-stage-workflow
+  - typography
+  - variations
+  featured: false
+  order: 125
+  source:
+    creator: Prompt Canvas
+    title: Sequential Moment Page
+    url: null
+    promptUsage: original

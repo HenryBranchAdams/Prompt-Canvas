@@ -1,0 +1,323 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: sequential-moment-page
+version: 1
+title: Sequential Moment Page
+description: Compose one original visual page where a small cast, deliberate panel rhythm, and concise supplied copy
+  create a complete readable moment.
+category: sequential-storytelling
+tags:
+- sequential
+- panels
+- dialogue
+- story
+- first-party
+status: starter
+x-publication:
+  status: staged
+  featureStatus: not-featured
+  sourceReviewStatus: first-party-original
+  reuseStatus: no-third-party-reuse
+x-evaluation:
+  status: staged
+  visualQualification: not-run
+  featureStatus: not-featured
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: multi-stage
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations:
+  - generate
+  - edit
+  - variation
+  defaultOperation: generate
+  defaultVariationCount: 4
+  preferredMimeTypes:
+  - image/png
+prompt:
+  title: Sequential Moment Page
+  body: >-
+    Create one original sequential page about {{story_beat}} featuring {{cast}} in {{setting}}. Use {{dialogue}} as
+    the only dialogue unless the user supplies more copy. Build a clear reading order, distinct moments, and purposeful
+    changes in scale or viewpoint. Keep character identity, wardrobe, props, spatial relationships, and panel order
+    consistent. Use the selected panel rhythm and visual tone as compositional guidance, not as permission to imitate
+    a named artist or published page. References may anchor user-owned identities, place facts, or layout structure only.
+  negativePrompt: >-
+    No copied characters or franchise style, scrambled reading order, repeated panel, identity drift, extra dialogue,
+    unreadable balloons, broken anatomy, signatures, or watermarks.
+  variables:
+  - id: story_beat
+    label: Story beat
+    type: text
+    required: true
+    defaultValue: two neighborhood repair volunteers discover a handwritten thank-you inside an old radio
+  - id: cast
+    label: Cast
+    type: text
+    required: true
+    defaultValue: an older meticulous electronics mentor and a younger eager apprentice, both original characters
+  - id: setting
+    label: Setting
+    type: text
+    required: true
+    defaultValue: a crowded but orderly community repair bench during a rainy afternoon
+  - id: dialogue
+    label: Exact dialogue
+    type: text
+    required: true
+    defaultValue: “Someone wanted this song to keep going.” / “Then let’s make sure it does.”
+controls:
+- id: story-beat
+  label: Story beat
+  type: textarea
+  required: true
+  defaultValue: two neighborhood repair volunteers discover a handwritten thank-you inside an old radio
+  binding:
+    mode: variable
+    target: story_beat
+- id: cast
+  label: Cast
+  type: textarea
+  required: true
+  defaultValue: an older meticulous electronics mentor and a younger eager apprentice, both original characters
+  binding:
+    mode: variable
+    target: cast
+- id: setting
+  label: Setting
+  type: textarea
+  required: true
+  defaultValue: a crowded but orderly community repair bench during a rainy afternoon
+  binding:
+    mode: variable
+    target: setting
+- id: dialogue
+  label: Exact dialogue
+  type: textarea
+  required: true
+  defaultValue: “Someone wanted this song to keep going.” / “Then let’s make sure it does.”
+  binding:
+    mode: variable
+    target: dialogue
+- id: panel-rhythm
+  label: Panel rhythm
+  type: enum
+  required: false
+  defaultValue: establish-discover-resolve
+  options:
+  - label: Establish, discover, resolve
+    value: establish-discover-resolve
+  - label: Quiet observation
+    value: quiet-observation
+  - label: Contrast and reveal
+    value: contrast-and-reveal
+  binding:
+    mode: agent-context
+    target: image.composition.panel_rhythm
+- id: panel-count
+  label: Panel count
+  type: range
+  required: false
+  defaultValue: 6
+  min: 4
+  max: 9
+  step: 1
+  binding:
+    mode: agent-context
+    target: image.composition.panel_count
+- id: dialogue-treatment
+  label: Dialogue treatment
+  type: enum
+  required: false
+  defaultValue: two-clear-balloons
+  options:
+  - label: Two clear balloons
+    value: two-clear-balloons
+  - label: Caption plus reply
+    value: caption-plus-reply
+  - label: Supplied copy as captions
+    value: supplied-copy-as-captions
+  binding:
+    mode: agent-context
+    target: image.text.dialogue_treatment
+- id: visual-tone
+  label: Visual tone
+  type: combobox
+  required: false
+  defaultValue: warm ink and restrained color
+  options:
+  - label: Warm ink and restrained color
+    value: warm ink and restrained color
+  - label: Graphic two-color print
+    value: graphic two-color print
+  - label: Soft observational painting
+    value: soft observational painting
+  allowCustom: true
+  binding:
+    mode: agent-context
+    target: image.visual.tone
+- id: aspect-ratio
+  label: Page aspect ratio
+  type: aspect-ratio
+  required: false
+  defaultValue: '3:4'
+  options:
+  - label: '3:4'
+    value: '3:4'
+  - label: '4:5'
+    value: '4:5'
+  - label: '1:1'
+    value: '1:1'
+  binding:
+    mode: generation
+    target: aspectRatio
+references:
+- id: character-reference
+  label: Optional character reference
+  role: identity
+  required: false
+  multiple: true
+  maxItems: 3
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - user-owned identity traits
+  - approved wardrobe and props
+  instructions: Preserve only the user-designated character facts across panels.
+- id: setting-reference
+  label: Optional setting reference
+  role: source-photo
+  required: false
+  multiple: true
+  maxItems: 3
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - named spatial anchors
+  instructions: Use only named setting facts; do not copy incidental people, text, or marks.
+- id: layout-reference
+  label: Optional layout reference
+  role: composition
+  required: false
+  multiple: false
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  instructions: Use reading order, panel proportions, and negative space only; do not copy story, characters, text, or style.
+preservation:
+- id: page-continuity
+  label: Page continuity
+  description: Preserve user-owned character identities, wardrobe, props, setting anchors, panel order, and supplied dialogue.
+  strength: must
+  appliesTo:
+  - character-reference
+  - setting-reference
+  - primary
+workflow:
+  mode: guided
+  entryStageId: beat-layout
+  allowAgentAdaptation: true
+  stages:
+  - id: beat-layout
+    title: Map the page beat
+    kind: compose-prompt
+    instructions: Divide the story beat into distinct panels with a clear reading order and one purpose per panel.
+    produces:
+    - page-plan
+  - id: continuity-check
+    title: Check continuity and copy
+    kind: review
+    instructions: Verify cast, props, setting, panel order, and literal dialogue before generation.
+    inputs:
+    - page-plan
+    produces:
+    - approved-page-context
+  - id: generate-page
+    title: Generate the page
+    kind: generate-image
+    instructions: Generate one readable sequential page through Codex and return it to the primary output slot.
+    inputs:
+    - approved-page-context
+    produces:
+    - primary
+outputs:
+- id: primary
+  label: Sequential moment page
+  role: primary
+  kind: image
+  count: 1
+  operations:
+  - generate
+  - edit
+  layoutHint: hero
+- id: variations
+  label: Page variations
+  role: variation
+  kind: image
+  count: 4
+  operations:
+  - variation
+  layoutHint: grid
+- id: panel-detail
+  label: Optional panel detail
+  role: comparison
+  kind: image
+  count: 1
+  operations:
+  - edit
+  required: false
+  layoutHint: pair
+blocks:
+- id: sequential-prompt-block
+  type: prompt
+  title: Page direction
+  region: left
+  order: 5
+- id: sequential-controls-block
+  type: controls
+  title: Story and panel controls
+  region: left
+  order: 10
+- id: sequential-references-block
+  type: references
+  title: Identity and layout references
+  region: left
+  order: 20
+- id: sequential-workflow-block
+  type: workflow
+  title: Page workflow
+  region: center
+  order: 10
+- id: sequential-output-block
+  type: output
+  title: Sequential moment page
+  sourceId: primary
+  region: right
+  order: 10
+layout:
+  mode: seeded
+  arrangement: workflow-board
+  seed: 208
+  preserveManualGeometry: true
+source:
+  kind: first-party
+  title: Sequential Moment Page
+  creator: Prompt Canvas
+  promptUsage: original
+  notes: Independently authored from general sequential-storytelling and continuity principles; no third-party prompt or source asset reused.
+capabilities:
+- text-to-image
+- image-to-image
+- image-edit
+- variations
+- multiple-references
+- structured-prompt
+- multi-stage-workflow
+- typography

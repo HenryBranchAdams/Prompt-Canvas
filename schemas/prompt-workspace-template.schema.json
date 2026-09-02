@@ -1,0 +1,1281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://prompt-canvas.app/schemas/prompt-workspace-template.schema.json",
+  "title": "Prompt Canvas Workspace Template",
+  "description": "Flexible semantic interchange schema for Codex-powered image prompt workspaces. The schema constrains interoperability, not visual composition or creative content.",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "title",
+    "description",
+    "generation",
+    "prompt",
+    "outputs"
+  ],
+  "properties": {
+    "schema": {
+      "const": "prompt-canvas.prompt-workspace-template@2"
+    },
+    "id": {
+      "$ref": "#/$defs/id"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 30,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      }
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "starter",
+        "published",
+        "archived"
+      ]
+    },
+    "compatibility": {
+      "type": "object",
+      "properties": {
+        "minimumAppVersion": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "templateFamily": {
+          "enum": [
+            "lightweight",
+            "parameterized",
+            "reference-transformation",
+            "multi-reference",
+            "composition-first",
+            "multi-stage",
+            "open"
+          ]
+        },
+        "requiresCapabilities": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/capability"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "thumbnail": {
+      "type": "object",
+      "properties": {
+        "assetPath": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "accent": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        }
+      },
+      "required": [
+        "assetPath",
+        "alt"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 30,
+      "items": {
+        "$ref": "#/$defs/capability"
+      }
+    },
+    "generation": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "const": "codex"
+        },
+        "capability": {
+          "const": "image-generation"
+        },
+        "delivery": {
+          "const": "webmcp-import"
+        },
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "generate",
+              "edit",
+              "variation",
+              "upscale"
+            ]
+          }
+        },
+        "defaultOperation": {
+          "enum": [
+            "generate",
+            "edit",
+            "variation",
+            "upscale"
+          ]
+        },
+        "defaultVariationCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "preferredMimeTypes": {
+          "type": "array",
+          "maxItems": 10,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^image/[a-z0-9.+-]+$"
+          }
+        },
+        "modelHint": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Optional non-binding host hint. Templates must not require a specific model identifier."
+        },
+        "qualityHint": {
+          "enum": [
+            "auto",
+            "draft",
+            "standard",
+            "high"
+          ]
+        },
+        "backgroundHint": {
+          "enum": [
+            "auto",
+            "opaque",
+            "transparent"
+          ]
+        }
+      },
+      "required": [
+        "operations"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "prompt": {
+      "$ref": "#/$defs/prompt"
+    },
+    "controlGroups": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "$ref": "#/$defs/controlGroup"
+      }
+    },
+    "controls": {
+      "type": "array",
+      "maxItems": 150,
+      "items": {
+        "$ref": "#/$defs/control"
+      }
+    },
+    "references": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "$ref": "#/$defs/referenceSlot"
+      }
+    },
+    "preservation": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/preservationRule"
+      }
+    },
+    "workflow": {
+      "$ref": "#/$defs/workflow"
+    },
+    "blocks": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/block"
+      }
+    },
+    "layout": {
+      "$ref": "#/$defs/layout"
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 30,
+      "items": {
+        "$ref": "#/$defs/outputSlot"
+      }
+    },
+    "annotations": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 3000
+          },
+          "kind": {
+            "enum": [
+              "note",
+              "tip",
+              "warning",
+              "source",
+              "example"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "kind"
+        ],
+        "patternProperties": {
+          "^x-[A-Za-z0-9_.-]+$": {}
+        },
+        "additionalProperties": false
+      }
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "maxReferenceBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12582912
+        },
+        "maxGeneratedAssetBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12582912
+        },
+        "maxWorkspaceAssets": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "maxResolvedPromptCharacters": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500000
+        }
+      },
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[A-Za-z0-9_.-]+$": {}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,79}$"
+    },
+    "capability": {
+      "enum": [
+        "text-to-image",
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "multiple-references",
+        "composition-reference",
+        "typography",
+        "structured-prompt",
+        "multi-stage-workflow",
+        "batch-output",
+        "mask-edit"
+      ]
+    },
+    "option": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "value": {
+          "type": [
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "label",
+        "value"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "variable": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "type": {
+          "enum": [
+            "string",
+            "text",
+            "number",
+            "integer",
+            "boolean",
+            "enum",
+            "multi-enum",
+            "color",
+            "json",
+            "reference"
+          ]
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "defaultValue": {},
+        "values": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "examples": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {}
+        },
+        "validation": {
+          "type": "object",
+          "properties": {
+            "minLength": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "maxLength": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "minimum": {
+              "type": "number"
+            },
+            "maximum": {
+              "type": "number"
+            },
+            "pattern": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          "patternProperties": {
+            "^x-[A-Za-z0-9_.-]+$": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "type"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "variable",
+            "prompt-fragment",
+            "negative-prompt",
+            "generation",
+            "workflow",
+            "agent-context",
+            "preservation"
+          ]
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "renderAs": {
+          "type": "string",
+          "maxLength": 300
+        }
+      },
+      "required": [
+        "mode",
+        "target"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "control": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "enum": [
+            "text",
+            "textarea",
+            "number",
+            "range",
+            "enum",
+            "multi-enum",
+            "chips",
+            "multi-chips",
+            "combobox",
+            "toggle",
+            "color",
+            "color-palette",
+            "aspect-ratio",
+            "reference",
+            "reference-list",
+            "composition",
+            "freeform",
+            "json",
+            "hidden"
+          ]
+        },
+        "helpText": {
+          "type": "string",
+          "maxLength": 1500
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "defaultValue": {},
+        "options": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/option"
+          }
+        },
+        "suggestions": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {}
+        },
+        "allowCustom": {
+          "type": "boolean"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "step": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "groupId": {
+          "$ref": "#/$defs/id"
+        },
+        "binding": {
+          "$ref": "#/$defs/binding"
+        },
+        "visibility": {
+          "type": "object",
+          "properties": {
+            "whenControlId": {
+              "$ref": "#/$defs/id"
+            },
+            "operator": {
+              "enum": [
+                "equals",
+                "not-equals",
+                "contains",
+                "exists"
+              ]
+            },
+            "value": {}
+          },
+          "required": [
+            "whenControlId",
+            "operator"
+          ],
+          "patternProperties": {
+            "^x-[A-Za-z0-9_.-]+$": {}
+          },
+          "additionalProperties": false
+        },
+        "ui": {
+          "type": "object",
+          "properties": {
+            "width": {
+              "enum": [
+                "auto",
+                "narrow",
+                "medium",
+                "wide",
+                "full"
+              ]
+            },
+            "compact": {
+              "type": "boolean"
+            },
+            "order": {
+              "type": "integer"
+            },
+            "placeholder": {
+              "type": "string",
+              "maxLength": 200
+            }
+          },
+          "patternProperties": {
+            "^x-[A-Za-z0-9_.-]+$": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "type"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "controlGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "collapsedByDefault": {
+          "type": "boolean"
+        },
+        "order": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "referenceSlot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "role": {
+          "enum": [
+            "content",
+            "identity",
+            "composition",
+            "style",
+            "palette",
+            "material",
+            "mask",
+            "source-photo",
+            "logo",
+            "other"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 1500
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "multiple": {
+          "type": "boolean"
+        },
+        "minItems": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        "maxItems": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "acceptedMimeTypes": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9.+-]+/[a-z0-9.+-]+$"
+          }
+        },
+        "preserve": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          }
+        },
+        "instructions": {
+          "type": "string",
+          "maxLength": 5000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "role"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "preservationRule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1500
+        },
+        "strength": {
+          "enum": [
+            "must",
+            "prefer",
+            "may"
+          ]
+        },
+        "appliesTo": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "strength"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "promptSection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30000
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "order": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "body"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "fragment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10000
+        },
+        "enabledByDefault": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "body"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "prompt": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 180
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000
+        },
+        "negativePrompt": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "variables": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/variable"
+          }
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "$ref": "#/$defs/promptSection"
+          }
+        },
+        "fragments": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/fragment"
+          }
+        },
+        "resolutionOrder": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        },
+        "agentInstructions": {
+          "type": "string",
+          "maxLength": 20000
+        }
+      },
+      "required": [
+        "body"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "outputSlot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "role": {
+          "enum": [
+            "primary",
+            "variation",
+            "comparison",
+            "intermediate",
+            "reference",
+            "archive"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "image",
+            "image-set",
+            "structured-context",
+            "text"
+          ]
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "aspectRatio": {
+          "type": "string",
+          "pattern": "^(auto|[1-9][0-9]*:[1-9][0-9]*)$"
+        },
+        "operations": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "generate",
+              "edit",
+              "variation",
+              "upscale"
+            ]
+          }
+        },
+        "layoutHint": {
+          "enum": [
+            "hero",
+            "strip",
+            "grid",
+            "pair",
+            "stack",
+            "free"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "role",
+        "kind"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "workflowStage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "kind": {
+          "enum": [
+            "collect-input",
+            "agent-reasoning",
+            "compose-prompt",
+            "generate-image",
+            "edit-image",
+            "select-output",
+            "review",
+            "custom"
+          ]
+        },
+        "instructions": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        },
+        "inputs": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          }
+        },
+        "produces": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          }
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "requiresUserChoice": {
+          "type": "boolean"
+        },
+        "nextStageIds": {
+          "type": "array",
+          "maxItems": 30,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "kind",
+        "instructions"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "workflow": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "single-stage",
+            "guided",
+            "multi-stage",
+            "branching"
+          ]
+        },
+        "stages": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/workflowStage"
+          }
+        },
+        "entryStageId": {
+          "$ref": "#/$defs/id"
+        },
+        "allowAgentAdaptation": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "required": [
+        "mode",
+        "stages"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "block": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "enum": [
+            "prompt",
+            "controls",
+            "references",
+            "output",
+            "variations",
+            "notes",
+            "workflow",
+            "comparison",
+            "gallery",
+            "freeform",
+            "json",
+            "custom"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "sourceId": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "region": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "order": {
+          "type": "integer"
+        },
+        "collapsedByDefault": {
+          "type": "boolean"
+        },
+        "lockedByDefault": {
+          "type": "boolean"
+        },
+        "content": {}
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "auto",
+            "freeform",
+            "seeded"
+          ]
+        },
+        "arrangement": {
+          "enum": [
+            "prompt-left-output-right",
+            "prompt-top-output-bottom",
+            "reference-transform",
+            "comparison",
+            "workflow-board",
+            "gallery",
+            "open-canvas",
+            "custom"
+          ]
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "preserveManualGeometry": {
+          "type": "boolean",
+          "default": true
+        },
+        "regions": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "label": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "purpose": {
+                "type": "string",
+                "maxLength": 500
+              },
+              "preferredSide": {
+                "enum": [
+                  "left",
+                  "right",
+                  "top",
+                  "bottom",
+                  "center",
+                  "free"
+                ]
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "patternProperties": {
+              "^x-[A-Za-z0-9_.-]+$": {}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "mode"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "first-party",
+            "user-provided",
+            "x-bookmark",
+            "web",
+            "book",
+            "paper",
+            "other"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "creator": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 2000
+        },
+        "accessedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "promptUsage": {
+          "enum": [
+            "original",
+            "inspiration-only",
+            "adapted",
+            "verbatim-authorized"
+          ]
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 3000
+        }
+      },
+      "required": [
+        "kind",
+        "title",
+        "promptUsage"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9_.-]+$": {}
+      },
+      "additionalProperties": false
+    }
+  }
+}

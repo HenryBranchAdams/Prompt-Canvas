@@ -1,0 +1,307 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: object-logic-atlas
+version: 2
+title: Object Logic Atlas
+description: Explain an object, space, or system through an original annotated view that connects exterior form,
+  internal roles, and supplied factual relationships.
+category: technical-visualization
+tags:
+- explanation
+- object
+- section
+- annotation
+- first-party
+status: starter
+x-publication:
+  status: staged
+  featureStatus: not-featured
+  sourceReviewStatus: first-party-original
+  reuseStatus: no-third-party-reuse
+x-evaluation:
+  status: staged
+  visualQualification: rerun-required
+  featureStatus: not-featured
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: parameterized
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  defaultOperation: generate
+  defaultVariationCount: 4
+  preferredMimeTypes:
+  - image/png
+prompt:
+  title: Object Logic Atlas
+  body: >-
+    Create an explanatory image of {{subject}}. Use {{explanation_goal}} as the explanation brief and {{components}}
+    as the component and label policy. Make exterior form, interior roles, and supplied relationships legible in one
+    coherent view. Use the selected view mode to decide whether the image behaves like an overview, a sectional
+    explanation, or an inside-out explainer. Treat instructional defaults as directives rather than literal component
+    names or facts. Use the selected factuality mode as a hard boundary: distinguish supplied facts from conceptual
+    interpretation and do not invent safety, performance, or engineering claims. Any source image or drawing anchors
+    named geometry and facts only.
+  negativePrompt: >-
+    No unrelated demo components, fabricated specifications, invented mechanisms, false measurements, misleading safety
+    claims, unlabeled clutter, impossible component relationships, copied marks, signatures, or watermarks.
+  variables:
+  - id: subject
+    label: Subject
+    type: text
+    required: true
+    defaultValue: a user-selected object, space, or system with a recognizable exterior and a small set of named parts
+  - id: explanation_goal
+    label: Explanation goal
+    type: text
+    required: true
+    defaultValue: explain how the parts supplied for this subject relate to its purpose; omit unsupported mechanisms
+  - id: components
+    label: Components and labels
+    type: text
+    required: true
+    defaultValue: use only component names and relationships supplied for this subject; if none are supplied, show unlabeled conceptual zones rather than inventing parts
+controls:
+- id: subject
+  label: Subject
+  type: textarea
+  required: true
+  defaultValue: a user-selected object, space, or system with a recognizable exterior and a small set of named parts
+  binding:
+    mode: variable
+    target: subject
+- id: explanation-goal
+  label: Explanation goal
+  type: textarea
+  required: true
+  defaultValue: explain how the parts supplied for this subject relate to its purpose; omit unsupported mechanisms
+  binding:
+    mode: variable
+    target: explanation_goal
+- id: components
+  label: Components and labels
+  type: textarea
+  required: true
+  defaultValue: use only component names and relationships supplied for this subject; if none are supplied, show unlabeled conceptual zones rather than inventing parts
+  binding:
+    mode: variable
+    target: components
+- id: visual-mode
+  label: Explanation view
+  type: enum
+  required: false
+  defaultValue: annotated-overview
+  options:
+  - label: Annotated overview
+    value: annotated-overview
+    description: Keep the whole subject visible and connect concise labels to functional zones.
+  - label: Sectional relationship
+    value: sectional-relationship
+    description: Use one controlled section to reveal internal relationships without exploding the entire object.
+  - label: Inside-out explainer
+    value: inside-out-explainer
+    description: Pair a recognizable exterior with an offset interior logic view and a clear reading path between them.
+    x-extension-status:
+      availability: optional
+      featured: false
+  - label: Custom
+    value: custom
+  binding:
+    mode: agent-context
+    target: image.composition.explanation_view
+  x-extension-status:
+    id: inside-out-explainer
+    availability: optional
+    featured: false
+- id: component-depth
+  label: Component depth
+  type: range
+  required: false
+  defaultValue: 55
+  min: 15
+  max: 90
+  step: 5
+  binding:
+    mode: agent-context
+    target: image.data.component_depth
+- id: label-style
+  label: Label style
+  type: enum
+  required: false
+  defaultValue: numbered-key
+  options:
+  - label: Numbered key
+    value: numbered-key
+  - label: Direct callouts
+    value: direct-callouts
+  - label: Minimal labels
+    value: minimal-labels
+  binding:
+    mode: agent-context
+    target: image.text.label_style
+- id: factuality-mode
+  label: Factuality mode
+  type: enum
+  required: false
+  defaultValue: supplied
+  options:
+  - label: Supplied facts only
+    value: supplied
+  - label: Mixed facts and labeled concept
+    value: mixed
+  - label: Conceptual illustration
+    value: conceptual
+  binding:
+    mode: agent-context
+    target: factuality.mode
+- id: source-notes
+  label: Source facts and uncertainties
+  type: textarea
+  required: false
+  defaultValue: Treat named components and relationships as supplied facts; label any inferred internal form as conceptual.
+  binding:
+    mode: agent-context
+    target: factuality.sourceNotes
+- id: rendering-language
+  label: Rendering language
+  type: combobox
+  required: false
+  defaultValue: precise editorial diagram
+  options:
+  - label: Precise editorial diagram
+    value: precise editorial diagram
+  - label: Tactile sectional illustration
+    value: tactile sectional illustration
+  - label: Clean product visualization
+    value: clean product visualization
+  allowCustom: true
+  binding:
+    mode: agent-context
+    target: image.visual.rendering_language
+- id: aspect-ratio
+  label: Aspect ratio
+  type: aspect-ratio
+  required: false
+  defaultValue: '4:3'
+  options:
+  - label: '4:3'
+    value: '4:3'
+  - label: '3:2'
+    value: '3:2'
+  - label: '16:9'
+    value: '16:9'
+  - label: '4:5'
+    value: '4:5'
+  binding:
+    mode: generation
+    target: aspectRatio
+references:
+- id: source-reference
+  label: Optional source image or drawing
+  role: source-photo
+  required: false
+  multiple: true
+  maxItems: 4
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - named exterior geometry
+  - supplied component locations
+  - approved marks and labels
+  instructions: Use only the geometry and facts the user identifies as authoritative; do not infer hidden details as fact.
+preservation:
+- id: factual-boundary
+  label: Factual boundary
+  description: Preserve supplied geometry, component names, relationships, and uncertainties; visibly separate conceptual interpretation.
+  strength: must
+  appliesTo:
+  - source-reference
+  - primary
+  - detail
+outputs:
+- id: primary
+  label: Object logic plate
+  role: primary
+  kind: image
+  count: 1
+  operations:
+  - generate
+  - edit
+  - upscale
+  layoutHint: hero
+- id: variations
+  label: Explanation variations
+  role: variation
+  kind: image
+  count: 4
+  operations:
+  - variation
+  layoutHint: grid
+- id: detail
+  label: Optional component detail
+  role: comparison
+  kind: image
+  count: 1
+  operations:
+  - edit
+  - upscale
+  required: false
+  layoutHint: pair
+blocks:
+- id: object-logic-prompt-block
+  type: prompt
+  title: Explanation direction
+  region: left
+  order: 5
+- id: object-logic-controls-block
+  type: controls
+  title: Subject and fact controls
+  region: left
+  order: 10
+- id: object-logic-reference-block
+  type: references
+  title: Source evidence
+  region: left
+  order: 20
+- id: object-logic-output-block
+  type: output
+  title: Object logic plate
+  sourceId: primary
+  region: right
+  order: 10
+layout:
+  mode: seeded
+  arrangement: prompt-left-output-right
+  seed: 204
+  preserveManualGeometry: true
+x-extension-status:
+  id: inside-out-explainer
+  availability: optional
+  featured: false
+x-extension-design:
+  id: inside-out-explainer
+  source: first-party-original
+  creator: Prompt Canvas
+  promptUsage: original
+  notes: Independently authored from general sectional explanation and comparison principles; no third-party prompt or source asset reused.
+source:
+  kind: first-party
+  title: Object Logic Atlas
+  creator: Prompt Canvas
+  promptUsage: original
+  notes: Independently authored from general explanatory-illustration principles; no third-party prompt or source asset reused.
+capabilities:
+- text-to-image
+- image-to-image
+- image-edit
+- variations
+- upscale
+- structured-prompt
+- typography

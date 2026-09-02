@@ -1,0 +1,311 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: scene-rhythm-board
+version: 2
+title: Scene Rhythm Board
+description: Turn an original premise into a readable progression of image moments with explicit pacing, coverage,
+  emotional movement, and continuity anchors.
+category: story-and-sequence
+tags:
+- sequence
+- pacing
+- continuity
+- visual-story
+- first-party
+status: starter
+x-publication:
+  status: staged
+  featureStatus: not-featured
+  sourceReviewStatus: first-party-original
+  reuseStatus: no-third-party-reuse
+x-evaluation:
+  status: staged
+  visualQualification: rerun-required
+  featureStatus: not-featured
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: multi-stage
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations:
+  - generate
+  - edit
+  - variation
+  defaultOperation: generate
+  defaultVariationCount: 4
+  preferredMimeTypes:
+  - image/png
+prompt:
+  title: Scene Rhythm Board
+  body: >-
+    Build a concise visual sequence for {{premise}}. Use {{emotional_arc}} as the pacing instruction, {{focal_subject}}
+    as the identity focus, and {{continuity_anchors}} as the continuity policy. Organize the board into the selected
+    number of beats, with each image advancing time, information, or emotion rather than repeating the same moment.
+    Use the chosen shot vocabulary to create rhythm and make spatial transitions legible. Treat instructional defaults
+    as directives rather than literal captions or story facts. Keep captions short and functional. References may anchor
+    identity or location, but must not supply a borrowed story, signature, or unrelated visual language.
+  negativePrompt: >-
+    No unrelated demo characters or locations, duplicated beat, unexplained costume or prop changes, broken screen
+    direction, illegible panels, random camera changes, dense screenplay text, copied characters, signatures, or
+    watermarks.
+  variables:
+  - id: premise
+    label: Premise
+    type: text
+    required: true
+    defaultValue: an original short scene in which a familiar routine is interrupted by one clear discovery
+  - id: focal_subject
+    label: Focal subject
+    type: text
+    required: true
+    defaultValue: keep the principal character, object, or group established by the premise recognizable throughout
+  - id: emotional_arc
+    label: Emotional arc
+    type: text
+    required: true
+    defaultValue: derive a clear progression from the premise through orientation, change, consequence, and resolution
+  - id: continuity_anchors
+    label: Continuity anchors
+    type: text
+    required: true
+    defaultValue: repeat only identities, wardrobe, props, locations, and lighting established by the premise or supplied references; introduce no unrelated example details
+controls:
+- id: premise
+  label: Premise
+  type: textarea
+  required: true
+  defaultValue: an original short scene in which a familiar routine is interrupted by one clear discovery
+  binding:
+    mode: variable
+    target: premise
+- id: focal-subject
+  label: Focal subject
+  type: textarea
+  required: true
+  defaultValue: keep the principal character, object, or group established by the premise recognizable throughout
+  binding:
+    mode: variable
+    target: focal_subject
+- id: emotional-arc
+  label: Emotional arc
+  type: textarea
+  required: true
+  defaultValue: derive a clear progression from the premise through orientation, change, consequence, and resolution
+  binding:
+    mode: variable
+    target: emotional_arc
+- id: continuity-anchors
+  label: Continuity anchors
+  type: textarea
+  required: true
+  defaultValue: repeat only identities, wardrobe, props, locations, and lighting established by the premise or supplied references; introduce no unrelated example details
+  binding:
+    mode: variable
+    target: continuity_anchors
+- id: beat-count
+  label: Beat count
+  type: range
+  required: false
+  defaultValue: 6
+  min: 4
+  max: 9
+  step: 1
+  binding:
+    mode: agent-context
+    target: image.composition.beat_count
+- id: camera-language
+  label: Shot vocabulary
+  type: enum
+  required: false
+  defaultValue: progressive-coverage
+  options:
+  - label: Progressive coverage
+    value: progressive-coverage
+    description: Move from orientation to relationship to decisive detail.
+  - label: Intimate observation
+    value: intimate-observation
+    description: Favor close spatial relationships and small changes in expression or gesture.
+  - label: Graphic contrast
+    value: graphic-contrast
+    description: Alternate scale, direction, and negative space for a more designed rhythm.
+  binding:
+    mode: agent-context
+    target: image.composition.shot_vocabulary
+- id: caption-level
+  label: Caption level
+  type: enum
+  required: false
+  defaultValue: short-beat-labels
+  options:
+  - label: No captions
+    value: none
+  - label: Short beat labels
+    value: short-beat-labels
+  - label: Action plus sound cue
+    value: action-and-sound
+  binding:
+    mode: agent-context
+    target: image.text.caption_level
+- id: visual-tone
+  label: Visual tone
+  type: combobox
+  required: false
+  defaultValue: restrained cinematic illustration
+  options:
+  - label: Restrained cinematic illustration
+    value: restrained cinematic illustration
+  - label: Graphic ink storyboard
+    value: graphic ink storyboard
+  - label: Painterly atmosphere study
+    value: painterly atmosphere study
+  allowCustom: true
+  binding:
+    mode: agent-context
+    target: image.visual.tone
+- id: aspect-ratio
+  label: Board aspect ratio
+  type: aspect-ratio
+  required: false
+  defaultValue: '16:9'
+  options:
+  - label: '16:9'
+    value: '16:9'
+  - label: '3:2'
+    value: '3:2'
+  - label: '4:3'
+    value: '4:3'
+  binding:
+    mode: generation
+    target: aspectRatio
+references:
+- id: character-reference
+  label: Optional character reference
+  role: identity
+  required: false
+  multiple: true
+  maxItems: 3
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - defining identity traits
+  - approved wardrobe and prop relationships
+  instructions: Preserve only user-designated character facts across beats.
+- id: location-reference
+  label: Optional location reference
+  role: source-photo
+  required: false
+  multiple: true
+  maxItems: 3
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - named spatial anchors
+  - approved architecture and time-of-day cues
+  instructions: Use the named spatial facts for continuity without copying incidental people, text, or marks.
+preservation:
+- id: sequence-continuity
+  label: Sequence continuity
+  description: Preserve stated identity, wardrobe, props, location anchors, and time progression across the sequence.
+  strength: must
+  appliesTo:
+  - character-reference
+  - location-reference
+  - primary
+  - frame-variations
+workflow:
+  mode: guided
+  entryStageId: beat-plan
+  allowAgentAdaptation: true
+  stages:
+  - id: beat-plan
+    title: Plan distinct beats
+    kind: compose-prompt
+    instructions: Turn the premise and emotional arc into distinct beats. Each beat must change action, information, or emotion.
+    produces:
+    - beat-plan
+  - id: continuity-review
+    title: Check continuity
+    kind: review
+    instructions: Verify identity, props, location anchors, screen direction, and time progression before generation.
+    inputs:
+    - beat-plan
+    produces:
+    - approved-sequence-context
+  - id: generate-board
+    title: Generate the board
+    kind: generate-image
+    instructions: Generate one readable sequence board through Codex and return it to the primary output slot.
+    inputs:
+    - approved-sequence-context
+    produces:
+    - primary
+outputs:
+- id: primary
+  label: Scene rhythm board
+  role: primary
+  kind: image
+  count: 1
+  operations:
+  - generate
+  - edit
+  layoutHint: hero
+- id: frame-variations
+  label: Frame variations
+  role: variation
+  kind: image
+  count: 4
+  operations:
+  - variation
+  layoutHint: strip
+blocks:
+- id: scene-rhythm-prompt-block
+  type: prompt
+  title: Sequence direction
+  region: left
+  order: 5
+- id: scene-rhythm-controls-block
+  type: controls
+  title: Rhythm controls
+  region: left
+  order: 10
+- id: scene-rhythm-references-block
+  type: references
+  title: Continuity references
+  region: left
+  order: 20
+- id: scene-rhythm-workflow-block
+  type: workflow
+  title: Sequence workflow
+  region: center
+  order: 10
+- id: scene-rhythm-output-block
+  type: output
+  title: Scene rhythm board
+  sourceId: primary
+  region: right
+  order: 10
+layout:
+  mode: seeded
+  arrangement: workflow-board
+  seed: 203
+  preserveManualGeometry: true
+source:
+  kind: first-party
+  title: Scene Rhythm Board
+  creator: Prompt Canvas
+  promptUsage: original
+  notes: Independently authored from general visual-sequence and continuity principles; no third-party prompt or source asset reused.
+capabilities:
+- text-to-image
+- image-to-image
+- image-edit
+- variations
+- multiple-references
+- structured-prompt
+- multi-stage-workflow
+- typography

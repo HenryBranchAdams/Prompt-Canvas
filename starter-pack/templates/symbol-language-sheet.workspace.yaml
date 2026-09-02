@@ -1,0 +1,291 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: symbol-language-sheet
+version: 1
+title: Symbol Language Sheet
+description: Create an original set of symbols that shares one configurable visual grammar while keeping each concept
+  distinct, countable, and reviewable.
+category: brand-systems
+tags:
+- symbols
+- icons
+- system
+- grid
+- first-party
+status: starter
+x-publication:
+  status: staged
+  featureStatus: not-featured
+  sourceReviewStatus: first-party-original
+  reuseStatus: no-third-party-reuse
+x-evaluation:
+  status: staged
+  visualQualification: not-run
+  featureStatus: not-featured
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: parameterized
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations:
+  - generate
+  - edit
+  - variation
+  defaultOperation: generate
+  defaultVariationCount: 4
+  preferredMimeTypes:
+  - image/png
+prompt:
+  title: Symbol Language Sheet
+  body: >-
+    Design an original symbol set for {{concepts}}. Make every symbol distinct while applying the shared grammar
+    {{visual_grammar}}, the shape logic {{shape_logic}}, and the palette {{palette}}. Present exactly the requested
+    concepts in a regular review sheet with consistent scale, optical weight, padding, and background treatment. Use
+    short supplied labels only when selected. If a logo, palette, or existing symbol reference is supplied, preserve
+    only the traits explicitly approved by the user; do not copy other symbols, marks, or layout.
+  negativePrompt: >-
+    No copied icon library, duplicate concept, inconsistent stroke or depth, arbitrary perspective, extra symbols,
+    invented labels, unrelated logos, signatures, or watermarks.
+  variables:
+  - id: concepts
+    label: Concept list
+    type: text
+    required: true
+    defaultValue: shelter, wayfinding, gathering, water, repair, night access, shared tools, and quiet zone
+  - id: visual_grammar
+    label: Visual grammar
+    type: text
+    required: true
+    defaultValue: bold filled shapes with one interior cut, no outline, and consistent negative-space apertures
+  - id: shape_logic
+    label: Shape and corner logic
+    type: text
+    required: true
+    defaultValue: rounded rectangular containers, softened corners, and one diagonal gesture per symbol
+  - id: palette
+    label: Palette
+    type: text
+    required: true
+    defaultValue: charcoal symbols, warm off-white field, and one cobalt accent used sparingly
+controls:
+- id: concepts
+  label: Concept list
+  type: textarea
+  required: true
+  defaultValue: shelter, wayfinding, gathering, water, repair, night access, shared tools, and quiet zone
+  binding:
+    mode: variable
+    target: concepts
+- id: visual-grammar
+  label: Visual grammar
+  type: textarea
+  required: true
+  defaultValue: bold filled shapes with one interior cut, no outline, and consistent negative-space apertures
+  binding:
+    mode: variable
+    target: visual_grammar
+- id: shape-logic
+  label: Shape and corner logic
+  type: textarea
+  required: true
+  defaultValue: rounded rectangular containers, softened corners, and one diagonal gesture per symbol
+  binding:
+    mode: variable
+    target: shape_logic
+- id: palette
+  label: Palette
+  type: text
+  required: true
+  defaultValue: charcoal symbols, warm off-white field, and one cobalt accent used sparingly
+  binding:
+    mode: variable
+    target: palette
+- id: system-depth
+  label: System depth
+  type: enum
+  required: false
+  defaultValue: flat
+  options:
+  - label: Flat
+    value: flat
+  - label: Shallow dimensional
+    value: shallow-dimensional
+  - label: Tactile relief
+    value: tactile-relief
+  binding:
+    mode: agent-context
+    target: image.visual.system_depth
+- id: grid-rhythm
+  label: Grid rhythm
+  type: enum
+  required: false
+  defaultValue: equal-cells
+  options:
+  - label: Equal cells
+    value: equal-cells
+  - label: Hero plus family
+    value: hero-plus-family
+  - label: Two-tier hierarchy
+    value: two-tier-hierarchy
+  binding:
+    mode: agent-context
+    target: image.composition.grid_rhythm
+- id: label-mode
+  label: Label mode
+  type: enum
+  required: false
+  defaultValue: supplied-short-labels
+  options:
+  - label: No labels
+    value: none
+  - label: Supplied short labels
+    value: supplied-short-labels
+  binding:
+    mode: agent-context
+    target: image.text.label_mode
+- id: background-intent
+  label: Background intent
+  type: enum
+  required: false
+  defaultValue: warm-opaque-field
+  options:
+  - label: Warm opaque field
+    value: warm-opaque-field
+  - label: Neutral review field
+    value: neutral-review-field
+  - label: Isolated-symbol intent
+    value: isolated-symbol-intent
+    description: Request a clean isolated presentation; this does not guarantee host-side transparency.
+  binding:
+    mode: agent-context
+    target: image.visual.background_intent
+- id: aspect-ratio
+  label: Aspect ratio
+  type: aspect-ratio
+  required: false
+  defaultValue: '1:1'
+  options:
+  - label: '1:1'
+    value: '1:1'
+  - label: '4:3'
+    value: '4:3'
+  - label: '3:2'
+    value: '3:2'
+  binding:
+    mode: generation
+    target: aspectRatio
+references:
+- id: logo-reference
+  label: Optional approved logo
+  role: logo
+  required: false
+  multiple: false
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - approved mark geometry
+  - user-designated shape traits
+  instructions: Use only explicit system traits; do not redraw the logo as one of the symbols unless requested.
+- id: palette-reference
+  label: Optional palette reference
+  role: palette
+  required: false
+  multiple: false
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  instructions: Use color relationships only.
+- id: existing-symbol-reference
+  label: Optional approved symbol reference
+  role: style
+  required: false
+  multiple: true
+  maxItems: 4
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - user-designated stroke, corner, density, and depth traits
+  instructions: Extend only the explicitly approved system traits; do not copy unrelated symbols.
+preservation:
+- id: symbol-system
+  label: Symbol system
+  description: Preserve approved mark geometry and maintain consistent scale, optical weight, padding, palette, and shape grammar across the set.
+  strength: must
+  appliesTo:
+  - logo-reference
+  - existing-symbol-reference
+  - primary
+outputs:
+- id: primary
+  label: Symbol language sheet
+  role: primary
+  kind: image
+  count: 1
+  operations:
+  - generate
+  - edit
+  layoutHint: hero
+- id: variations
+  label: System variations
+  role: variation
+  kind: image
+  count: 4
+  operations:
+  - variation
+  layoutHint: grid
+- id: isolated-symbol
+  label: Optional isolated symbol
+  role: comparison
+  kind: image
+  count: 1
+  operations:
+  - edit
+  required: false
+  layoutHint: pair
+blocks:
+- id: symbol-prompt-block
+  type: prompt
+  title: Symbol-system direction
+  region: left
+  order: 5
+- id: symbol-controls-block
+  type: controls
+  title: Grammar and grid controls
+  region: left
+  order: 10
+- id: symbol-reference-block
+  type: references
+  title: Approved system references
+  region: left
+  order: 20
+- id: symbol-output-block
+  type: output
+  title: Symbol language sheet
+  sourceId: primary
+  region: right
+  order: 10
+layout:
+  mode: seeded
+  arrangement: prompt-left-output-right
+  seed: 207
+  preserveManualGeometry: true
+source:
+  kind: first-party
+  title: Symbol Language Sheet
+  creator: Prompt Canvas
+  promptUsage: original
+  notes: Independently authored from general symbol-system and optical-consistency principles; no third-party prompt or source asset reused.
+capabilities:
+- text-to-image
+- image-to-image
+- image-edit
+- variations
+- multiple-references
+- structured-prompt
+- typography

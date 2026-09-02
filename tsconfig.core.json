@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "strict": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": ".core-dist",
+    "rootDir": ".",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": false,
+    "declaration": false,
+    "sourceMap": false
+  },
+  "include": [
+    "src/workspaces/types.ts",
+    "src/workspaces/hash.ts",
+    "src/workspaces/ids.ts",
+    "src/workspaces/validation-core.ts",
+    "src/workspaces/prompt-resolver.ts",
+    "src/workspaces/revisions.ts",
+    "src/workspaces/template-search.ts",
+    "src/workspaces/workspace-factory.ts",
+    "src/library/template-library-core.ts",
+    "src/activity/retention.ts",
+    "src/generation/asset-validation-core.ts",
+    "src/app/runtime-license.ts",
+    "tests/*.test.ts",
+    "tests/node-shims.d.ts"
+  ]
+}

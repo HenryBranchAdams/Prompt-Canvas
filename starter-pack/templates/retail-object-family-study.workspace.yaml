@@ -1,0 +1,307 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: retail-object-family-study
+version: 2
+title: Retail Object Family Study
+description: Explore an original brand system across a coordinated family of retail objects while preserving approved
+  names, marks, silhouettes, and material logic.
+category: brand-and-packaging
+tags:
+- brand
+- objects
+- packaging
+- system
+- first-party
+status: starter
+x-publication:
+  status: staged
+  featureStatus: not-featured
+  sourceReviewStatus: first-party-original
+  reuseStatus: no-third-party-reuse
+x-evaluation:
+  status: staged
+  visualQualification: rerun-required
+  featureStatus: not-featured
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: parameterized
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  defaultOperation: generate
+  defaultVariationCount: 4
+  preferredMimeTypes:
+  - image/png
+prompt:
+  title: Retail Object Family Study
+  body: >-
+    Design a coordinated retail-object family for {{product_family}}. Use {{brand_promise}} as the messaging brief,
+    {{naming_copy}} as the naming and copy policy, {{materials}} as material guidance, and {{color_system}} as color
+    guidance. Show the objects together in a clear studio presentation that reveals shared rules and meaningful
+    variation between formats. Treat instructional values as constraints rather than literal packaging copy. If approved
+    naming, claims, specifications, or materials are not supplied, omit them or keep them visibly conceptual instead of
+    inventing them. Keep marks, text, closures, and structural seams plausible. Any supplied logo or product reference
+    is an identity constraint, not a source of unrelated styling or copy.
+  negativePrompt: >-
+    No substituted logo, invented claims, unrelated demo copy, misspelled naming copy, impossible folds or closures,
+    duplicated objects, random decorative patterns, generic stock mockup, signatures, or watermarks.
+  variables:
+  - id: product_family
+    label: Product family
+    type: text
+    required: true
+    defaultValue: a three-format family of related everyday retail objects with one hero format and two supporting formats
+  - id: brand_promise
+    label: Brand promise
+    type: text
+    required: true
+    defaultValue: derive one clear benefit and emotional tone from the selected product family; do not invent factual claims
+  - id: naming_copy
+    label: Exact naming copy
+    type: string
+    required: true
+    defaultValue: use only exact naming supplied by the user; otherwise omit brand and product copy
+  - id: materials
+    label: Material system
+    type: text
+    required: true
+    defaultValue: choose plausible, category-appropriate materials and closures; do not carry materials from an unrelated example
+  - id: color_system
+    label: Color system
+    type: text
+    required: true
+    defaultValue: derive a restrained palette from the selected category or supplied references, with one clear accent
+controls:
+- id: product-family
+  label: Product family
+  type: textarea
+  required: true
+  defaultValue: a three-format family of related everyday retail objects with one hero format and two supporting formats
+  binding:
+    mode: variable
+    target: product_family
+- id: brand-promise
+  label: Brand promise
+  type: textarea
+  required: true
+  defaultValue: derive one clear benefit and emotional tone from the selected product family; do not invent factual claims
+  binding:
+    mode: variable
+    target: brand_promise
+- id: naming-copy
+  label: Exact naming copy
+  type: text
+  required: true
+  defaultValue: use only exact naming supplied by the user; otherwise omit brand and product copy
+  binding:
+    mode: variable
+    target: naming_copy
+- id: materials
+  label: Material system
+  type: textarea
+  required: true
+  defaultValue: choose plausible, category-appropriate materials and closures; do not carry materials from an unrelated example
+  binding:
+    mode: variable
+    target: materials
+- id: color-system
+  label: Color system
+  type: text
+  required: true
+  defaultValue: derive a restrained palette from the selected category or supplied references, with one clear accent
+  binding:
+    mode: variable
+    target: color_system
+- id: family-arrangement
+  label: Family arrangement
+  type: enum
+  required: false
+  defaultValue: hero-and-support
+  options:
+  - label: Hero and support
+    value: hero-and-support
+  - label: Ordered lineup
+    value: ordered-lineup
+  - label: Open system overview
+    value: open-system-overview
+  binding:
+    mode: agent-context
+    target: image.composition.family_arrangement
+- id: layout-density
+  label: Layout density
+  type: range
+  required: false
+  defaultValue: 45
+  min: 10
+  max: 90
+  step: 5
+  binding:
+    mode: agent-context
+    target: image.composition.layout_density
+- id: surface-finish
+  label: Surface finish
+  type: combobox
+  required: false
+  defaultValue: restrained studio realism
+  options:
+  - label: Restrained studio realism
+    value: restrained studio realism
+  - label: Tactile editorial still life
+    value: tactile editorial still life
+  - label: Precise design visualization
+    value: precise design visualization
+  allowCustom: true
+  binding:
+    mode: agent-context
+    target: image.visual.surface_finish
+- id: factuality-mode
+  label: Claim boundary
+  type: enum
+  required: false
+  defaultValue: supplied
+  options:
+  - label: Supplied facts only
+    value: supplied
+  - label: Conceptual placeholders
+    value: conceptual
+  binding:
+    mode: agent-context
+    target: factuality.mode
+- id: source-notes
+  label: Approved facts and copy
+  type: textarea
+  required: false
+  defaultValue: Use only the product names, claims, and specifications supplied in this workspace.
+  binding:
+    mode: agent-context
+    target: factuality.sourceNotes
+- id: aspect-ratio
+  label: Aspect ratio
+  type: aspect-ratio
+  required: false
+  defaultValue: '4:3'
+  options:
+  - label: '4:3'
+    value: '4:3'
+  - label: '3:2'
+    value: '3:2'
+  - label: '1:1'
+    value: '1:1'
+  - label: '16:9'
+    value: '16:9'
+  binding:
+    mode: generation
+    target: aspectRatio
+references:
+- id: logo-reference
+  label: Optional approved mark
+  role: logo
+  required: false
+  multiple: false
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - mark geometry
+  - proportions
+  - approved color relationships
+  instructions: Preserve the approved mark. Do not infer additional brand assets or typography from incidental details.
+- id: product-reference
+  label: Optional product reference
+  role: identity
+  required: false
+  multiple: true
+  maxItems: 4
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - recognizable product silhouette
+  - supplied structural details
+  instructions: Use only the product facts the user identifies as authoritative.
+preservation:
+- id: approved-brand-facts
+  label: Approved brand facts
+  description: Preserve supplied mark geometry, naming copy, product silhouettes, and stated material relationships.
+  strength: must
+  appliesTo:
+  - logo-reference
+  - product-reference
+  - primary
+outputs:
+- id: primary
+  label: Retail family study
+  role: primary
+  kind: image
+  count: 1
+  operations:
+  - generate
+  - edit
+  - upscale
+  layoutHint: hero
+- id: variations
+  label: System variations
+  role: variation
+  kind: image
+  count: 4
+  operations:
+  - variation
+  layoutHint: grid
+- id: material-detail
+  label: Optional material detail
+  role: comparison
+  kind: image
+  count: 1
+  operations:
+  - edit
+  - upscale
+  required: false
+  layoutHint: pair
+blocks:
+- id: retail-prompt-block
+  type: prompt
+  title: Object-family direction
+  region: left
+  order: 5
+- id: retail-controls-block
+  type: controls
+  title: Brand and object controls
+  region: left
+  order: 10
+- id: retail-references-block
+  type: references
+  title: Approved references
+  region: left
+  order: 20
+- id: retail-output-block
+  type: output
+  title: Retail family study
+  sourceId: primary
+  region: right
+  order: 10
+layout:
+  mode: seeded
+  arrangement: prompt-left-output-right
+  seed: 202
+  preserveManualGeometry: true
+source:
+  kind: first-party
+  title: Retail Object Family Study
+  creator: Prompt Canvas
+  promptUsage: original
+  notes: Independently authored from general brand-system and still-life primitives; no third-party prompt or source asset reused.
+capabilities:
+- text-to-image
+- image-to-image
+- image-edit
+- variations
+- upscale
+- multiple-references
+- typography

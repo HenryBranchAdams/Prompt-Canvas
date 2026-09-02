@@ -1,0 +1,1164 @@
+{
+  "schema": "prompt-canvas.webmcp-tool-catalog@1",
+  "app": "Prompt Canvas",
+  "version": "0.1.0",
+  "principles": [
+    "Codex owns conversation, reasoning, image generation, image editing, variations, and upscaling.",
+    "Prompt Canvas owns template state, tldraw rendering, references, outputs, persistence, and semantic WebMCP operations.",
+    "No site tool may claim to generate an image; generation context and asset import are separate operations.",
+    "Existing-workspace canvas mutations are schema-validated, revision-aware, atomic, immediately visible, and one-step undoable; lifecycle and template-library writes use their documented persistence and conflict boundaries."
+  ],
+  "tools": [
+    {
+      "name": "prompt_canvas_inspect",
+      "title": "Inspect prompt canvas",
+      "description": "Read bounded semantic state for the active workspace, including prompt fields, controls, references, selection, workflow, outputs, revisions, and page-accepted asset transports.",
+      "annotations": {
+        "readOnlyHint": true,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "include": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "prompt",
+                "controls",
+                "references",
+                "selection",
+                "workflow",
+                "outputs",
+                "layout",
+                "activity",
+                "capabilities"
+              ]
+            }
+          },
+          "maxItems": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200
+          }
+        }
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "workspace",
+          "revision",
+          "generationRevision",
+          "selection",
+          "elements",
+          "capabilities",
+          "verifiedAssetTransports"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_list_templates",
+      "title": "List prompt templates",
+      "description": "Search the bundled starter library and user-owned templates without creating a workspace.",
+      "annotations": {
+        "readOnlyHint": true,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "categories": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "families": {
+            "type": "array",
+            "maxItems": 10,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "capabilities": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        }
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "templates",
+          "nextCursor"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_get_template",
+      "title": "Get prompt template",
+      "description": "Read one full normalized template definition by ID so Codex can understand or adapt it.",
+      "annotations": {
+        "readOnlyHint": true,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "templateId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "templateId"
+        ]
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "template",
+          "validation",
+          "provenance"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_validate_template",
+      "title": "Validate prompt template",
+      "description": "Validate a candidate template against the compatibility core and return non-blocking lint and creative-review guidance.",
+      "annotations": {
+        "readOnlyHint": true,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "template": {
+            "type": "object"
+          },
+          "mode": {
+            "enum": [
+              "schema-only",
+              "compatibility",
+              "full"
+            ]
+          }
+        },
+        "required": [
+          "template"
+        ]
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "valid",
+          "schemaErrors",
+          "compatibilityWarnings",
+          "creativeSuggestions",
+          "normalizedPreview"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_get_generation_context",
+      "title": "Prepare generation context",
+      "description": "Resolve the active workspace into a bounded request for Codex. This tool does not generate, edit, vary, or upscale an image.",
+      "annotations": {
+        "readOnlyHint": true,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "operation": {
+            "enum": [
+              "generate",
+              "edit",
+              "variation",
+              "upscale"
+            ]
+          },
+          "outputSlotId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "selectedOutputIds": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "chatDirection": {
+            "type": "string",
+            "maxLength": 10000
+          }
+        },
+        "required": [
+          "workspaceId",
+          "operation"
+        ]
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "requestId",
+          "workspaceId",
+          "generationRevision",
+          "operation",
+          "resolvedPrompt",
+          "negativePrompt",
+          "references",
+          "preservation",
+          "outputRequirements",
+          "verifiedAssetTransports"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_create_workspace",
+      "title": "Create prompt workspace",
+      "description": "Create a standalone workspace from a library template, a validated template definition, or a deliberately minimal blank prompt.",
+      "annotations": {
+        "readOnlyHint": false,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "template"
+                  },
+                  "templateId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "values": {
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "templateId"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "definition"
+                  },
+                  "template": {
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "template"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "blank"
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "maxLength": 100000
+                  }
+                },
+                "required": [
+                  "kind",
+                  "title"
+                ]
+              }
+            ]
+          },
+          "placement": {
+            "enum": [
+              "new-page",
+              "current-view",
+              "beside-selection"
+            ]
+          },
+          "openAfterCreate": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "source"
+        ]
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "workspaceId",
+          "pageId",
+          "revision",
+          "createdElements",
+          "warnings"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_update_workspace",
+      "title": "Update prompt workspace",
+      "description": "Apply semantic prompt, control, reference, workflow, annotation, output, or layout operations to the active tldraw workspace.",
+      "annotations": {
+        "readOnlyHint": false,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "expectedRevision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "operations": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "set_prompt_body"
+                    },
+                    "body": {
+                      "type": "string",
+                      "maxLength": 100000
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "body"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "set_negative_prompt"
+                    },
+                    "body": {
+                      "type": "string",
+                      "maxLength": 30000
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "body"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "set_variable"
+                    },
+                    "variableId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "value": {}
+                  },
+                  "required": [
+                    "op",
+                    "variableId",
+                    "value"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "set_control"
+                    },
+                    "controlId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "value": {}
+                  },
+                  "required": [
+                    "op",
+                    "controlId",
+                    "value"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "add_annotation"
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 3000
+                    },
+                    "anchorId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "text"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "move_element"
+                    },
+                    "elementId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "elementId",
+                    "x",
+                    "y"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "resize_element"
+                    },
+                    "elementId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "width": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "height": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "elementId",
+                    "width",
+                    "height"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "attach_reference"
+                    },
+                    "slotId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "asset": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "kind": {
+                              "const": "host_attachment"
+                            },
+                            "token": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 4000
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "token"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "kind": {
+                              "const": "data_url"
+                            },
+                            "dataUrl": {
+                              "type": "string",
+                              "pattern": "^data:image/",
+                              "maxLength": 30000000
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "dataUrl"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "kind": {
+                              "const": "https_url"
+                            },
+                            "url": {
+                              "type": "string",
+                              "format": "uri",
+                              "pattern": "^https://",
+                              "maxLength": 4000
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "url"
+                          ]
+                        }
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 200
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "slotId",
+                    "asset"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "remove_reference"
+                    },
+                    "referenceId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "referenceId"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "set_workflow_stage"
+                    },
+                    "stageId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "status": {
+                      "enum": [
+                        "not-started",
+                        "active",
+                        "complete",
+                        "skipped"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "stageId",
+                    "status"
+                  ]
+                }
+              ]
+            }
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "workspaceId",
+          "expectedRevision",
+          "operations"
+        ]
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "workspaceId",
+          "revision",
+          "generationRevision",
+          "changedElements",
+          "warnings"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_save_template",
+      "title": "Save prompt template",
+      "description": "Save the current workspace or a candidate definition as a user-owned reusable template after validation. Bundled starter templates remain immutable.",
+      "annotations": {
+        "readOnlyHint": false,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "workspace"
+                  },
+                  "workspaceId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                },
+                "required": [
+                  "kind",
+                  "workspaceId"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "definition"
+                  },
+                  "template": {
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "template"
+                ]
+              }
+            ]
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "mode": {
+            "enum": [
+              "create",
+              "new-version",
+              "fork"
+            ]
+          },
+          "expectedTemplateVersion": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "source",
+          "mode"
+        ]
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "templateId",
+          "version",
+          "validation",
+          "libraryEntry"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_add_generated_asset",
+      "title": "Import Codex-generated asset",
+      "description": "Import one or more images generated or edited by Codex, validate them, record lineage, and place them into output slots. This tool does not perform generation.",
+      "annotations": {
+        "readOnlyHint": false,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "generationRevision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "assets": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "kind": {
+                          "const": "host_attachment"
+                        },
+                        "token": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 4000
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "token"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "kind": {
+                          "const": "data_url"
+                        },
+                        "dataUrl": {
+                          "type": "string",
+                          "pattern": "^data:image/",
+                          "maxLength": 30000000
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "dataUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "kind": {
+                          "const": "https_url"
+                        },
+                        "url": {
+                          "type": "string",
+                          "format": "uri",
+                          "pattern": "^https://",
+                          "maxLength": 4000
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "url"
+                      ]
+                    }
+                  ]
+                },
+                "mimeType": {
+                  "type": "string",
+                  "pattern": "^image/"
+                },
+                "label": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "outputSlotId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "operation": {
+                  "enum": [
+                    "generate",
+                    "edit",
+                    "variation",
+                    "upscale"
+                  ]
+                },
+                "parentAssetIds": {
+                  "type": "array",
+                  "maxItems": 20,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                },
+                "promptDigest": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              },
+              "required": [
+                "source",
+                "mimeType",
+                "outputSlotId",
+                "operation"
+              ]
+            }
+          }
+        },
+        "required": [
+          "workspaceId",
+          "requestId",
+          "generationRevision",
+          "assets"
+        ]
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "workspaceId",
+          "revision",
+          "assetIds",
+          "placements",
+          "rejectedAssets",
+          "lineage"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_delete_workspace",
+      "title": "Delete prompt workspace",
+      "description": "Remove one Prompt Canvas workspace page after explicit confirmation. The change is one-step undoable, and the final remaining Prompt Canvas workspace cannot be deleted.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "expectedRevision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "confirmed": {
+            "const": true,
+            "description": "Must be exactly true to delete a workspace page."
+          }
+        },
+        "required": [
+          "workspaceId",
+          "expectedRevision",
+          "confirmed"
+        ]
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "deletedWorkspaceId",
+          "deletedPageId",
+          "remainingWorkspaceCount",
+          "activeWorkspaceId",
+          "undoAvailable"
+        ]
+      }
+    },
+    {
+      "name": "prompt_canvas_manage_outputs",
+      "title": "Manage generated outputs",
+      "description": "Promote, compare, reorder, archive, label, or explicitly delete output assets without regenerating them.",
+      "annotations": {
+        "readOnlyHint": false,
+        "untrustedContentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "workspaceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "expectedRevision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "operations": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 50,
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "promote"
+                    },
+                    "assetId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "slotId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "assetId"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "compare"
+                    },
+                    "assetIds": {
+                      "type": "array",
+                      "minItems": 2,
+                      "maxItems": 8,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 120
+                      }
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "assetIds"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "reorder"
+                    },
+                    "slotId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "assetIds": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 20,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 120
+                      }
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "slotId",
+                    "assetIds"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "archive"
+                    },
+                    "assetIds": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 20,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 120
+                      }
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "assetIds"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "label"
+                    },
+                    "assetId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 200
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "assetId",
+                    "label"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "delete"
+                    },
+                    "assetIds": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 20,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 120
+                      },
+                      "description": "Destructive; host confirmation is expected."
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "assetIds"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "workspaceId",
+          "expectedRevision",
+          "operations"
+        ]
+      },
+      "outputContract": {
+        "type": "object",
+        "fields": [
+          "workspaceId",
+          "revision",
+          "outputs",
+          "warnings"
+        ]
+      }
+    }
+  ]
+}

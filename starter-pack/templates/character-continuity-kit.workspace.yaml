@@ -1,0 +1,286 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: character-continuity-kit
+version: 1
+title: Character Continuity Kit
+description: Develop one original character across coordinated views, expressions, and poses while keeping identity
+  anchors and creative choices explicit.
+category: character-design
+tags:
+- character
+- continuity
+- design-sheet
+- identity
+- first-party
+status: starter
+x-publication:
+  status: staged
+  featureStatus: not-featured
+  sourceReviewStatus: first-party-original
+  reuseStatus: no-third-party-reuse
+x-evaluation:
+  status: staged
+  visualQualification: not-run
+  featureStatus: not-featured
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: parameterized
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  defaultOperation: generate
+  defaultVariationCount: 4
+  preferredMimeTypes:
+  - image/png
+prompt:
+  title: Character Continuity Kit
+  body: >-
+    Create a coherent character continuity sheet for {{character_premise}}. Keep the character recognizable across
+    the requested views and poses. Use {{silhouette}} as the main shape language, {{wardrobe}} as the wardrobe logic,
+    and {{palette}} as the color direction. Show the expression range {{expressions}} and pose set {{poses}}. Arrange
+    the image as a practical review sheet with one dominant full-character view, supporting views, and restrained
+    labels. Treat any supplied identity image as a reference for explicitly preserved traits, not as permission to
+    copy unrelated styling, setting, marks, or text.
+  negativePrompt: >-
+    No celebrity or franchise likeness, identity drift between views, unexplained costume changes, duplicate limbs,
+    competing protagonists, dense microtext, signatures, watermarks, or invented brand marks.
+  variables:
+  - id: character_premise
+    label: Character premise
+    type: text
+    required: true
+    defaultValue: an original night-garden surveyor who is observant, practical, and quietly adventurous
+  - id: silhouette
+    label: Silhouette direction
+    type: text
+    required: true
+    defaultValue: compact triangular outer shape with a tall collar and a low-slung field bag
+  - id: wardrobe
+    label: Wardrobe logic
+    type: text
+    required: true
+    defaultValue: layered weatherproof workwear with visible fasteners and one reflective safety detail
+  - id: expressions
+    label: Expression range
+    type: text
+    required: true
+    defaultValue: neutral focus, surprised recognition, determined concentration, and warm relief
+  - id: poses
+    label: Pose set
+    type: text
+    required: true
+    defaultValue: standing overview, walking profile, crouched inspection, and reaching action
+  - id: palette
+    label: Palette
+    type: text
+    required: true
+    defaultValue: ink blue, moss green, warm gray, and one amber accent
+controls:
+- id: character-premise
+  label: Character premise
+  type: textarea
+  required: true
+  defaultValue: an original night-garden surveyor who is observant, practical, and quietly adventurous
+  binding:
+    mode: variable
+    target: character_premise
+- id: silhouette
+  label: Silhouette direction
+  type: textarea
+  required: true
+  defaultValue: compact triangular outer shape with a tall collar and a low-slung field bag
+  binding:
+    mode: variable
+    target: silhouette
+- id: wardrobe
+  label: Wardrobe logic
+  type: textarea
+  required: true
+  defaultValue: layered weatherproof workwear with visible fasteners and one reflective safety detail
+  binding:
+    mode: variable
+    target: wardrobe
+- id: expressions
+  label: Expression range
+  type: textarea
+  required: true
+  defaultValue: neutral focus, surprised recognition, determined concentration, and warm relief
+  binding:
+    mode: variable
+    target: expressions
+- id: poses
+  label: Pose set
+  type: textarea
+  required: true
+  defaultValue: standing overview, walking profile, crouched inspection, and reaching action
+  binding:
+    mode: variable
+    target: poses
+- id: palette
+  label: Palette
+  type: text
+  required: true
+  defaultValue: ink blue, moss green, warm gray, and one amber accent
+  binding:
+    mode: variable
+    target: palette
+- id: view-plan
+  label: View plan
+  type: enum
+  required: false
+  defaultValue: continuity-core
+  options:
+  - label: Continuity core
+    value: continuity-core
+    description: One dominant view, two supporting views, expressions, and an action pose.
+  - label: Turnaround emphasis
+    value: turnaround-emphasis
+    description: Prioritize front, side, and back relationships with fewer expressive callouts.
+  - label: Performance emphasis
+    value: performance-emphasis
+    description: Prioritize poses and expressions while retaining one stable identity anchor.
+  binding:
+    mode: agent-context
+    target: image.composition.view_plan
+- id: rendering-language
+  label: Rendering language
+  type: combobox
+  required: false
+  defaultValue: clean production illustration
+  options:
+  - label: Clean production illustration
+    value: clean production illustration
+  - label: Ink and flat color
+    value: ink and flat color
+  - label: Soft painted concept art
+    value: soft painted concept art
+  allowCustom: true
+  binding:
+    mode: agent-context
+    target: image.visual.rendering_language
+- id: label-density
+  label: Label density
+  type: range
+  required: false
+  defaultValue: 35
+  min: 0
+  max: 100
+  step: 5
+  binding:
+    mode: agent-context
+    target: image.text.label_density
+- id: aspect-ratio
+  label: Aspect ratio
+  type: aspect-ratio
+  required: false
+  defaultValue: '4:5'
+  options:
+  - label: '4:5'
+    value: '4:5'
+  - label: '3:4'
+    value: '3:4'
+  - label: '1:1'
+    value: '1:1'
+  - label: '16:9'
+    value: '16:9'
+  binding:
+    mode: generation
+    target: aspectRatio
+references:
+- id: identity-reference
+  label: Optional identity reference
+  role: identity
+  required: false
+  multiple: false
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - defining facial and body traits
+  - proportions and distinctive marks
+  - approved wardrobe facts
+  instructions: Use only the traits the user asks to preserve. Do not copy incidental setting, style, signatures, or text.
+preservation:
+- id: character-identity
+  label: Character identity
+  description: Keep one recognizable character with stable proportions, defining traits, wardrobe logic, and scale across the sheet.
+  strength: must
+  appliesTo:
+  - identity-reference
+  - primary
+  - variations
+outputs:
+- id: primary
+  label: Continuity sheet
+  role: primary
+  kind: image
+  count: 1
+  operations:
+  - generate
+  - edit
+  - upscale
+  layoutHint: hero
+- id: variations
+  label: Character variations
+  role: variation
+  kind: image
+  count: 4
+  operations:
+  - variation
+  layoutHint: strip
+- id: detail
+  label: Optional detail study
+  role: comparison
+  kind: image
+  count: 1
+  operations:
+  - edit
+  - upscale
+  layoutHint: pair
+  required: false
+blocks:
+- id: character-prompt-block
+  type: prompt
+  title: Character direction
+  region: left
+  order: 5
+- id: character-controls-block
+  type: controls
+  title: Continuity controls
+  region: left
+  order: 10
+- id: character-reference-block
+  type: references
+  title: Identity reference
+  region: left
+  order: 20
+- id: character-output-block
+  type: output
+  title: Continuity sheet
+  sourceId: primary
+  region: right
+  order: 10
+layout:
+  mode: seeded
+  arrangement: prompt-left-output-right
+  seed: 201
+  preserveManualGeometry: true
+source:
+  kind: first-party
+  title: Character Continuity Kit
+  creator: Prompt Canvas
+  promptUsage: original
+  notes: Independently authored from general image-design primitives and official model capability documentation; no third-party prompt or source asset reused.
+capabilities:
+- text-to-image
+- image-to-image
+- image-edit
+- variations
+- upscale
+- typography

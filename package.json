@@ -1,0 +1,48 @@
+{
+  "name": "prompt-canvas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "npm run generate && vite",
+    "build": "npm run generate && vite build",
+    "preview": "vite preview",
+    "generate": "python3 scripts/generate_sources.py",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test:templates": "python3 scripts/validate_templates.py",
+    "test:core": "rm -rf .core-dist && tsc -p tsconfig.core.json && node --test .core-dist/tests/*.test.js",
+    "test": "npm run generate && npm run test:templates && npm run test:core",
+    "qa:serve": "python3 -m http.server 4174 -d qa",
+    "test:e2e": "npm run generate && playwright test",
+    "check": "npm run generate && npm run test:templates && npm run test:core && npm run typecheck && npm run lint && npm run build",
+    "test:e2e:headed": "npm run generate && playwright test --headed"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "tldraw": "5.3.2"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.52.1",
+    "@eslint/js": "^9.39.0",
+    "@openai/sites-vite-plugin": "^0.1.0",
+    "@playwright/test": "1.62.1",
+    "@types/node": "^22.18.0",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "^6.0.0",
+    "eslint": "^9.39.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.4.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.46.0",
+    "vite": "^8.0.0"
+  }
+}

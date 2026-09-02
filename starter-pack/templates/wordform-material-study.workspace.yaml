@@ -1,0 +1,284 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: wordform-material-study
+version: 1
+title: Wordform Material Study
+description: Make a short user-provided word the central visual object, with configurable material behavior, setting,
+  scale, contrast, and literal-copy preservation.
+category: typography-and-campaigns
+tags:
+- typography
+- wordform
+- material
+- campaign
+- first-party
+status: starter
+x-publication:
+  status: staged
+  featureStatus: not-featured
+  sourceReviewStatus: first-party-original
+  reuseStatus: no-third-party-reuse
+x-evaluation:
+  status: staged
+  visualQualification: not-run
+  featureStatus: not-featured
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: composition-first
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  defaultOperation: generate
+  defaultVariationCount: 4
+  preferredMimeTypes:
+  - image/png
+prompt:
+  title: Wordform Material Study
+  body: >-
+    Create one campaign image built around the exact word “{{exact_word}}”. Make the word the primary visual object,
+    not a caption. Express {{message}} through {{material_behavior}} in {{setting}}. Use the selected scale relationship
+    and contrast direction to make the word readable before secondary details. Render the material with plausible
+    formation, weight, edges, light response, and contact with the setting. If a brand or material reference is supplied,
+    preserve only the approved cues the user names. Render the exact word once unless the user asks otherwise.
+  negativePrompt: >-
+    No misspelled or repeated headline, decorative filler text, unrelated logo, flat pasted lettering, implausible material
+    behavior, cluttered hierarchy, signature, or watermark.
+  variables:
+  - id: exact_word
+    label: Exact word
+    type: string
+    required: true
+    defaultValue: GATHER
+  - id: message
+    label: Campaign message
+    type: text
+    required: true
+    defaultValue: collective effort makes a shared public space feel possible
+  - id: material_behavior
+    label: Material behavior
+    type: text
+    required: true
+    defaultValue: layered translucent fabric under gentle tension, with seams and shadow revealing construction
+  - id: setting
+    label: Setting
+    type: text
+    required: true
+    defaultValue: a quiet civic courtyard at first light with a few small figures for scale
+controls:
+- id: exact-word
+  label: Exact word
+  type: text
+  required: true
+  defaultValue: GATHER
+  binding:
+    mode: variable
+    target: exact_word
+- id: message
+  label: Campaign message
+  type: textarea
+  required: true
+  defaultValue: collective effort makes a shared public space feel possible
+  binding:
+    mode: variable
+    target: message
+- id: material-behavior
+  label: Material behavior
+  type: textarea
+  required: true
+  defaultValue: layered translucent fabric under gentle tension, with seams and shadow revealing construction
+  binding:
+    mode: variable
+    target: material_behavior
+- id: setting
+  label: Setting
+  type: textarea
+  required: true
+  defaultValue: a quiet civic courtyard at first light with a few small figures for scale
+  binding:
+    mode: variable
+    target: setting
+- id: scale-relationship
+  label: Scale relationship
+  type: enum
+  required: false
+  defaultValue: inhabitable
+  options:
+  - label: Inhabitable wordform
+    value: inhabitable
+  - label: Object on a stage
+    value: object-on-stage
+  - label: Cropped monumental detail
+    value: monumental-detail
+  binding:
+    mode: agent-context
+    target: image.composition.scale_relationship
+- id: contrast-direction
+  label: Contrast direction
+  type: enum
+  required: false
+  defaultValue: luminous-material-dark-field
+  options:
+  - label: Luminous material, dark field
+    value: luminous-material-dark-field
+  - label: Dark material, pale field
+    value: dark-material-pale-field
+  - label: Tonal material study
+    value: tonal-material-study
+  binding:
+    mode: agent-context
+    target: image.lighting.contrast_direction
+- id: atmosphere
+  label: Atmosphere
+  type: combobox
+  required: false
+  defaultValue: calm architectural realism
+  options:
+  - label: Calm architectural realism
+    value: calm architectural realism
+  - label: Graphic studio construction
+    value: graphic studio construction
+  - label: Tactile editorial surrealism
+    value: tactile editorial surrealism
+  allowCustom: true
+  binding:
+    mode: agent-context
+    target: image.visual.atmosphere
+- id: text-check
+  label: Literal copy check
+  type: enum
+  required: false
+  defaultValue: exact-once
+  options:
+  - label: Exact word once
+    value: exact-once
+  - label: Exact word plus small supplied line
+    value: exact-plus-supplied-line
+  binding:
+    mode: agent-context
+    target: image.text.literal_copy_check
+- id: aspect-ratio
+  label: Aspect ratio
+  type: aspect-ratio
+  required: false
+  defaultValue: '4:5'
+  options:
+  - label: '4:5'
+    value: '4:5'
+  - label: '3:4'
+    value: '3:4'
+  - label: '1:1'
+    value: '1:1'
+  - label: '16:9'
+    value: '16:9'
+  binding:
+    mode: generation
+    target: aspectRatio
+references:
+- id: brand-reference
+  label: Optional brand reference
+  role: logo
+  required: false
+  multiple: false
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  preserve:
+  - approved mark geometry
+  - user-designated brand colors
+  instructions: Use only approved brand cues. Do not replace the exact word or copy unrelated layout and campaign assets.
+- id: material-reference
+  label: Optional material reference
+  role: material
+  required: false
+  multiple: true
+  maxItems: 3
+  acceptedMimeTypes:
+  - image/png
+  - image/jpeg
+  - image/webp
+  instructions: Use material behavior, surface, and light response only; do not copy subject matter or marks.
+preservation:
+- id: literal-word
+  label: Literal word
+  description: Preserve the exact supplied word, its hierarchy, and any explicitly approved brand cues through edits and variations.
+  strength: must
+  appliesTo:
+  - brand-reference
+  - primary
+  - variations
+outputs:
+- id: primary
+  label: Wordform hero
+  role: primary
+  kind: image
+  count: 1
+  operations:
+  - generate
+  - edit
+  - upscale
+  layoutHint: hero
+- id: variations
+  label: Material variations
+  role: variation
+  kind: image
+  count: 4
+  operations:
+  - variation
+  layoutHint: strip
+- id: detail
+  label: Optional material detail
+  role: comparison
+  kind: image
+  count: 1
+  operations:
+  - edit
+  - upscale
+  required: false
+  layoutHint: pair
+blocks:
+- id: wordform-prompt-block
+  type: prompt
+  title: Wordform direction
+  region: left
+  order: 5
+- id: wordform-controls-block
+  type: controls
+  title: Copy and material controls
+  region: left
+  order: 10
+- id: wordform-reference-block
+  type: references
+  title: Approved references
+  region: left
+  order: 20
+- id: wordform-output-block
+  type: output
+  title: Wordform hero
+  sourceId: primary
+  region: right
+  order: 10
+layout:
+  mode: seeded
+  arrangement: prompt-left-output-right
+  seed: 206
+  preserveManualGeometry: true
+source:
+  kind: first-party
+  title: Wordform Material Study
+  creator: Prompt Canvas
+  promptUsage: original
+  notes: Independently authored from general typographic-composition and material-rendering principles; no third-party prompt or source asset reused.
+capabilities:
+- text-to-image
+- image-to-image
+- image-edit
+- variations
+- upscale
+- multiple-references
+- typography

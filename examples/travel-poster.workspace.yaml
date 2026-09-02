@@ -1,0 +1,457 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: travel-poster
+version: 1
+title: Premium City Travel Poster
+description: Create an original, city-specific minimalist flat-vector travel poster through a long-form prompt,
+  editable presets, and Codex image generation.
+category: travel-and-place
+tags:
+- featured
+- travel
+- poster
+- flat-vector
+- typography
+- city
+status: starter
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: composition-first
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations:
+  - generate
+  - variation
+  - edit
+  - upscale
+  defaultOperation: generate
+  defaultVariationCount: 4
+  preferredMimeTypes:
+  - image/png
+  - image/webp
+prompt:
+  title: Premium City Travel Poster
+  body: 'Premium minimalist flat-vector travel poster for {{city_name}}, {{aspect_ratio}} format.
+
+
+    Design an original, sophisticated travel poster that captures the authentic visual personality of {{city_name}}.
+    The composition must feel purpose-built for this city rather than following a reusable template.
+
+
+    CITY IDENTITY
+
+
+    First interpret the unique visual character of {{city_name}} and build the scene around these five elements:
+
+
+    1. A recognizable landmark, architectural feature, or skyline element.
+
+    2. A distinctive local way of moving through the city.
+
+    3. One subtle everyday lifestyle moment.
+
+    4. A native plant, landscape, or environmental characteristic.
+
+    5. A composition and viewpoint that naturally belongs to the city.
+
+
+    The overall scene structure must change from city to city. Do not repeatedly use the same object positions or
+    visual formula.
+
+
+    Possible compositions include:
+
+    harbor viewpoint, narrow historic lane, riverside garden, coastal path, elevated city overlook, lively market
+    passage, tram avenue, ferry terminal, botanical setting, heritage square, beach promenade, cultural plaza, or
+    skyline terrace.
+
+
+    Choose whichever composition best represents {{city_name}}.
+
+
+    TYPOGRAPHY
+
+
+    Place “{{city_name}}” in the upper-left area with generous clean negative space.
+
+
+    Add one short, sophisticated English tagline inspired by the atmosphere of the city.
+
+
+    Typography should feel understated, editorial, spacious, and premium. Never allow text to dominate the artwork.
+
+
+    VISUAL HIERARCHY
+
+
+    Use one iconic landmark or architectural feature as the main focal point.
+
+
+    Support it with only 2–4 carefully selected local elements. Every added detail should strengthen the sense of
+    place.
+
+
+    Avoid landmark collections or postcard-style collages. Keep the scene visually quiet and intentional.
+
+
+    PEOPLE
+
+
+    Include only 3–6 small-scale figures.
+
+
+    Give each person a believable activity connected to local life, such as:
+
+    walking through a historic lane, cycling, waiting for public transport, sketching architecture, boarding a ferry,
+    reading outdoors, taking a quiet photograph, carrying beach equipment, browsing a market, or jogging beside
+    the water.
+
+
+    Avoid crowds and avoid making any single person the main character. Figures should integrate naturally into
+    the environment.
+
+
+    LOCAL CHARACTER
+
+
+    Use city-specific elements only when they genuinely fit {{city_name}}:
+
+
+    - local transportation
+
+    - architecture
+
+    - street furniture
+
+    - vegetation
+
+    - small signs or wayfinding
+
+    - local food references
+
+    - recreational activities
+
+    - pavement markings
+
+    - cultural details
+
+
+    Transport and signage should remain subtle. Instead of always using a large signboard, incorporate details naturally
+    through a small transit marker, station clock, ferry information panel, bike symbol, painted road marking, beach
+    flag, or understated metro icon.
+
+
+    ART DIRECTION
+
+
+    Japanese stationery-inspired aesthetic,
+
+    luxury sticker illustration,
+
+    premium commercial vector artwork,
+
+    modern editorial travel branding,
+
+    clean delicate outlines,
+
+    uniform line weight,
+
+    simple geometric forms,
+
+    flat-color illustration,
+
+    soft shapes,
+
+    balanced visual rhythm,
+
+    high-end minimalist postcard design.
+
+
+    COLOR SYSTEM
+
+
+    Build the atmosphere primarily with:
+
+    pale powder blue, soft sky blue, mist blue, and cool airy blues.
+
+
+    Balance these with:
+
+    warm ivory, cream, soft beige, muted sage, gray-green, and understated architectural neutrals.
+
+
+    Use dusty rose or muted blush only for tiny visual accents such as flowers, clothing details, small signs, awnings,
+    or decorative objects.
+
+
+    Colors should remain soft, sophisticated, slightly desaturated, and cohesive.
+
+
+    MOOD
+
+
+    Fresh, airy, peaceful, refined, contemporary, elegant.
+
+
+    The final artwork should feel like a premium boutique travel postcard or luxury lifestyle brand illustration,
+    with generous breathing room and a relaxed sense of place.
+
+
+    IMPORTANT QUALITY RULES
+
+
+    Every city must have its own visual identity.
+
+    Change the camera angle, scene structure, landmark placement, foreground treatment, and supporting details according
+    to the city''s character.
+
+
+    Do not simply replace {{city_name}} inside an existing composition.'
+  variables:
+  - id: city_name
+    label: City name
+    type: string
+    required: true
+    defaultValue: Lisbon, Portugal
+  - id: aspect_ratio
+    label: Aspect ratio
+    type: enum
+    required: true
+    defaultValue: '3:4'
+    values:
+    - '3:4'
+    - '2:3'
+    - '4:5'
+    - '1:1'
+    - '16:9'
+  negativePrompt: 'No photorealism.
+
+    No realism.
+
+    No watercolor.
+
+    No painterly brushwork.
+
+    No gradients.
+
+    No heavy shadows.
+
+    No dramatic cinematic lighting.
+
+    No paper texture.
+
+    No excessive detail.
+
+    No cluttered background.
+
+    No landmark collage.
+
+    No crowded streets.
+
+    No oversized characters.
+
+    No dominant hero character.
+
+    No repetitive café composition.
+
+    No fixed signboard position.
+
+    No identical foreground treatment.
+
+    No generic tourist-poster formula.
+
+    No copied layout from another city.
+
+    No unnecessary decorative elements.'
+outputs:
+- id: primary
+  label: Poster
+  role: primary
+  kind: image
+  count: 1
+  aspectRatio: '3:4'
+  operations:
+  - generate
+  - edit
+  - upscale
+  layoutHint: hero
+- id: variations
+  label: Variations
+  role: variation
+  kind: image-set
+  count: 4
+  aspectRatio: '3:4'
+  operations:
+  - variation
+  layoutHint: strip
+controls:
+- id: city-name
+  label: City
+  type: combobox
+  required: true
+  defaultValue: Lisbon, Portugal
+  options:
+  - label: Lisbon, Portugal
+    value: Lisbon, Portugal
+  - label: Tokyo, Japan
+    value: Tokyo, Japan
+  - label: Copenhagen, Denmark
+    value: Copenhagen, Denmark
+  - label: Mexico City, Mexico
+    value: Mexico City, Mexico
+  - label: Sydney, Australia
+    value: Sydney, Australia
+  helpText: Type any city. The composition should be interpreted for that city rather than reused mechanically.
+  allowCustom: true
+  binding:
+    mode: variable
+    target: city_name
+- id: aspect-ratio
+  label: Aspect ratio
+  type: aspect-ratio
+  required: false
+  defaultValue: '3:4'
+  options:
+  - label: '3:4'
+    value: '3:4'
+  - label: '2:3'
+    value: '2:3'
+  - label: '4:5'
+    value: '4:5'
+  - label: '1:1'
+    value: '1:1'
+  - label: '16:9'
+    value: '16:9'
+  binding:
+    mode: variable
+    target: aspect_ratio
+- id: art-direction
+  label: Art direction
+  type: multi-chips
+  required: false
+  defaultValue:
+  - japanese-stationery
+  - luxury-sticker
+  - flat-vector
+  - editorial-travel
+  options:
+  - label: Japanese stationery
+    value: japanese-stationery
+  - label: Luxury sticker
+    value: luxury-sticker
+  - label: Flat vector
+    value: flat-vector
+  - label: Editorial travel
+    value: editorial-travel
+  - label: Minimal postcard
+    value: minimal-postcard
+  binding:
+    mode: agent-context
+    target: art-direction
+- id: composition
+  label: Composition
+  type: combobox
+  required: false
+  defaultValue: agent-choice
+  options:
+  - label: Agent chooses for city
+    value: agent-choice
+  - label: Harbor viewpoint
+    value: harbor-viewpoint
+  - label: Historic lane
+    value: historic-lane
+  - label: Riverside garden
+    value: riverside-garden
+  - label: Tram avenue
+    value: tram-avenue
+  - label: Ferry terminal
+    value: ferry-terminal
+  - label: Skyline terrace
+    value: skyline-terrace
+  allowCustom: true
+  binding:
+    mode: agent-context
+    target: composition
+- id: people-count
+  label: People
+  type: range
+  required: false
+  defaultValue: 4
+  min: 0
+  max: 8
+  step: 1
+  binding:
+    mode: agent-context
+    target: people-count
+- id: landmark-emphasis
+  label: Landmark emphasis
+  type: range
+  required: false
+  defaultValue: 70
+  min: 0
+  max: 100
+  step: 5
+  binding:
+    mode: agent-context
+    target: landmark-emphasis
+- id: palette
+  label: Palette
+  type: color-palette
+  required: false
+  defaultValue:
+  - '#BFDDE8'
+  - '#D8EBF2'
+  - '#F6F1E7'
+  - '#C9D1B5'
+  - '#D7A6A0'
+  binding:
+    mode: agent-context
+    target: palette
+blocks:
+- id: prompt-panel
+  type: prompt
+  title: Prompt block
+  region: left
+  order: 10
+- id: preset-panel
+  type: controls
+  title: Presets
+  region: left
+  order: 20
+- id: poster-output
+  type: output
+  title: Poster
+  sourceId: primary
+  region: right
+  order: 10
+- id: variation-strip
+  type: variations
+  title: Variations
+  sourceId: variations
+  region: right
+  order: 20
+source:
+  kind: user-provided
+  title: Premium minimalist flat-vector travel poster
+  creator: Henry Adams
+  promptUsage: original
+  notes: Canonical first-party prompt supplied directly for this product specification.
+capabilities:
+- text-to-image
+- variations
+- image-edit
+- upscale
+- typography
+- structured-prompt
+layout:
+  mode: auto
+  arrangement: prompt-left-output-right
+  preserveManualGeometry: true
+  regions:
+  - id: left
+    label: Prompt and controls
+    preferredSide: left
+  - id: right
+    label: Outputs
+    preferredSide: right
