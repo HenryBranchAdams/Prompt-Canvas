@@ -32,11 +32,9 @@ jobs:
       - name: Install JavaScript dependencies
         run: npm ci --no-audit --no-fund
       - name: Apply final collaboration polish
-        run: |
-          python scripts/finalize_collaboration_polish.py
-          python scripts/fix_finalize_collaboration_test.py
+        run: python scripts/finalize_collaboration_polish.py
       - name: Remove one-shot files
-        run: rm scripts/finalize_collaboration_polish.py scripts/fix_finalize_collaboration_test.py .github/workflows/finalize-collaboration-polish.yml
+        run: rm -f scripts/finalize_collaboration_polish.py scripts/fix_finalize_collaboration_test.py .github/workflows/finalize-collaboration-polish.yml
       - name: Validate, type-check, lint, and build
         run: npm run check
       - name: Install Chromium
