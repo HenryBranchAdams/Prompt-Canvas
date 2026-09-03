@@ -53,4 +53,11 @@ jobs:
           git add -A
           git diff --cached --check
           git commit -m "feat: clarify human and Codex collaboration"
-          git push origin HEAD:polish/codex-collaboration-ux
+          for attempt in 1 2 3; do
+            git fetch origin polish/codex-collaboration-ux
+            git rebase origin/polish/codex-collaboration-ux
+            if git push origin HEAD:polish/codex-collaboration-ux; then
+              exit 0
+            fi
+          done
+          exit 1
