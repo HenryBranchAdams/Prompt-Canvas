@@ -1405,3 +1405,18 @@ test('collaboration model is explicit before generation', async ({ page }) => {
   await expect(preview.getByText('cinematic · wide-shot')).toBeVisible()
   await expect(page.getByText('Nothing is locked. You can keep editing the brief, change one thing, or make variations at any time.')).toBeVisible()
 })
+
+
+
+test('compact ChatGPT layouts keep collaboration actions visible', async ({ page }) => {
+  await page.setViewportSize({ width: 760, height: 800 })
+  await page.goto('/')
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+
+  await page.getByRole('button', { name: 'Start' }).first().click()
+
+  await expect(page.getByRole('button', { name: 'Recipes' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'New project' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Help me shape it' })).toBeVisible()
+  await expect(page.locator('.pc-topbar').getByRole('button', { name: 'Ask Codex to generate' })).toBeVisible()
+})
