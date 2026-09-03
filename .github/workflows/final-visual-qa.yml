@@ -81,7 +81,7 @@ jobs:
           await page.setViewportSize({ width: 760, height: 800 })
           await page.waitForTimeout(250)
           await page.screenshot({ path: 'visual-qa/05-canvas-760x800.png', fullPage: false })
-          const primary = page.getByRole('button', { name: 'Ask Codex to generate' })
+          const primary = page.locator('.pc-topbar').getByRole('button', { name: 'Ask Codex to generate' })
           const primaryVisible = await primary.isVisible()
           const compactAppMetrics = await page.locator('.pc-app').evaluate((element) => ({
             clientWidth: element.clientWidth,
