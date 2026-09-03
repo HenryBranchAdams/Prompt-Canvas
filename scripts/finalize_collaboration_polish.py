@@ -150,6 +150,12 @@ styles_path.write_text(styles, encoding="utf-8")
 e2e = e2e_path.read_text(encoding="utf-8")
 e2e = replace_once(
     e2e,
+    "  await expect(page.locator('.pc-panel--controls .pc-panel__collaboration-cue').first()).toContainText('You')",
+    "  await expect(page.locator('.pc-panel--controls .pc-panel__collaboration-cue').filter({ hasText: 'You edit' })).toBeVisible()\n  await expect(page.locator('.pc-panel--controls .pc-panel__collaboration-cue').filter({ hasText: 'Codex uses this' })).toBeVisible()",
+    "control ownership assertions",
+)
+e2e = replace_once(
+    e2e,
     "  await expect(page.locator('.pc-panel--output .pc-panel__collaboration-cue')).toHaveText('Codex returns images here')",
     "  await expect(page.locator('.pc-panel--output .pc-panel__collaboration-cue')).toHaveText('Codex returns here')",
     "result cue assertion",
