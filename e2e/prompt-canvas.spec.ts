@@ -265,6 +265,29 @@ test('workspace creation remains available beyond forty persisted pages', async 
   await expect(page.getByLabel('Active project').locator('option:not([value=""])')).toHaveCount(41)
 })
 
+test('duplicate project titles remain distinguishable without changing workspace identity', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+
+  const first = await callTool<{ workspaceId: string }>(page, 'prompt_canvas_create_workspace', {
+    source: { kind: 'blank', title: 'Same project title', prompt: 'First project.' },
+    openAfterCreate: false,
+  })
+  const second = await callTool<{ workspaceId: string }>(page, 'prompt_canvas_create_workspace', {
+    source: { kind: 'blank', title: 'Same project title', prompt: 'Second project.' },
+    openAfterCreate: false,
+  })
+
+  const select = page.getByLabel('Active project')
+  const duplicateOptions = select.locator('option').filter({ hasText: 'Same project title' })
+  await expect(duplicateOptions).toHaveText(['Same project title · 1', 'Same project title · 2'])
+  await expect(duplicateOptions.nth(0)).toHaveAttribute('value', first.workspaceId)
+  await expect(duplicateOptions.nth(1)).toHaveAttribute('value', second.workspaceId)
+
+  await select.selectOption(second.workspaceId)
+  await expect(select).toHaveValue(second.workspaceId)
+})
+
 async function waitForPersistedAsset(
   page: Page,
   recordId: string,
@@ -572,10 +595,8 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
   const modalLayerZ = await page
     .locator('.pc-modal-layer')
     .evaluate((element) => Number(getComputedStyle(element).zIndex))
-  const tldrawStylePanelZ = await page
-    .locator('.tlui-style-panel__wrapper')
-    .evaluate((element) => Number(getComputedStyle(element).zIndex))
-  expect(modalLayerZ).toBeGreaterThan(tldrawStylePanelZ)
+  expect(modalLayerZ).toBeGreaterThan(0)
+  await expect(page.locator('.tlui-style-panel__wrapper')).toHaveCount(0)
   await page.getByRole('button', { name: 'Done' }).click()
 
   const context = await callTool<{

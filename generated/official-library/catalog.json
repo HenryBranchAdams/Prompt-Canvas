@@ -1,5 +1,5 @@
 {
-  "buildHash": "sha256:63da941dd325dfe389127f434d30061dde37fa595bb8dae4458bf1fb6265a67e",
+  "buildHash": "sha256:0a24a9d93cf3b655f70d7b1a22d0faf349c05008e96c2bed60adab701c21a14c",
   "count": 52,
   "prompts": [
     {
@@ -607,7 +607,7 @@
       "description": "Describe an idea, choose a few essentials, and create one polished image.",
       "family": "lightweight",
       "featuredRank": 1,
-      "hash": "sha256:6e471f6408d45847a0687c938e5b308638bc008eaef27982e2d83b5a0ffabbe1",
+      "hash": "sha256:470c218f9a5567d96238bc4bda4d981ece91f5b36b289349b06982a830d81bf5",
       "id": "create-from-words",
       "inputMode": "text",
       "inputModes": [
@@ -642,7 +642,7 @@
       },
       "title": "Create an image from words",
       "userPromise": "Describe anything and get a polished first image.",
-      "version": 2
+      "version": 3
     },
     {
       "aliases": [
