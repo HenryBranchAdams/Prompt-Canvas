@@ -1342,8 +1342,6 @@ button:disabled {
   .pc-brand > div:last-child { display: none; }
   .pc-workspace-switcher { min-width: 120px; max-width: 220px; }
   .pc-workspace-switcher span { display: none; }
-  .pc-topbar__actions > button:nth-of-type(3),
-  .pc-topbar__actions > button:nth-of-type(4) { display: none; }
   .pc-main { grid-template-columns: minmax(0, 1fr); }
   .pc-inspector { display: none; }
   .pc-library { top: 52px; bottom: 26px; width: 100vw; }

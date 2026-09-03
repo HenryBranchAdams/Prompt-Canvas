@@ -1377,3 +1377,17 @@ test('factuality source notes reach the registered generation context', async ({
   expect(revised.factuality.suppliedClaims).toBe(revised.factuality.sourceNotes)
   expect(revised.promptDigest).not.toBe(initial.promptDigest)
 })
+
+
+
+test('compact ChatGPT layouts keep core project actions visible', async ({ page }) => {
+  await page.setViewportSize({ width: 760, height: 800 })
+  await page.goto('/')
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+
+  await page.getByRole('button', { name: 'Start' }).first().click()
+
+  await expect(page.locator('.pc-topbar .pc-primary-button')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Recipes' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'New project' })).toBeVisible()
+})
