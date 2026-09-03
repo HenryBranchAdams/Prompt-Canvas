@@ -3,6 +3,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 styles_path = root / "src/visual-polish.css"
 app_path = root / "src/app/App.tsx"
+e2e_path = root / "e2e/template-expansion.spec.ts"
 
 styles = styles_path.read_text(encoding="utf-8")
 marker = "/* Post-screenshot refinements */"
@@ -51,3 +52,14 @@ count = app.count(old)
 if count != 1:
     raise RuntimeError(f"Expected one compact generation action, found {count}.")
 app_path.write_text(app.replace(old, new, 1), encoding="utf-8")
+
+e2e = e2e_path.read_text(encoding="utf-8")
+old_ready = '''    return Boolean(body) && body!.scrollHeight - body!.clientHeight <= 1 &&
+      textareas.every((textarea) => textarea.scrollHeight - textarea.clientHeight <= 1)'''
+new_ready = '''    return Boolean(body) && textareas.length > 0 &&
+      body!.scrollHeight - body!.clientHeight <= 1 &&
+      textareas.every((textarea) => textarea.scrollHeight - textarea.clientHeight <= 1)'''
+ready_count = e2e.count(old_ready)
+if ready_count != 1:
+    raise RuntimeError(f"Expected one prompt-card readiness check, found {ready_count}.")
+e2e_path.write_text(e2e.replace(old_ready, new_ready, 1), encoding="utf-8")
