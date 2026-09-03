@@ -6,6 +6,7 @@ on:
     paths:
       - scripts/apply_collaboration_polish.py
       - scripts/fix_collaboration_applicator.py
+      - scripts/fix_collaboration_test.py
       - .github/workflows/apply-collaboration-polish.yml
 
 permissions:
@@ -34,9 +35,10 @@ jobs:
       - name: Correct and apply collaboration UX patch
         run: |
           python scripts/fix_collaboration_applicator.py
+          python scripts/fix_collaboration_test.py
           python scripts/apply_collaboration_polish.py
       - name: Remove one-shot applicator
-        run: rm scripts/apply_collaboration_polish.py scripts/fix_collaboration_applicator.py .github/workflows/apply-collaboration-polish.yml
+        run: rm scripts/apply_collaboration_polish.py scripts/fix_collaboration_applicator.py scripts/fix_collaboration_test.py .github/workflows/apply-collaboration-polish.yml
       - name: Validate, type-check, lint, and build
         run: npm run check
       - name: Install Chromium
