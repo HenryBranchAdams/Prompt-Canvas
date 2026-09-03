@@ -3,7 +3,7 @@
 export const webmcpCatalog = {
   "schema": "prompt-canvas.webmcp-tool-catalog@1",
   "app": "Prompt Canvas",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "principles": [
     "Codex owns conversation, reasoning, image generation, image editing, variations, and upscaling.",
     "Prompt Canvas owns template state, tldraw rendering, references, outputs, persistence, and semantic WebMCP operations.",
@@ -13,8 +13,8 @@ export const webmcpCatalog = {
   "tools": [
     {
       "name": "prompt_canvas_inspect",
-      "title": "Inspect prompt canvas",
-      "description": "Read bounded semantic state for the active workspace, including prompt fields, controls, references, selection, workflow, outputs, revisions, and page-accepted asset transports.",
+      "title": "Inspect a Prompt Canvas project",
+      "description": "Read bounded semantic state for the active project before choosing an action, including prompt fields, controls, references, selection, workflow, outputs, document and generation revisions, and page-accepted asset transports. This tool has no side effects and returns no image bytes.",
       "annotations": {
         "readOnlyHint": true,
         "untrustedContentHint": true
@@ -67,8 +67,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_list_templates",
-      "title": "List prompt templates",
-      "description": "Search the bundled starter library and user-owned templates without creating a workspace.",
+      "title": "Search Prompt Canvas recipes",
+      "description": "Search compact recipe summaries from the read-only official catalog and local user-saved recipes without creating a project. For natural-language agent routing, use scope “official”, compare the returned candidates, then fetch only the selected exact version.",
       "annotations": {
         "readOnlyHint": true,
         "untrustedContentHint": true
@@ -177,8 +177,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_get_template",
-      "title": "Get prompt template",
-      "description": "Read one full normalized template definition by ID so Codex can understand or adapt it.",
+      "title": "Get an exact Prompt Canvas recipe",
+      "description": "Fetch one complete official or local recipe after selection. For an official recipe, provide its returned ID, version, and expected hash so later project creation preserves exact source identity. This tool has no side effects.",
       "annotations": {
         "readOnlyHint": true,
         "untrustedContentHint": true
@@ -222,8 +222,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_validate_template",
-      "title": "Validate prompt template",
-      "description": "Validate a candidate template against the compatibility core and return non-blocking lint and creative-review guidance.",
+      "title": "Validate a Prompt Canvas recipe",
+      "description": "Validate a candidate recipe without saving or creating a project. Returns blocking schema errors separately from compatibility warnings, creative-review guidance, and the normalized preview.",
       "annotations": {
         "readOnlyHint": true,
         "untrustedContentHint": true
@@ -260,8 +260,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_get_generation_context",
-      "title": "Prepare generation context",
-      "description": "Resolve the active workspace into a bounded request for Codex. This tool does not generate, edit, vary, or upscale an image.",
+      "title": "Prepare a project's generation context",
+      "description": "Resolve the active project and requested operation into a bounded, revision-bound request for Codex, including source identity, prompt, references, preservation rules, target output, and accepted asset transports. This tool does not itself generate, edit, vary, or upscale an image.",
       "annotations": {
         "readOnlyHint": true,
         "untrustedContentHint": true
@@ -325,8 +325,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_create_workspace",
-      "title": "Create prompt workspace",
-      "description": "Create a standalone workspace from a library template, a validated template definition, or a deliberately minimal blank prompt.",
+      "title": "Create a Prompt Canvas project",
+      "description": "Create and open a live project from an exact official recipe, a local recipe, a validated definition, or a minimal blank prompt. Official recipe content is snapshotted into the project so later catalog updates cannot change it.",
       "annotations": {
         "readOnlyHint": false,
         "untrustedContentHint": true
@@ -440,8 +440,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_update_workspace",
-      "title": "Update prompt workspace",
-      "description": "Apply semantic prompt, control, reference, workflow, annotation, output, or layout operations to the active tldraw workspace.",
+      "title": "Update a Prompt Canvas project",
+      "description": "Apply one atomic batch of semantic prompt, control, reference, workflow, annotation, or layout changes to a project. Supply the exact project ID and expected revision; stale writes are rejected, successful changes are immediately visible, and the canvas update is one-step undoable.",
       "annotations": {
         "readOnlyHint": false,
         "untrustedContentHint": true
@@ -770,8 +770,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_save_template",
-      "title": "Save prompt template",
-      "description": "Save the current workspace or a candidate definition as a user-owned reusable template after validation. Bundled starter templates remain immutable.",
+      "title": "Save a local Prompt Canvas recipe",
+      "description": "Validate and save the current project or a candidate definition as a user-owned local recipe. Choose create, new-version, or fork deliberately; official and bundled recipes remain immutable and no content is uploaded to the official catalog.",
       "annotations": {
         "readOnlyHint": false,
         "untrustedContentHint": true
@@ -851,8 +851,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_add_generated_asset",
-      "title": "Import Codex-generated asset",
-      "description": "Import one or more images generated or edited by Codex, validate them, record lineage, and place them into output slots. This tool does not perform generation.",
+      "title": "Return a generated image to Prompt Canvas",
+      "description": "Import one or more images generated or edited by Codex, validate their bytes and request identity, record operation and parent lineage, and place them into the specified project output slots. Supply the matching project, request ID, generation revision, prompt digest, and target slot. This tool does not perform generation.",
       "annotations": {
         "readOnlyHint": false,
         "untrustedContentHint": true
@@ -1007,8 +1007,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_delete_workspace",
-      "title": "Delete prompt workspace",
-      "description": "Remove one Prompt Canvas workspace page after explicit confirmation. The change is one-step undoable, and the final remaining Prompt Canvas workspace cannot be deleted.",
+      "title": "Delete a Prompt Canvas project",
+      "description": "Remove one project page only after explicit confirmation and an exact revision match. The change is one-step undoable, the final remaining project cannot be deleted, and the result identifies the project selected afterward.",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -1051,8 +1051,8 @@ export const webmcpCatalog = {
     },
     {
       "name": "prompt_canvas_manage_outputs",
-      "title": "Manage generated outputs",
-      "description": "Promote, compare, reorder, archive, label, or explicitly delete output assets without regenerating them.",
+      "title": "Manage Prompt Canvas results",
+      "description": "Promote, compare, reorder, archive, label, or explicitly delete existing project outputs without regenerating them. Supply the exact project ID and expected revision; stale writes fail atomically and destructive deletion remains explicit.",
       "annotations": {
         "readOnlyHint": false,
         "untrustedContentHint": true

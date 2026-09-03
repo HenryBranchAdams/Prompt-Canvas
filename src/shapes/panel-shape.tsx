@@ -120,18 +120,29 @@ function ControlField(props: {
   if (control.type === 'chips' || control.type === 'multi-chips' || control.type === 'color-palette') {
     const selected = new Set(Array.isArray(value) ? value.map(String) : [String(value ?? '')])
     const multiple = control.type === 'multi-chips' || control.type === 'color-palette'
+    const paletteColors = new Set([
+      ...(Array.isArray(control.defaultValue) ? control.defaultValue.map(String) : []),
+      ...selected,
+    ])
+    const visibleOptions = control.type === 'color-palette' && options.length === 0
+      ? [...paletteColors]
+          .filter((color) => /^#[0-9a-f]{6}$/i.test(color))
+          .map((color) => ({ label: color, value: color, disabled: false }))
+      : options
     return (
       <fieldset className="pc-control pc-control--fieldset" disabled={disabled}>
         <legend>{control.label}</legend>
         <div className="pc-chip-row">
-          {options.map((option) => {
+          {visibleOptions.map((option) => {
             const key = String(option.value)
             const active = selected.has(key)
             return (
               <button
                 type="button"
                 key={key}
-                className={active ? 'pc-chip is-active' : 'pc-chip'}
+                className={`${active ? 'pc-chip is-active' : 'pc-chip'}${control.type === 'color-palette' ? ' pc-color-swatch' : ''}`}
+                aria-label={control.type === 'color-palette' ? `Palette color ${key}` : undefined}
+                style={control.type === 'color-palette' ? { backgroundColor: key } : undefined}
                 disabled={disabled || option.disabled}
                 onClick={() => {
                   if (!multiple) update(option.value)
@@ -143,7 +154,7 @@ function ControlField(props: {
                   }
                 }}
               >
-                {option.label}
+                {control.type === 'color-palette' ? null : option.label}
               </button>
             )
           })}
@@ -632,7 +643,7 @@ function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Edito
     >
       <header className="pc-panel__header">
         <span>{shape.props.title}</span>
-        <small>Drag</small>
+        <span className="pc-panel__grip" aria-hidden="true" />
       </header>
       {parsed.payload ? (
         <PanelBody

@@ -79,7 +79,7 @@ type RecipeDiscovery = {
 function connectionLabel(snapshot: RuntimeSnapshot): string {
   const { connection } = snapshot
   if (!connection.checked) return 'Finding WebMCP host'
-  if (!connection.available) return 'Open inside Codex for WebMCP'
+  if (!connection.available) return 'Open in ChatGPT desktop to work with the agent'
   if (connection.failed > 0) return `${connection.registered} tools · ${connection.failed} failed`
   return `${connection.registered} WebMCP tools connected`
 }
@@ -177,6 +177,7 @@ function TemplateLibrary({
 }) {
   const snapshot = useRuntimeSnapshot()
   const [query, setQuery] = useState('')
+  const [showAllOfficial, setShowAllOfficial] = useState(false)
   const [creating, setCreating] = useState<string | undefined>(undefined)
   const searchRef = useRef<HTMLInputElement>(null)
 
@@ -198,7 +199,8 @@ function TemplateLibrary({
         limit: 100,
       }).templates ?? []) as unknown as TemplateSummary[])
     : []
-  const official = items.filter((item) => item.sourceKind !== 'local')
+  const official = items.filter((item) => item.sourceKind === 'official')
+  const bundled = items.filter((item) => item.sourceKind === 'bundled')
   const local = items.filter((item) => item.sourceKind === 'local')
   const quick = official
     .filter((item) => {
@@ -208,6 +210,8 @@ function TemplateLibrary({
     .sort((a, b) => (recipeDetails(a).discovery.featuredRank ?? 999) - (recipeDetails(b).discovery.featuredRank ?? 999))
   const quickIds = new Set(quick.map((item) => item.id))
   const systems = official.filter((item) => !quickIds.has(item.id))
+  const hasQuery = query.trim().length > 0
+  const visibleSystems = hasQuery || showAllOfficial ? systems : systems.slice(0, 8)
 
   const create = async (item: TemplateSummary) => {
     setCreating(item.id)
@@ -274,9 +278,27 @@ function TemplateLibrary({
           </article>
         ) : null}
       </div>
-      {systems.length > 0 ? <section className="pc-creative-systems">
-        <div><span className="pc-eyebrow">Official recipes</span><h3>Creative systems</h3><p>Advanced recipes for multi-stage and structured creative work.</p></div>
-        <div className="pc-system-list">{systems.map((item) => (
+      {systems.length > 0 ? <section className="pc-creative-systems pc-official-systems">
+        <div><span className="pc-eyebrow">Official recipes</span><h3>Explore more recipes</h3><p>Advanced and specialized starting points.</p></div>
+        <div className="pc-system-list">{visibleSystems.map((item) => (
+          <button key={`${item.id}@${item.version}`} type="button" disabled={Boolean(creating)} onClick={() => void create(item)}>
+            <SparkIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
+          </button>
+        ))}</div>
+        {!hasQuery ? (
+          <button
+            className="pc-library-disclosure"
+            type="button"
+            aria-expanded={showAllOfficial}
+            onClick={() => setShowAllOfficial((value) => !value)}
+          >
+            {showAllOfficial ? 'Show fewer recipes' : `Browse all ${official.length} official recipes`}
+          </button>
+        ) : null}
+      </section> : null}
+      {bundled.length > 0 ? <section className="pc-creative-systems pc-bundled-systems">
+        <div><span className="pc-eyebrow">Creative systems</span><h3>Advanced creative systems</h3><p>Flexible starting points for deeper workflows.</p></div>
+        <div className="pc-system-list">{bundled.map((item) => (
           <button key={`${item.id}@${item.version}`} type="button" disabled={Boolean(creating)} onClick={() => void create(item)}>
             <SparkIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
           </button>
@@ -384,6 +406,10 @@ function HostInspector({ snapshot }: { snapshot: RuntimeSnapshot }) {
         <p>
           Prompt Canvas does not call an image API. These transports passed the page's bounded parser self-test;
           a release host is qualified separately when Codex returns an actual generated image.
+        </p>
+        <p>
+          To use the agent, open this Site in ChatGPT desktop, enable Website Tools for the page,
+          then confirm Prompt Canvas appears under Available Website Tools.
         </p>
         {snapshot.connection.errors.length ? <pre>{snapshot.connection.errors.join('\n')}</pre> : null}
       </div>

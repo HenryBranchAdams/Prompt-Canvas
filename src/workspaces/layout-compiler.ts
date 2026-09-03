@@ -191,7 +191,14 @@ export function ensureRequiredBlocks(
 
   const promptBlocks = blocks.filter((block) => block.type === 'prompt')
   const hasVisiblePromptBody = promptBlocks.some((block) => block['x-promptPart'] !== 'negative')
-  if (!hasVisiblePromptBody) {
+  const presentation = template['x-presentation']
+  const shouldShowPromptByDefault = !(
+    presentation &&
+    typeof presentation === 'object' &&
+    !Array.isArray(presentation) &&
+    presentation.showPromptByDefault === false
+  )
+  if (!hasVisiblePromptBody && shouldShowPromptByDefault) {
     append({
       id: 'prompt-panel',
       type: 'prompt',

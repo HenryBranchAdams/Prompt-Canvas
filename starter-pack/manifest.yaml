@@ -1,6 +1,6 @@
 schema: prompt-canvas.starter-pack@2
 id: core-starter-pack
-version: 4
+version: 5
 title: Prompt Canvas Recipe Library
 description: Ten quick-start recipes, forty-two original task-focused systems, and nine advanced creative systems for Prompt Canvas.
 templateSchema: ../schemas/prompt-workspace-template.schema.json

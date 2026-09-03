@@ -100,6 +100,19 @@ test('a negative-only authored prompt block cannot hide the editable prompt body
   assert.equal(result.find((block) => block.id === 'prompt-panel')?.['x-promptPart'], 'body')
 })
 
+test('an authored presentation can keep prompt details off the opening canvas', () => {
+  const template = fixture()
+  template['x-presentation'] = { showPromptByDefault: false }
+  const result = ensureRequiredBlocks(template, [
+    { id: 'brief', type: 'controls', title: 'Brief', 'x-controlIds': ['audience'] },
+    { id: 'result', type: 'output', title: 'Result', sourceId: 'primary' },
+  ])
+
+  assert.equal(result.some((block) => block.type === 'prompt'), false)
+  assert.equal(result.some((block) => block.id === 'brief'), true)
+  assert.equal(result.some((block) => block.id === 'result'), true)
+})
+
 test('modular blocks can select controls, split prompt surfaces, and declare seeded geometry', () => {
   const template = fixture()
   template.prompt.negativePrompt = 'Avoid clutter.'

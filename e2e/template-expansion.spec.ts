@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test'
 import { starterManifest, starterTemplates } from '../src/generated/starterTemplates'
 import { webmcpCatalog } from '../src/generated/webmcpCatalog'
+import officialCatalog from '../generated/official-library/catalog.json' with { type: 'json' }
 
 const NEW_TEMPLATE_IDS = [
   'character-continuity-kit',
@@ -346,9 +347,19 @@ test('starter manifest and library expose each canonical template once', async (
 
   await expect(page.getByRole('heading', { name: 'What would you like to make?' })).toBeVisible()
   await expect(page.locator('.pc-library__grid .pc-template-card:not(.pc-template-card--blank)')).toHaveCount(10)
-  await expect(page.locator('.pc-system-list button')).toHaveCount(
-    manifest.templates.filter(({ featured }) => !featured).length,
+  await expect(page.locator('.pc-official-systems .pc-system-list button')).toHaveCount(8)
+  await expect(page.locator('.pc-bundled-systems .pc-system-list button')).toHaveCount(
+    manifest.templateCount - officialCatalog.count,
   )
+  const browseAll = page.getByRole('button', { name: `Browse all ${officialCatalog.count} official recipes` })
+  await expect(browseAll).toBeVisible()
+  await browseAll.click()
+  await expect(page.locator('.pc-official-systems .pc-system-list button')).toHaveCount(
+    officialCatalog.count - manifest.templates.filter(({ featured }) => featured).length,
+  )
+  await expect(page.getByRole('button', { name: 'Show fewer recipes' })).toBeVisible()
+  await page.getByRole('button', { name: 'Show fewer recipes' }).click()
+  await expect(page.locator('.pc-official-systems .pc-system-list button')).toHaveCount(8)
   await expect(page.locator('.pc-template-card__preview > img')).toHaveCount(10)
   expect(await page.locator('.pc-template-card__preview > img').evaluateAll((images) =>
     images.every((image) => image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0),
@@ -357,6 +368,13 @@ test('starter manifest and library expose each canonical template once', async (
   await page.getByLabel('Search recipes').fill('swap background')
   await expect(page.locator('.pc-library__grid .pc-template-card:not(.pc-template-card--blank)')).toHaveCount(1)
   await expect(page.locator('.pc-template-card').filter({ hasText: 'Change the background' })).toBeVisible()
+
+  await page.getByLabel('Search recipes').fill('pixel art asset sheet')
+  await expect(page.locator('.pc-system-list button').filter({ hasText: 'Pixel world atlas' })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Browse all/ })).toHaveCount(0)
+  await page.getByLabel('Search recipes').fill('')
+  await expect(page.locator('.pc-official-systems .pc-system-list button')).toHaveCount(8)
+  await expect(page.getByRole('button', { name: `Browse all ${officialCatalog.count} official recipes` })).toBeVisible()
 })
 
 test('official retrieval returns summaries, snapshots exact lineage, and keeps saved recipes local', async ({ page }) => {
@@ -395,7 +413,7 @@ test('official retrieval returns summaries, snapshots exact lineage, and keeps s
   const fetched = await callTool<{
     source: 'official'
     hash: string
-    template: { id: string; version: number }
+    template: { id: string; version: number; blocks?: Array<{ id: string; type: string }> }
     validation: { valid: boolean }
   }>(page, 'prompt_canvas_get_template', {
     source: 'official',
@@ -406,6 +424,14 @@ test('official retrieval returns summaries, snapshots exact lineage, and keeps s
   expect(fetched.source).toBe('official')
   expect(fetched.hash).toBe(selected!.hash)
   expect(fetched.validation.valid).toBe(true)
+  expect(fetched.template.version).toBe(2)
+  expect(fetched.template.blocks?.map(({ id }) => id)).toEqual([
+    'source',
+    'background',
+    'primary-output',
+    'variation-strip',
+  ])
+  expect(fetched.template.blocks?.some(({ type }) => type === 'prompt')).toBe(false)
 
   const created = await callTool<{ workspaceId: string }>(page, 'prompt_canvas_create_workspace', {
     source: {
@@ -436,6 +462,10 @@ test('official retrieval returns summaries, snapshots exact lineage, and keeps s
     title: 'My background recipe',
   })
   expect(forbiddenWrites).toEqual([])
+  await page.getByRole('button', { name: 'Recipes' }).click()
+  const localRecipes = page.locator('.pc-my-recipes')
+  await expect(localRecipes.getByRole('heading', { name: 'Saved by you' })).toBeVisible()
+  await expect(localRecipes.getByRole('button', { name: /My background recipe/ })).toBeVisible()
 })
 
 test('start-fast recipe opens a connected canvas with directly interactive controls', async ({ page }) => {
@@ -452,12 +482,10 @@ test('start-fast recipe opens a connected canvas with directly interactive contr
   expect(initial.elements.map(({ semanticId }) => semanticId)).toEqual(expect.arrayContaining([
     'your-input',
     'visual-direction',
-    'composition',
-    'format',
-    'full-prompt',
     'primary-output',
     'variation-strip',
   ]))
+  expect(initial.elements).toHaveLength(4)
 
   const nextBrief = 'A glass greenhouse glowing softly in a snowy forest at blue hour'
   const inputPanel = page.locator('.pc-panel--controls').filter({ hasText: '1. Your input' })
@@ -473,7 +501,7 @@ test('start-fast recipe opens a connected canvas with directly interactive contr
   }).toBe(nextBrief)
 })
 
-test('travel poster opens as editable modular prompt blocks with stable seeded geometry', async ({ page }) => {
+test('travel poster opens as a calm five-surface workflow with stable seeded geometry', async ({ page }) => {
   await openApp(page)
 
   const created = await callTool<{ workspaceId: string; revision: number; createdElements: string[] }>(
@@ -482,18 +510,10 @@ test('travel poster opens as editable modular prompt blocks with stable seeded g
     { source: { kind: 'template', templateId: 'travel-poster', values: {} }, openAfterCreate: true },
   )
   expect(created.createdElements).toEqual([
-    'subject-card',
-    'format-card',
-    'people-card',
-    'style-card',
-    'composition-card',
-    'palette-card',
-    'typography-card',
-    'local-character-card',
-    'mood-card',
-    'core-direction-card',
+    'brief',
+    'art-direction',
+    'text-atmosphere',
     'poster-output',
-    'negative-prompt-card',
     'variation-strip',
   ])
 
@@ -501,45 +521,46 @@ test('travel poster opens as editable modular prompt blocks with stable seeded g
     workspaceId: created.workspaceId,
     include: ['prompt', 'controls', 'layout'],
   })
-  expect(inspected.elements.find(({ semanticId }) => semanticId === 'subject-card')).toMatchObject({
+  expect(inspected.elements.find(({ semanticId }) => semanticId === 'brief')).toMatchObject({
     x: 40,
-    y: 40,
-    width: 180,
-    height: 130,
+    y: 60,
+    width: 300,
+    height: 250,
   })
   expect(inspected.elements.find(({ semanticId }) => semanticId === 'poster-output')).toMatchObject({
-    x: 690,
-    y: 90,
-    width: 280,
-    height: 373,
+    x: 790,
+    y: 60,
+    width: 460,
+    height: 600,
   })
-  expect(inspected.elements.find(({ semanticId }) => semanticId === 'core-direction-card')).toMatchObject({
-    x: 240,
-    y: 530,
-    width: 420,
-    height: 150,
+  expect(inspected.elements.find(({ semanticId }) => semanticId === 'art-direction')).toMatchObject({
+    x: 370,
+    y: 60,
+    width: 360,
+    height: 390,
   })
+  expect(inspected.elements.find(({ semanticId }) => semanticId === 'text-atmosphere')).toMatchObject({
+    x: 370,
+    y: 480,
+    width: 360,
+    height: 360,
+  })
+  expect(inspected.elements.find(({ semanticId }) => semanticId === 'variation-strip')).toMatchObject({
+    x: 790,
+    y: 690,
+    width: 520,
+    height: 300,
+  })
+  await expect(page.getByRole('button', { name: /^Palette color / })).toHaveCount(5)
+  expect(inspected.elements).toHaveLength(5)
+  await expect(page.locator('.pc-panel__header small')).toHaveCount(0)
   expect(inspected.controls?.values).toMatchObject({
     'typography-direction': expect.any(String),
     'local-character': expect.any(String),
     mood: 'Fresh, airy, peaceful, refined, contemporary, elegant.',
   })
 
-  const editedBody = 'Create a premium Chicago travel poster with a calm, unmistakably local point of view.'
-  await page.locator('.pc-more-menu > summary').click()
-  await page.getByRole('button', { name: 'Diagnostics' }).click()
-  const bodyLayer = page.locator('.pc-layer-list button').filter({ hasText: 'Core direction' })
-  await bodyLayer.click()
-  const bodyEditor = page.locator('.pc-panel--prompt.is-editing').filter({ hasText: 'Core direction' })
-  await bodyEditor.locator('textarea').fill(editedBody)
-  await bodyEditor.locator('textarea').press('Tab')
-  await expect.poll(async () => {
-    const current = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
-      workspaceId: created.workspaceId,
-      include: ['prompt'],
-    })
-    return current.prompt?.body
-  }).toBe(editedBody)
+  const bodyBefore = inspected.prompt?.body
   const bodyEdited = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
     workspaceId: created.workspaceId,
     include: ['prompt', 'controls', 'layout'],
@@ -560,7 +581,7 @@ test('travel poster opens as editable modular prompt blocks with stable seeded g
   const moved = await callTool<{ revision: number }>(page, 'prompt_canvas_update_workspace', {
     workspaceId: created.workspaceId,
     expectedRevision: bodyEdited.revision,
-    operations: [{ op: 'move_element', elementId: 'subject-card', ...movedPosition }],
+    operations: [{ op: 'move_element', elementId: 'brief', ...movedPosition }],
   })
   const revised = await callTool<{ revision: number }>(page, 'prompt_canvas_update_workspace', {
     workspaceId: created.workspaceId,
@@ -576,9 +597,9 @@ test('travel poster opens as editable modular prompt blocks with stable seeded g
   })
   expect(after.revision).toBe(revised.revision)
   expect(after.prompt?.negativePrompt).toBe('Avoid clutter, crowds, and generic landmark collages.')
-  expect(after.prompt?.body).toBe(editedBody)
+  expect(after.prompt?.body).toBe(bodyBefore)
   expect(after.controls?.values.mood).toBe('Quiet, lucid, lake-breezy.')
-  expect(after.elements.find(({ semanticId }) => semanticId === 'subject-card')).toMatchObject(movedPosition)
+  expect(after.elements.find(({ semanticId }) => semanticId === 'brief')).toMatchObject(movedPosition)
 
   await waitForPersistedWorkspace(page, created.workspaceId, after.revision)
   await openApp(page)
@@ -586,9 +607,9 @@ test('travel poster opens as editable modular prompt blocks with stable seeded g
     workspaceId: created.workspaceId,
     include: ['prompt', 'controls', 'layout'],
   })
-  expect(reloaded.prompt?.body).toBe(editedBody)
+  expect(reloaded.prompt?.body).toBe(bodyBefore)
   expect(reloaded.prompt?.negativePrompt).toBe('Avoid clutter, crowds, and generic landmark collages.')
-  expect(reloaded.elements.find(({ semanticId }) => semanticId === 'subject-card')).toMatchObject(movedPosition)
+  expect(reloaded.elements.find(({ semanticId }) => semanticId === 'brief')).toMatchObject(movedPosition)
 })
 
 test('expanded templates wire presets, workflow stages, and generation context', async ({ page }) => {

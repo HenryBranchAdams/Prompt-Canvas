@@ -16,27 +16,38 @@ host build are recorded in the immutable GitHub release and Sites deployment rec
 Browser mocks prove page behavior only. They do not qualify native Codex generation or a desktop-host transport. A
 release is accepted only when its external records identify the same source commit deployed to the public Site.
 
-## Local candidate evidence — 2026-09-03
+## Competition candidate evidence — v0.4.0 · 2026-09-03
+
+- `npm run check`: passed; 61 recipes and eleven tool schemas, zero validation errors or compatibility warnings,
+  82/82 deterministic tests, TypeScript, lint with zero errors and nine existing Fast Refresh warnings, and the
+  production build.
+- `npm run test:e2e`: 21/21 Chromium tests passed, including recipe-first entry, first-party thumbnail loading,
+  collapsed long-tail browsing, ordinary-language hidden-recipe search, directly interactive grouped canvas controls,
+  five-surface Travel Poster geometry, quiet authored connections, transient WebMCP retry without duplicate successful
+  registrations, official D1 retrieval, exact source lineage, local-only custom recipe saving, generated-asset lineage,
+  stale requests, undo/redo, manual geometry, and reload durability.
+- Deterministic catalog validation: 52 official recipes and 52 FTS5 rows at
+  `sha256:63da941dd325dfe389127f434d30061dde37fa595bb8dae4458bf1fb6265a67e`. All 15 ordinary-language
+  top-result evaluations passed against SQLite FTS5. The generated migrations and seed applied twice to local D1;
+  the second pass reported no pending migrations and retained the same 52 recipes, 52 FTS rows, and catalog hash.
+- `npm audit --json`: zero vulnerabilities across 417 dependency records.
+- Visual QA: the clean recipe gallery and fresh `travel-poster@3`, `create-from-words@2`, and
+  `change-background@2` projects were inspected at 1600 × 1000. The result is dominant, all primary surfaces are
+  visible, raw prompts do not occupy the opening canvas, connector and grid treatment is quiet, and controls are
+  directly interactive. The repository-owned gallery screenshot was captured from this exact candidate.
+- `git diff --check`: passed.
+
+These results are local evidence. Exact-head CI, deployment, public access, and real-host image return remain separate
+external gates until attached to the released commit and Site version.
+
+## Previous v0.3.0 local candidate evidence — 2026-09-03
 
 - `npm run check`: passed; 19 recipes and eleven tool schemas, zero validation errors or compatibility warnings,
   81/81 deterministic tests, TypeScript, lint with zero errors and nine existing Fast Refresh warnings, and the
   production build.
-- `npm run test:e2e`: 21/21 Chromium tests passed, including recipe-first entry, first-party thumbnail loading,
-  ordinary-language recipe search, directly interactive canvas controls, modular workflow geometry, transient WebMCP
-  retry without duplicate successful registrations, official D1 retrieval, exact source lineage, local-only custom
-  recipe saving, generated-asset lineage, stale requests, undo/redo, manual geometry, and reload durability.
-- Deterministic catalog validation: ten official recipes, ten immutable versions, and ten FTS5 rows at
-  `catalog-c793fa82ebe18c59` / `sha256:c793fa82ebe18c59fef155107c96a318912cba9854495665a70437e0b8e03e50`.
-  The generated seed was applied to local D1 and all seven ordinary-language top-result evaluations passed against
-  SQLite FTS5.
-- `npm audit --json`: zero vulnerabilities across 417 dependency records.
-- Visual QA: the recipe-first gallery, connected starter canvas, and simplified Codex handoff were captured at
-  1600 × 1000, compared side by side with both selected design targets, and passed with no broken assets or console/page
-  errors. The private release record retains the comparison artifacts without publishing local filesystem paths.
-- `git diff --check`: passed.
-
-These results are local evidence. Exact-head CI, deployment, public access, and real-host image return remain separate
-external gates attached to the released commit.
+- `npm run test:e2e`: 21/21 Chromium tests passed.
+- Deterministic catalog validation: ten official recipes at
+  `sha256:c793fa82ebe18c59fef155107c96a318912cba9854495665a70437e0b8e03e50`.
 
 ## Original 42-recipe collection candidate — 2026-09-03
 
