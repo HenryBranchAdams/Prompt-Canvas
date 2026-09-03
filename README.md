@@ -4,13 +4,17 @@ Prompt Canvas is a standalone, local-first image-prompt workspace built on the t
 
 Despite the repository name, this application is **not a Fogwood feature or compatibility layer**. It has its own schemas, persistence keys, runtime, and WebMCP namespace.
 
+Prompt Canvas opens with an outcome-first recipe gallery. Starting a recipe creates a light, quiet spatial workflow:
+modular input and choice blocks feed a dominant result card through visible canvas connections, while the full prompt
+and advanced controls remain available without leading the first-run experience.
+
 ## Product boundary
 
 ```text
 Prompt Canvas                              Codex in ChatGPT desktop
 ──────────────────────────────────────     ─────────────────────────────
 Prompt and preset editing                  Conversation and reasoning
-Template library                           Native image generation
+Recipe gallery                             Native image generation
 Reference and output organization    <──>  Image editing and variations
 Local tldraw persistence                   Upscaling
 Stable WebMCP tool baseline                 Tool orchestration
@@ -19,11 +23,13 @@ Validated asset import                     Returns generated image material
 
 The page never asks for an OpenAI API key and never calls an image model directly. Its generation tool only resolves bounded context. Image creation remains a Codex host capability.
 
-## v0.1 product baseline
+## Product baseline
 
 - A light, warm-white tldraw surface with a quiet dot grid as the default visual direction.
-- Directly editable prompt and preset-control panels.
-- A nine-template starter library containing only original, first-party Prompt Canvas workspaces. It spans parameterized, composition-first, and multi-stage creative workflows; the library is a baseline, not a product limit.
+- Directly interactive prompt and preset-control panels; the header is the canvas drag handle.
+- A first-run recipe gallery with six everyday `Start fast` recipes, real first-party previews, ordinary-language search, and one obvious `Start` action.
+- Nine preserved advanced creative systems, for 15 original first-party recipes in total. The gallery is a baseline, not a product limit.
+- Modular input, essential-choice, prompt, reference, workflow, result, and variation blocks connected visibly to the intended output.
 - Blank workspace creation, duplication, immutable starter instances, and save-as-template.
 - Thin `prompt-canvas.prompt-workspace-template@2` compatibility core with non-blocking lint and creative guidance.
 - One prompt workspace per tldraw page, with local persistence across reloads. The current `maxPages` setting is an implementation guard, not a product law.
@@ -80,9 +86,6 @@ cp .env.example .env.local
 
 Do not place OpenAI credentials in the page. None are required.
 
-For an OpenAI Sites deployment, replace the placeholder project ID in `.openai/hosting.json` with the ID assigned to
-your Site. The public mirror intentionally does not publish the owner's deployment identifier.
-
 ## Verification
 
 ```bash
@@ -98,12 +101,13 @@ Release checks and host results are evidence for one exact commit and deployment
 The Playwright suite installs a mock top-level WebMCP host and proves the page-side portion of the vertical slice:
 
 1. the catalog's baseline tools register;
-2. the Travel Poster workspace loads;
-3. generation context resolves;
-4. a bounded image payload returns through `prompt_canvas_add_generated_asset`;
-5. the generated output appears inside tldraw;
-6. generated outputs and references, including native-sized PNG fixtures, use durable local asset storage and survive reload;
-7. an agent-authored flexible template validates, creates a workspace, and saves to the local library.
+2. first run presents six everyday recipes and preserves nine advanced systems without auto-creating a project;
+3. a recipe opens as a connected modular canvas whose controls work directly;
+4. the Travel Poster advanced example retains its authored workflow geometry;
+5. generation context resolves;
+6. a bounded image payload returns through `prompt_canvas_add_generated_asset` and appears in the intended tldraw output;
+7. generated outputs and references, including native-sized PNG fixtures, use durable local asset storage and survive reload;
+8. an agent-authored flexible template validates, creates a project, and saves to the local recipe gallery.
 
 ## Desktop-host completion gate
 

@@ -33,6 +33,10 @@ test('archive promoted outputs atomically, undo, and reject foreign workspace so
     () => Object.keys((window as unknown as Registry).__lifecycleTools).length ===
       (window as unknown as { __promptCanvasExpectedToolNames: string[] }).__promptCanvasExpectedToolNames.length,
   )
+  await invoke(page, 'prompt_canvas_create_workspace', {
+    source: { kind: 'template', templateId: 'create-from-words', values: {} },
+    openAfterCreate: true,
+  })
   const initial = await invoke<Snapshot>(page, 'prompt_canvas_inspect', {})
   const workspaceId = initial.workspace.workspaceId
   const images = await page.evaluate(() => {

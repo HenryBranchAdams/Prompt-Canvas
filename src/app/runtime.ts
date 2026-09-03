@@ -361,9 +361,7 @@ export class PromptCanvasRuntime {
       this.bindStoreChanges(editor),
     )
 
-    if (this.listWorkspacePages().length === 0) {
-      await this.createWorkspace({ kind: 'template', templateId: 'travel-poster' }, 'current-view', true)
-    } else {
+    if (this.listWorkspacePages().length > 0) {
       const active = manifestFromPage(editor.getCurrentPage())
       if (!active) {
         const first = this.listWorkspacePages()[0]
@@ -596,7 +594,7 @@ export class PromptCanvasRuntime {
           parentId: pageId,
           x: start.x,
           y: start.y,
-          opacity: 0.46,
+          opacity: 0.68,
           isLocked: false,
           props: {
             kind: 'elbow' as const,
@@ -760,7 +758,11 @@ export class PromptCanvasRuntime {
     }
     if (openAfterCreate) {
       editor.setCurrentPage(page.id)
-      queueMicrotask(() => editor.zoomToFit({ animation: { duration: 180 } }))
+      queueMicrotask(() => {
+        editor.setEditingShape(null)
+        editor.selectNone()
+        editor.zoomToFit({ animation: { duration: 180 } })
+      })
     }
     this.activity.add({
       source: 'user',

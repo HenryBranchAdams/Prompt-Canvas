@@ -42,3 +42,20 @@ test('search combines free text and family filters', () => {
   assert.deepEqual(searchTemplates(records, 'skyline').map(({ entry }) => entry.id), ['poster'])
   assert.deepEqual(searchTemplates(records, '', { family: 'lightweight' }).map(({ entry }) => entry.id), ['watercolor'])
 })
+
+test('search indexes ordinary-language discovery aliases', () => {
+  const background = record(
+    'change-background',
+    'Change the background',
+    'reference-transformation',
+    'Replace only the environment.',
+  )
+  background.template['x-discovery'] = {
+    intentAliases: ['put me somewhere else', 'replace room'],
+  }
+
+  assert.deepEqual(
+    searchTemplates([background], 'put me somewhere else').map(({ entry }) => entry.id),
+    ['change-background'],
+  )
+})

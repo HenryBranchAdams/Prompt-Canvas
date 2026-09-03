@@ -43,6 +43,11 @@ test('workspace deletion requires confirmation and revision, keeps a valid works
   expect(await page.evaluate(() => Object.keys((window as unknown as Registry).__workspaceLifecycleTools).sort()))
     .toEqual(expectedToolNames)
 
+  await invoke(page, 'prompt_canvas_create_workspace', {
+    source: { kind: 'template', templateId: 'create-from-words', values: {} },
+    openAfterCreate: true,
+  })
+
   const original = await invoke<{ workspace: { workspaceId: string }; revision: number }>(
     page,
     'prompt_canvas_inspect',

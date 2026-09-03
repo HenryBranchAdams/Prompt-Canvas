@@ -1,0 +1,93 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: change-background
+version: 1
+title: Change the background
+description: Keep the subject and replace only the environment.
+category: start-fast
+tags: [swap background, replace room, put me somewhere else, keep person change scene]
+status: starter
+compatibility: { minimumAppVersion: 0.1.0, templateFamily: reference-transformation }
+thumbnail:
+  assetPath: /recipe-thumbnails/change-background.webp
+  alt: One unchanged subject shown against a studio and a nighttime field.
+  accent: '#2A9D8F'
+capabilities: [image-to-image, image-edit, variations, upscale]
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations: [edit, variation, upscale]
+  defaultOperation: edit
+  preferredMimeTypes: [image/png, image/webp]
+prompt:
+  title: Background replacement
+  body: >-
+    Replace only the background of the supplied source photo with {{new_background}}.
+    Preserve the subject's identity, pose, expression, clothing, silhouette,
+    camera angle, framing, scale, and perspective. Match edges, depth, light,
+    color spill, and shadows so the replacement feels physically coherent.
+  variables:
+    - id: new_background
+      label: New background
+      type: text
+      required: true
+      defaultValue: A quiet field at night under a clear sky
+references:
+  - id: source-photo
+    label: Source photo
+    role: source-photo
+    required: true
+    multiple: false
+    acceptedMimeTypes: [image/jpeg, image/png, image/webp]
+    preserve: [subject identity, pose, clothing, framing, perspective, scale]
+controls:
+  - id: new-background
+    label: Describe the new background
+    type: textarea
+    required: true
+    defaultValue: A quiet field at night under a clear sky
+    binding: { mode: variable, target: new_background }
+  - id: lighting-match
+    label: Lighting match
+    type: chips
+    defaultValue: natural
+    options:
+      - { label: Natural, value: natural }
+      - { label: Match source, value: source }
+      - { label: Dramatic, value: dramatic }
+    binding: { mode: agent-context, target: edit.lightingMatch }
+  - id: aspect-ratio
+    label: Aspect ratio
+    type: aspect-ratio
+    defaultValue: auto
+    options:
+      - { label: Same as source, value: auto }
+      - { label: Square, value: '1:1' }
+      - { label: Landscape, value: '3:2' }
+      - { label: Portrait, value: '2:3' }
+    binding: { mode: generation, target: aspectRatio }
+preservation:
+  - id: subject
+    description: Preserve subject identity, pose, clothing, silhouette, framing, perspective, and scale.
+    strength: must
+outputs:
+  - { id: primary, label: Your new background, role: primary, kind: image, count: 1, operations: [edit, upscale], layoutHint: hero }
+  - { id: variations, label: Variations, role: variation, kind: image-set, count: 4, operations: [variation], layoutHint: strip }
+blocks:
+  - { id: source, type: references, title: '1. Your photo', x-connectTo: primary-output, x-geometry: { x: 80, y: 130, w: 380, h: 310 } }
+  - { id: background, type: controls, title: '2. New background', x-controlIds: [new-background], x-connectTo: primary-output, x-geometry: { x: 510, y: 130, w: 360, h: 230 } }
+  - { id: lighting, type: controls, title: Lighting match, x-controlIds: [lighting-match], x-connectTo: primary-output, x-geometry: { x: 510, y: 400, w: 360, h: 170 } }
+  - { id: format, type: controls, title: Format, x-controlIds: [aspect-ratio], x-connectTo: primary-output, x-geometry: { x: 510, y: 610, w: 360, h: 180 } }
+  - { id: primary-output, type: output, title: '3. Your result', sourceId: primary, x-connectTo: variation-strip, x-geometry: { x: 930, y: 120, w: 620, h: 600 } }
+  - { id: variation-strip, type: variations, title: Variations, sourceId: variations, x-geometry: { x: 930, y: 760, w: 620, h: 210 } }
+  - { id: full-prompt, type: prompt, title: 'More control · Preservation and prompt', x-connectTo: primary-output, x-geometry: { x: 80, y: 500, w: 380, h: 350 } }
+layout: { mode: seeded, arrangement: reference-transform, preserveManualGeometry: true }
+source: { kind: first-party, title: Change the background, creator: Prompt Canvas, promptUsage: original }
+x-discovery:
+  collection: start-fast
+  userPromise: Keep the subject and replace only the environment.
+  intentAliases: [swap background, replace room, put me somewhere else, keep person change scene]
+  inputSummary: [1 source photo, A background description]
+  badges: [Needs 1 photo, Keeps subject]
+  featuredRank: 3
+x-presentation: { primaryControlIds: [new-background, lighting-match, aspect-ratio], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }

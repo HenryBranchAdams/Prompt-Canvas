@@ -16,6 +16,7 @@ function searchable(record: TemplateSearchRecord): string {
     ...entry.operations,
     ...entry.capabilities,
     ...(template.tags ?? []),
+    JSON.stringify(template['x-discovery'] ?? ''),
     template.prompt.body,
     template.source?.creator ?? '',
     template.source?.title ?? '',

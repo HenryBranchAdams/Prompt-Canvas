@@ -10,6 +10,7 @@ import {
   useValue,
 } from 'tldraw'
 import { useMemo, useState } from 'react'
+import { SparkIcon } from '../app/icons'
 import { dispatchPanelAction } from './panel-events'
 import { parsePanelPayload } from '../workspaces/panel-data'
 import type {
@@ -448,12 +449,10 @@ function OutputPanel(props: {
     return (
       <div className="pc-panel__body pc-output-empty">
         <div className="pc-output-empty__art" aria-hidden="true">
-          <span />
-          <span />
-          <span />
+          <SparkIcon />
         </div>
-        <strong>{isVariation ? 'Variations will land here' : 'Ready for Codex image generation'}</strong>
-        <p>Codex reads the canvas through WebMCP, generates natively, then returns the image to this slot.</p>
+        <strong>{isVariation ? 'Variations will appear here' : 'Your image will appear here'}</strong>
+        <p>{isVariation ? 'Ask Codex for alternate directions when the first result needs exploration.' : 'Generate when the inputs and essential choices look right.'}</p>
         {props.editing ? (
           <button
             type="button"
@@ -467,7 +466,7 @@ function OutputPanel(props: {
               })
             }
           >
-            Prepare for Codex
+            Generate with Codex
           </button>
         ) : null}
       </div>
@@ -493,7 +492,7 @@ function OutputPanel(props: {
                   })
                 }
               >
-                Edit with Codex
+                Change something
               </button>
             ) : null}
             {supportsOperation('upscale') ? (
@@ -624,18 +623,22 @@ function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Edito
     <HTMLContainer
       id={shape.id}
       className={`pc-panel pc-panel--${shape.props.kind} ${editing ? 'is-editing' : ''}`}
-      onPointerDown={editing ? editor.markEventAsHandled : undefined}
-      style={{ pointerEvents: editing ? 'all' : 'none' }}
+      onPointerDown={(event) => {
+        if ((event.target as HTMLElement).closest('.pc-panel__header')) return
+        editor.markEventAsHandled(event)
+        if (!editor.getSelectedShapeIds().includes(shape.id)) editor.select(shape.id)
+      }}
+      style={{ pointerEvents: 'all' }}
     >
       <header className="pc-panel__header">
         <span>{shape.props.title}</span>
-        <small>{editing ? 'Editing' : 'Double-click to edit'}</small>
+        <small>Drag</small>
       </header>
       {parsed.payload ? (
         <PanelBody
           workspaceId={shape.props.workspaceId}
           payload={parsed.payload}
-          editing={editing}
+          editing
         />
       ) : (
         <div className="pc-panel__error">{parsed.error}</div>

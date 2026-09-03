@@ -11,6 +11,7 @@ The root `LICENSE` applies to original Prompt Canvas material owned by the proje
 - application and worker source code;
 - tests, scripts, configuration, schemas, and original project documentation;
 - first-party templates whose source metadata identifies `promptUsage: original`, including templates authored by Prompt Canvas or supplied by Henry Adams for this project; and
+- the six original first-party recipe-preview images under `public/recipe-thumbnails/`; and
 - original modifications to project-owned code and first-party templates.
 
 Copyright remains with the named copyright holder and contributors as applicable.
@@ -22,13 +23,13 @@ The MIT grant does not create rights in material the project does not own. In pa
 - third-party libraries or generated dependency contents, which retain their own licenses;
 - third-party trademarks, logos, names, photographs, screenshots, or reference assets;
 - source posts, prompt text, or other expression merely linked or summarized in provenance metadata; or
-- externally adapted template material or third-party prompt expression, except to the extent the project has an independent right to license its own original contribution.
+- externally adapted template material identified by source metadata such as `promptUsage: adapted`, except to the extent the project has an independent right to license its own original contribution.
 
 Attribution and public availability are not substitutes for permission or an applicable license.
 
-## Current template-library boundary
+## Current recipe-library boundary
 
-The bundled nine-template starter library is first-party and covered by the project MIT license. Adapted templates and
+The bundled 15-recipe library and its six first-party preview images are covered by the project MIT license. Adapted templates and
 their source research were deliberately excluded from this release tree. They may remain in non-public Git history for
 development provenance, but are not shipped by the application or included in the clean public-source snapshot.
 

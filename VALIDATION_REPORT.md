@@ -18,15 +18,17 @@ release is accepted only when its external records identify the same source comm
 
 ## Local candidate evidence — 2026-09-02
 
-- `npm run check`: passed; nine templates and eleven tool schemas, zero validation errors or compatibility warnings,
-  66/66 deterministic tests, TypeScript, lint with zero errors and nine existing Fast Refresh warnings, and the
+- `npm run check`: passed; 15 recipes and eleven tool schemas, zero validation errors or compatibility warnings,
+  73/73 deterministic tests, TypeScript, lint with zero errors and nine existing Fast Refresh warnings, and the
   production build.
-- `npm run test:e2e`: 17/17 Chromium tests passed, including transient WebMCP retry without duplicate successful
-  registrations, modal focus containment, generated-asset lineage, stale requests, undo/redo, manual geometry, and
-  reload durability.
+- `npm run test:e2e`: 20/20 Chromium tests passed, including recipe-first entry, first-party thumbnail loading,
+  ordinary-language recipe search, directly interactive canvas controls, modular workflow geometry, transient WebMCP
+  retry without duplicate successful registrations, modal focus containment, generated-asset lineage, stale requests,
+  undo/redo, manual geometry, and reload durability.
 - `npm audit --json`: zero vulnerabilities across 417 dependency records.
-- In-app browser QA: Prompt Canvas rendered with all eleven WebMCP tools, the nine-template library, visible Travel
-  Poster workspace, Escape close, focus restoration, and no framework error overlay.
+- Visual QA: the recipe-first gallery, connected starter canvas, and simplified Codex handoff were captured at
+  1600 × 1000, compared side by side with both selected design targets, and passed with no broken assets or console/page
+  errors. The private release record retains the comparison artifacts without publishing local filesystem paths.
 - `git diff --check`: passed.
 
 These results are local evidence. Exact-head CI, deployment, public access, and real-host image return remain separate
@@ -34,6 +36,6 @@ external gates attached to the released commit.
 
 ## Public-source boundary
 
-The public starter pack contains nine first-party original templates. Adapted prompt expression, unresolved third-party
-research material, historical generated-output fixtures, and their source-specific qualification notes are excluded.
-The private development repository retains that history.
+The public starter pack contains 15 first-party original recipes and six owned preview images. Adapted prompt
+expression, unresolved third-party research material, historical generated-output fixtures, and their source-specific
+qualification notes are excluded. The private development repository retains that history.

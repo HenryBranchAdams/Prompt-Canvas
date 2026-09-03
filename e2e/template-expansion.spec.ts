@@ -344,10 +344,52 @@ test('starter manifest and library expose each canonical template once', async (
     expect(factualityControl?.defaultValue).toBe('supplied')
   }
 
-  await page.getByRole('button', { name: 'Library' }).click()
-  await expect(page.locator('.pc-library__count')).toContainText(
-    `${manifest.templateCount} compatible templates`,
-  )
+  await expect(page.getByRole('heading', { name: 'What would you like to make?' })).toBeVisible()
+  await expect(page.locator('.pc-library__grid .pc-template-card:not(.pc-template-card--blank)')).toHaveCount(6)
+  await expect(page.locator('.pc-system-list button')).toHaveCount(9)
+  await expect(page.locator('.pc-template-card__preview > img')).toHaveCount(6)
+  expect(await page.locator('.pc-template-card__preview > img').evaluateAll((images) =>
+    images.every((image) => image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0),
+  )).toBe(true)
+
+  await page.getByLabel('Search recipes').fill('put me somewhere else')
+  await expect(page.locator('.pc-library__grid .pc-template-card:not(.pc-template-card--blank)')).toHaveCount(1)
+  await expect(page.locator('.pc-template-card').filter({ hasText: 'Change the background' })).toBeVisible()
+})
+
+test('start-fast recipe opens a connected canvas with directly interactive controls', async ({ page }) => {
+  await openApp(page)
+
+  const recipe = page.locator('.pc-template-card').filter({ hasText: 'Create an image from words' })
+  await recipe.getByRole('button', { name: 'Start' }).click()
+  await expect(page.locator('.pc-library')).toHaveCount(0)
+
+  const initial = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+    include: ['prompt', 'controls', 'layout'],
+  })
+  expect(initial.workspace.templateId).toBe('create-from-words')
+  expect(initial.elements.map(({ semanticId }) => semanticId)).toEqual(expect.arrayContaining([
+    'your-input',
+    'visual-direction',
+    'composition',
+    'format',
+    'full-prompt',
+    'primary-output',
+    'variation-strip',
+  ]))
+
+  const nextBrief = 'A glass greenhouse glowing softly in a snowy forest at blue hour'
+  const inputPanel = page.locator('.pc-panel--controls').filter({ hasText: '1. Your input' })
+  const brief = inputPanel.getByRole('textbox', { name: 'Describe your image' })
+  await expect(brief).toBeEnabled()
+  await brief.fill(nextBrief)
+  await expect.poll(async () => {
+    const inspected = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+      workspaceId: initial.workspace.workspaceId,
+      include: ['prompt', 'controls'],
+    })
+    return inspected.controls?.values.brief
+  }).toBe(nextBrief)
 })
 
 test('travel poster opens as editable modular prompt blocks with stable seeded geometry', async ({ page }) => {
@@ -403,8 +445,10 @@ test('travel poster opens as editable modular prompt blocks with stable seeded g
   })
 
   const editedBody = 'Create a premium Chicago travel poster with a calm, unmistakably local point of view.'
+  await page.locator('.pc-more-menu > summary').click()
+  await page.getByRole('button', { name: 'Diagnostics' }).click()
   const bodyLayer = page.locator('.pc-layer-list button').filter({ hasText: 'Core direction' })
-  await bodyLayer.dblclick()
+  await bodyLayer.click()
   const bodyEditor = page.locator('.pc-panel--prompt.is-editing').filter({ hasText: 'Core direction' })
   await bodyEditor.locator('textarea').fill(editedBody)
   await bodyEditor.locator('textarea').press('Tab')
@@ -537,11 +581,10 @@ test('expanded templates wire presets, workflow stages, and generation context',
 test('library creation and control edits preserve manual layout across fork and reload', async ({ page }) => {
   await openApp(page)
 
-  await page.getByRole('button', { name: 'Library' }).click()
-  await page.getByLabel('Search templates').fill('Scene Rhythm Board')
-  const card = page.locator('.pc-template-card').filter({ hasText: 'Scene Rhythm Board' })
+  await page.getByLabel('Search recipes').fill('Scene Rhythm Board')
+  const card = page.locator('.pc-system-list button').filter({ hasText: 'Scene Rhythm Board' })
   await expect(card).toHaveCount(1)
-  await card.getByRole('button', { name: 'Create workspace' }).click()
+  await card.click()
   await expect(page.locator('.pc-library')).toHaveCount(0)
 
   const created = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
@@ -610,7 +653,8 @@ test('library creation and control edits preserve manual layout across fork and 
     include: ['controls', 'workflow'],
   })
   expect(beforeSave.workflow?.statuses['beat-plan']).toBe('complete')
-  await page.getByRole('button', { name: 'Save template' }).click()
+  await page.locator('.pc-more-menu > summary').click()
+  await page.getByRole('button', { name: 'Save as recipe' }).click()
   await expect.poll(async () => {
     const savedTemplates = await callTool<{ templates: Array<{ title: string }> }>(
       page,

@@ -5,12 +5,171 @@ import type { PromptWorkspaceTemplate, StarterManifest } from '../workspaces/typ
 export const starterManifest = {
   "schema": "prompt-canvas.starter-pack@2",
   "id": "core-starter-pack",
-  "version": 2,
-  "title": "Prompt Canvas Starter Library",
-  "description": "Nine original Codex-powered image prompt workspaces for the standalone Prompt Canvas app.",
+  "version": 3,
+  "title": "Prompt Canvas Recipe Library",
+  "description": "Six quick-start creative recipes and nine original advanced creative systems for Prompt Canvas.",
   "templateSchema": "../schemas/prompt-workspace-template.schema.json",
-  "templateCount": 9,
+  "templateCount": 15,
   "templates": [
+    {
+      "id": "create-from-words",
+      "path": "templates/create-from-words.workspace.yaml",
+      "title": "Create an image from words",
+      "description": "Describe an idea, choose a few essentials, and create one polished image.",
+      "category": "start-fast",
+      "family": "lightweight",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "featured": true,
+      "order": 1,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Create an image from words",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "change-one-thing",
+      "path": "templates/change-one-thing.workspace.yaml",
+      "title": "Change one thing in a photo",
+      "description": "Make one targeted edit while preserving everything you did not mention.",
+      "category": "start-fast",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "featured": true,
+      "order": 2,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Change one thing in a photo",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "change-background",
+      "path": "templates/change-background.workspace.yaml",
+      "title": "Change the background",
+      "description": "Keep the subject and replace only the environment.",
+      "category": "start-fast",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "featured": true,
+      "order": 3,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Change the background",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "remove-object",
+      "path": "templates/remove-object.workspace.yaml",
+      "title": "Remove or clean up an object",
+      "description": "Remove a distraction and rebuild the area naturally.",
+      "category": "start-fast",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "featured": true,
+      "order": 4,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Remove or clean up an object",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "expand-reframe",
+      "path": "templates/expand-reframe.workspace.yaml",
+      "title": "Expand or reframe an image",
+      "description": "Adapt an image to a new shape without awkward cropping.",
+      "category": "start-fast",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "upscale"
+      ],
+      "featured": true,
+      "order": 5,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Expand or reframe an image",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "restore-retouch",
+      "path": "templates/restore-retouch.workspace.yaml",
+      "title": "Restore and lightly retouch",
+      "description": "Improve exposure, color, noise, or damage without redrawing the scene.",
+      "category": "start-fast",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "upscale"
+      ],
+      "featured": true,
+      "order": 6,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Restore and lightly retouch",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
     {
       "id": "travel-poster",
       "path": "templates/travel-poster.workspace.yaml",
@@ -32,8 +191,8 @@ export const starterManifest = {
         "typography",
         "structured-prompt"
       ],
-      "featured": true,
-      "order": 1,
+      "featured": false,
+      "order": 101,
       "source": {
         "creator": "Henry Adams",
         "title": "Premium minimalist flat-vector travel poster",
@@ -291,6 +450,591 @@ export const starterManifest = {
 } as const satisfies StarterManifest
 
 export const starterTemplates = {
+  "change-background": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "change-background",
+    "version": 1,
+    "title": "Change the background",
+    "description": "Keep the subject and replace only the environment.",
+    "category": "start-fast",
+    "tags": [
+      "swap background",
+      "replace room",
+      "put me somewhere else",
+      "keep person change scene"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/change-background.webp",
+      "alt": "One unchanged subject shown against a studio and a nighttime field.",
+      "accent": "#2A9D8F"
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "variations",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "edit",
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Background replacement",
+      "body": "Replace only the background of the supplied source photo with {{new_background}}. Preserve the subject's identity, pose, expression, clothing, silhouette, camera angle, framing, scale, and perspective. Match edges, depth, light, color spill, and shadows so the replacement feels physically coherent.",
+      "variables": [
+        {
+          "id": "new_background",
+          "label": "New background",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A quiet field at night under a clear sky"
+        }
+      ]
+    },
+    "references": [
+      {
+        "id": "source-photo",
+        "label": "Source photo",
+        "role": "source-photo",
+        "required": true,
+        "multiple": false,
+        "acceptedMimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "preserve": [
+          "subject identity",
+          "pose",
+          "clothing",
+          "framing",
+          "perspective",
+          "scale"
+        ]
+      }
+    ],
+    "controls": [
+      {
+        "id": "new-background",
+        "label": "Describe the new background",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A quiet field at night under a clear sky",
+        "binding": {
+          "mode": "variable",
+          "target": "new_background"
+        }
+      },
+      {
+        "id": "lighting-match",
+        "label": "Lighting match",
+        "type": "chips",
+        "defaultValue": "natural",
+        "options": [
+          {
+            "label": "Natural",
+            "value": "natural"
+          },
+          {
+            "label": "Match source",
+            "value": "source"
+          },
+          {
+            "label": "Dramatic",
+            "value": "dramatic"
+          }
+        ],
+        "binding": {
+          "mode": "agent-context",
+          "target": "edit.lightingMatch"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Aspect ratio",
+        "type": "aspect-ratio",
+        "defaultValue": "auto",
+        "options": [
+          {
+            "label": "Same as source",
+            "value": "auto"
+          },
+          {
+            "label": "Square",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape",
+            "value": "3:2"
+          },
+          {
+            "label": "Portrait",
+            "value": "2:3"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "preservation": [
+      {
+        "id": "subject",
+        "description": "Preserve subject identity, pose, clothing, silhouette, framing, perspective, and scale.",
+        "strength": "must"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Your new background",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "operations": [
+          "edit",
+          "upscale"
+        ],
+        "layoutHint": "hero"
+      },
+      {
+        "id": "variations",
+        "label": "Variations",
+        "role": "variation",
+        "kind": "image-set",
+        "count": 4,
+        "operations": [
+          "variation"
+        ],
+        "layoutHint": "strip"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source",
+        "type": "references",
+        "title": "1. Your photo",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 130,
+          "w": 380,
+          "h": 310
+        }
+      },
+      {
+        "id": "background",
+        "type": "controls",
+        "title": "2. New background",
+        "x-controlIds": [
+          "new-background"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 130,
+          "w": 360,
+          "h": 230
+        }
+      },
+      {
+        "id": "lighting",
+        "type": "controls",
+        "title": "Lighting match",
+        "x-controlIds": [
+          "lighting-match"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 400,
+          "w": 360,
+          "h": 170
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "x-controlIds": [
+          "aspect-ratio"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 610,
+          "w": 360,
+          "h": 180
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Your result",
+        "sourceId": "primary",
+        "x-connectTo": "variation-strip",
+        "x-geometry": {
+          "x": 930,
+          "y": 120,
+          "w": 620,
+          "h": 600
+        }
+      },
+      {
+        "id": "variation-strip",
+        "type": "variations",
+        "title": "Variations",
+        "sourceId": "variations",
+        "x-geometry": {
+          "x": 930,
+          "y": 760,
+          "w": 620,
+          "h": 210
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Preservation and prompt",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 500,
+          "w": 380,
+          "h": 350
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "reference-transform",
+      "preserveManualGeometry": true
+    },
+    "source": {
+      "kind": "first-party",
+      "title": "Change the background",
+      "creator": "Prompt Canvas",
+      "promptUsage": "original"
+    },
+    "x-discovery": {
+      "collection": "start-fast",
+      "userPromise": "Keep the subject and replace only the environment.",
+      "intentAliases": [
+        "swap background",
+        "replace room",
+        "put me somewhere else",
+        "keep person change scene"
+      ],
+      "inputSummary": [
+        "1 source photo",
+        "A background description"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps subject"
+      ],
+      "featuredRank": 3
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "new-background",
+        "lighting-match",
+        "aspect-ratio"
+      ],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
+  },
+  "change-one-thing": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "change-one-thing",
+    "version": 1,
+    "title": "Change one thing in a photo",
+    "description": "Make one targeted edit while preserving everything you did not mention.",
+    "category": "start-fast",
+    "tags": [
+      "photo edit",
+      "keep everything else",
+      "targeted change",
+      "preserve subject"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/change-one-thing.webp",
+      "alt": "The same vase and table with only the flower color changed.",
+      "accent": "#E76F51"
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "variations",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "edit",
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Targeted photo edit",
+      "body": "Change only this detail in the supplied source photo: {{requested_change}}. Preserve every unmentioned person, object, word, pose, viewpoint, crop, spatial relationship, material, and lighting characteristic. Reconstruct edited edges and shadows naturally. Do not add unrelated content.",
+      "variables": [
+        {
+          "id": "requested_change",
+          "label": "Desired change",
+          "type": "text",
+          "required": true,
+          "defaultValue": "Change the flower color to deep blue"
+        }
+      ]
+    },
+    "references": [
+      {
+        "id": "source-photo",
+        "label": "Source photo",
+        "role": "source-photo",
+        "required": true,
+        "multiple": false,
+        "acceptedMimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "preserve": [
+          "all unmentioned details",
+          "subject identity",
+          "pose",
+          "camera viewpoint",
+          "framing"
+        ]
+      }
+    ],
+    "controls": [
+      {
+        "id": "requested-change",
+        "label": "What should change?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "Change the flower color to deep blue",
+        "binding": {
+          "mode": "variable",
+          "target": "requested_change"
+        }
+      },
+      {
+        "id": "change-strength",
+        "label": "Amount of change",
+        "type": "chips",
+        "defaultValue": "precise",
+        "options": [
+          {
+            "label": "Subtle",
+            "value": "subtle"
+          },
+          {
+            "label": "Precise",
+            "value": "precise"
+          },
+          {
+            "label": "Strong",
+            "value": "strong"
+          }
+        ],
+        "binding": {
+          "mode": "agent-context",
+          "target": "edit.strength"
+        }
+      }
+    ],
+    "preservation": [
+      {
+        "id": "preserve-unmentioned",
+        "description": "Preserve everything not explicitly named in the requested change.",
+        "strength": "must"
+      },
+      {
+        "id": "preserve-identity",
+        "description": "Preserve subject identity, pose, framing, viewpoint, and object count.",
+        "strength": "must"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Your edited photo",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "operations": [
+          "edit",
+          "upscale"
+        ],
+        "layoutHint": "hero"
+      },
+      {
+        "id": "variations",
+        "label": "Variations",
+        "role": "variation",
+        "kind": "image-set",
+        "count": 4,
+        "operations": [
+          "variation"
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source",
+        "type": "references",
+        "title": "1. Your photo",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 130,
+          "w": 380,
+          "h": 310
+        }
+      },
+      {
+        "id": "desired-change",
+        "type": "controls",
+        "title": "2. Desired change",
+        "x-controlIds": [
+          "requested-change"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 130,
+          "w": 360,
+          "h": 240
+        }
+      },
+      {
+        "id": "change-strength",
+        "type": "controls",
+        "title": "Amount of change",
+        "x-controlIds": [
+          "change-strength"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 410,
+          "w": 360,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Your result",
+        "sourceId": "primary",
+        "x-connectTo": "variation-strip",
+        "x-geometry": {
+          "x": 930,
+          "y": 120,
+          "w": 620,
+          "h": 600
+        }
+      },
+      {
+        "id": "variation-strip",
+        "type": "variations",
+        "title": "Variations",
+        "sourceId": "variations",
+        "x-geometry": {
+          "x": 930,
+          "y": 760,
+          "w": 620,
+          "h": 210
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Preservation and prompt",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 500,
+          "w": 790,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "reference-transform",
+      "preserveManualGeometry": true
+    },
+    "source": {
+      "kind": "first-party",
+      "title": "Change one thing in a photo",
+      "creator": "Prompt Canvas",
+      "promptUsage": "original"
+    },
+    "x-discovery": {
+      "collection": "start-fast",
+      "userPromise": "Make one targeted edit and preserve everything else.",
+      "intentAliases": [
+        "keep everything else",
+        "change just this",
+        "fix one thing",
+        "keep my face"
+      ],
+      "inputSummary": [
+        "1 source photo",
+        "The change you want"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps unmentioned details"
+      ],
+      "featuredRank": 2
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "requested-change",
+        "change-strength"
+      ],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
+  },
   "character-continuity-kit": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "character-continuity-kit",
@@ -675,6 +1419,638 @@ export const starterTemplates = {
       "upscale",
       "typography"
     ]
+  },
+  "create-from-words": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "create-from-words",
+    "version": 1,
+    "title": "Create an image from words",
+    "description": "Describe an idea, choose a few essentials, and create one polished image.",
+    "category": "start-fast",
+    "tags": [
+      "quick start",
+      "text to image",
+      "describe an image",
+      "make a picture"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "lightweight"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/create-from-words.webp",
+      "alt": "A small observatory glowing beneath a vivid desert night sky.",
+      "accent": "#5B5CE2"
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 4,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Full creative direction",
+      "body": "Create a polished image of {{brief}}. Follow the selected visual direction, composition, and aspect ratio. Build a clear focal point, coherent lighting, believable materials, and enough detail for the idea to feel intentional. Do not add logos, watermarks, unsupported factual claims, or unrelated text.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "What would you like to see?",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A quiet observatory beneath a vivid desert night sky"
+        }
+      ]
+    },
+    "controls": [
+      {
+        "id": "brief",
+        "label": "Describe your image",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A quiet observatory beneath a vivid desert night sky",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        },
+        "ui": {
+          "width": "full",
+          "placeholder": "Describe the subject, setting, and mood"
+        }
+      },
+      {
+        "id": "visual-direction",
+        "label": "Visual direction",
+        "type": "chips",
+        "defaultValue": "cinematic",
+        "options": [
+          {
+            "label": "Photorealistic",
+            "value": "photorealistic"
+          },
+          {
+            "label": "Cinematic",
+            "value": "cinematic"
+          },
+          {
+            "label": "Illustration",
+            "value": "illustration"
+          },
+          {
+            "label": "Minimal",
+            "value": "minimal"
+          }
+        ],
+        "binding": {
+          "mode": "agent-context",
+          "target": "visual.direction"
+        }
+      },
+      {
+        "id": "composition",
+        "label": "Composition",
+        "type": "composition",
+        "defaultValue": "wide-shot",
+        "options": [
+          {
+            "label": "Wide shot",
+            "value": "wide-shot"
+          },
+          {
+            "label": "Close-up",
+            "value": "close-up"
+          },
+          {
+            "label": "Centered",
+            "value": "centered"
+          },
+          {
+            "label": "Off-center",
+            "value": "off-center"
+          }
+        ],
+        "binding": {
+          "mode": "agent-context",
+          "target": "visual.composition"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Aspect ratio",
+        "type": "aspect-ratio",
+        "defaultValue": "3:2",
+        "options": [
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          },
+          {
+            "label": "Portrait 2:3",
+            "value": "2:3"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Your result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "3:2",
+        "operations": [
+          "generate",
+          "edit",
+          "upscale"
+        ],
+        "layoutHint": "hero"
+      },
+      {
+        "id": "variations",
+        "label": "Variations",
+        "role": "variation",
+        "kind": "image-set",
+        "count": 4,
+        "aspectRatio": "3:2",
+        "operations": [
+          "variation"
+        ],
+        "layoutHint": "strip"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "your-input",
+        "type": "controls",
+        "title": "1. Your input",
+        "x-controlIds": [
+          "brief"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 150,
+          "w": 360,
+          "h": 280
+        }
+      },
+      {
+        "id": "visual-direction",
+        "type": "controls",
+        "title": "2. Visual direction",
+        "x-controlIds": [
+          "visual-direction"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 120,
+          "w": 360,
+          "h": 190
+        }
+      },
+      {
+        "id": "composition",
+        "type": "controls",
+        "title": "Composition",
+        "x-controlIds": [
+          "composition"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 345,
+          "w": 360,
+          "h": 165
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "x-controlIds": [
+          "aspect-ratio"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 545,
+          "w": 360,
+          "h": 190
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Your result",
+        "sourceId": "primary",
+        "x-connectTo": "variation-strip",
+        "x-geometry": {
+          "x": 930,
+          "y": 120,
+          "w": 620,
+          "h": 600
+        }
+      },
+      {
+        "id": "variation-strip",
+        "type": "variations",
+        "title": "Variations",
+        "sourceId": "variations",
+        "x-geometry": {
+          "x": 930,
+          "y": 760,
+          "w": 620,
+          "h": 210
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 520,
+          "w": 360,
+          "h": 360
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "source": {
+      "kind": "first-party",
+      "title": "Create an image from words",
+      "creator": "Prompt Canvas",
+      "promptUsage": "original"
+    },
+    "x-discovery": {
+      "collection": "start-fast",
+      "userPromise": "Describe anything and get a polished first image.",
+      "intentAliases": [
+        "make a picture",
+        "create art",
+        "draw this",
+        "generate an image"
+      ],
+      "inputSummary": [
+        "A short description"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "featuredRank": 1
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "visual-direction",
+        "composition",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
+  },
+  "expand-reframe": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "expand-reframe",
+    "version": 1,
+    "title": "Expand or reframe an image",
+    "description": "Adapt an image to a new shape without awkward cropping.",
+    "category": "start-fast",
+    "tags": [
+      "make wider",
+      "outpaint",
+      "crop",
+      "reframe",
+      "extend image"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/expand-reframe.webp",
+      "alt": "A lighthouse photograph expanding from a portrait crop into a wide coast.",
+      "accent": "#4A90A4"
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "upscale"
+      ],
+      "defaultOperation": "edit",
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Expand or reframe",
+      "body": "Adapt the supplied image to {{target_ratio}} using the selected framing method. Protect the important subject region, horizon, perspective, scale, and lighting. When extending, continue plausible scene geometry and texture. When cropping, keep the focal subject complete and the composition balanced.",
+      "variables": [
+        {
+          "id": "target_ratio",
+          "label": "Target aspect ratio",
+          "type": "enum",
+          "required": true,
+          "defaultValue": "16:9",
+          "values": [
+            "1:1",
+            "4:5",
+            "3:2",
+            "16:9"
+          ]
+        }
+      ]
+    },
+    "references": [
+      {
+        "id": "source-photo",
+        "label": "Source image",
+        "role": "source-photo",
+        "required": true,
+        "multiple": false,
+        "acceptedMimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "preserve": [
+          "important subject region",
+          "perspective",
+          "scale",
+          "lighting"
+        ]
+      }
+    ],
+    "controls": [
+      {
+        "id": "target-ratio",
+        "label": "Target format",
+        "type": "aspect-ratio",
+        "required": true,
+        "defaultValue": "16:9",
+        "options": [
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          },
+          {
+            "label": "Wide 16:9",
+            "value": "16:9"
+          }
+        ],
+        "binding": {
+          "mode": "variable",
+          "target": "target_ratio"
+        }
+      },
+      {
+        "id": "framing-method",
+        "label": "Framing method",
+        "type": "chips",
+        "defaultValue": "extend",
+        "options": [
+          {
+            "label": "Extend scene",
+            "value": "extend"
+          },
+          {
+            "label": "Crop carefully",
+            "value": "crop"
+          },
+          {
+            "label": "Let Codex decide",
+            "value": "auto"
+          }
+        ],
+        "binding": {
+          "mode": "agent-context",
+          "target": "edit.framingMethod"
+        }
+      },
+      {
+        "id": "subject-placement",
+        "label": "Subject placement",
+        "type": "composition",
+        "defaultValue": "preserve",
+        "options": [
+          {
+            "label": "Preserve position",
+            "value": "preserve"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          },
+          {
+            "label": "Rule of thirds",
+            "value": "thirds"
+          }
+        ],
+        "binding": {
+          "mode": "agent-context",
+          "target": "edit.subjectPlacement"
+        }
+      }
+    ],
+    "preservation": [
+      {
+        "id": "protected-region",
+        "description": "Preserve the important subject region, perspective, scale, and lighting.",
+        "strength": "must"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Reframed image",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "operations": [
+          "edit",
+          "upscale"
+        ],
+        "layoutHint": "hero"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source",
+        "type": "references",
+        "title": "1. Your image",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 130,
+          "w": 380,
+          "h": 310
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "2. New format",
+        "x-controlIds": [
+          "target-ratio"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 130,
+          "w": 360,
+          "h": 190
+        }
+      },
+      {
+        "id": "framing",
+        "type": "controls",
+        "title": "Framing method",
+        "x-controlIds": [
+          "framing-method"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 360,
+          "w": 360,
+          "h": 180
+        }
+      },
+      {
+        "id": "placement",
+        "type": "controls",
+        "title": "Subject placement",
+        "x-controlIds": [
+          "subject-placement"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 580,
+          "w": 360,
+          "h": 180
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Your result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 120,
+          "w": 620,
+          "h": 600
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Preservation and prompt",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 500,
+          "w": 380,
+          "h": 350
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "reference-transform",
+      "preserveManualGeometry": true
+    },
+    "source": {
+      "kind": "first-party",
+      "title": "Expand or reframe an image",
+      "creator": "Prompt Canvas",
+      "promptUsage": "original"
+    },
+    "x-discovery": {
+      "collection": "start-fast",
+      "userPromise": "Make an image wider, taller, or differently framed.",
+      "intentAliases": [
+        "make this wider",
+        "outpaint this",
+        "crop for social",
+        "change aspect ratio"
+      ],
+      "inputSummary": [
+        "1 source image",
+        "A target format"
+      ],
+      "badges": [
+        "Needs 1 image",
+        "Protects subject"
+      ],
+      "featuredRank": 5
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "target-ratio",
+        "framing-method",
+        "subject-placement"
+      ],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
   },
   "learning-trail-map": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
@@ -1541,6 +2917,532 @@ export const starterTemplates = {
       "structured-prompt",
       "typography"
     ]
+  },
+  "remove-object": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "remove-object",
+    "version": 1,
+    "title": "Remove or clean up an object",
+    "description": "Remove a distraction and rebuild the area naturally.",
+    "category": "start-fast",
+    "tags": [
+      "remove person",
+      "erase object",
+      "clean up photo",
+      "remove distraction"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/remove-object.webp",
+      "alt": "A quiet wooden table before and after a distracting object is removed.",
+      "accent": "#E9A23B"
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "variations",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "edit",
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Object removal",
+      "body": "Remove only {{remove_target}} from the supplied photo. Reconstruct the occluded geometry, material, texture, reflections, and shadows so the edit is seamless. Preserve the camera viewpoint, crop, remaining people and objects, lighting, colors, and every detail not named for removal.",
+      "variables": [
+        {
+          "id": "remove_target",
+          "label": "What should be removed?",
+          "type": "text",
+          "required": true,
+          "defaultValue": "The small distracting object on the table"
+        }
+      ]
+    },
+    "references": [
+      {
+        "id": "source-photo",
+        "label": "Source photo",
+        "role": "source-photo",
+        "required": true,
+        "multiple": false,
+        "acceptedMimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "preserve": [
+          "surrounding geometry",
+          "texture",
+          "lighting",
+          "framing",
+          "unmentioned details"
+        ]
+      }
+    ],
+    "controls": [
+      {
+        "id": "remove-target",
+        "label": "What should be removed?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "The small distracting object on the table",
+        "binding": {
+          "mode": "variable",
+          "target": "remove_target"
+        }
+      },
+      {
+        "id": "cleanup-priority",
+        "label": "Cleanup priority",
+        "type": "chips",
+        "defaultValue": "all",
+        "options": [
+          {
+            "label": "Geometry",
+            "value": "geometry"
+          },
+          {
+            "label": "Texture",
+            "value": "texture"
+          },
+          {
+            "label": "Shadows",
+            "value": "shadows"
+          },
+          {
+            "label": "All",
+            "value": "all"
+          }
+        ],
+        "binding": {
+          "mode": "agent-context",
+          "target": "edit.cleanupPriority"
+        }
+      }
+    ],
+    "preservation": [
+      {
+        "id": "surroundings",
+        "description": "Preserve surrounding geometry, texture, lighting, framing, and all unmentioned content.",
+        "strength": "must"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Cleaned photo",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "operations": [
+          "edit",
+          "upscale"
+        ],
+        "layoutHint": "hero"
+      },
+      {
+        "id": "variations",
+        "label": "Variations",
+        "role": "variation",
+        "kind": "image-set",
+        "count": 4,
+        "operations": [
+          "variation"
+        ],
+        "layoutHint": "strip"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source",
+        "type": "references",
+        "title": "1. Your photo",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 130,
+          "w": 380,
+          "h": 310
+        }
+      },
+      {
+        "id": "remove-target",
+        "type": "controls",
+        "title": "2. What to remove",
+        "x-controlIds": [
+          "remove-target"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 130,
+          "w": 360,
+          "h": 230
+        }
+      },
+      {
+        "id": "cleanup",
+        "type": "controls",
+        "title": "Cleanup",
+        "x-controlIds": [
+          "cleanup-priority"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 400,
+          "w": 360,
+          "h": 180
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Your result",
+        "sourceId": "primary",
+        "x-connectTo": "variation-strip",
+        "x-geometry": {
+          "x": 930,
+          "y": 120,
+          "w": 620,
+          "h": 600
+        }
+      },
+      {
+        "id": "variation-strip",
+        "type": "variations",
+        "title": "Variations",
+        "sourceId": "variations",
+        "x-geometry": {
+          "x": 930,
+          "y": 760,
+          "w": 620,
+          "h": 210
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Preservation and prompt",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 500,
+          "w": 790,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "reference-transform",
+      "preserveManualGeometry": true
+    },
+    "source": {
+      "kind": "first-party",
+      "title": "Remove or clean up an object",
+      "creator": "Prompt Canvas",
+      "promptUsage": "original"
+    },
+    "x-discovery": {
+      "collection": "start-fast",
+      "userPromise": "Remove a distraction and rebuild the area naturally.",
+      "intentAliases": [
+        "remove the person behind me",
+        "erase object",
+        "clean this up",
+        "remove distraction"
+      ],
+      "inputSummary": [
+        "1 source photo",
+        "What to remove"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps surroundings"
+      ],
+      "featuredRank": 4
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "remove-target",
+        "cleanup-priority"
+      ],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
+  },
+  "restore-retouch": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "restore-retouch",
+    "version": 1,
+    "title": "Restore and lightly retouch",
+    "description": "Improve exposure, color, noise, or damage without redrawing the scene.",
+    "category": "start-fast",
+    "tags": [
+      "fix lighting",
+      "restore photo",
+      "retouch",
+      "remove scratches",
+      "washed out"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/restore-retouch.webp",
+      "alt": "An archival desk photograph with subtle exposure and damage restoration.",
+      "accent": "#B08968"
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "upscale"
+      ],
+      "defaultOperation": "edit",
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Gentle restoration",
+      "body": "Restore the supplied photo using only the selected corrections. Improve technical quality without redrawing, beautifying, modernizing, or changing the scene. Preserve identity, objects, framing, era-appropriate texture, and authentic detail. Keep the result natural rather than over-processed."
+    },
+    "references": [
+      {
+        "id": "source-photo",
+        "label": "Photo to restore",
+        "role": "source-photo",
+        "required": true,
+        "multiple": false,
+        "acceptedMimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "preserve": [
+          "identity",
+          "original objects",
+          "framing",
+          "scene content",
+          "era-appropriate texture"
+        ]
+      }
+    ],
+    "controls": [
+      {
+        "id": "corrections",
+        "label": "Corrections",
+        "type": "multi-chips",
+        "defaultValue": [
+          "exposure",
+          "color",
+          "noise"
+        ],
+        "options": [
+          {
+            "label": "Exposure",
+            "value": "exposure"
+          },
+          {
+            "label": "Color balance",
+            "value": "color"
+          },
+          {
+            "label": "Noise",
+            "value": "noise"
+          },
+          {
+            "label": "Scratches",
+            "value": "damage"
+          }
+        ],
+        "binding": {
+          "mode": "agent-context",
+          "target": "edit.corrections"
+        }
+      },
+      {
+        "id": "restoration-strength",
+        "label": "Strength",
+        "type": "chips",
+        "defaultValue": "gentle",
+        "options": [
+          {
+            "label": "Very gentle",
+            "value": "very-gentle"
+          },
+          {
+            "label": "Gentle",
+            "value": "gentle"
+          },
+          {
+            "label": "Moderate",
+            "value": "moderate"
+          }
+        ],
+        "binding": {
+          "mode": "agent-context",
+          "target": "edit.strength"
+        }
+      }
+    ],
+    "preservation": [
+      {
+        "id": "authentic-scene",
+        "description": "Preserve identity, original objects, framing, scene content, and era-appropriate texture.",
+        "strength": "must"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Restored photo",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "operations": [
+          "edit",
+          "upscale"
+        ],
+        "layoutHint": "hero"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source",
+        "type": "references",
+        "title": "1. Your photo",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 130,
+          "w": 380,
+          "h": 310
+        }
+      },
+      {
+        "id": "corrections",
+        "type": "controls",
+        "title": "2. Corrections",
+        "x-controlIds": [
+          "corrections"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 130,
+          "w": 360,
+          "h": 210
+        }
+      },
+      {
+        "id": "strength",
+        "type": "controls",
+        "title": "Strength",
+        "x-controlIds": [
+          "restoration-strength"
+        ],
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 510,
+          "y": 380,
+          "w": 360,
+          "h": 180
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Your result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 120,
+          "w": 620,
+          "h": 600
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Preservation and prompt",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 500,
+          "w": 790,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "reference-transform",
+      "preserveManualGeometry": true
+    },
+    "source": {
+      "kind": "first-party",
+      "title": "Restore and lightly retouch",
+      "creator": "Prompt Canvas",
+      "promptUsage": "original"
+    },
+    "x-discovery": {
+      "collection": "start-fast",
+      "userPromise": "Improve photo quality without changing the scene.",
+      "intentAliases": [
+        "fix washed-out lighting",
+        "restore old photo",
+        "remove scratches",
+        "reduce noise"
+      ],
+      "inputSummary": [
+        "1 source photo"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps scene"
+      ],
+      "featuredRank": 6
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "corrections",
+        "restoration-strength"
+      ],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
   },
   "retail-object-family-study": {
     "schema": "prompt-canvas.prompt-workspace-template@2",

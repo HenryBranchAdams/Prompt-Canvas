@@ -231,6 +231,13 @@ async function callTool<T>(page: Page, name: string, input: unknown): Promise<T>
   )
 }
 
+async function createTravelWorkspace(page: Page): Promise<void> {
+  await callTool(page, 'prompt_canvas_create_workspace', {
+    source: { kind: 'template', templateId: 'travel-poster', values: {} },
+    openAfterCreate: true,
+  })
+}
+
 test('workspace creation remains available beyond forty persisted pages', async ({ page }) => {
   await page.goto('/')
   await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
@@ -242,9 +249,9 @@ test('workspace creation remains available beyond forty persisted pages', async 
       ).length === (window as unknown as { __promptCanvasExpectedToolNames: string[] }).__promptCanvasExpectedToolNames.length,
   )
 
-  // The starter workspace occupies page one. Forty more workspaces reproduce the
-  // owner document that previously exhausted the app's 40-page tldraw limit.
-  for (let index = 1; index <= 40; index += 1) {
+  // First run no longer pre-creates a project. Forty-one explicit projects prove
+  // the prior 40-page tldraw limit remains removed.
+  for (let index = 1; index <= 41; index += 1) {
     await callTool(page, 'prompt_canvas_create_workspace', {
       source: {
         kind: 'blank',
@@ -255,7 +262,7 @@ test('workspace creation remains available beyond forty persisted pages', async 
     })
   }
 
-  await expect(page.getByLabel('Active workspace').locator('option')).toHaveCount(41)
+  await expect(page.getByLabel('Active project').locator('option:not([value=""])')).toHaveCount(41)
 })
 
 async function waitForPersistedAsset(
@@ -466,6 +473,7 @@ test('Travel Poster renders bound workflow connections that follow cards and sur
       ).length === (window as unknown as { __promptCanvasExpectedToolNames: string[] })
         .__promptCanvasExpectedToolNames.length,
   )
+  await createTravelWorkspace(page)
 
   const inspect = await callTool<{
     workspace: { workspaceId: string }
@@ -538,6 +546,7 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
   expect(toolNames).toEqual(webmcpCatalog.tools.map((tool) => tool.name).sort())
   expect(toolNames).toContain('prompt_canvas_get_generation_context')
   expect(toolNames).toContain('prompt_canvas_add_generated_asset')
+  await createTravelWorkspace(page)
 
   const inspect = await callTool<{
     workspace: { workspaceId: string }
@@ -551,9 +560,9 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
   expect(inspect.workspace.workspaceId).toBeTruthy()
   expect(inspect.verifiedAssetTransports).toContain('data_url')
   expect(inspect.capabilities.pageTools.sort()).toEqual(toolNames)
-  await page.getByRole('button', { name: 'Prepare for Codex' }).click()
+  await page.locator('.pc-topbar').getByRole('button', { name: 'Generate with Codex' }).click()
   const closeDialog = page.getByRole('button', { name: 'Close dialog' })
-  const continueButton = page.getByRole('button', { name: 'Close and continue in Codex' })
+  const continueButton = page.getByRole('button', { name: 'Done' })
   await expect(continueButton).toBeVisible()
   await expect(closeDialog).toBeFocused()
   await closeDialog.press('Shift+Tab')
@@ -567,7 +576,7 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
     .locator('.tlui-style-panel__wrapper')
     .evaluate((element) => Number(getComputedStyle(element).zIndex))
   expect(modalLayerZ).toBeGreaterThan(tldrawStylePanelZ)
-  await page.getByRole('button', { name: 'Close and continue in Codex' }).click()
+  await page.getByRole('button', { name: 'Done' }).click()
 
   const context = await callTool<{
     requestId: string
@@ -651,6 +660,7 @@ test('native-sized generated assets use durable local asset storage', async ({ p
           .__promptCanvasTools,
       ).length === (window as unknown as { __promptCanvasExpectedToolNames: string[] }).__promptCanvasExpectedToolNames.length,
   )
+  await createTravelWorkspace(page)
 
   const initial = await callTool<{ workspace: { workspaceId: string } }>(
     page,
@@ -836,6 +846,7 @@ test('generated asset imports require prepared identity and derived lineage', as
           .__promptCanvasTools,
       ).length === (window as unknown as { __promptCanvasExpectedToolNames: string[] }).__promptCanvasExpectedToolNames.length,
   )
+  await createTravelWorkspace(page)
 
   const inspect = await callTool<{ workspace: { workspaceId: string } }>(
     page,
@@ -1020,13 +1031,15 @@ test('output slots negotiate operations and workflow stages reach generation con
     placement: 'new-page',
     openAfterCreate: true,
   })
+  await page.locator('.pc-more-menu > summary').click()
+  await page.getByRole('button', { name: 'Diagnostics' }).click()
   const secondary = page.locator('.pc-panel--output').filter({ hasText: 'Generate-only secondary' })
   await expect(secondary).toBeVisible()
   const secondaryLayer = page
     .locator('.pc-layer-list button')
     .filter({ hasText: 'Generate-only secondary' })
-  await expect(secondaryLayer).toHaveAttribute('title', 'Double-click to edit this panel')
-  await secondaryLayer.dblclick()
+  await expect(secondaryLayer).toHaveAttribute('title', 'Open this block')
+  await secondaryLayer.click()
   await expect(secondary).toHaveClass(/is-editing/)
 
   // The panel action event is the same runtime path used by the visible
@@ -1041,7 +1054,7 @@ test('output slots negotiate operations and workflow stages reach generation con
   }, created.workspaceId)
   await expect(page.locator('.pc-context-summary')).toContainText('generate')
   await expect(page.locator('.pc-context-summary')).toContainText('secondary')
-  await page.getByRole('button', { name: 'Close and continue in Codex' }).click()
+  await page.getByRole('button', { name: 'Done' }).click()
 
   const context = await callTool<{
     requestId: string
@@ -1115,14 +1128,20 @@ test('output slots negotiate operations and workflow stages reach generation con
   expect(nextContext.promptDigest).not.toBe(context.promptDigest)
 })
 
-test('Layers inspector double-click opens an editable panel', async ({ page }) => {
+test('Diagnostics opens a selected block with one click', async ({ page }) => {
   await page.goto('/')
   await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+  await page.waitForFunction(
+    () => Object.keys((window as unknown as { __promptCanvasTools: Record<string, RegisteredTool> }).__promptCanvasTools).length > 0,
+  )
+  await createTravelWorkspace(page)
+  await page.locator('.pc-more-menu > summary').click()
+  await page.getByRole('button', { name: 'Diagnostics' }).click()
 
   const controlsLayer = page.locator('.pc-layer-list button').filter({ hasText: 'Format' })
   await expect(controlsLayer).toBeVisible()
-  await expect(controlsLayer).toHaveAttribute('title', 'Double-click to edit this panel')
-  await controlsLayer.dblclick()
+  await expect(controlsLayer).toHaveAttribute('title', 'Open this block')
+  await controlsLayer.click()
 
   const controls = page.locator('.pc-panel--controls.is-editing')
   await expect(controls).toBeVisible()
