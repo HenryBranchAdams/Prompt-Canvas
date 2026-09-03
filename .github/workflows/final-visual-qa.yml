@@ -1,0 +1,105 @@
+name: Final visual QA
+
+on:
+  push:
+    branches: [qa/visual-system-final]
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install dependencies
+        run: |
+          python -m pip install --disable-pip-version-check pyyaml==6.0.3 jsonschema==4.26.0
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Capture final gallery, workspace, handoff, and compact states
+        run: |
+          mkdir -p visual-qa
+          npm run dev -- --host 127.0.0.1 --port 4173 > /tmp/prompt-canvas-dev.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          node --input-type=module <<'NODE'
+          import { chromium } from '@playwright/test'
+          import { writeFile } from 'node:fs/promises'
+
+          const browser = await chromium.launch()
+          const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 })
+          const relevantConsole = []
+          page.on('console', (message) => {
+            if (message.type() === 'error' || message.type() === 'warning') {
+              relevantConsole.push(`${message.type()}: ${message.text()}`)
+            }
+          })
+          page.on('pageerror', (error) => relevantConsole.push(`pageerror: ${error.message}`))
+
+          await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' })
+          await page.locator('.pc-loading').waitFor({ state: 'hidden', timeout: 30_000 })
+          await page.screenshot({ path: 'visual-qa/01-gallery-1440x900.png', fullPage: false })
+
+          const desktopMetrics = await page.locator('.pc-library').evaluate((element) => ({
+            clientWidth: element.clientWidth,
+            scrollWidth: element.scrollWidth,
+          }))
+
+          await page.setViewportSize({ width: 760, height: 800 })
+          await page.waitForTimeout(250)
+          await page.screenshot({ path: 'visual-qa/02-gallery-760x800.png', fullPage: false })
+          const compactGalleryMetrics = await page.locator('.pc-library').evaluate((element) => ({
+            clientWidth: element.clientWidth,
+            scrollWidth: element.scrollWidth,
+          }))
+
+          await page.setViewportSize({ width: 1440, height: 900 })
+          await page.locator('.pc-template-card').first().getByRole('button', { name: 'Start' }).click()
+          await page.locator('.pc-panel').first().waitFor({ state: 'visible', timeout: 20_000 })
+          await page.waitForTimeout(850)
+          await page.screenshot({ path: 'visual-qa/03-canvas-1440x900.png', fullPage: false })
+
+          await page.locator('.pc-topbar .pc-primary-button').click()
+          await page.getByRole('dialog').waitFor({ state: 'visible' })
+          await page.screenshot({ path: 'visual-qa/04-handoff-1440x900.png', fullPage: false })
+          await page.getByRole('button', { name: 'Done' }).click()
+
+          await page.setViewportSize({ width: 760, height: 800 })
+          await page.waitForTimeout(250)
+          await page.screenshot({ path: 'visual-qa/05-canvas-760x800.png', fullPage: false })
+          const primary = page.getByRole('button', { name: 'Ask Codex to generate' })
+          const primaryVisible = await primary.isVisible()
+          const compactAppMetrics = await page.locator('.pc-app').evaluate((element) => ({
+            clientWidth: element.clientWidth,
+            scrollWidth: element.scrollWidth,
+          }))
+
+          await writeFile('visual-qa/metrics.json', JSON.stringify({
+            desktopMetrics,
+            compactGalleryMetrics,
+            compactAppMetrics,
+            primaryVisible,
+          }, null, 2))
+          await writeFile('visual-qa/console.txt', relevantConsole.join('\n') || 'No relevant console warnings or errors.\n')
+          await browser.close()
+          NODE
+      - name: Upload visual evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: prompt-canvas-final-visual-qa
+          path: visual-qa
+          retention-days: 7
