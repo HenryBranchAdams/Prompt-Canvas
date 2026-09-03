@@ -1,0 +1,27 @@
+schema: prompt-canvas.official-search-evaluations@1
+cases:
+  - name: replace a background
+    query: replace the background with a forest
+    expectedFirst: change-background
+  - name: make a pet collectible
+    query: put my dog on a dark fairy battle card
+    expectedFirst: collectible-card
+    facets:
+      input-mode: [single-image]
+  - name: widen for a banner
+    query: make this photo much wider for a website banner
+    expectedFirst: expand-reframe
+  - name: explore four directions
+    query: show me four creative directions
+    expectedFirst: four-directions
+  - name: repair washed-out lighting
+    query: fix the washed-out lighting
+    expectedFirst: restore-retouch
+  - name: preserve exact poster title
+    query: poster with exact tournament name
+    expectedFirst: poster-exact-text
+  - name: restyle without moving the layout
+    query: keep the layout but turn it into a screenprint
+    expectedFirst: restyle-preserve-layout
+    facets:
+      preservation-need: [composition]

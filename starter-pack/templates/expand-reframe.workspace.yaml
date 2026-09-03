@@ -90,7 +90,17 @@ x-discovery:
   collection: start-fast
   userPromise: Make an image wider, taller, or differently framed.
   intentAliases: [make this wider, outpaint this, crop for social, change aspect ratio]
+  intents: [edit, transform]
+  inputModes: [single-image]
+  subjectKinds: [person, pet, product, object, place]
+  outputKinds: [image-edit, banner]
+  preservationNeeds: [identity, composition, camera-view, subject-scale, important-region]
+  complexity: quick
+  requiredInputSummary: [1 source image, A target format]
   inputSummary: [1 source image, A target format]
   badges: [Needs 1 image, Protects subject]
+  thumbnail:
+    src: /recipe-thumbnails/expand-reframe.webp
+    alt: A portrait expanded into a wide banner with natural scenery added around the protected subject
   featuredRank: 5
 x-presentation: { primaryControlIds: [target-ratio, framing-method, subject-placement], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }

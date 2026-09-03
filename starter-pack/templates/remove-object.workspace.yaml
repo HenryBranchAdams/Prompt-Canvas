@@ -77,7 +77,17 @@ x-discovery:
   collection: start-fast
   userPromise: Remove a distraction and rebuild the area naturally.
   intentAliases: [remove the person behind me, erase object, clean this up, remove distraction]
+  intents: [edit, refine]
+  inputModes: [single-image]
+  subjectKinds: [person, product, object, place]
+  outputKinds: [image-edit]
+  preservationNeeds: [composition, camera-view, surrounding-geometry, texture, shadows]
+  complexity: quick
+  requiredInputSummary: [1 source photo, What to remove]
   inputSummary: [1 source photo, What to remove]
   badges: [Needs 1 photo, Keeps surroundings]
+  thumbnail:
+    src: /recipe-thumbnails/remove-object.webp
+    alt: A distracting object removed from a tabletop while the surface texture and shadows remain natural
   featuredRank: 4
 x-presentation: { primaryControlIds: [remove-target, cleanup-priority], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }

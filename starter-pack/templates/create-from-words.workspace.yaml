@@ -144,8 +144,18 @@ x-discovery:
   collection: start-fast
   userPromise: Describe anything and get a polished first image.
   intentAliases: [make a picture, create art, draw this, generate an image]
+  intents: [create]
+  inputModes: [text]
+  subjectKinds: [person, pet, product, object, place, concept]
+  outputKinds: [image]
+  preservationNeeds: []
+  complexity: quick
+  requiredInputSummary: [A short description]
   inputSummary: [A short description]
   badges: [No photo needed, Makes 1 image]
+  thumbnail:
+    src: /recipe-thumbnails/create-from-words.webp
+    alt: A luminous glass pavilion generated from a short written description
   featuredRank: 1
 x-presentation:
   primaryControlIds: [brief, visual-direction, composition, aspect-ratio]

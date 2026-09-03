@@ -1,0 +1,727 @@
+{
+  "buildHash": "sha256:c793fa82ebe18c59fef155107c96a318912cba9854495665a70437e0b8e03e50",
+  "count": 10,
+  "prompts": [
+    {
+      "aliases": [
+        "swap background",
+        "replace room",
+        "put me somewhere else",
+        "keep person change scene"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps subject"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "category": "start-fast",
+      "collection": "start-fast",
+      "complexity": "quick",
+      "defaultOperation": "edit",
+      "description": "Keep the subject and replace only the environment.",
+      "family": "reference-transformation",
+      "featuredRank": 3,
+      "hash": "sha256:dbce5348ba75385cea2a3a5337017a363aa1cad4e17c725e7bed82757ba7befc",
+      "id": "change-background",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit",
+        "transform"
+      ],
+      "outputKind": "image-edit",
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "likeness",
+        "pose",
+        "camera-view",
+        "product-geometry"
+      ],
+      "preserves": [
+        "identity",
+        "likeness",
+        "pose",
+        "camera-view",
+        "product-geometry"
+      ],
+      "requiredInputs": [
+        "1 source photo",
+        "A background description"
+      ],
+      "slug": "change-background",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "The same portrait retained while the background changes to a nighttime city scene",
+        "src": "/recipe-thumbnails/change-background.webp"
+      },
+      "title": "Change the background",
+      "userPromise": "Keep the subject and replace only the environment.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "keep everything else",
+        "change just this",
+        "fix one thing",
+        "keep my face"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps unmentioned details"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "category": "start-fast",
+      "collection": "start-fast",
+      "complexity": "quick",
+      "defaultOperation": "edit",
+      "description": "Make one targeted edit while preserving everything you did not mention.",
+      "family": "reference-transformation",
+      "featuredRank": 2,
+      "hash": "sha256:280a2857819f464ad627b503ceb93fe653fc0d466591bfbf6215edf348112ec4",
+      "id": "change-one-thing",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit",
+        "refine"
+      ],
+      "outputKind": "image-edit",
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "likeness",
+        "pose",
+        "camera-view",
+        "unmentioned-details"
+      ],
+      "preserves": [
+        "identity",
+        "likeness",
+        "pose",
+        "camera-view",
+        "unmentioned-details"
+      ],
+      "requiredInputs": [
+        "1 source photo",
+        "The change you want"
+      ],
+      "slug": "change-one-thing",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "A portrait with one clothing detail changed while the person and scene stay consistent",
+        "src": "/recipe-thumbnails/change-one-thing.webp"
+      },
+      "title": "Change one thing in a photo",
+      "userPromise": "Make one targeted edit and preserve everything else.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "put my dog on a battle card",
+        "make a pet trading card",
+        "turn this photo into a collectible card",
+        "fantasy character card"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps likeness"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "typography",
+        "variations",
+        "upscale"
+      ],
+      "category": "posters-and-content",
+      "collection": "posters-content",
+      "complexity": "quick",
+      "defaultOperation": "edit",
+      "description": "Turn a person, pet, character, or object into an original collectible card while preserving the source subject.",
+      "family": "reference-transformation",
+      "featuredRank": 8,
+      "hash": "sha256:73f43664097d4eec42e6d592e0898056b147e53a305c58d2697fa22c9fae2825",
+      "id": "collectible-card",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit",
+        "transform"
+      ],
+      "outputKind": "collectible-card",
+      "outputKinds": [
+        "collectible-card"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "likeness",
+        "pose",
+        "supplied-copy"
+      ],
+      "preserves": [
+        "identity",
+        "likeness",
+        "pose",
+        "supplied-copy"
+      ],
+      "requiredInputs": [
+        "1 source image",
+        "A card name",
+        "A theme"
+      ],
+      "slug": "collectible-card",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "pet",
+        "character",
+        "object"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "An original ornate fantasy collectible card featuring a black dog in an enchanted forest",
+        "src": "/recipe-thumbnails/collectible-card.webp"
+      },
+      "title": "Trading card or collectible card",
+      "userPromise": "Turn your actual subject photo into an original collectible card.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "make a picture",
+        "create art",
+        "draw this",
+        "generate an image"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "category": "start-fast",
+      "collection": "start-fast",
+      "complexity": "quick",
+      "defaultOperation": "generate",
+      "description": "Describe an idea, choose a few essentials, and create one polished image.",
+      "family": "lightweight",
+      "featuredRank": 1,
+      "hash": "sha256:5826ee688b58e4e5f4a7278e99cee90d8e3bbdd5f22e1ba12d76ca8df673e779",
+      "id": "create-from-words",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short description"
+      ],
+      "slug": "create-from-words",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "A luminous glass pavilion generated from a short written description",
+        "src": "/recipe-thumbnails/create-from-words.webp"
+      },
+      "title": "Create an image from words",
+      "userPromise": "Describe anything and get a polished first image.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "make this wider",
+        "outpaint this",
+        "crop for social",
+        "change aspect ratio"
+      ],
+      "badges": [
+        "Needs 1 image",
+        "Protects subject"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "upscale"
+      ],
+      "category": "start-fast",
+      "collection": "start-fast",
+      "complexity": "quick",
+      "defaultOperation": "edit",
+      "description": "Adapt an image to a new shape without awkward cropping.",
+      "family": "reference-transformation",
+      "featuredRank": 5,
+      "hash": "sha256:1c6db7e6eaca716af67be88a41f5fc3ad317cf3de89692598b5b4ceda659611b",
+      "id": "expand-reframe",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit",
+        "transform"
+      ],
+      "outputKind": "image-edit",
+      "outputKinds": [
+        "image-edit",
+        "banner"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition",
+        "camera-view",
+        "subject-scale",
+        "important-region"
+      ],
+      "preserves": [
+        "identity",
+        "composition",
+        "camera-view",
+        "subject-scale",
+        "important-region"
+      ],
+      "requiredInputs": [
+        "1 source image",
+        "A target format"
+      ],
+      "slug": "expand-reframe",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "A portrait expanded into a wide banner with natural scenery added around the protected subject",
+        "src": "/recipe-thumbnails/expand-reframe.webp"
+      },
+      "title": "Expand or reframe an image",
+      "userPromise": "Make an image wider, taller, or differently framed.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "show me four options",
+        "four creative directions",
+        "explore different looks",
+        "give me distinct concepts"
+      ],
+      "badges": [
+        "Makes 4 images",
+        "Distinct directions"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-to-image",
+        "variations",
+        "batch-output",
+        "structured-prompt"
+      ],
+      "category": "explore-and-refine",
+      "collection": "explore-refine",
+      "complexity": "quick",
+      "defaultOperation": "generate",
+      "description": "Explore four genuinely different visual approaches to the same brief.",
+      "family": "parameterized",
+      "featuredRank": 9,
+      "hash": "sha256:7e30ee027c5f31df5510e094488cdbce86263323cf1b6104827c409b95a1c5bb",
+      "id": "four-directions",
+      "inputMode": "text",
+      "inputModes": [
+        "text",
+        "optional-image"
+      ],
+      "intents": [
+        "explore",
+        "create"
+      ],
+      "outputKind": "image-set",
+      "outputKinds": [
+        "image-set"
+      ],
+      "preservationNeeds": [
+        "declared-invariants",
+        "subject-identity",
+        "product-geometry"
+      ],
+      "preserves": [
+        "declared-invariants",
+        "subject-identity",
+        "product-geometry"
+      ],
+      "requiredInputs": [
+        "A creative brief"
+      ],
+      "slug": "four-directions",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "The same ceramic teapot interpreted in four clearly different visual styles",
+        "src": "/recipe-thumbnails/four-directions.webp"
+      },
+      "title": "Four creative directions",
+      "userPromise": "See four genuinely different visual approaches to the same brief.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "poster with exact tournament name",
+        "make an event poster",
+        "keep my headline exact",
+        "design a poster"
+      ],
+      "badges": [
+        "Keeps exact text",
+        "Makes 1 poster"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "typography",
+        "structured-prompt",
+        "variations",
+        "image-edit",
+        "upscale"
+      ],
+      "category": "posters-and-content",
+      "collection": "posters-content",
+      "complexity": "quick",
+      "defaultOperation": "generate",
+      "description": "Create a polished poster while preserving the supplied headline exactly.",
+      "family": "parameterized",
+      "featuredRank": 7,
+      "hash": "sha256:a36e14f5d1cfc3470e89f64cff0421ae6bdc0fc020d535e0fa50317e7cd2857e",
+      "id": "poster-exact-text",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "poster",
+      "outputKinds": [
+        "poster"
+      ],
+      "preservationNeeds": [
+        "exact-text",
+        "spelling",
+        "capitalization",
+        "punctuation"
+      ],
+      "preserves": [
+        "exact-text",
+        "spelling",
+        "capitalization",
+        "punctuation"
+      ],
+      "requiredInputs": [
+        "An exact title",
+        "A short subject or event description"
+      ],
+      "slug": "poster-exact-text",
+      "source": "official",
+      "subjectKinds": [
+        "event",
+        "campaign",
+        "place",
+        "product"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "A framed geometric concert poster displayed on a warm gallery wall",
+        "src": "/recipe-thumbnails/poster-exact-text.webp"
+      },
+      "title": "Poster with exact text",
+      "userPromise": "Make a polished poster that keeps your supplied title exactly.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "remove the person behind me",
+        "erase object",
+        "clean this up",
+        "remove distraction"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps surroundings"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "category": "start-fast",
+      "collection": "start-fast",
+      "complexity": "quick",
+      "defaultOperation": "edit",
+      "description": "Remove a distraction and rebuild the area naturally.",
+      "family": "reference-transformation",
+      "featuredRank": 4,
+      "hash": "sha256:6ea3bcf6e1126b3c4d7e91e3aafec8584a8824cea8369fc70e0974e5032da1c3",
+      "id": "remove-object",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit",
+        "refine"
+      ],
+      "outputKind": "image-edit",
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "composition",
+        "camera-view",
+        "surrounding-geometry",
+        "texture",
+        "shadows"
+      ],
+      "preserves": [
+        "composition",
+        "camera-view",
+        "surrounding-geometry",
+        "texture",
+        "shadows"
+      ],
+      "requiredInputs": [
+        "1 source photo",
+        "What to remove"
+      ],
+      "slug": "remove-object",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "product",
+        "object",
+        "place"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "A distracting object removed from a tabletop while the surface texture and shadows remain natural",
+        "src": "/recipe-thumbnails/remove-object.webp"
+      },
+      "title": "Remove or clean up an object",
+      "userPromise": "Remove a distraction and rebuild the area naturally.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "fix washed-out lighting",
+        "restore old photo",
+        "remove scratches",
+        "reduce noise"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps scene"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "upscale"
+      ],
+      "category": "start-fast",
+      "collection": "start-fast",
+      "complexity": "quick",
+      "defaultOperation": "edit",
+      "description": "Improve exposure, color, noise, or damage without redrawing the scene.",
+      "family": "reference-transformation",
+      "featuredRank": 6,
+      "hash": "sha256:2939f03498f5e4fc0f87cbc0d6e05ee40a8ff3c54e20976af7fcf4734e094010",
+      "id": "restore-retouch",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit",
+        "restore",
+        "refine"
+      ],
+      "outputKind": "image-edit",
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "likeness",
+        "composition",
+        "scene-content",
+        "texture"
+      ],
+      "preserves": [
+        "identity",
+        "likeness",
+        "composition",
+        "scene-content",
+        "texture"
+      ],
+      "requiredInputs": [
+        "1 source photo"
+      ],
+      "slug": "restore-retouch",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "A faded photograph restored with balanced exposure and color while the original scene stays unchanged",
+        "src": "/recipe-thumbnails/restore-retouch.webp"
+      },
+      "title": "Restore and lightly retouch",
+      "userPromise": "Improve photo quality without changing the scene.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "keep the layout but change style",
+        "turn this into a screenprint",
+        "restyle without moving anything",
+        "preserve composition"
+      ],
+      "badges": [
+        "Needs 1 image",
+        "Keeps composition"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "composition-reference",
+        "upscale"
+      ],
+      "category": "explore-and-refine",
+      "collection": "explore-refine",
+      "complexity": "quick",
+      "defaultOperation": "edit",
+      "description": "Change the visual treatment while keeping the source layout, framing, and geometry.",
+      "family": "reference-transformation",
+      "featuredRank": 10,
+      "hash": "sha256:8e58a24dba9c94274ddd086e75491192e0abf10b698560eff61ccbc83fa6285d",
+      "id": "restyle-preserve-layout",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit",
+        "transform"
+      ],
+      "outputKind": "image-edit",
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "composition",
+        "camera-view",
+        "framing",
+        "subject-scale",
+        "geometry"
+      ],
+      "preserves": [
+        "composition",
+        "camera-view",
+        "framing",
+        "subject-scale",
+        "geometry"
+      ],
+      "requiredInputs": [
+        "1 source image",
+        "A new visual style"
+      ],
+      "slug": "restyle-preserve-layout",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "The same coastal architecture composition shown as a photograph and a screenprint",
+        "src": "/recipe-thumbnails/restyle-preserve-layout.webp"
+      },
+      "title": "Restyle while preserving composition",
+      "userPromise": "Change the style while keeping the original layout and framing.",
+      "version": 1
+    }
+  ],
+  "schema": "prompt-canvas.official-catalog@1"
+}

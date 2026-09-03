@@ -87,7 +87,17 @@ x-discovery:
   collection: start-fast
   userPromise: Keep the subject and replace only the environment.
   intentAliases: [swap background, replace room, put me somewhere else, keep person change scene]
+  intents: [edit, transform]
+  inputModes: [single-image]
+  subjectKinds: [person, pet, product, object]
+  outputKinds: [image-edit]
+  preservationNeeds: [identity, likeness, pose, camera-view, product-geometry]
+  complexity: quick
+  requiredInputSummary: [1 source photo, A background description]
   inputSummary: [1 source photo, A background description]
   badges: [Needs 1 photo, Keeps subject]
+  thumbnail:
+    src: /recipe-thumbnails/change-background.webp
+    alt: The same portrait retained while the background changes to a nighttime city scene
   featuredRank: 3
 x-presentation: { primaryControlIds: [new-background, lighting-match, aspect-ratio], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }

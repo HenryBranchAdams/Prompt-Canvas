@@ -1,0 +1,65 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: collectible-card
+version: 1
+title: Trading card or collectible card
+description: Turn a person, pet, character, or object into an original collectible card while preserving the source subject.
+category: posters-and-content
+tags: [collectible card, trading card, pet, portrait]
+status: starter
+compatibility: { minimumAppVersion: 0.1.0, templateFamily: reference-transformation }
+source: { kind: first-party, creator: Prompt Canvas, title: Trading card or collectible card, promptUsage: original }
+thumbnail:
+  assetPath: /recipe-thumbnails/collectible-card.webp
+  alt: An original ornate fantasy collectible card featuring a black dog in an enchanted forest
+capabilities: [image-to-image, image-edit, typography, variations, upscale]
+generation: { provider: codex, capability: image-generation, delivery: webmcp-import, operations: [edit, variation, upscale], defaultOperation: edit }
+prompt:
+  title: Card direction
+  body: >-
+    Transform the supplied subject photograph into an original collectible card themed {{theme}}. Keep the actual
+    subject, identity, likeness, pose, and recognizable details. Feature the card name exactly as supplied:
+    “{{card_name}}”. Give the subject {{character_quality}}. Create wholly original border, symbols, and visual language;
+    do not imitate a known game, franchise, logo, or card layout.
+  variables:
+  - { id: card_name, label: Card name, type: string, required: true, defaultValue: Night Garden Hero }
+  - { id: theme, label: Theme, type: text, required: true, defaultValue: dark and fairy-like }
+  - { id: character_quality, label: Character quality, type: text, defaultValue: absurd charisma }
+controls:
+- { id: card-name, label: Card name, type: text, required: true, defaultValue: Night Garden Hero, binding: { mode: variable, target: card_name } }
+- { id: theme, label: Theme, type: textarea, required: true, defaultValue: dark and fairy-like, binding: { mode: variable, target: theme } }
+- { id: character-quality, label: Character quality, type: text, defaultValue: absurd charisma, binding: { mode: variable, target: character_quality } }
+references:
+- id: source-subject
+  label: Source subject photo
+  role: identity
+  required: true
+  multiple: false
+  acceptedMimeTypes: [image/png, image/jpeg, image/webp]
+  preserve: [identity, likeness, pose, recognizable details]
+  instructions: Use the actual supplied photograph as the subject; do not substitute a lookalike.
+preservation:
+- { id: subject-identity, label: Subject identity, description: "Preserve the actual subject, likeness, pose, and recognizable details.", strength: must, appliesTo: [source-subject] }
+- { id: original-system, label: Original card system, description: "Do not imitate a known franchise, logo, or proprietary card layout.", strength: must }
+outputs:
+- { id: primary, label: Collectible card, role: primary, kind: image, operations: [edit, variation, upscale], layoutHint: hero }
+blocks:
+- { id: source, type: references, title: Your subject, sourceId: source-subject, x-connectTo: primary-output }
+- { id: essentials, type: controls, title: Essential choices, content: { controlIds: [card-name, theme, character-quality] }, x-connectTo: primary-output }
+- { id: prompt, type: prompt, title: More control, collapsedByDefault: true, x-connectTo: primary-output }
+- { id: primary-output, type: output, title: Result, sourceId: primary }
+x-discovery:
+  collection: posters-content
+  userPromise: Turn your actual subject photo into an original collectible card.
+  intentAliases: [put my dog on a battle card, make a pet trading card, turn this photo into a collectible card, fantasy character card]
+  intents: [edit, transform]
+  inputModes: [single-image]
+  subjectKinds: [person, pet, character, object]
+  outputKinds: [collectible-card]
+  preservationNeeds: [identity, likeness, pose, supplied-copy]
+  complexity: quick
+  requiredInputSummary: [1 source image, A card name, A theme]
+  inputSummary: [1 source image, A card name, A theme]
+  badges: [Needs 1 photo, Keeps likeness]
+  thumbnail: { src: /recipe-thumbnails/collectible-card.webp, alt: An original ornate fantasy collectible card featuring a black dog in an enchanted forest }
+  featuredRank: 8
+x-presentation: { primaryControlIds: [card-name, theme, character-quality], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }

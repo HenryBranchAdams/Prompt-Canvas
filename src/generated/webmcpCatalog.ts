@@ -81,6 +81,13 @@ export const webmcpCatalog = {
             "type": "string",
             "maxLength": 300
           },
+          "scope": {
+            "enum": [
+              "official",
+              "local",
+              "all"
+            ]
+          },
           "categories": {
             "type": "array",
             "maxItems": 20,
@@ -98,6 +105,54 @@ export const webmcpCatalog = {
             }
           },
           "capabilities": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "intents": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "inputModes": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "subjectKinds": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "outputKinds": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "preservationNeeds": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "collections": {
             "type": "array",
             "maxItems": 20,
             "items": {
@@ -132,6 +187,12 @@ export const webmcpCatalog = {
         "type": "object",
         "additionalProperties": false,
         "properties": {
+          "source": {
+            "enum": [
+              "official",
+              "local"
+            ]
+          },
           "templateId": {
             "type": "string",
             "minLength": 1,
@@ -140,6 +201,10 @@ export const webmcpCatalog = {
           "version": {
             "type": "integer",
             "minimum": 1
+          },
+          "expectedHash": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
           }
         },
         "required": [
@@ -283,6 +348,20 @@ export const webmcpCatalog = {
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 120
+                  },
+                  "origin": {
+                    "enum": [
+                      "official",
+                      "local"
+                    ]
+                  },
+                  "version": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "expectedHash": {
+                    "type": "string",
+                    "pattern": "^sha256:[a-f0-9]{64}$"
                   },
                   "values": {
                     "type": "object"

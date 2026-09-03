@@ -1,0 +1,12 @@
+{
+  "change-background@1": "sha256:dbce5348ba75385cea2a3a5337017a363aa1cad4e17c725e7bed82757ba7befc",
+  "change-one-thing@1": "sha256:280a2857819f464ad627b503ceb93fe653fc0d466591bfbf6215edf348112ec4",
+  "collectible-card@1": "sha256:73f43664097d4eec42e6d592e0898056b147e53a305c58d2697fa22c9fae2825",
+  "create-from-words@1": "sha256:5826ee688b58e4e5f4a7278e99cee90d8e3bbdd5f22e1ba12d76ca8df673e779",
+  "expand-reframe@1": "sha256:1c6db7e6eaca716af67be88a41f5fc3ad317cf3de89692598b5b4ceda659611b",
+  "four-directions@1": "sha256:7e30ee027c5f31df5510e094488cdbce86263323cf1b6104827c409b95a1c5bb",
+  "poster-exact-text@1": "sha256:a36e14f5d1cfc3470e89f64cff0421ae6bdc0fc020d535e0fa50317e7cd2857e",
+  "remove-object@1": "sha256:6ea3bcf6e1126b3c4d7e91e3aafec8584a8824cea8369fc70e0974e5032da1c3",
+  "restore-retouch@1": "sha256:2939f03498f5e4fc0f87cbc0d6e05ee40a8ff3c54e20976af7fcf4734e094010",
+  "restyle-preserve-layout@1": "sha256:8e58a24dba9c94274ddd086e75491192e0abf10b698560eff61ccbc83fa6285d"
+}

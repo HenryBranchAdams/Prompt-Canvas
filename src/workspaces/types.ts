@@ -409,6 +409,12 @@ export type WorkspaceManifest = {
   workspaceId: string
   templateId?: string
   templateVersion?: number
+  templateSource?: {
+    origin: 'official' | 'local'
+    id: string
+    version: number
+    hash?: string
+  }
   title: string
   activePromptId: string
   documentRevision: number

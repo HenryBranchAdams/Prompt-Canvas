@@ -117,7 +117,17 @@ x-discovery:
   collection: start-fast
   userPromise: Make one targeted edit and preserve everything else.
   intentAliases: [keep everything else, change just this, fix one thing, keep my face]
+  intents: [edit, refine]
+  inputModes: [single-image]
+  subjectKinds: [person, pet, product, object, place]
+  outputKinds: [image-edit]
+  preservationNeeds: [identity, likeness, pose, camera-view, unmentioned-details]
+  complexity: quick
+  requiredInputSummary: [1 source photo, The change you want]
   inputSummary: [1 source photo, The change you want]
   badges: [Needs 1 photo, Keeps unmentioned details]
+  thumbnail:
+    src: /recipe-thumbnails/change-one-thing.webp
+    alt: A portrait with one clothing detail changed while the person and scene stay consistent
   featuredRank: 2
 x-presentation: { primaryControlIds: [requested-change, change-strength], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }

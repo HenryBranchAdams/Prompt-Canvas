@@ -4,7 +4,7 @@ version: 3
 title: Prompt Canvas Recipe Library
 description: Six quick-start creative recipes and nine original advanced creative systems for Prompt Canvas.
 templateSchema: ../schemas/prompt-workspace-template.schema.json
-templateCount: 15
+templateCount: 19
 templates:
 - id: create-from-words
   path: templates/create-from-words.workspace.yaml
@@ -72,6 +72,50 @@ templates:
   featured: true
   order: 6
   source: { creator: Prompt Canvas, title: Restore and lightly retouch, url: null, promptUsage: original }
+- id: poster-exact-text
+  path: templates/poster-exact-text.workspace.yaml
+  title: Poster with exact text
+  description: Create a polished poster while preserving the supplied headline exactly.
+  category: posters-and-content
+  family: parameterized
+  operations: [generate, edit, variation, upscale]
+  capabilities: [text-to-image, typography, structured-prompt, variations, image-edit, upscale]
+  featured: true
+  order: 7
+  source: { creator: Prompt Canvas, title: Poster with exact text, url: null, promptUsage: original }
+- id: collectible-card
+  path: templates/collectible-card.workspace.yaml
+  title: Trading card or collectible card
+  description: Turn a person, pet, character, or object into an original collectible card while preserving the source subject.
+  category: posters-and-content
+  family: reference-transformation
+  operations: [edit, variation, upscale]
+  capabilities: [image-to-image, image-edit, typography, variations, upscale]
+  featured: true
+  order: 8
+  source: { creator: Prompt Canvas, title: Trading card or collectible card, url: null, promptUsage: original }
+- id: four-directions
+  path: templates/four-directions.workspace.yaml
+  title: Four creative directions
+  description: Explore four genuinely different visual approaches to the same brief.
+  category: explore-and-refine
+  family: parameterized
+  operations: [generate, edit, variation]
+  capabilities: [text-to-image, image-to-image, variations, batch-output, structured-prompt]
+  featured: true
+  order: 9
+  source: { creator: Prompt Canvas, title: Four creative directions, url: null, promptUsage: original }
+- id: restyle-preserve-layout
+  path: templates/restyle-preserve-layout.workspace.yaml
+  title: Restyle while preserving composition
+  description: Change the visual treatment while keeping the source layout, framing, and geometry.
+  category: explore-and-refine
+  family: reference-transformation
+  operations: [edit, variation, upscale]
+  capabilities: [image-to-image, image-edit, variations, composition-reference, upscale]
+  featured: true
+  order: 10
+  source: { creator: Prompt Canvas, title: Restyle while preserving composition, url: null, promptUsage: original }
 - id: travel-poster
   path: templates/travel-poster.workspace.yaml
   title: Premium City Travel Poster

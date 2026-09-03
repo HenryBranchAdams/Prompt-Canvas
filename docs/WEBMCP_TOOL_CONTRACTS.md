@@ -253,7 +253,11 @@ Orientation should be sufficient to choose the next action in the common case. T
 
 ## 6.1 `prompt_canvas_list_templates`
 
-Current responsibility: search bundled and user-owned templates by text, category, family, capability, and operation.
+Current responsibility: search official and user-owned recipes without mixing their storage or authority boundaries.
+Legacy calls continue to search the complete bundled starter pack plus local user recipes. A call with `scope: official`
+uses the read-only Official Prompt Library and may combine bounded free text with `intents`, `inputModes`,
+`subjectKinds`, `outputKinds`, `preservationNeeds`, `collections`, and `capabilities`. It returns no prompt body and at
+most 20 compact candidates. `scope: local` searches only recipes saved in the current browser.
 
 Target summaries may additionally expose separate evidence references:
 
@@ -267,7 +271,11 @@ Do not place growing evidence histories inside immutable template YAML.
 
 ## 6.2 `prompt_canvas_get_template`
 
-Returns one complete normalized template definition, validation status, and provenance.
+Returns one complete normalized template definition, validation status, provenance, and source identity. Official
+reads accept an exact `version` and `expectedHash`; the application verifies the returned template hash before use and
+falls back to the matching bundled official version when D1 is unavailable. Local reads never contact the official
+service. A project created from an official result records source, id, version, and hash in its immutable template
+snapshot metadata so later catalog changes cannot rewrite an existing project.
 
 Target behavior should support optional omission of large prompt fields for summary reads and stable retrieval of separate template evidence.
 

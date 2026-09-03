@@ -1,0 +1,58 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: restyle-preserve-layout
+version: 1
+title: Restyle while preserving composition
+description: Change the visual treatment while keeping the source layout, framing, and geometry.
+category: explore-and-refine
+tags: [restyle, preserve composition, screenprint, image edit]
+status: starter
+compatibility: { minimumAppVersion: 0.1.0, templateFamily: reference-transformation }
+source: { kind: first-party, creator: Prompt Canvas, title: Restyle while preserving composition, promptUsage: original }
+thumbnail: { assetPath: /recipe-thumbnails/restyle-preserve-layout.webp, alt: The same coastal architecture composition shown as a photograph and a screenprint }
+capabilities: [image-to-image, image-edit, variations, composition-reference, upscale]
+generation: { provider: codex, capability: image-generation, delivery: webmcp-import, operations: [edit, variation, upscale], defaultOperation: edit }
+prompt:
+  title: Restyle direction
+  body: >-
+    Restyle the supplied image as {{new_style}} while preserving its composition: camera position, crop, subject
+    placement, scale, silhouette, perspective, and major geometry. Change surface treatment, palette, texture, and
+    rendering language only. {{additional_direction}}
+  variables:
+  - { id: new_style, label: New style, type: text, required: true, defaultValue: a bold limited-color screenprint }
+  - { id: additional_direction, label: Additional direction, type: text, defaultValue: Keep the result clear and intentional. }
+controls:
+- { id: new-style, label: New visual style, type: textarea, required: true, defaultValue: a bold limited-color screenprint, binding: { mode: variable, target: new_style } }
+- { id: additional-direction, label: Additional direction, type: textarea, defaultValue: Keep the result clear and intentional., binding: { mode: variable, target: additional_direction } }
+references:
+- id: source-composition
+  label: Source image
+  role: composition
+  required: true
+  multiple: false
+  acceptedMimeTypes: [image/png, image/jpeg, image/webp]
+  preserve: [camera position, crop, subject placement, scale, silhouette, perspective, major geometry]
+preservation:
+- { id: composition-lock, label: Composition lock, description: "Preserve the source camera, crop, placement, scale, silhouette, perspective, and major geometry.", strength: must, appliesTo: [source-composition] }
+outputs:
+- { id: primary, label: Restyled result, role: primary, kind: image, operations: [edit, variation, upscale], layoutHint: hero }
+blocks:
+- { id: source, type: references, title: Source composition, sourceId: source-composition, x-connectTo: primary-output }
+- { id: essentials, type: controls, title: New visual treatment, content: { controlIds: [new-style, additional-direction] }, x-connectTo: primary-output }
+- { id: prompt, type: prompt, title: More control, collapsedByDefault: true, x-connectTo: primary-output }
+- { id: primary-output, type: output, title: Result, sourceId: primary }
+x-discovery:
+  collection: explore-refine
+  userPromise: Change the style while keeping the original layout and framing.
+  intentAliases: [keep the layout but change style, turn this into a screenprint, restyle without moving anything, preserve composition]
+  intents: [edit, transform]
+  inputModes: [single-image]
+  subjectKinds: [person, pet, product, object, place]
+  outputKinds: [image-edit]
+  preservationNeeds: [composition, camera-view, framing, subject-scale, geometry]
+  complexity: quick
+  requiredInputSummary: [1 source image, A new visual style]
+  inputSummary: [1 source image, A new visual style]
+  badges: [Needs 1 image, Keeps composition]
+  thumbnail: { src: /recipe-thumbnails/restyle-preserve-layout.webp, alt: The same coastal architecture composition shown as a photograph and a screenprint }
+  featuredRank: 10
+x-presentation: { primaryControlIds: [new-style, additional-direction], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }

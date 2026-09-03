@@ -29,6 +29,9 @@
     "src/activity/retention.ts",
     "src/generation/asset-validation-core.ts",
     "src/app/runtime-license.ts",
+    "worker/official-library-routes.ts",
+    "worker/official-prompt-repository.ts",
+    "worker/request-validation.ts",
     "tests/*.test.ts",
     "tests/node-shims.d.ts"
   ]

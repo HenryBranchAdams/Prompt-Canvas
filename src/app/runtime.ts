@@ -113,7 +113,14 @@ type GeneratedAssetInput = {
 }
 
 type WorkspaceCreateSource =
-  | { kind: 'template'; templateId: string; values?: Record<string, JsonValue> }
+  | {
+      kind: 'template'
+      templateId: string
+      origin?: 'official' | 'local'
+      version?: number
+      expectedHash?: string
+      values?: Record<string, JsonValue>
+    }
   | { kind: 'definition'; template: unknown }
   | { kind: 'blank'; title: string; prompt?: string }
 
@@ -704,11 +711,31 @@ export class PromptCanvasRuntime {
     const editor = this.getEditor()
     let template: PromptWorkspaceTemplate
     let values: Record<string, JsonValue> = {}
+    let templateSource: WorkspaceManifest['templateSource']
 
     if (source.kind === 'template') {
-      const found = this.library.get(source.templateId)
-      if (!found) throw new Error(`Template “${source.templateId}” was not found.`)
-      template = found
+      if (source.origin === 'official') {
+        const found = await this.library.getOfficial(source.templateId, source.version, source.expectedHash)
+        if (!found) throw new Error(`Official recipe “${source.templateId}” was not found.`)
+        template = found.template
+        templateSource = {
+          origin: 'official',
+          id: found.summary.id,
+          version: found.summary.version,
+          hash: found.summary.hash,
+        }
+      } else if (source.origin === 'local') {
+        if (source.expectedHash) throw new Error('expectedHash is only supported for official recipes.')
+        const found = this.library.getLocal(source.templateId, source.version)
+        if (!found) throw new Error(`Local recipe “${source.templateId}” was not found.`)
+        template = found
+        templateSource = { origin: 'local', id: found.id, version: found.version }
+      } else {
+        if (source.expectedHash) throw new Error('expectedHash requires origin “official”.')
+        const found = this.library.get(source.templateId, source.version)
+        if (!found) throw new Error(`Template “${source.templateId}” was not found.`)
+        template = found
+      }
       values = source.values ?? {}
     } else if (source.kind === 'definition') {
       template = assertValidTemplate(source.template)
@@ -717,6 +744,7 @@ export class PromptCanvasRuntime {
     }
 
     const manifest = createWorkspaceManifest(template, values)
+    if (templateSource) manifest.templateSource = templateSource
     const mark = editor.markHistoryStoppingPoint('create prompt workspace')
     let page: TLPage | undefined
     let createdElements: string[] = []
@@ -1272,6 +1300,8 @@ export class PromptCanvasRuntime {
         pageId: page.id,
         title: manifest.title,
         templateId: manifest.templateId ?? null,
+        templateVersion: manifest.templateVersion ?? null,
+        templateSource: manifest.templateSource ?? null,
         documentRevision: manifest.documentRevision,
         generationRevision: manifest.generationRevision,
         generationState: manifest.generationState,
@@ -1344,10 +1374,13 @@ export class PromptCanvasRuntime {
     families?: string[]
     capabilities?: string[]
     limit?: number
+    scope?: 'official' | 'local' | 'all'
   } = {}): JsonObject {
     const limit = Math.max(1, Math.min(input.limit ?? 40, 100))
+    const scope = input.scope ?? 'all'
     const records = this.library
       .search(input.query ?? '')
+      .filter(({ entry }) => scope === 'all' || (scope === 'local' ? entry.path.startsWith('indexeddb://') : !entry.path.startsWith('indexeddb://')))
       .filter(({ entry }) => !input.categories?.length || input.categories.includes(entry.category))
       .filter(({ entry }) => !input.families?.length || input.families.includes(entry.family))
       .filter(
@@ -1356,11 +1389,14 @@ export class PromptCanvasRuntime {
           input.capabilities.every((capability) => entry.capabilities.includes(capability as never)),
       )
       .slice(0, limit)
+    const official = new Map(this.library.officialSummaries().map((summary) => [summary.id, summary]))
     return {
       total: records.length,
       nextCursor: null,
       templates: records.map(({ entry, template }) => ({
         ...entry,
+        sourceKind: entry.path.startsWith('indexeddb://') ? 'local' : official.has(entry.id) ? 'official' : 'bundled',
+        ...(official.get(entry.id) ?? {}),
         version: template.version,
         source: template.source ?? null,
         referenceCount: template.references?.length ?? 0,
@@ -1371,10 +1407,81 @@ export class PromptCanvasRuntime {
     }
   }
 
+  async listTemplatesAsync(input: {
+    query?: string
+    scope?: 'official' | 'local' | 'all'
+    categories?: string[]
+    families?: string[]
+    capabilities?: string[]
+    intents?: string[]
+    inputModes?: string[]
+    subjectKinds?: string[]
+    outputKinds?: string[]
+    preservationNeeds?: string[]
+    collections?: string[]
+    limit?: number
+  } = {}): Promise<JsonObject> {
+    const usesOfficialRetrieval = input.scope !== undefined || Boolean(
+      input.intents?.length || input.inputModes?.length || input.subjectKinds?.length ||
+      input.outputKinds?.length || input.preservationNeeds?.length || input.collections?.length ||
+      input.categories?.length || input.families?.length || input.capabilities?.length,
+    )
+    if (!usesOfficialRetrieval) return this.listTemplates(input)
+    const scope = input.scope ?? 'all'
+    const limit = Math.max(1, Math.min(input.limit ?? 8, 20))
+    const official = scope === 'local' ? [] : await this.library.searchOfficial({
+      query: input.query ?? '',
+      intents: input.intents,
+      inputModes: input.inputModes,
+      subjectKinds: input.subjectKinds,
+      outputKinds: input.outputKinds,
+      preservationNeeds: input.preservationNeeds,
+      collections: input.collections,
+      categories: input.categories,
+      families: input.families,
+      capabilities: input.capabilities,
+      limit,
+    })
+    const local = scope === 'official' ? [] : this.library.localRecords()
+      .filter(({ entry }) => !input.categories?.length || input.categories.includes(entry.category))
+      .filter(({ entry }) => !input.families?.length || input.families.includes(entry.family))
+      .filter(({ entry }) => !input.capabilities?.length || input.capabilities.every((value) => entry.capabilities.includes(value as never)))
+      .filter(({ entry, template }) => !input.query || [entry.title, entry.description, template.prompt.body]
+        .join(' ').toLowerCase().includes(input.query.toLowerCase()))
+      .slice(0, limit)
+      .map(({ entry, template }) => ({
+        source: 'local', id: entry.id, version: template.version, title: entry.title,
+        description: entry.description, defaultOperation: template.generation.defaultOperation,
+        requiredInputs: [], preserves: [], matchReasons: ['local recipe match'],
+      }))
+    return { total: Math.min(official.length + local.length, limit), nextCursor: null, templates: [...official, ...local].slice(0, limit) as unknown as JsonValue }
+  }
+
   getTemplate(templateId: string, version?: number): PromptWorkspaceTemplate {
     const template = this.library.get(templateId, version)
     if (!template) throw new Error(`Template “${templateId}” was not found.`)
     return template
+  }
+
+  async getTemplateAsync(input: {
+    source?: 'official' | 'local'
+    templateId: string
+    version?: number
+    expectedHash?: string
+  }): Promise<{ template: PromptWorkspaceTemplate; source: 'official' | 'local' | 'bundled'; hash?: string }> {
+    if (input.source === 'official') {
+      const found = await this.library.getOfficial(input.templateId, input.version, input.expectedHash)
+      if (!found) throw new Error(`Official recipe “${input.templateId}” was not found.`)
+      return { template: found.template, source: 'official', hash: found.summary.hash }
+    }
+    if (input.source === 'local') {
+      if (input.expectedHash) throw new Error('expectedHash is only supported for official recipes.')
+      const template = this.library.getLocal(input.templateId, input.version)
+      if (!template) throw new Error(`Local recipe “${input.templateId}” was not found.`)
+      return { template, source: 'local' }
+    }
+    if (input.expectedHash) throw new Error('expectedHash requires source “official”.')
+    return { template: this.getTemplate(input.templateId, input.version), source: 'bundled' }
   }
 
   validateTemplate(candidate: unknown, mode: 'schema-only' | 'compatibility' | 'full'): TemplateValidationResult {

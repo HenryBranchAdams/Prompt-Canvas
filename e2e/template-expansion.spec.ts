@@ -345,9 +345,9 @@ test('starter manifest and library expose each canonical template once', async (
   }
 
   await expect(page.getByRole('heading', { name: 'What would you like to make?' })).toBeVisible()
-  await expect(page.locator('.pc-library__grid .pc-template-card:not(.pc-template-card--blank)')).toHaveCount(6)
+  await expect(page.locator('.pc-library__grid .pc-template-card:not(.pc-template-card--blank)')).toHaveCount(10)
   await expect(page.locator('.pc-system-list button')).toHaveCount(9)
-  await expect(page.locator('.pc-template-card__preview > img')).toHaveCount(6)
+  await expect(page.locator('.pc-template-card__preview > img')).toHaveCount(10)
   expect(await page.locator('.pc-template-card__preview > img').evaluateAll((images) =>
     images.every((image) => image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0),
   )).toBe(true)
@@ -355,6 +355,85 @@ test('starter manifest and library expose each canonical template once', async (
   await page.getByLabel('Search recipes').fill('put me somewhere else')
   await expect(page.locator('.pc-library__grid .pc-template-card:not(.pc-template-card--blank)')).toHaveCount(1)
   await expect(page.locator('.pc-template-card').filter({ hasText: 'Change the background' })).toBeVisible()
+})
+
+test('official retrieval returns summaries, snapshots exact lineage, and keeps saved recipes local', async ({ page }) => {
+  const forbiddenWrites: string[] = []
+  page.on('request', (request) => {
+    const path = new URL(request.url()).pathname
+    if (path.startsWith('/api/official-library/prompts') && request.method() !== 'GET') {
+      forbiddenWrites.push(`${request.method()} ${path}`)
+    }
+  })
+  await openApp(page)
+
+  const listed = await callTool<{
+    templates: Array<{
+      source: 'official'
+      id: string
+      version: number
+      hash: string
+      title: string
+      template?: unknown
+    }>
+  }>(page, 'prompt_canvas_list_templates', {
+    scope: 'official',
+    query: 'replace the room but keep my face and pose',
+    intents: ['edit'],
+    inputModes: ['single-image'],
+    preservationNeeds: ['identity', 'pose'],
+    limit: 8,
+  })
+  const selected = listed.templates.find(({ id }) => id === 'change-background')
+  expect(selected).toBeTruthy()
+  expect(selected?.source).toBe('official')
+  expect(selected?.hash).toMatch(/^sha256:[a-f0-9]{64}$/)
+  expect(selected?.template).toBeUndefined()
+
+  const fetched = await callTool<{
+    source: 'official'
+    hash: string
+    template: { id: string; version: number }
+    validation: { valid: boolean }
+  }>(page, 'prompt_canvas_get_template', {
+    source: 'official',
+    templateId: selected!.id,
+    version: selected!.version,
+    expectedHash: selected!.hash,
+  })
+  expect(fetched.source).toBe('official')
+  expect(fetched.hash).toBe(selected!.hash)
+  expect(fetched.validation.valid).toBe(true)
+
+  const created = await callTool<{ workspaceId: string }>(page, 'prompt_canvas_create_workspace', {
+    source: {
+      kind: 'template',
+      origin: 'official',
+      templateId: selected!.id,
+      version: selected!.version,
+      expectedHash: selected!.hash,
+    },
+    placement: 'new-page',
+    openAfterCreate: true,
+  })
+  const inspected = await callTool<{
+    workspace: {
+      templateSource: { origin: string; id: string; version: number; hash: string }
+    }
+  }>(page, 'prompt_canvas_inspect', { workspaceId: created.workspaceId })
+  expect(inspected.workspace.templateSource).toEqual({
+    origin: 'official',
+    id: selected!.id,
+    version: selected!.version,
+    hash: selected!.hash,
+  })
+
+  await callTool(page, 'prompt_canvas_save_template', {
+    source: { kind: 'workspace', workspaceId: created.workspaceId },
+    mode: 'fork',
+    title: 'My background recipe',
+  })
+  expect(forbiddenWrites).toEqual([])
 })
 
 test('start-fast recipe opens a connected canvas with directly interactive controls', async ({ page }) => {

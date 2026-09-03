@@ -9,7 +9,7 @@ export const starterManifest = {
   "title": "Prompt Canvas Recipe Library",
   "description": "Six quick-start creative recipes and nine original advanced creative systems for Prompt Canvas.",
   "templateSchema": "../schemas/prompt-workspace-template.schema.json",
-  "templateCount": 15,
+  "templateCount": 19,
   "templates": [
     {
       "id": "create-from-words",
@@ -166,6 +166,120 @@ export const starterManifest = {
       "source": {
         "creator": "Prompt Canvas",
         "title": "Restore and lightly retouch",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "poster-exact-text",
+      "path": "templates/poster-exact-text.workspace.yaml",
+      "title": "Poster with exact text",
+      "description": "Create a polished poster while preserving the supplied headline exactly.",
+      "category": "posters-and-content",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "typography",
+        "structured-prompt",
+        "variations",
+        "image-edit",
+        "upscale"
+      ],
+      "featured": true,
+      "order": 7,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Poster with exact text",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "collectible-card",
+      "path": "templates/collectible-card.workspace.yaml",
+      "title": "Trading card or collectible card",
+      "description": "Turn a person, pet, character, or object into an original collectible card while preserving the source subject.",
+      "category": "posters-and-content",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "typography",
+        "variations",
+        "upscale"
+      ],
+      "featured": true,
+      "order": 8,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Trading card or collectible card",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "four-directions",
+      "path": "templates/four-directions.workspace.yaml",
+      "title": "Four creative directions",
+      "description": "Explore four genuinely different visual approaches to the same brief.",
+      "category": "explore-and-refine",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-to-image",
+        "variations",
+        "batch-output",
+        "structured-prompt"
+      ],
+      "featured": true,
+      "order": 9,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Four creative directions",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "restyle-preserve-layout",
+      "path": "templates/restyle-preserve-layout.workspace.yaml",
+      "title": "Restyle while preserving composition",
+      "description": "Change the visual treatment while keeping the source layout, framing, and geometry.",
+      "category": "explore-and-refine",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "composition-reference",
+        "upscale"
+      ],
+      "featured": true,
+      "order": 10,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Restyle while preserving composition",
         "url": null,
         "promptUsage": "original"
       }
@@ -742,6 +856,34 @@ export const starterTemplates = {
         "put me somewhere else",
         "keep person change scene"
       ],
+      "intents": [
+        "edit",
+        "transform"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object"
+      ],
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "likeness",
+        "pose",
+        "camera-view",
+        "product-geometry"
+      ],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "1 source photo",
+        "A background description"
+      ],
       "inputSummary": [
         "1 source photo",
         "A background description"
@@ -750,6 +892,10 @@ export const starterTemplates = {
         "Needs 1 photo",
         "Keeps subject"
       ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/change-background.webp",
+        "alt": "The same portrait retained while the background changes to a nighttime city scene"
+      },
       "featuredRank": 3
     },
     "x-presentation": {
@@ -1015,6 +1161,35 @@ export const starterTemplates = {
         "fix one thing",
         "keep my face"
       ],
+      "intents": [
+        "edit",
+        "refine"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place"
+      ],
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "likeness",
+        "pose",
+        "camera-view",
+        "unmentioned-details"
+      ],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "1 source photo",
+        "The change you want"
+      ],
       "inputSummary": [
         "1 source photo",
         "The change you want"
@@ -1023,6 +1198,10 @@ export const starterTemplates = {
         "Needs 1 photo",
         "Keeps unmentioned details"
       ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/change-one-thing.webp",
+        "alt": "A portrait with one clothing detail changed while the person and scene stay consistent"
+      },
       "featuredRank": 2
     },
     "x-presentation": {
@@ -1420,6 +1599,262 @@ export const starterTemplates = {
       "typography"
     ]
   },
+  "collectible-card": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "collectible-card",
+    "version": 1,
+    "title": "Trading card or collectible card",
+    "description": "Turn a person, pet, character, or object into an original collectible card while preserving the source subject.",
+    "category": "posters-and-content",
+    "tags": [
+      "collectible card",
+      "trading card",
+      "pet",
+      "portrait"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Trading card or collectible card",
+      "promptUsage": "original"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/collectible-card.webp",
+      "alt": "An original ornate fantasy collectible card featuring a black dog in an enchanted forest"
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "typography",
+      "variations",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "edit"
+    },
+    "prompt": {
+      "title": "Card direction",
+      "body": "Transform the supplied subject photograph into an original collectible card themed {{theme}}. Keep the actual subject, identity, likeness, pose, and recognizable details. Feature the card name exactly as supplied: “{{card_name}}”. Give the subject {{character_quality}}. Create wholly original border, symbols, and visual language; do not imitate a known game, franchise, logo, or card layout.",
+      "variables": [
+        {
+          "id": "card_name",
+          "label": "Card name",
+          "type": "string",
+          "required": true,
+          "defaultValue": "Night Garden Hero"
+        },
+        {
+          "id": "theme",
+          "label": "Theme",
+          "type": "text",
+          "required": true,
+          "defaultValue": "dark and fairy-like"
+        },
+        {
+          "id": "character_quality",
+          "label": "Character quality",
+          "type": "text",
+          "defaultValue": "absurd charisma"
+        }
+      ]
+    },
+    "controls": [
+      {
+        "id": "card-name",
+        "label": "Card name",
+        "type": "text",
+        "required": true,
+        "defaultValue": "Night Garden Hero",
+        "binding": {
+          "mode": "variable",
+          "target": "card_name"
+        }
+      },
+      {
+        "id": "theme",
+        "label": "Theme",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "dark and fairy-like",
+        "binding": {
+          "mode": "variable",
+          "target": "theme"
+        }
+      },
+      {
+        "id": "character-quality",
+        "label": "Character quality",
+        "type": "text",
+        "defaultValue": "absurd charisma",
+        "binding": {
+          "mode": "variable",
+          "target": "character_quality"
+        }
+      }
+    ],
+    "references": [
+      {
+        "id": "source-subject",
+        "label": "Source subject photo",
+        "role": "identity",
+        "required": true,
+        "multiple": false,
+        "acceptedMimeTypes": [
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ],
+        "preserve": [
+          "identity",
+          "likeness",
+          "pose",
+          "recognizable details"
+        ],
+        "instructions": "Use the actual supplied photograph as the subject; do not substitute a lookalike."
+      }
+    ],
+    "preservation": [
+      {
+        "id": "subject-identity",
+        "label": "Subject identity",
+        "description": "Preserve the actual subject, likeness, pose, and recognizable details.",
+        "strength": "must",
+        "appliesTo": [
+          "source-subject"
+        ]
+      },
+      {
+        "id": "original-system",
+        "label": "Original card system",
+        "description": "Do not imitate a known franchise, logo, or proprietary card layout.",
+        "strength": "must"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Collectible card",
+        "role": "primary",
+        "kind": "image",
+        "operations": [
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source",
+        "type": "references",
+        "title": "Your subject",
+        "sourceId": "source-subject",
+        "x-connectTo": "primary-output"
+      },
+      {
+        "id": "essentials",
+        "type": "controls",
+        "title": "Essential choices",
+        "content": {
+          "controlIds": [
+            "card-name",
+            "theme",
+            "character-quality"
+          ]
+        },
+        "x-connectTo": "primary-output"
+      },
+      {
+        "id": "prompt",
+        "type": "prompt",
+        "title": "More control",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output"
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "Result",
+        "sourceId": "primary"
+      }
+    ],
+    "x-discovery": {
+      "collection": "posters-content",
+      "userPromise": "Turn your actual subject photo into an original collectible card.",
+      "intentAliases": [
+        "put my dog on a battle card",
+        "make a pet trading card",
+        "turn this photo into a collectible card",
+        "fantasy character card"
+      ],
+      "intents": [
+        "edit",
+        "transform"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "pet",
+        "character",
+        "object"
+      ],
+      "outputKinds": [
+        "collectible-card"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "likeness",
+        "pose",
+        "supplied-copy"
+      ],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "1 source image",
+        "A card name",
+        "A theme"
+      ],
+      "inputSummary": [
+        "1 source image",
+        "A card name",
+        "A theme"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps likeness"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/collectible-card.webp",
+        "alt": "An original ornate fantasy collectible card featuring a black dog in an enchanted forest"
+      },
+      "featuredRank": 8
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "card-name",
+        "theme",
+        "character-quality"
+      ],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
+  },
   "create-from-words": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "create-from-words",
@@ -1724,6 +2159,28 @@ export const starterTemplates = {
         "draw this",
         "generate an image"
       ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "A short description"
+      ],
       "inputSummary": [
         "A short description"
       ],
@@ -1731,6 +2188,10 @@ export const starterTemplates = {
         "No photo needed",
         "Makes 1 image"
       ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/create-from-words.webp",
+        "alt": "A luminous glass pavilion generated from a short written description"
+      },
       "featuredRank": 1
     },
     "x-presentation": {
@@ -2031,6 +2492,36 @@ export const starterTemplates = {
         "crop for social",
         "change aspect ratio"
       ],
+      "intents": [
+        "edit",
+        "transform"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place"
+      ],
+      "outputKinds": [
+        "image-edit",
+        "banner"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition",
+        "camera-view",
+        "subject-scale",
+        "important-region"
+      ],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "1 source image",
+        "A target format"
+      ],
       "inputSummary": [
         "1 source image",
         "A target format"
@@ -2039,6 +2530,10 @@ export const starterTemplates = {
         "Needs 1 image",
         "Protects subject"
       ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/expand-reframe.webp",
+        "alt": "A portrait expanded into a wide banner with natural scenery added around the protected subject"
+      },
       "featuredRank": 5
     },
     "x-presentation": {
@@ -2046,6 +2541,234 @@ export const starterTemplates = {
         "target-ratio",
         "framing-method",
         "subject-placement"
+      ],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
+  },
+  "four-directions": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "four-directions",
+    "version": 1,
+    "title": "Four creative directions",
+    "description": "Explore four genuinely different visual approaches to the same brief.",
+    "category": "explore-and-refine",
+    "tags": [
+      "directions",
+      "concepts",
+      "variations",
+      "exploration"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Four creative directions",
+      "promptUsage": "original"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/four-directions.webp",
+      "alt": "The same ceramic teapot interpreted in four clearly different visual styles"
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-to-image",
+      "variations",
+      "batch-output",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 4
+    },
+    "prompt": {
+      "title": "Exploration brief",
+      "body": "Create four genuinely different visual directions for {{brief}}. Hold {{invariants}} constant across all four. Make each direction distinct in composition, visual language, palette, lighting, and emotional tone rather than making minor parameter changes. Present four individually useful candidates.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A welcoming hero image for a handmade ceramic teapot"
+        },
+        {
+          "id": "invariants",
+          "label": "Keep consistent",
+          "type": "text",
+          "defaultValue": "the same subject, purpose, and essential product geometry"
+        }
+      ]
+    },
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What are you exploring?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A welcoming hero image for a handmade ceramic teapot",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "invariants",
+        "label": "Keep consistent",
+        "type": "textarea",
+        "defaultValue": "the same subject, purpose, and essential product geometry",
+        "binding": {
+          "mode": "variable",
+          "target": "invariants"
+        }
+      }
+    ],
+    "references": [
+      {
+        "id": "optional-source",
+        "label": "Optional source image",
+        "role": "content",
+        "required": false,
+        "multiple": false,
+        "acceptedMimeTypes": [
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ],
+        "preserve": [
+          "recognizable subject when supplied"
+        ]
+      }
+    ],
+    "preservation": [
+      {
+        "id": "shared-core",
+        "label": "Shared core",
+        "description": "Preserve the declared invariants across all directions.",
+        "strength": "must",
+        "appliesTo": [
+          "invariants",
+          "optional-source"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "id": "directions",
+        "label": "Four directions",
+        "role": "primary",
+        "kind": "image-set",
+        "count": 4,
+        "operations": [
+          "generate",
+          "edit",
+          "variation"
+        ],
+        "layoutHint": "grid"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "input",
+        "type": "controls",
+        "title": "Your brief",
+        "content": {
+          "controlIds": [
+            "brief",
+            "invariants"
+          ]
+        },
+        "x-connectTo": "directions-output"
+      },
+      {
+        "id": "source",
+        "type": "references",
+        "title": "Optional reference",
+        "sourceId": "optional-source",
+        "x-connectTo": "directions-output"
+      },
+      {
+        "id": "prompt",
+        "type": "prompt",
+        "title": "More control",
+        "collapsedByDefault": true,
+        "x-connectTo": "directions-output"
+      },
+      {
+        "id": "directions-output",
+        "type": "variations",
+        "title": "Four directions",
+        "sourceId": "directions"
+      }
+    ],
+    "x-discovery": {
+      "collection": "explore-refine",
+      "userPromise": "See four genuinely different visual approaches to the same brief.",
+      "intentAliases": [
+        "show me four options",
+        "four creative directions",
+        "explore different looks",
+        "give me distinct concepts"
+      ],
+      "intents": [
+        "explore",
+        "create"
+      ],
+      "inputModes": [
+        "text",
+        "optional-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image-set"
+      ],
+      "preservationNeeds": [
+        "declared-invariants",
+        "subject-identity",
+        "product-geometry"
+      ],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "A creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief",
+        "Optional source image"
+      ],
+      "badges": [
+        "Makes 4 images",
+        "Distinct directions"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/four-directions.webp",
+        "alt": "The same ceramic teapot interpreted in four clearly different visual styles"
+      },
+      "featuredRank": 9
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "invariants"
       ],
       "initialView": "canvas",
       "resultEmphasis": "hero",
@@ -2918,6 +3641,299 @@ export const starterTemplates = {
       "typography"
     ]
   },
+  "poster-exact-text": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "poster-exact-text",
+    "version": 1,
+    "title": "Poster with exact text",
+    "description": "Create a polished poster while preserving the supplied headline exactly.",
+    "category": "posters-and-content",
+    "tags": [
+      "poster",
+      "exact text",
+      "typography",
+      "graphic design"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Poster with exact text",
+      "promptUsage": "original"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/poster-exact-text.webp",
+      "alt": "A framed geometric concert poster displayed on a warm gallery wall"
+    },
+    "capabilities": [
+      "text-to-image",
+      "typography",
+      "structured-prompt",
+      "variations",
+      "image-edit",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate"
+    },
+    "prompt": {
+      "title": "Poster direction",
+      "body": "Design an original {{poster_type}} poster for {{subject}}. Render the headline exactly as supplied: “{{exact_title}}”. Use {{visual_direction}} with a clear hierarchy, confident negative space, and a legible title area. Do not invent additional names, dates, sponsors, logos, or fine print.",
+      "variables": [
+        {
+          "id": "exact_title",
+          "label": "Exact title",
+          "type": "string",
+          "required": true,
+          "defaultValue": "Summer Night Tournament"
+        },
+        {
+          "id": "subject",
+          "label": "Subject",
+          "type": "text",
+          "required": true,
+          "defaultValue": "An evening community sports tournament"
+        },
+        {
+          "id": "poster_type",
+          "label": "Poster type",
+          "type": "enum",
+          "defaultValue": "event",
+          "values": [
+            "event",
+            "cultural",
+            "editorial",
+            "promotional"
+          ]
+        },
+        {
+          "id": "visual_direction",
+          "label": "Visual direction",
+          "type": "enum",
+          "defaultValue": "bold geometric",
+          "values": [
+            "bold geometric",
+            "refined editorial",
+            "playful collage",
+            "cinematic"
+          ]
+        }
+      ]
+    },
+    "controls": [
+      {
+        "id": "exact-title",
+        "label": "Exact title",
+        "type": "text",
+        "required": true,
+        "defaultValue": "Summer Night Tournament",
+        "binding": {
+          "mode": "variable",
+          "target": "exact_title"
+        }
+      },
+      {
+        "id": "subject",
+        "label": "What is it for?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "An evening community sports tournament",
+        "binding": {
+          "mode": "variable",
+          "target": "subject"
+        }
+      },
+      {
+        "id": "poster-type",
+        "label": "Poster type",
+        "type": "enum",
+        "defaultValue": "event",
+        "options": [
+          {
+            "label": "Event",
+            "value": "event"
+          },
+          {
+            "label": "Cultural",
+            "value": "cultural"
+          },
+          {
+            "label": "Editorial",
+            "value": "editorial"
+          },
+          {
+            "label": "Promotional",
+            "value": "promotional"
+          }
+        ],
+        "binding": {
+          "mode": "variable",
+          "target": "poster_type"
+        }
+      },
+      {
+        "id": "visual-direction",
+        "label": "Visual direction",
+        "type": "enum",
+        "defaultValue": "bold geometric",
+        "options": [
+          {
+            "label": "Bold geometric",
+            "value": "bold geometric"
+          },
+          {
+            "label": "Refined editorial",
+            "value": "refined editorial"
+          },
+          {
+            "label": "Playful collage",
+            "value": "playful collage"
+          },
+          {
+            "label": "Cinematic",
+            "value": "cinematic"
+          }
+        ],
+        "binding": {
+          "mode": "variable",
+          "target": "visual_direction"
+        }
+      }
+    ],
+    "preservation": [
+      {
+        "id": "exact-copy",
+        "label": "Exact copy",
+        "description": "Preserve the supplied title exactly, including spelling, capitalization, and punctuation.",
+        "strength": "must",
+        "appliesTo": [
+          "exact_title"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Poster result",
+        "role": "primary",
+        "kind": "image",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "copy-input",
+        "type": "controls",
+        "title": "Your exact copy",
+        "sourceId": "exact-title",
+        "x-connectTo": "primary-output"
+      },
+      {
+        "id": "essentials",
+        "type": "controls",
+        "title": "Essential choices",
+        "content": {
+          "controlIds": [
+            "subject",
+            "poster-type",
+            "visual-direction"
+          ]
+        },
+        "x-connectTo": "primary-output"
+      },
+      {
+        "id": "prompt",
+        "type": "prompt",
+        "title": "More control",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output"
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "Result",
+        "sourceId": "primary"
+      }
+    ],
+    "x-discovery": {
+      "collection": "posters-content",
+      "userPromise": "Make a polished poster that keeps your supplied title exactly.",
+      "intentAliases": [
+        "poster with exact tournament name",
+        "make an event poster",
+        "keep my headline exact",
+        "design a poster"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "event",
+        "campaign",
+        "place",
+        "product"
+      ],
+      "outputKinds": [
+        "poster"
+      ],
+      "preservationNeeds": [
+        "exact-text",
+        "spelling",
+        "capitalization",
+        "punctuation"
+      ],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "An exact title",
+        "A short subject or event description"
+      ],
+      "inputSummary": [
+        "An exact title",
+        "A short description"
+      ],
+      "badges": [
+        "Keeps exact text",
+        "Makes 1 poster"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/poster-exact-text.webp",
+        "alt": "A framed geometric concert poster displayed on a warm gallery wall"
+      },
+      "featuredRank": 7
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "exact-title",
+        "subject",
+        "visual-direction"
+      ],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
+  },
   "remove-object": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "remove-object",
@@ -3170,6 +4186,34 @@ export const starterTemplates = {
         "clean this up",
         "remove distraction"
       ],
+      "intents": [
+        "edit",
+        "refine"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "product",
+        "object",
+        "place"
+      ],
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "composition",
+        "camera-view",
+        "surrounding-geometry",
+        "texture",
+        "shadows"
+      ],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "1 source photo",
+        "What to remove"
+      ],
       "inputSummary": [
         "1 source photo",
         "What to remove"
@@ -3178,6 +4222,10 @@ export const starterTemplates = {
         "Needs 1 photo",
         "Keeps surroundings"
       ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/remove-object.webp",
+        "alt": "A distracting object removed from a tabletop while the surface texture and shadows remain natural"
+      },
       "featuredRank": 4
     },
     "x-presentation": {
@@ -3425,6 +4473,35 @@ export const starterTemplates = {
         "remove scratches",
         "reduce noise"
       ],
+      "intents": [
+        "edit",
+        "restore",
+        "refine"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place"
+      ],
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "likeness",
+        "composition",
+        "scene-content",
+        "texture"
+      ],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "1 source photo"
+      ],
       "inputSummary": [
         "1 source photo"
       ],
@@ -3432,12 +4509,248 @@ export const starterTemplates = {
         "Needs 1 photo",
         "Keeps scene"
       ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/restore-retouch.webp",
+        "alt": "A faded photograph restored with balanced exposure and color while the original scene stays unchanged"
+      },
       "featuredRank": 6
     },
     "x-presentation": {
       "primaryControlIds": [
         "corrections",
         "restoration-strength"
+      ],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    }
+  },
+  "restyle-preserve-layout": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "restyle-preserve-layout",
+    "version": 1,
+    "title": "Restyle while preserving composition",
+    "description": "Change the visual treatment while keeping the source layout, framing, and geometry.",
+    "category": "explore-and-refine",
+    "tags": [
+      "restyle",
+      "preserve composition",
+      "screenprint",
+      "image edit"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Restyle while preserving composition",
+      "promptUsage": "original"
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/restyle-preserve-layout.webp",
+      "alt": "The same coastal architecture composition shown as a photograph and a screenprint"
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "variations",
+      "composition-reference",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "edit"
+    },
+    "prompt": {
+      "title": "Restyle direction",
+      "body": "Restyle the supplied image as {{new_style}} while preserving its composition: camera position, crop, subject placement, scale, silhouette, perspective, and major geometry. Change surface treatment, palette, texture, and rendering language only. {{additional_direction}}",
+      "variables": [
+        {
+          "id": "new_style",
+          "label": "New style",
+          "type": "text",
+          "required": true,
+          "defaultValue": "a bold limited-color screenprint"
+        },
+        {
+          "id": "additional_direction",
+          "label": "Additional direction",
+          "type": "text",
+          "defaultValue": "Keep the result clear and intentional."
+        }
+      ]
+    },
+    "controls": [
+      {
+        "id": "new-style",
+        "label": "New visual style",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "a bold limited-color screenprint",
+        "binding": {
+          "mode": "variable",
+          "target": "new_style"
+        }
+      },
+      {
+        "id": "additional-direction",
+        "label": "Additional direction",
+        "type": "textarea",
+        "defaultValue": "Keep the result clear and intentional.",
+        "binding": {
+          "mode": "variable",
+          "target": "additional_direction"
+        }
+      }
+    ],
+    "references": [
+      {
+        "id": "source-composition",
+        "label": "Source image",
+        "role": "composition",
+        "required": true,
+        "multiple": false,
+        "acceptedMimeTypes": [
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ],
+        "preserve": [
+          "camera position",
+          "crop",
+          "subject placement",
+          "scale",
+          "silhouette",
+          "perspective",
+          "major geometry"
+        ]
+      }
+    ],
+    "preservation": [
+      {
+        "id": "composition-lock",
+        "label": "Composition lock",
+        "description": "Preserve the source camera, crop, placement, scale, silhouette, perspective, and major geometry.",
+        "strength": "must",
+        "appliesTo": [
+          "source-composition"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Restyled result",
+        "role": "primary",
+        "kind": "image",
+        "operations": [
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source",
+        "type": "references",
+        "title": "Source composition",
+        "sourceId": "source-composition",
+        "x-connectTo": "primary-output"
+      },
+      {
+        "id": "essentials",
+        "type": "controls",
+        "title": "New visual treatment",
+        "content": {
+          "controlIds": [
+            "new-style",
+            "additional-direction"
+          ]
+        },
+        "x-connectTo": "primary-output"
+      },
+      {
+        "id": "prompt",
+        "type": "prompt",
+        "title": "More control",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output"
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "Result",
+        "sourceId": "primary"
+      }
+    ],
+    "x-discovery": {
+      "collection": "explore-refine",
+      "userPromise": "Change the style while keeping the original layout and framing.",
+      "intentAliases": [
+        "keep the layout but change style",
+        "turn this into a screenprint",
+        "restyle without moving anything",
+        "preserve composition"
+      ],
+      "intents": [
+        "edit",
+        "transform"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "pet",
+        "product",
+        "object",
+        "place"
+      ],
+      "outputKinds": [
+        "image-edit"
+      ],
+      "preservationNeeds": [
+        "composition",
+        "camera-view",
+        "framing",
+        "subject-scale",
+        "geometry"
+      ],
+      "complexity": "quick",
+      "requiredInputSummary": [
+        "1 source image",
+        "A new visual style"
+      ],
+      "inputSummary": [
+        "1 source image",
+        "A new visual style"
+      ],
+      "badges": [
+        "Needs 1 image",
+        "Keeps composition"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/restyle-preserve-layout.webp",
+        "alt": "The same coastal architecture composition shown as a photograph and a screenprint"
+      },
+      "featuredRank": 10
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "new-style",
+        "additional-direction"
       ],
       "initialView": "canvas",
       "resultEmphasis": "hero",
