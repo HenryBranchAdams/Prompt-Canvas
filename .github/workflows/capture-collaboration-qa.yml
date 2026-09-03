@@ -1,0 +1,58 @@
+name: Capture collaboration QA
+
+on:
+  push:
+    branches: [polish/codex-collaboration-ux]
+    paths:
+      - scripts/capture_collaboration_qa.mjs
+      - .github/workflows/capture-collaboration-qa.yml
+
+permissions:
+  contents: write
+
+env:
+  PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/.pw-browsers
+
+jobs:
+  capture:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: polish/codex-collaboration-ux
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Start Prompt Canvas
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/prompt-canvas-vite.log 2>&1 &
+          for attempt in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:5173 >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/prompt-canvas-vite.log
+          exit 1
+      - name: Capture screenshots
+        run: node scripts/capture_collaboration_qa.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: collaboration-qa-${{ github.sha }}
+          path: qa-artifacts/collaboration/*.png
+          if-no-files-found: error
+          retention-days: 3
+      - name: Remove temporary QA files
+        run: rm scripts/capture_collaboration_qa.mjs .github/workflows/capture-collaboration-qa.yml
+      - name: Commit cleanup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: remove temporary collaboration QA capture"
+          git push origin HEAD:polish/codex-collaboration-ux
