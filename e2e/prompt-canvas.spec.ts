@@ -480,11 +480,11 @@ test('Travel Poster renders bound workflow connections that follow cards and sur
     revision: number
     elements: Array<{ semanticId: string; x: number; y: number }>
   }>(page, 'prompt_canvas_inspect', { include: ['layout'], maxItems: 200 })
-  const subject = inspect.elements.find((element) => element.semanticId === 'subject-card')
-  expect(subject).toBeTruthy()
+  const brief = inspect.elements.find((element) => element.semanticId === 'brief')
+  expect(brief).toBeTruthy()
 
   const arrows = page.locator('[data-shape-type="arrow"]')
-  await expect(arrows).toHaveCount(12)
+  await expect(arrows).toHaveCount(4)
   const beforeRender = await arrows.evaluateAll((elements) =>
     elements.map((element) => `${element.getAttribute('style')}|${element.innerHTML}`),
   )
@@ -494,9 +494,9 @@ test('Travel Poster renders bound workflow connections that follow cards and sur
     expectedRevision: inspect.revision,
     operations: [{
       op: 'move_element',
-      elementId: 'subject-card',
-      x: subject!.x + 40,
-      y: subject!.y + 20,
+      elementId: 'brief',
+      x: brief!.x + 40,
+      y: brief!.y + 20,
     }],
     reason: 'Verify bound workflow connection movement',
   })
@@ -510,7 +510,7 @@ test('Travel Poster renders bound workflow connections that follow cards and sur
   await flushTldrawPersistence(page)
   await page.reload()
   await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
-  await expect(page.locator('[data-shape-type="arrow"]')).toHaveCount(12)
+  await expect(page.locator('[data-shape-type="arrow"]')).toHaveCount(4)
   const restored = await callTool<{
     revision: number
     elements: Array<{ semanticId: string; x: number; y: number }>
@@ -520,9 +520,9 @@ test('Travel Poster renders bound workflow connections that follow cards and sur
     maxItems: 200,
   })
   expect(restored.revision).toBe(updated.revision)
-  expect(restored.elements.find((element) => element.semanticId === 'subject-card')).toMatchObject({
-    x: subject!.x + 40,
-    y: subject!.y + 20,
+  expect(restored.elements.find((element) => element.semanticId === 'brief')).toMatchObject({
+    x: brief!.x + 40,
+    y: brief!.y + 20,
   })
 })
 
@@ -1138,7 +1138,7 @@ test('Diagnostics opens a selected block with one click', async ({ page }) => {
   await page.locator('.pc-more-menu > summary').click()
   await page.getByRole('button', { name: 'Diagnostics' }).click()
 
-  const controlsLayer = page.locator('.pc-layer-list button').filter({ hasText: 'Format' })
+  const controlsLayer = page.locator('.pc-layer-list button').filter({ hasText: 'Brief' })
   await expect(controlsLayer).toBeVisible()
   await expect(controlsLayer).toHaveAttribute('title', 'Open this block')
   await controlsLayer.click()

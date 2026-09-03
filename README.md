@@ -8,6 +8,23 @@ Prompt Canvas opens with an outcome-first recipe gallery. Starting a recipe crea
 modular input and choice blocks feed a dominant result card through visible canvas connections, while the full prompt
 and advanced controls remain available without leading the first-run experience.
 
+## Human + agent, one visual project
+
+Prompt Canvas turns image prompting into a shared spatial workspace. A person chooses a recipe and directly adjusts
+the brief, references, preservation rules, and creative controls. Through WebMCP, Codex can search the official recipe
+library, create or update the same live project, generate from its current state, and return the resulting image to the
+correct canvas output with lineage.
+
+**Live app:** https://prompt-canvas.madebyhenry.chatgpt.site
+
+**Competition build:** [v0.4.0 exact tagged source](https://github.com/HenryBranchAdams/Prompt-Canvas/releases/tag/v0.4.0)
+
+Try it in a Website Tools-enabled ChatGPT desktop session:
+
+> Search Prompt Canvas's official recipes for the simplest way to create an image from words. Open it for “a quiet lunar greenhouse at dawn.”
+
+![Prompt Canvas outcome-first recipe gallery](docs/assets/prompt-canvas-competition.png)
+
 ## Product boundary
 
 ```text
@@ -90,7 +107,7 @@ Do not place OpenAI credentials in the page. None are required.
 
 ### Official recipe catalog
 
-The public application works without D1 by falling back to the ten bundled official recipe summaries and exact bundled
+The public application works without D1 by falling back to the 52 bundled official recipe summaries and exact bundled
 templates. To validate and seed the local D1 catalog:
 
 ```bash
@@ -118,7 +135,7 @@ Release checks and host results are evidence for one exact commit and deployment
 The Playwright suite installs a mock top-level WebMCP host and proves the page-side portion of the vertical slice:
 
 1. the catalog's baseline tools register;
-2. first run presents six everyday recipes, four additional official task recipes, and nine advanced systems without auto-creating a project;
+2. first run keeps the quick recipes prominent and initially collapses the official long tail to eight entries without auto-creating a project;
 3. a recipe opens as a connected modular canvas whose controls work directly;
 4. the Travel Poster advanced example retains its authored workflow geometry;
 5. generation context resolves;

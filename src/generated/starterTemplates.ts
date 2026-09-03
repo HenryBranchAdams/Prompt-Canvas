@@ -5,7 +5,7 @@ import type { PromptWorkspaceTemplate, StarterManifest } from '../workspaces/typ
 export const starterManifest = {
   "schema": "prompt-canvas.starter-pack@2",
   "id": "core-starter-pack",
-  "version": 4,
+  "version": 5,
   "title": "Prompt Canvas Recipe Library",
   "description": "Ten quick-start recipes, forty-two original task-focused systems, and nine advanced creative systems for Prompt Canvas.",
   "templateSchema": "../schemas/prompt-workspace-template.schema.json",
@@ -2483,7 +2483,7 @@ export const starterTemplates = {
   "change-background": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "change-background",
-    "version": 1,
+    "version": 2,
     "title": "Change the background",
     "description": "Keep the subject and replace only the environment.",
     "category": "start-fast",
@@ -2672,46 +2672,18 @@ export const starterTemplates = {
       {
         "id": "background",
         "type": "controls",
-        "title": "2. New background",
+        "title": "2. Your change",
         "x-controlIds": [
-          "new-background"
+          "new-background",
+          "lighting-match",
+          "aspect-ratio"
         ],
         "x-connectTo": "primary-output",
         "x-geometry": {
           "x": 510,
           "y": 130,
           "w": 360,
-          "h": 230
-        }
-      },
-      {
-        "id": "lighting",
-        "type": "controls",
-        "title": "Lighting match",
-        "x-controlIds": [
-          "lighting-match"
-        ],
-        "x-connectTo": "primary-output",
-        "x-geometry": {
-          "x": 510,
-          "y": 400,
-          "w": 360,
-          "h": 170
-        }
-      },
-      {
-        "id": "format",
-        "type": "controls",
-        "title": "Format",
-        "x-controlIds": [
-          "aspect-ratio"
-        ],
-        "x-connectTo": "primary-output",
-        "x-geometry": {
-          "x": 510,
-          "y": 610,
-          "w": 360,
-          "h": 180
+          "h": 430
         }
       },
       {
@@ -2736,19 +2708,7 @@ export const starterTemplates = {
           "x": 930,
           "y": 760,
           "w": 620,
-          "h": 210
-        }
-      },
-      {
-        "id": "full-prompt",
-        "type": "prompt",
-        "title": "More control · Preservation and prompt",
-        "x-connectTo": "primary-output",
-        "x-geometry": {
-          "x": 80,
-          "y": 500,
-          "w": 380,
-          "h": 350
+          "h": 280
         }
       }
     ],
@@ -5192,7 +5152,7 @@ export const starterTemplates = {
   "create-from-words": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "create-from-words",
-    "version": 1,
+    "version": 2,
     "title": "Create an image from words",
     "description": "Describe an idea, choose a few essentials, and create one polished image.",
     "category": "start-fast",
@@ -5392,46 +5352,18 @@ export const starterTemplates = {
       {
         "id": "visual-direction",
         "type": "controls",
-        "title": "2. Visual direction",
+        "title": "2. Essential choices",
         "x-controlIds": [
-          "visual-direction"
+          "visual-direction",
+          "composition",
+          "aspect-ratio"
         ],
         "x-connectTo": "primary-output",
         "x-geometry": {
           "x": 500,
           "y": 120,
           "w": 360,
-          "h": 190
-        }
-      },
-      {
-        "id": "composition",
-        "type": "controls",
-        "title": "Composition",
-        "x-controlIds": [
-          "composition"
-        ],
-        "x-connectTo": "primary-output",
-        "x-geometry": {
-          "x": 500,
-          "y": 345,
-          "w": 360,
-          "h": 165
-        }
-      },
-      {
-        "id": "format",
-        "type": "controls",
-        "title": "Format",
-        "x-controlIds": [
-          "aspect-ratio"
-        ],
-        "x-connectTo": "primary-output",
-        "x-geometry": {
-          "x": 500,
-          "y": 545,
-          "w": 360,
-          "h": 190
+          "h": 420
         }
       },
       {
@@ -5456,20 +5388,7 @@ export const starterTemplates = {
           "x": 930,
           "y": 760,
           "w": 620,
-          "h": 210
-        }
-      },
-      {
-        "id": "full-prompt",
-        "type": "prompt",
-        "title": "More control · Full prompt",
-        "collapsedByDefault": true,
-        "x-connectTo": "primary-output",
-        "x-geometry": {
-          "x": 80,
-          "y": 520,
-          "w": 360,
-          "h": 360
+          "h": 280
         }
       }
     ],
@@ -20923,7 +20842,7 @@ export const starterTemplates = {
   "travel-poster": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "travel-poster",
-    "version": 2,
+    "version": 3,
     "title": "Premium City Travel Poster",
     "description": "Create an original, city-specific minimalist flat-vector travel poster through a long-form prompt, editable presets, and Codex image generation.",
     "category": "travel-and-place",
@@ -21243,172 +21162,61 @@ export const starterTemplates = {
     ],
     "blocks": [
       {
-        "id": "subject-card",
+        "id": "brief",
         "type": "controls",
-        "title": "Subject",
+        "title": "Brief",
         "region": "left",
         "order": 10,
         "x-controlIds": [
-          "city-name"
-        ],
-        "x-connectTo": "poster-output",
-        "x-geometry": {
-          "x": 40,
-          "y": 40,
-          "w": 180,
-          "h": 130
-        }
-      },
-      {
-        "id": "format-card",
-        "type": "controls",
-        "title": "Format",
-        "region": "left",
-        "order": 20,
-        "x-controlIds": [
-          "aspect-ratio"
-        ],
-        "x-connectTo": "poster-output",
-        "x-geometry": {
-          "x": 40,
-          "y": 190,
-          "w": 180,
-          "h": 110
-        }
-      },
-      {
-        "id": "people-card",
-        "type": "controls",
-        "title": "People",
-        "region": "left",
-        "order": 30,
-        "x-controlIds": [
+          "city-name",
+          "aspect-ratio",
           "people-count"
         ],
         "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 40,
-          "y": 320,
-          "w": 180,
-          "h": 110
+          "y": 60,
+          "w": 300,
+          "h": 250
         }
       },
       {
-        "id": "style-card",
+        "id": "art-direction",
         "type": "controls",
-        "title": "Style",
+        "title": "Art direction",
         "region": "center",
-        "order": 40,
+        "order": 20,
         "x-controlIds": [
-          "art-direction"
-        ],
-        "x-connectTo": "poster-output",
-        "x-geometry": {
-          "x": 240,
-          "y": 40,
-          "w": 200,
-          "h": 140
-        }
-      },
-      {
-        "id": "composition-card",
-        "type": "controls",
-        "title": "Composition",
-        "region": "center",
-        "order": 50,
-        "x-controlIds": [
+          "art-direction",
           "composition",
-          "landmark-emphasis"
-        ],
-        "x-connectTo": "poster-output",
-        "x-geometry": {
-          "x": 240,
-          "y": 200,
-          "w": 200,
-          "h": 150
-        }
-      },
-      {
-        "id": "palette-card",
-        "type": "controls",
-        "title": "Color palette",
-        "region": "center",
-        "order": 60,
-        "x-controlIds": [
+          "landmark-emphasis",
           "palette"
         ],
         "x-connectTo": "poster-output",
         "x-geometry": {
-          "x": 240,
-          "y": 370,
-          "w": 200,
-          "h": 130
+          "x": 370,
+          "y": 60,
+          "w": 360,
+          "h": 390
         }
       },
       {
-        "id": "typography-card",
+        "id": "text-atmosphere",
         "type": "controls",
-        "title": "Typography",
+        "title": "Text and atmosphere",
         "region": "center",
-        "order": 70,
+        "order": 30,
         "x-controlIds": [
-          "typography-direction"
-        ],
-        "x-connectTo": "poster-output",
-        "x-geometry": {
-          "x": 460,
-          "y": 40,
-          "w": 200,
-          "h": 150
-        }
-      },
-      {
-        "id": "local-character-card",
-        "type": "controls",
-        "title": "Local character",
-        "region": "center",
-        "order": 80,
-        "x-controlIds": [
-          "local-character"
-        ],
-        "x-connectTo": "poster-output",
-        "x-geometry": {
-          "x": 460,
-          "y": 210,
-          "w": 200,
-          "h": 160
-        }
-      },
-      {
-        "id": "mood-card",
-        "type": "controls",
-        "title": "Mood",
-        "region": "center",
-        "order": 90,
-        "x-controlIds": [
+          "typography-direction",
+          "local-character",
           "mood"
         ],
         "x-connectTo": "poster-output",
         "x-geometry": {
-          "x": 460,
-          "y": 390,
-          "w": 200,
-          "h": 120
-        }
-      },
-      {
-        "id": "core-direction-card",
-        "type": "prompt",
-        "title": "Core direction",
-        "region": "center",
-        "order": 100,
-        "x-promptPart": "body",
-        "x-connectTo": "poster-output",
-        "x-geometry": {
-          "x": 240,
-          "y": 530,
-          "w": 420,
-          "h": 150
+          "x": 370,
+          "y": 480,
+          "w": 360,
+          "h": 360
         }
       },
       {
@@ -21417,29 +21225,14 @@ export const starterTemplates = {
         "title": "Generated image",
         "sourceId": "primary",
         "region": "right",
-        "order": 110,
+        "order": 40,
         "x-geometry": {
-          "x": 690,
-          "y": 90,
-          "w": 280,
-          "h": 373
+          "x": 790,
+          "y": 60,
+          "w": 460,
+          "h": 600
         },
         "x-connectTo": "variation-strip"
-      },
-      {
-        "id": "negative-prompt-card",
-        "type": "prompt",
-        "title": "Avoid",
-        "region": "left",
-        "order": 120,
-        "x-promptPart": "negative",
-        "x-connectTo": "poster-output",
-        "x-geometry": {
-          "x": 40,
-          "y": 450,
-          "w": 180,
-          "h": 150
-        }
       },
       {
         "id": "variation-strip",
@@ -21447,15 +21240,20 @@ export const starterTemplates = {
         "title": "Variations",
         "sourceId": "variations",
         "region": "right",
-        "order": 130,
+        "order": 50,
         "x-geometry": {
-          "x": 690,
-          "y": 483,
-          "w": 360,
-          "h": 150
+          "x": 790,
+          "y": 690,
+          "w": 520,
+          "h": 300
         }
       }
     ],
+    "x-presentation": {
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
     "source": {
       "kind": "user-provided",
       "title": "Premium minimalist flat-vector travel poster",

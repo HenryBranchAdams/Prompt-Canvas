@@ -60,7 +60,7 @@ import type {
 } from '../workspaces/types'
 
 const PAGE_META_KEY = 'promptCanvas'
-const APP_VERSION = '0.1.0'
+const APP_VERSION = '0.4.0'
 
 type ConnectionState = {
   checked: boolean
@@ -601,7 +601,7 @@ export class PromptCanvasRuntime {
           parentId: pageId,
           x: start.x,
           y: start.y,
-          opacity: 0.68,
+          opacity: 0.2,
           isLocked: false,
           props: {
             kind: 'elbow' as const,
@@ -1042,7 +1042,7 @@ export class PromptCanvasRuntime {
             case 'set_prompt_body': {
               nextTemplate.prompt.body = operation.body
               const shapes = this.panelsByPayloadKind(input.workspaceId, 'prompt')
-              if (shapes.length === 0) throw new Error('Prompt panel is missing.')
+              if (shapes.length === 0) changedElements.push('prompt:body')
               for (const shape of shapes) {
                 const payload = parsePanelPayload(shape.props.payload)
                 if (payload.kind !== 'prompt') throw new Error('Prompt panel has invalid data.')
@@ -1054,7 +1054,7 @@ export class PromptCanvasRuntime {
             case 'set_negative_prompt': {
               nextTemplate.prompt.negativePrompt = operation.body
               const shapes = this.panelsByPayloadKind(input.workspaceId, 'prompt')
-              if (shapes.length === 0) throw new Error('Prompt panel is missing.')
+              if (shapes.length === 0) changedElements.push('prompt:negative')
               for (const shape of shapes) {
                 const payload = parsePanelPayload(shape.props.payload)
                 if (payload.kind !== 'prompt') throw new Error('Prompt panel has invalid data.')

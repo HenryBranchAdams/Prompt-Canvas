@@ -1,5 +1,5 @@
 {
-  "buildHash": "sha256:e48c2d7967653846c7c97892954421d9ad8476444ff2d42c1c9737a329a6385a",
+  "buildHash": "sha256:63da941dd325dfe389127f434d30061dde37fa595bb8dae4458bf1fb6265a67e",
   "count": 52,
   "prompts": [
     {
@@ -145,7 +145,7 @@
       "description": "Keep the subject and replace only the environment.",
       "family": "reference-transformation",
       "featuredRank": 3,
-      "hash": "sha256:dbce5348ba75385cea2a3a5337017a363aa1cad4e17c725e7bed82757ba7befc",
+      "hash": "sha256:45338f627f282d62fc75e087161b73381ef72fb967422fecde064e3c1495ce2b",
       "id": "change-background",
       "inputMode": "single-image",
       "inputModes": [
@@ -192,7 +192,7 @@
       },
       "title": "Change the background",
       "userPromise": "Keep the subject and replace only the environment.",
-      "version": 1
+      "version": 2
     },
     {
       "aliases": [
@@ -607,7 +607,7 @@
       "description": "Describe an idea, choose a few essentials, and create one polished image.",
       "family": "lightweight",
       "featuredRank": 1,
-      "hash": "sha256:5826ee688b58e4e5f4a7278e99cee90d8e3bbdd5f22e1ba12d76ca8df673e779",
+      "hash": "sha256:6e471f6408d45847a0687c938e5b308638bc008eaef27982e2d83b5a0ffabbe1",
       "id": "create-from-words",
       "inputMode": "text",
       "inputModes": [
@@ -642,7 +642,7 @@
       },
       "title": "Create an image from words",
       "userPromise": "Describe anything and get a polished first image.",
-      "version": 1
+      "version": 2
     },
     {
       "aliases": [

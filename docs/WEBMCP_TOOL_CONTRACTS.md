@@ -28,16 +28,16 @@ The public interface exposes semantic operations rather than raw tldraw records.
 
 | Tool | Current mode | Semantic responsibility |
 |---|---|---|
-| `prompt_canvas_inspect` | Read | Understand current workspace, selection, revisions, outputs, capabilities, and page-accepted transports. |
-| `prompt_canvas_list_templates` | Read | Discover bundled and user-owned templates. |
-| `prompt_canvas_get_template` | Read | Retrieve one normalized template and provenance. |
+| `prompt_canvas_inspect` | Read | Understand the current project, selection, revisions, outputs, capabilities, and page-accepted transports. |
+| `prompt_canvas_list_templates` | Read | Search compact summaries from the official catalog and local user-saved recipes. |
+| `prompt_canvas_get_template` | Read | Retrieve one exact normalized official or local recipe with source identity and provenance. |
 | `prompt_canvas_validate_template` | Read | Separate blocking schema errors from compatibility warnings and creative suggestions. |
-| `prompt_canvas_get_generation_context` | Read today; target preview/prepare | Resolve generation intent and, in target prepare mode, create one exact idempotent request. |
-| `prompt_canvas_create_workspace` | Write | Create a semantic workspace from a template, definition, or blank prompt. |
-| `prompt_canvas_update_workspace` | Write | Apply closed semantic prompt, control, reference, intent, workflow, annotation, or layout operations. |
-| `prompt_canvas_save_template` | Write | Create, fork, or version a validated user-owned template. |
+| `prompt_canvas_get_generation_context` | Read today; target preview/prepare | Resolve the current project's generation intent and, in target prepare mode, create one exact idempotent request. |
+| `prompt_canvas_create_workspace` | Write | Create a semantic project from an exact official or local recipe, definition, or blank prompt. |
+| `prompt_canvas_update_workspace` | Write | Apply closed semantic prompt, control, reference, intent, workflow, annotation, or layout operations to one revision-matched project. |
+| `prompt_canvas_save_template` | Write | Create, fork, or version a validated user-owned local recipe. |
 | `prompt_canvas_add_generated_asset` | Write | Validate and import Codex-generated assets bound to a prepared request. |
-| `prompt_canvas_delete_workspace` | Destructive lifecycle write | Delete one confirmed, revision-matched workspace while preserving at least one workspace. |
+| `prompt_canvas_delete_workspace` | Destructive lifecycle write | Delete one confirmed, revision-matched project while preserving at least one project. |
 | `prompt_canvas_manage_outputs` | Write | Promote, compare, reorder, label, archive, or explicitly delete outputs. |
 
 Do not add one tool per template, control, shape, workflow stage, or tldraw primitive. Add a tool only when an operation cannot fit honestly within an existing semantic boundary.
