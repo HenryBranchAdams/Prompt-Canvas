@@ -351,6 +351,11 @@ test('starter manifest and library expose each canonical template once', async (
   await expect(page.locator('.pc-bundled-systems .pc-system-list button')).toHaveCount(
     manifest.templateCount - officialCatalog.count,
   )
+  const officialSection = await page.locator('.pc-official-systems').boundingBox()
+  const bundledSection = await page.locator('.pc-bundled-systems').boundingBox()
+  expect(officialSection).not.toBeNull()
+  expect(bundledSection).not.toBeNull()
+  expect(officialSection!.y + officialSection!.height).toBeLessThanOrEqual(bundledSection!.y)
   const browseAll = page.getByRole('button', { name: `Browse all ${officialCatalog.count} official recipes` })
   await expect(browseAll).toBeVisible()
   await browseAll.click()
@@ -375,6 +380,96 @@ test('starter manifest and library expose each canonical template once', async (
   await page.getByLabel('Search recipes').fill('')
   await expect(page.locator('.pc-official-systems .pc-system-list button')).toHaveCount(8)
   await expect(page.getByRole('button', { name: `Browse all ${officialCatalog.count} official recipes` })).toBeVisible()
+})
+
+test('undersized canvas cards grow to reveal their full content', async ({ page }) => {
+  await openApp(page)
+
+  const template = structuredClone(asTemplate('packaging-system-portrait')) as TemplateLike & {
+    id: string
+    title: string
+    blocks: Array<Record<string, unknown>>
+  }
+  template.id = 'full-content-card-test'
+  template.title = 'Full content card test'
+  template.blocks = [
+    {
+      id: 'all-controls',
+      type: 'controls',
+      title: 'All project details',
+      'x-controlIds': template.controls?.map(({ id }) => id),
+      'x-geometry': { x: 80, y: 80, w: 380, h: 90 },
+    },
+    {
+      id: 'primary-output',
+      type: 'output',
+      title: 'Result',
+      sourceId: 'primary',
+      'x-geometry': { x: 520, y: 80, w: 520, h: 520 },
+    },
+    {
+      id: 'full-prompt',
+      type: 'prompt',
+      title: 'Full prompt',
+      'x-geometry': { x: 80, y: 460, w: 380, h: 90 },
+    },
+  ]
+
+  const created = await callTool<{ workspaceId: string }>(page, 'prompt_canvas_create_workspace', {
+    source: { kind: 'definition', template },
+    openAfterCreate: true,
+  })
+  const panel = page.locator('.pc-panel--controls').filter({ hasText: 'All project details' })
+  await expect(panel).toBeVisible()
+  await expect.poll(async () => panel.evaluate((element) => {
+    const body = element.querySelector<HTMLElement>('.pc-panel__body')
+    return body ? body.scrollHeight - body.clientHeight : Number.POSITIVE_INFINITY
+  })).toBeLessThanOrEqual(1)
+  expect(await panel.locator('textarea').evaluateAll((textareas) =>
+    textareas.every((textarea) => textarea.scrollHeight - textarea.clientHeight <= 1),
+  )).toBe(true)
+  const promptPanel = page.locator('.pc-panel--prompt').filter({ hasText: 'Full prompt' })
+  await expect.poll(async () => promptPanel.evaluate((element) => {
+    const body = element.querySelector<HTMLElement>('.pc-panel__body')
+    const textareas = [...element.querySelectorAll('textarea')]
+    return Boolean(body) && body!.scrollHeight - body!.clientHeight <= 1 &&
+      textareas.every((textarea) => textarea.scrollHeight - textarea.clientHeight <= 1)
+  })).toBe(true)
+
+  const inspected = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+    workspaceId: created.workspaceId,
+    include: ['layout'],
+  })
+  const controlsElement = inspected.elements.find(({ semanticId }) => semanticId === 'all-controls')
+  const promptElement = inspected.elements.find(({ semanticId }) => semanticId === 'full-prompt')
+  expect(controlsElement?.height).toBeGreaterThan(90)
+  expect(promptElement?.height).toBeGreaterThan(90)
+  expect(controlsElement!.y + controlsElement!.height!).toBeLessThanOrEqual(promptElement!.y)
+
+  const manuallyMovedY = promptElement!.y + 240
+  const moved = await callTool<{ revision: number }>(page, 'prompt_canvas_update_workspace', {
+    workspaceId: created.workspaceId,
+    expectedRevision: inspected.revision,
+    operations: [{ op: 'move_element', elementId: 'full-prompt', x: promptElement!.x, y: manuallyMovedY }],
+  })
+  await callTool(page, 'prompt_canvas_update_workspace', {
+    workspaceId: created.workspaceId,
+    expectedRevision: moved.revision,
+    operations: [{
+      op: 'set_control',
+      controlId: 'brief',
+      value: 'A deliberately long brief '.repeat(40),
+    }],
+  })
+  await expect.poll(async () => panel.evaluate((element) => {
+    const body = element.querySelector<HTMLElement>('.pc-panel__body')
+    return body ? body.scrollHeight - body.clientHeight : Number.POSITIVE_INFINITY
+  })).toBeLessThanOrEqual(1)
+  const afterContentGrowth = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+    workspaceId: created.workspaceId,
+    include: ['layout'],
+  })
+  expect(afterContentGrowth.elements.find(({ semanticId }) => semanticId === 'full-prompt')?.y).toBe(manuallyMovedY)
 })
 
 test('official retrieval returns summaries, snapshots exact lineage, and keeps saved recipes local', async ({ page }) => {
@@ -598,8 +693,8 @@ test('travel poster opens as a calm five-surface workflow with stable seeded geo
     x: 370,
     y: 480,
     width: 360,
-    height: 360,
   })
+  expect(inspected.elements.find(({ semanticId }) => semanticId === 'text-atmosphere')?.height).toBeGreaterThanOrEqual(360)
   expect(inspected.elements.find(({ semanticId }) => semanticId === 'variation-strip')).toMatchObject({
     x: 790,
     y: 690,

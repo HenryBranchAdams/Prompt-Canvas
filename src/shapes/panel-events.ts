@@ -5,6 +5,12 @@ export const PANEL_ACTION_EVENT = 'prompt-canvas:panel-action'
 export type PanelActionDetail =
   | {
       workspaceId: string
+      type: 'fit-content'
+      semanticId: string
+      height: number
+    }
+  | {
+      workspaceId: string
       type: 'workspace-update'
       operation: WorkspaceUpdateOperation
     }
