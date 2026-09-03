@@ -13,6 +13,10 @@ permissions:
 env:
   PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/.pw-browsers
 
+concurrency:
+  group: capture-collaboration-qa
+  cancel-in-progress: true
+
 jobs:
   capture:
     if: github.actor != 'github-actions[bot]'
@@ -34,7 +38,7 @@ jobs:
         run: |
           npm run dev -- --host 127.0.0.1 > /tmp/prompt-canvas-vite.log 2>&1 &
           for attempt in $(seq 1 60); do
-            if curl -fsS http://127.0.0.1:5173 >/dev/null; then exit 0; fi
+            if curl -fsS http://127.0.0.1:4173 >/dev/null; then exit 0; fi
             sleep 1
           done
           cat /tmp/prompt-canvas-vite.log
@@ -55,4 +59,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "chore: remove temporary collaboration QA capture"
-          git push origin HEAD:polish/codex-collaboration-ux
+          for attempt in 1 2 3; do
+            git fetch origin polish/codex-collaboration-ux
+            if git rebase origin/polish/codex-collaboration-ux && git push origin HEAD:polish/codex-collaboration-ux; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 2))
+          done
+          exit 1
