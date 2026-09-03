@@ -107,7 +107,7 @@ const SLOT_ROUTING_TEMPLATE = {
     provider: 'codex',
     capability: 'image-generation',
     delivery: 'webmcp-import',
-    operations: ['generate', 'edit', 'upscale'],
+    operations: ['generate', 'edit', 'variation', 'upscale'],
     defaultOperation: 'edit',
     preferredMimeTypes: ['image/png'],
   },
@@ -128,6 +128,13 @@ const SLOT_ROUTING_TEMPLATE = {
       role: 'comparison',
       kind: 'image',
       operations: ['generate'],
+    },
+    {
+      id: 'variations',
+      label: 'Variations',
+      role: 'variation',
+      kind: 'image-set',
+      operations: ['variation'],
     },
   ],
   workflow: {
@@ -153,6 +160,7 @@ const SLOT_ROUTING_TEMPLATE = {
     { id: 'workflow-block', type: 'workflow', title: 'Workflow', region: 'left', order: 20 },
     { id: 'primary-block', type: 'output', title: 'Primary output', sourceId: 'primary', region: 'right', order: 10 },
     { id: 'secondary-block', type: 'output', title: 'Generate-only secondary', sourceId: 'secondary', region: 'right', order: 20 },
+    { id: 'variations-block', type: 'variations', title: 'Variations', sourceId: 'variations', region: 'right', order: 30 },
   ],
   compatibility: { minimumAppVersion: '0.1.0', templateFamily: 'open' },
 } as const
@@ -671,6 +679,146 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
   await expect(page.locator('img[alt="Codex E2E image"]')).toBeVisible()
 })
 
+test('result actions prepare a lineage-safe variation and explicitly promote it', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+  await page.waitForFunction(
+    () =>
+      Object.keys(
+        (window as unknown as { __promptCanvasTools: Record<string, RegisteredTool> })
+          .__promptCanvasTools,
+      ).length === (window as unknown as { __promptCanvasExpectedToolNames: string[] }).__promptCanvasExpectedToolNames.length,
+  )
+
+  const created = await callTool<{ workspaceId: string }>(page, 'prompt_canvas_create_workspace', {
+    source: { kind: 'template', templateId: 'create-from-words', values: {} },
+    openAfterCreate: true,
+  })
+  const parentContext = await callTool<{
+    requestId: string
+    generationRevision: number
+    promptDigest: string
+  }>(page, 'prompt_canvas_get_generation_context', {
+    workspaceId: created.workspaceId,
+    operation: 'generate',
+    outputSlotId: 'primary',
+  })
+  const parent = await callTool<{ assetIds: string[] }>(page, 'prompt_canvas_add_generated_asset', {
+    workspaceId: created.workspaceId,
+    requestId: parentContext.requestId,
+    generationRevision: parentContext.generationRevision,
+    assets: [{
+      source: { kind: 'data_url', dataUrl: TINY_PNG },
+      mimeType: 'image/png',
+      label: 'Original result',
+      outputSlotId: 'primary',
+      operation: 'generate',
+      promptDigest: parentContext.promptDigest,
+    }],
+  })
+  const parentAssetId = parent.assetIds[0]
+
+  await page.locator('.pc-more-menu > summary').click()
+  await page.getByRole('button', { name: 'Diagnostics' }).click()
+  await page.locator('.pc-layer-list button').filter({ hasText: 'Result' }).click()
+  const result = page.locator('.pc-panel--output.is-editing').filter({ hasText: 'Result' })
+  await expect(result.getByRole('button', { name: 'Vary' })).toBeVisible()
+
+  await page.evaluate(() => {
+    window.addEventListener('prompt-canvas:panel-action', ((event: CustomEvent) => {
+      const detail = event.detail as { type?: string }
+      if (detail.type === 'prepare-generation') {
+        Object.defineProperty(window, '__lastPrepareGeneration', {
+          configurable: true,
+          value: detail,
+        })
+      }
+    }) as EventListener)
+  })
+  await result.getByRole('button', { name: 'Vary' }).click()
+  await expect(page.locator('.pc-context-summary')).toContainText('variation')
+  await expect(page.locator('.pc-context-summary')).toContainText('variations')
+  const varyAction = await page.evaluate(() =>
+    (window as unknown as { __lastPrepareGeneration: unknown }).__lastPrepareGeneration,
+  )
+  expect(varyAction).toMatchObject({
+    workspaceId: created.workspaceId,
+    type: 'prepare-generation',
+    operation: 'variation',
+    outputSlotId: 'variations',
+    selectedOutputIds: [parentAssetId],
+  })
+  await page.getByRole('button', { name: 'Done' }).click()
+
+  const variationContext = await callTool<{
+    requestId: string
+    generationRevision: number
+    promptDigest: string
+    selection: { assetIds: string[] }
+  }>(page, 'prompt_canvas_get_generation_context', {
+    workspaceId: created.workspaceId,
+    operation: 'variation',
+    outputSlotId: 'variations',
+    selectedOutputIds: [parentAssetId],
+  })
+  expect(variationContext.selection.assetIds).toEqual([parentAssetId])
+  const variationImage = await page.evaluate(() => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 2
+    canvas.height = 2
+    const context = canvas.getContext('2d')
+    if (!context) throw new Error('Canvas context is unavailable.')
+    context.fillStyle = '#7c3aed'
+    context.fillRect(0, 0, 2, 2)
+    return canvas.toDataURL('image/png')
+  })
+  const variation = await callTool<{ assetIds: string[]; rejectedAssets: unknown[] }>(page, 'prompt_canvas_add_generated_asset', {
+    workspaceId: created.workspaceId,
+    requestId: variationContext.requestId,
+    generationRevision: variationContext.generationRevision,
+    assets: [{
+      source: { kind: 'data_url', dataUrl: variationImage },
+      mimeType: 'image/png',
+      label: 'Chosen variation',
+      outputSlotId: 'variations',
+      operation: 'variation',
+      parentAssetIds: [parentAssetId],
+      promptDigest: variationContext.promptDigest,
+    }],
+  })
+  expect(variation.rejectedAssets).toEqual([])
+  const variationAssetId = variation.assetIds[0]
+
+  await page.locator('.pc-layer-list button').filter({ hasText: 'Variations' }).click()
+  const variations = page.locator('.pc-panel--variations.is-editing')
+  await variations.getByRole('button', { name: /Chosen variation/ }).click()
+  await expect(variations.getByRole('button', { name: 'Promote to result' })).toBeVisible()
+  await variations.getByRole('button', { name: 'Promote to result' }).click()
+
+  await expect.poll(async () => {
+    const inspected = await callTool<{
+      outputs: Array<{ slot: { id: string }; promotedAssetId: string | null }>
+    }>(page, 'prompt_canvas_inspect', {
+      workspaceId: created.workspaceId,
+      include: ['outputs'],
+    })
+    return inspected.outputs.find((output) => output.slot.id === 'primary')?.promotedAssetId
+  }).toBe(variationAssetId)
+  await expect(variations.getByRole('button', { name: 'Current result' })).toBeDisabled()
+
+  await flushTldrawPersistence(page)
+  await page.reload()
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+  const restored = await callTool<{
+    outputs: Array<{ slot: { id: string }; promotedAssetId: string | null }>
+  }>(page, 'prompt_canvas_inspect', {
+    workspaceId: created.workspaceId,
+    include: ['outputs'],
+  })
+  expect(restored.outputs.find((output) => output.slot.id === 'primary')?.promotedAssetId).toBe(variationAssetId)
+  await expect(page.locator('img[alt="Chosen variation"]')).toBeVisible()
+})
+
 test('native-sized generated assets use durable local asset storage', async ({ page }) => {
   await page.goto('/')
   await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
@@ -1109,6 +1257,7 @@ test('output slots negotiate operations and workflow stages reach generation con
   })
   await expect(secondary.locator('img[alt="Routing image"]')).toBeVisible()
   await expect(secondary.getByRole('button', { name: 'Edit with Codex' })).toHaveCount(0)
+  await expect(secondary.getByRole('button', { name: 'Vary' })).toHaveCount(0)
   await expect(secondary.getByRole('button', { name: 'Upscale' })).toHaveCount(0)
 
   const workflow = page.locator('.pc-panel--workflow').filter({ hasText: 'Plan the explanation' })
