@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   apply-and-verify:
+    # This one-shot job replaces itself with the verified source changes.
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 30
