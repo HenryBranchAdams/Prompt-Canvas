@@ -38,11 +38,32 @@ release is accepted only when its external records identify the same source comm
 These results are local evidence. Exact-head CI, deployment, public access, and real-host image return remain separate
 external gates attached to the released commit.
 
+## Original 42-recipe collection candidate — 2026-09-03
+
+- `npm run check`: passed; 61 recipes and eleven tool schemas, zero validation errors or compatibility warnings,
+  81/81 deterministic tests, TypeScript, lint with zero errors and nine existing Fast Refresh warnings, and the
+  production build.
+- Full Chromium suite: 21/21 passed on an isolated local port because the default 4173 port was already serving an
+  unrelated local application. The first attempt correctly failed against that unrelated server; it was not a product
+  regression.
+- Deterministic catalog validation: 52 official recipes at
+  `sha256:e48c2d7967653846c7c97892954421d9ad8476444ff2d42c1c9737a329a6385a`, with 15 ordinary-language
+  top-result evaluations passing against SQLite FTS5. The generated monolithic seed and 32 staged Sites migration
+  chunks both passed idempotency and atomic-publication validation.
+- Independent-expression audit: all 42 new prompt bodies were compared with the fenced prompt examples in the
+  external intake corpus. No shared eight-word sequence was found; the highest normalized sequence similarity was
+  0.114.
+- `npm audit --json`: zero vulnerabilities across 417 dependency records.
+- `git diff --check`: passed, and the public tree contains no source-corpus path, author handle, copied research text,
+  adapted template metadata, private image bytes, or third-party assets.
+
+These are candidate-branch results. CI, D1 migration, deployment, and native-host generation remain separate gates and
+must not be inferred from the local checks.
+
 ## Public-source boundary
 
-The public starter pack contains 19 first-party original recipes. Ten outcome-first recipes form the official D1
-catalog and use owned preview images; nine advanced creative systems remain bundled locally. Adapted prompt expression,
-including the 42 rewritten third-party-derived systems in the external image-prompt index, unresolved third-party
-research material, historical generated-output fixtures, and their source-specific qualification notes are excluded.
-The source index remains a deferred intake set pending clear redistribution rights or independently authored
-first-party replacements.
+The public starter pack contains 61 first-party original recipes. Fifty-two recipes form the official D1 catalog and
+use owned first-party preview assets; nine advanced creative systems remain bundled locally. The 42 task-focused
+systems are independently authored replacements based only on a high-level inventory of creative jobs. Adapted prompt
+expression, the external image-prompt corpus itself, unresolved third-party research material, historical generated-output
+fixtures, and source-specific qualification notes remain excluded.

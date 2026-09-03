@@ -5,11 +5,11 @@ import type { PromptWorkspaceTemplate, StarterManifest } from '../workspaces/typ
 export const starterManifest = {
   "schema": "prompt-canvas.starter-pack@2",
   "id": "core-starter-pack",
-  "version": 3,
+  "version": 4,
   "title": "Prompt Canvas Recipe Library",
-  "description": "Six quick-start creative recipes and nine original advanced creative systems for Prompt Canvas.",
+  "description": "Ten quick-start recipes, forty-two original task-focused systems, and nine advanced creative systems for Prompt Canvas.",
   "templateSchema": "../schemas/prompt-workspace-template.schema.json",
-  "templateCount": 19,
+  "templateCount": 61,
   "templates": [
     {
       "id": "create-from-words",
@@ -559,11 +559,1927 @@ export const starterManifest = {
         "url": null,
         "promptUsage": "original"
       }
+    },
+    {
+      "id": "low-vantage-encounter",
+      "path": "templates/low-vantage-encounter.workspace.yaml",
+      "title": "Low-vantage encounter",
+      "description": "Create an intimate portrait built around a surprising downward point of view.",
+      "category": "portrait-camera",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 20,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Low-vantage encounter",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "floor-level-presence",
+      "path": "templates/floor-level-presence.workspace.yaml",
+      "title": "Floor-level presence",
+      "description": "Turn a simple stance into a confident environmental portrait from ground height.",
+      "category": "portrait-camera",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 21,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Floor-level presence",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "near-lens-depth",
+      "path": "templates/near-lens-depth.workspace.yaml",
+      "title": "Near-lens depth portrait",
+      "description": "Use one near-camera gesture to create dramatic depth while keeping the person readable.",
+      "category": "portrait-camera",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 22,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Near-lens depth portrait",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "layered-reflection-portrait",
+      "path": "templates/layered-reflection-portrait.workspace.yaml",
+      "title": "Layered reflection portrait",
+      "description": "Build a cinematic portrait where glass, weather, or light reveals the subject in layers.",
+      "category": "portrait-camera",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 23,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Layered reflection portrait",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "soft-material-hard-space",
+      "path": "templates/soft-material-hard-space.workspace.yaml",
+      "title": "Soft material, hard space",
+      "description": "Make tactile clothing or objects stand out against severe architecture.",
+      "category": "portrait-camera",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 24,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Soft material, hard space",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "cast-inside-letterforms",
+      "path": "templates/cast-inside-letterforms.workspace.yaml",
+      "title": "Cast inside letterforms",
+      "description": "Arrange a group through the spaces of oversized typography.",
+      "category": "type-as-space",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 25,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Cast inside letterforms",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "type-meets-silhouette",
+      "path": "templates/type-meets-silhouette.workspace.yaml",
+      "title": "Type meets silhouette",
+      "description": "Pair one sculptural silhouette with typography that reacts to the body.",
+      "category": "type-as-space",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 26,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Type meets silhouette",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "walkable-word",
+      "path": "templates/walkable-word.workspace.yaml",
+      "title": "Walkable word",
+      "description": "Turn a short word into a believable place a subject can cross or enter.",
+      "category": "type-as-space",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 27,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Walkable word",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "material-lettering",
+      "path": "templates/material-lettering.workspace.yaml",
+      "title": "Material lettering",
+      "description": "Construct a headline from a real material and show its physical behavior.",
+      "category": "type-as-space",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 28,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Material lettering",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "perspective-word-plane",
+      "path": "templates/perspective-word-plane.workspace.yaml",
+      "title": "Perspective word plane",
+      "description": "Lay crisp lettering into deep perspective as a floor, wall, or horizon.",
+      "category": "type-as-space",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 29,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Perspective word plane",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "foreground-action-poster",
+      "path": "templates/foreground-action-poster.workspace.yaml",
+      "title": "Foreground action poster",
+      "description": "Make a real action and its near-camera tool drive a bold campaign image.",
+      "category": "campaign-perspective",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 30,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Foreground action poster",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "shared-object-portrait",
+      "path": "templates/shared-object-portrait.workspace.yaml",
+      "title": "Shared-object portrait",
+      "description": "Connect two people through one object that crosses the frame.",
+      "category": "campaign-perspective",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 31,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Shared-object portrait",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "thin-horizon-color-field",
+      "path": "templates/thin-horizon-color-field.workspace.yaml",
+      "title": "Thin horizon color field",
+      "description": "Use a large field of color and one precise horizon to create a restrained poster.",
+      "category": "editorial-poster",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 32,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Thin horizon color field",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "framed-borrowed-view",
+      "path": "templates/framed-borrowed-view.workspace.yaml",
+      "title": "Framed borrowed view",
+      "description": "Compose a place through a meaningful opening, reflection, or interior frame.",
+      "category": "editorial-poster",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 33,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Framed borrowed view",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "era-palette-editorial",
+      "path": "templates/era-palette-editorial.workspace.yaml",
+      "title": "Era palette editorial",
+      "description": "Translate a period mood into an original palette and print treatment without imitation.",
+      "category": "editorial-poster",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 34,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Era palette editorial",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "two-sided-city-story",
+      "path": "templates/two-sided-city-story.workspace.yaml",
+      "title": "Two-sided city story",
+      "description": "Show two truthful sides of one city meeting in a narrow transition.",
+      "category": "editorial-poster",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 35,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Two-sided city story",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "ink-weather-motion",
+      "path": "templates/ink-weather-motion.workspace.yaml",
+      "title": "Ink-weather motion",
+      "description": "Merge a monochrome action photograph with environmental marks that feel hand-made.",
+      "category": "editorial-poster",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 36,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Ink-weather motion",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "single-accent-documentary",
+      "path": "templates/single-accent-documentary.workspace.yaml",
+      "title": "Single-accent documentary",
+      "description": "Build an editorial image from documentary monochrome and one disciplined accent color.",
+      "category": "editorial-poster",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 37,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Single-accent documentary",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "transformation-seam",
+      "path": "templates/transformation-seam.workspace.yaml",
+      "title": "Transformation seam",
+      "description": "Show one subject changing language, material, or state through an expressive seam.",
+      "category": "editorial-poster",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 38,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Transformation seam",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "field-revealed-form",
+      "path": "templates/field-revealed-form.workspace.yaml",
+      "title": "Field-revealed form",
+      "description": "Reveal a subject only through the way a precise line field bends around it.",
+      "category": "editorial-poster",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 39,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Field-revealed form",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "one-symbol-poster",
+      "path": "templates/one-symbol-poster.workspace.yaml",
+      "title": "One-symbol poster",
+      "description": "Create a quiet cinematic poster where one small colored mark carries the meaning.",
+      "category": "editorial-poster",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 40,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "One-symbol poster",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "invented-guardian-scroll",
+      "path": "templates/invented-guardian-scroll.workspace.yaml",
+      "title": "Invented guardian scroll",
+      "description": "Design an original folk guardian with a coherent role, implement, and companion.",
+      "category": "illustration-story",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 41,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Invented guardian scroll",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "colossal-realm-scale",
+      "path": "templates/colossal-realm-scale.workspace.yaml",
+      "title": "Colossal realm scale",
+      "description": "Use a tiny traveler to make an impossible realm and its resident feel truly vast.",
+      "category": "illustration-story",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 42,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Colossal realm scale",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "branching-dream-tableau",
+      "path": "templates/branching-dream-tableau.workspace.yaml",
+      "title": "Branching dream tableau",
+      "description": "Expand a simple dream into one central event with several connected side stories.",
+      "category": "illustration-story",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 43,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Branching dream tableau",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "story-led-cover",
+      "path": "templates/story-led-cover.workspace.yaml",
+      "title": "Story-led book cover",
+      "description": "Design an original cover from the story conflict, place, and emotional promise.",
+      "category": "illustration-story",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 44,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Story-led book cover",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "moving-window-story",
+      "path": "templates/moving-window-story.workspace.yaml",
+      "title": "Moving window story",
+      "description": "Tell a journey through an angled passenger view with layered motion and reflection.",
+      "category": "illustration-story",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 45,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Moving window story",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "collectible-field-guide",
+      "path": "templates/collectible-field-guide.workspace.yaml",
+      "title": "Collectible field guide",
+      "description": "Turn a topic into a beautiful visual learning plate with a clear information hierarchy.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 46,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Collectible field guide",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "object-anatomy-exhibit",
+      "path": "templates/object-anatomy-exhibit.workspace.yaml",
+      "title": "Object anatomy exhibit",
+      "description": "Explain an object through a museum-style hero, structure, materials, and callouts.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 47,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Object anatomy exhibit",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "packaging-system-portrait",
+      "path": "templates/packaging-system-portrait.workspace.yaml",
+      "title": "Packaging system portrait",
+      "description": "Present a coordinated family of packages as one proposal-grade still life.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 48,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Packaging system portrait",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "miniature-working-world",
+      "path": "templates/miniature-working-world.workspace.yaml",
+      "title": "Miniature working world",
+      "description": "Build a dense isometric institution with clear zones, circulation, and tiny activity.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 49,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Miniature working world",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "world-within-outline",
+      "path": "templates/world-within-outline.workspace.yaml",
+      "title": "World within an outline",
+      "description": "Choose a meaningful silhouette and place a complete narrative world inside it.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 50,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "World within an outline",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "character-relationship-map",
+      "path": "templates/character-relationship-map.workspace.yaml",
+      "title": "Character relationship map",
+      "description": "Make a cast relationship system feel like a designed story poster rather than a diagram.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 51,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Character relationship map",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "guided-discovery-book",
+      "path": "templates/guided-discovery-book.workspace.yaml",
+      "title": "Guided discovery picture book",
+      "description": "Create a playful learning spread that guides the eye through a place and its discoveries.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 52,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Guided discovery picture book",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "movement-instruction-plate",
+      "path": "templates/movement-instruction-plate.workspace.yaml",
+      "title": "Movement instruction plate",
+      "description": "Explain a physical movement with readable phases, anchors, and safety cues.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 53,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Movement instruction plate",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "terrain-specimen-archive",
+      "path": "templates/terrain-specimen-archive.workspace.yaml",
+      "title": "Terrain specimen archive",
+      "description": "Organize one landscape as a layered physical model with labeled ecological evidence.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 54,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Terrain specimen archive",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "pixel-world-atlas",
+      "path": "templates/pixel-world-atlas.workspace.yaml",
+      "title": "Pixel world atlas",
+      "description": "Create a consistent pixel-art asset sheet for one original world.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 55,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Pixel world atlas",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "shadow-led-ensemble",
+      "path": "templates/shadow-led-ensemble.workspace.yaml",
+      "title": "Shadow-led ensemble",
+      "description": "Use cast shadows to connect an ensemble and suggest unseen relationships.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "featured": false,
+      "order": 56,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Shadow-led ensemble",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "hospitality-identity-matrix",
+      "path": "templates/hospitality-identity-matrix.workspace.yaml",
+      "title": "Hospitality identity matrix",
+      "description": "Show a restaurant identity across food, place, service objects, and printed touchpoints.",
+      "category": "knowledge-brand",
+      "family": "parameterized",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "featured": false,
+      "order": 57,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Hospitality identity matrix",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "relocate-portrait-world",
+      "path": "templates/relocate-portrait-world.workspace.yaml",
+      "title": "Relocate a portrait world",
+      "description": "Keep the person intact while rebuilding the surrounding world around them.",
+      "category": "photo-transformation",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "featured": false,
+      "order": 58,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Relocate a portrait world",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "landmark-shape-remix",
+      "path": "templates/landmark-shape-remix.workspace.yaml",
+      "title": "Landmark shape remix",
+      "description": "Translate a source landmark into bold geometric color while preserving its recognition cues.",
+      "category": "photo-transformation",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "featured": false,
+      "order": 59,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Landmark shape remix",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "city-palette-comparison",
+      "path": "templates/city-palette-comparison.workspace.yaml",
+      "title": "City palette comparison",
+      "description": "Create two coordinated interpretations of a city photo with distinct pastel atmospheres.",
+      "category": "photo-transformation",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "featured": false,
+      "order": 60,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "City palette comparison",
+        "url": null,
+        "promptUsage": "original"
+      }
+    },
+    {
+      "id": "pet-storybook-scene",
+      "path": "templates/pet-storybook-scene.workspace.yaml",
+      "title": "Pet storybook scene",
+      "description": "Place a real pet into an original illustrated story while keeping its identity recognizable.",
+      "category": "photo-transformation",
+      "family": "reference-transformation",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "featured": false,
+      "order": 61,
+      "source": {
+        "creator": "Prompt Canvas",
+        "title": "Pet storybook scene",
+        "url": null,
+        "promptUsage": "original"
+      }
     }
   ]
 } as const satisfies StarterManifest
 
 export const starterTemplates = {
+  "branching-dream-tableau": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "branching-dream-tableau",
+    "version": 1,
+    "title": "Branching dream tableau",
+    "description": "Expand a simple dream into one central event with several connected side stories.",
+    "category": "illustration-story",
+    "tags": [
+      "illustration story",
+      "child dream illustration",
+      "many mini stories one image"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Branching dream tableau",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/branching-dream-tableau.svg",
+      "alt": "First-party graphic preview for Branching dream tableau, illustrating connected storybook world."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Expand a simple dream into one central event with several connected side stories. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "The moon fell into a garden and the insects organized a rescue"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "connected storybook world"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "small episodes share the same geography, characters, and emotional tone"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "The moon fell into a garden and the insects organized a rescue",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "connected storybook world",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "small episodes share the same geography, characters, and emotional tone",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Expand a simple dream into one central event with several connected side stories.",
+      "intentAliases": [
+        "child dream illustration",
+        "many mini stories one image",
+        "branching storybook scene"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/branching-dream-tableau.svg",
+        "alt": "First-party graphic preview for Branching dream tableau, illustrating connected storybook world."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining connected storybook world method and this composition obligation: small episodes share the same geography, characters, and emotional tone.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "cast-inside-letterforms": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "cast-inside-letterforms",
+    "version": 1,
+    "title": "Cast inside letterforms",
+    "description": "Arrange a group through the spaces of oversized typography.",
+    "category": "type-as-space",
+    "tags": [
+      "type as space",
+      "people inside letters",
+      "group typography poster"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Cast inside letterforms",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/cast-inside-letterforms.svg",
+      "alt": "First-party graphic preview for Cast inside letterforms, illustrating people inhabiting giant letters."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Arrange a group through the spaces of oversized typography. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A community radio crew with distinct roles and personalities"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "people inhabiting giant letters"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "scale, overlap, and negative space create the hierarchy"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A community radio crew with distinct roles and personalities",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "people inhabiting giant letters",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "scale, overlap, and negative space create the hierarchy",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Arrange a group through the spaces of oversized typography.",
+      "intentAliases": [
+        "people inside letters",
+        "group typography poster",
+        "cast around giant word"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/cast-inside-letterforms.svg",
+        "alt": "First-party graphic preview for Cast inside letterforms, illustrating people inhabiting giant letters."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining people inhabiting giant letters method and this composition obligation: scale, overlap, and negative space create the hierarchy.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
   "change-background": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "change-background",
@@ -1599,6 +3515,736 @@ export const starterTemplates = {
       "typography"
     ]
   },
+  "character-relationship-map": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "character-relationship-map",
+    "version": 1,
+    "title": "Character relationship map",
+    "description": "Make a cast relationship system feel like a designed story poster rather than a diagram.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "character constellation poster",
+      "cast relationship map"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Character relationship map",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/character-relationship-map.svg",
+      "alt": "First-party graphic preview for Character relationship map, illustrating character constellation."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Make a cast relationship system feel like a designed story poster rather than a diagram. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "Eight residents of a cooperative house preparing for a difficult vote"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "character constellation"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "placement, gaze, objects, and subtle links reveal alliances and tensions"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "Eight residents of a cooperative house preparing for a difficult vote",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "character constellation",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "placement, gaze, objects, and subtle links reveal alliances and tensions",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Make a cast relationship system feel like a designed story poster rather than a diagram.",
+      "intentAliases": [
+        "character constellation poster",
+        "cast relationship map",
+        "story characters visualized"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/character-relationship-map.svg",
+        "alt": "First-party graphic preview for Character relationship map, illustrating character constellation."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining character constellation method and this composition obligation: placement, gaze, objects, and subtle links reveal alliances and tensions.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "city-palette-comparison": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "city-palette-comparison",
+    "version": 1,
+    "title": "City palette comparison",
+    "description": "Create two coordinated interpretations of a city photo with distinct pastel atmospheres.",
+    "category": "photo-transformation",
+    "tags": [
+      "photo transformation",
+      "pastel city comparison",
+      "two color versions of city"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "City palette comparison",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/city-palette-comparison.svg",
+      "alt": "First-party graphic preview for City palette comparison, illustrating paired color interpretation."
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "variations",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "edit",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Create two coordinated interpretations of a city photo with distinct pastel atmospheres. Using the source image as factual ground truth, create an original transformation for {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "Compare a dawn palette with an evening palette for this street scene"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "paired color interpretation"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "architecture and composition match across both treatments"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "Compare a dawn palette with an evening palette for this street scene",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "paired color interpretation",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "architecture and composition match across both treatments",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source-photo",
+        "type": "references",
+        "title": "1. Source photo",
+        "sourceId": "source-image",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 80,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "2. Creative direction",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 340,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "3. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "4. Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "5. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 610,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Create two coordinated interpretations of a city photo with distinct pastel atmospheres.",
+      "intentAliases": [
+        "pastel city comparison",
+        "two color versions of city",
+        "paired urban palette"
+      ],
+      "intents": [
+        "edit"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition"
+      ],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "One source image and a short direction"
+      ],
+      "inputSummary": [
+        "One photo and a creative direction"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps source identity",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/city-palette-comparison.svg",
+        "alt": "First-party graphic preview for City palette comparison, illustrating paired color interpretation."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "references": [
+      {
+        "id": "source-image",
+        "label": "Source image",
+        "role": "source-photo",
+        "description": "The photo to transform.",
+        "required": true,
+        "acceptedMimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "preserve": [
+          "identity and defining features",
+          "original composition unless the brief changes it"
+        ],
+        "instructions": "Use this image as the factual source. Do not invent changes outside the stated brief."
+      }
+    ],
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining paired color interpretation method and this composition obligation: architecture and composition match across both treatments.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      },
+      {
+        "id": "source-truth",
+        "label": "Source truth",
+        "description": "architecture and composition match across both treatments",
+        "strength": "must",
+        "appliesTo": [
+          "source-image"
+        ]
+      }
+    ]
+  },
   "collectible-card": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "collectible-card",
@@ -1854,6 +4500,694 @@ export const starterTemplates = {
       "resultEmphasis": "hero",
       "showPromptByDefault": false
     }
+  },
+  "collectible-field-guide": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "collectible-field-guide",
+    "version": 1,
+    "title": "Collectible field guide",
+    "description": "Turn a topic into a beautiful visual learning plate with a clear information hierarchy.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "encyclopedia plate",
+      "visual field guide"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Collectible field guide",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/collectible-field-guide.svg",
+      "alt": "First-party graphic preview for Collectible field guide, illustrating hero-and-callout knowledge page."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Turn a topic into a beautiful visual learning plate with a clear information hierarchy. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "Pollinator-friendly balcony plants"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "hero-and-callout knowledge page"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "visual evidence, labels, and modules work as one coherent page"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "Pollinator-friendly balcony plants",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "hero-and-callout knowledge page",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "visual evidence, labels, and modules work as one coherent page",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Turn a topic into a beautiful visual learning plate with a clear information hierarchy.",
+      "intentAliases": [
+        "encyclopedia plate",
+        "visual field guide",
+        "collectible knowledge page"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/collectible-field-guide.svg",
+        "alt": "First-party graphic preview for Collectible field guide, illustrating hero-and-callout knowledge page."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining hero-and-callout knowledge page method and this composition obligation: visual evidence, labels, and modules work as one coherent page.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "colossal-realm-scale": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "colossal-realm-scale",
+    "version": 1,
+    "title": "Colossal realm scale",
+    "description": "Use a tiny traveler to make an impossible realm and its resident feel truly vast.",
+    "category": "illustration-story",
+    "tags": [
+      "illustration story",
+      "tiny person giant world",
+      "colossal fantasy landscape"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Colossal realm scale",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/colossal-realm-scale.svg",
+      "alt": "First-party graphic preview for Colossal realm scale, illustrating human scale against colossus."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Use a tiny traveler to make an impossible realm and its resident feel truly vast. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A messenger entering a city grown through the ribs of a cloud creature"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "human scale against colossus"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "layered occlusion and atmosphere lock the scale"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A messenger entering a city grown through the ribs of a cloud creature",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "human scale against colossus",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "layered occlusion and atmosphere lock the scale",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Use a tiny traveler to make an impossible realm and its resident feel truly vast.",
+      "intentAliases": [
+        "tiny person giant world",
+        "colossal fantasy landscape",
+        "impossible scale scene"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/colossal-realm-scale.svg",
+        "alt": "First-party graphic preview for Colossal realm scale, illustrating human scale against colossus."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining human scale against colossus method and this composition obligation: layered occlusion and atmosphere lock the scale.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
   },
   "create-from-words": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
@@ -2207,6 +5541,351 @@ export const starterTemplates = {
       "showPromptByDefault": false
     }
   },
+  "era-palette-editorial": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "era-palette-editorial",
+    "version": 1,
+    "title": "Era palette editorial",
+    "description": "Translate a period mood into an original palette and print treatment without imitation.",
+    "category": "editorial-poster",
+    "tags": [
+      "editorial poster",
+      "retro palette poster",
+      "period color study"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Era palette editorial",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/era-palette-editorial.svg",
+      "alt": "First-party graphic preview for Era palette editorial, illustrating period-informed palette."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Translate a period mood into an original palette and print treatment without imitation. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A neighborhood night market remembered from the late 1970s"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "period-informed palette"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "materials, color limits, and layout evoke an era without copying a known work"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A neighborhood night market remembered from the late 1970s",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "period-informed palette",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "materials, color limits, and layout evoke an era without copying a known work",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Translate a period mood into an original palette and print treatment without imitation.",
+      "intentAliases": [
+        "retro palette poster",
+        "period color study",
+        "historical editorial mood"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/era-palette-editorial.svg",
+        "alt": "First-party graphic preview for Era palette editorial, illustrating period-informed palette."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining period-informed palette method and this composition obligation: materials, color limits, and layout evoke an era without copying a known work.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
   "expand-reframe": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "expand-reframe",
@@ -2547,6 +6226,1039 @@ export const starterTemplates = {
       "showPromptByDefault": false
     }
   },
+  "field-revealed-form": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "field-revealed-form",
+    "version": 1,
+    "title": "Field-revealed form",
+    "description": "Reveal a subject only through the way a precise line field bends around it.",
+    "category": "editorial-poster",
+    "tags": [
+      "editorial poster",
+      "op art object",
+      "form from lines"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Field-revealed form",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/field-revealed-form.svg",
+      "alt": "First-party graphic preview for Field-revealed form, illustrating deformed-line volume."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Reveal a subject only through the way a precise line field bends around it. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A violin resting within parallel contour lines"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "deformed-line volume"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "line spacing and flow describe volume without a conventional outline"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A violin resting within parallel contour lines",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "deformed-line volume",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "line spacing and flow describe volume without a conventional outline",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Reveal a subject only through the way a precise line field bends around it.",
+      "intentAliases": [
+        "op art object",
+        "form from lines",
+        "contour field poster"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/field-revealed-form.svg",
+        "alt": "First-party graphic preview for Field-revealed form, illustrating deformed-line volume."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining deformed-line volume method and this composition obligation: line spacing and flow describe volume without a conventional outline.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "floor-level-presence": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "floor-level-presence",
+    "version": 1,
+    "title": "Floor-level presence",
+    "description": "Turn a simple stance into a confident environmental portrait from ground height.",
+    "category": "portrait-camera",
+    "tags": [
+      "portrait camera",
+      "camera on the floor portrait",
+      "strong low angle stance"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Floor-level presence",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/floor-level-presence.svg",
+      "alt": "First-party graphic preview for Floor-level presence, illustrating ground-level upward view."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Turn a simple stance into a confident environmental portrait from ground height. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A ceramicist pausing beside a workbench"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "ground-level upward view"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "the nearest foreground anchors the frame without distorting the face"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A ceramicist pausing beside a workbench",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "ground-level upward view",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "the nearest foreground anchors the frame without distorting the face",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Turn a simple stance into a confident environmental portrait from ground height.",
+      "intentAliases": [
+        "camera on the floor portrait",
+        "strong low angle stance",
+        "upward lifestyle photo"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/floor-level-presence.svg",
+        "alt": "First-party graphic preview for Floor-level presence, illustrating ground-level upward view."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining ground-level upward view method and this composition obligation: the nearest foreground anchors the frame without distorting the face.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "foreground-action-poster": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "foreground-action-poster",
+    "version": 1,
+    "title": "Foreground action poster",
+    "description": "Make a real action and its near-camera tool drive a bold campaign image.",
+    "category": "campaign-perspective",
+    "tags": [
+      "campaign perspective",
+      "huge foreground object poster",
+      "action perspective campaign"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Foreground action poster",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/foreground-action-poster.svg",
+      "alt": "First-party graphic preview for Foreground action poster, illustrating action-linked foreground."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Make a real action and its near-camera tool drive a bold campaign image. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A baker sliding bread from a stone oven"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "action-linked foreground"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "the hand, tool, and body form one readable physical chain"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A baker sliding bread from a stone oven",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "action-linked foreground",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "the hand, tool, and body form one readable physical chain",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Make a real action and its near-camera tool drive a bold campaign image.",
+      "intentAliases": [
+        "huge foreground object poster",
+        "action perspective campaign",
+        "tool close to camera"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/foreground-action-poster.svg",
+        "alt": "First-party graphic preview for Foreground action poster, illustrating action-linked foreground."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining action-linked foreground method and this composition obligation: the hand, tool, and body form one readable physical chain.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
   "four-directions": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "four-directions",
@@ -2774,6 +7486,2458 @@ export const starterTemplates = {
       "resultEmphasis": "hero",
       "showPromptByDefault": false
     }
+  },
+  "framed-borrowed-view": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "framed-borrowed-view",
+    "version": 1,
+    "title": "Framed borrowed view",
+    "description": "Compose a place through a meaningful opening, reflection, or interior frame.",
+    "category": "editorial-poster",
+    "tags": [
+      "editorial poster",
+      "scene through doorway",
+      "borrowed view poster"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Framed borrowed view",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/framed-borrowed-view.svg",
+      "alt": "First-party graphic preview for Framed borrowed view, illustrating view-within-a-view."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Compose a place through a meaningful opening, reflection, or interior frame. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A harbor seen through a laundromat doorway at blue hour"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "view-within-a-view"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "foreground context and distant view tell one connected story"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A harbor seen through a laundromat doorway at blue hour",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "view-within-a-view",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "foreground context and distant view tell one connected story",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Compose a place through a meaningful opening, reflection, or interior frame.",
+      "intentAliases": [
+        "scene through doorway",
+        "borrowed view poster",
+        "environmental frame composition"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/framed-borrowed-view.svg",
+        "alt": "First-party graphic preview for Framed borrowed view, illustrating view-within-a-view."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining view-within-a-view method and this composition obligation: foreground context and distant view tell one connected story.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "guided-discovery-book": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "guided-discovery-book",
+    "version": 1,
+    "title": "Guided discovery picture book",
+    "description": "Create a playful learning spread that guides the eye through a place and its discoveries.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "educational picture book spread",
+      "guided tour illustration"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Guided discovery picture book",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/guided-discovery-book.svg",
+      "alt": "First-party graphic preview for Guided discovery picture book, illustrating guided-tour illustration."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Create a playful learning spread that guides the eye through a place and its discoveries. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A child exploring how a neighborhood bakery wakes up before dawn"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "guided-tour illustration"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "one clear route connects discoveries without turning into a busy infographic"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A child exploring how a neighborhood bakery wakes up before dawn",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "guided-tour illustration",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "one clear route connects discoveries without turning into a busy infographic",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Create a playful learning spread that guides the eye through a place and its discoveries.",
+      "intentAliases": [
+        "educational picture book spread",
+        "guided tour illustration",
+        "learn through a scene"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/guided-discovery-book.svg",
+        "alt": "First-party graphic preview for Guided discovery picture book, illustrating guided-tour illustration."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining guided-tour illustration method and this composition obligation: one clear route connects discoveries without turning into a busy infographic.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "hospitality-identity-matrix": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "hospitality-identity-matrix",
+    "version": 1,
+    "title": "Hospitality identity matrix",
+    "description": "Show a restaurant identity across food, place, service objects, and printed touchpoints.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "restaurant brand board",
+      "hospitality contact sheet"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Hospitality identity matrix",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/hospitality-identity-matrix.svg",
+      "alt": "First-party graphic preview for Hospitality identity matrix, illustrating hospitality contact matrix."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Show a restaurant identity across food, place, service objects, and printed touchpoints. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A fictional late-night dumpling counter beside a train station"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "hospitality contact matrix"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "every panel belongs to one believable guest experience and visual system"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A fictional late-night dumpling counter beside a train station",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "hospitality contact matrix",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "every panel belongs to one believable guest experience and visual system",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Show a restaurant identity across food, place, service objects, and printed touchpoints.",
+      "intentAliases": [
+        "restaurant brand board",
+        "hospitality contact sheet",
+        "food identity matrix"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/hospitality-identity-matrix.svg",
+        "alt": "First-party graphic preview for Hospitality identity matrix, illustrating hospitality contact matrix."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining hospitality contact matrix method and this composition obligation: every panel belongs to one believable guest experience and visual system.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "ink-weather-motion": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "ink-weather-motion",
+    "version": 1,
+    "title": "Ink-weather motion",
+    "description": "Merge a monochrome action photograph with environmental marks that feel hand-made.",
+    "category": "editorial-poster",
+    "tags": [
+      "editorial poster",
+      "black and white action poster",
+      "ink motion design"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Ink-weather motion",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/ink-weather-motion.svg",
+      "alt": "First-party graphic preview for Ink-weather motion, illustrating motion becoming ink."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Merge a monochrome action photograph with environmental marks that feel hand-made. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A courier steering through windblown paper in an underpass"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "motion becoming ink"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "weather, gesture, and brush-like marks share one direction of travel"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A courier steering through windblown paper in an underpass",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "motion becoming ink",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "weather, gesture, and brush-like marks share one direction of travel",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Merge a monochrome action photograph with environmental marks that feel hand-made.",
+      "intentAliases": [
+        "black and white action poster",
+        "ink motion design",
+        "brush weather campaign"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/ink-weather-motion.svg",
+        "alt": "First-party graphic preview for Ink-weather motion, illustrating motion becoming ink."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining motion becoming ink method and this composition obligation: weather, gesture, and brush-like marks share one direction of travel.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "invented-guardian-scroll": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "invented-guardian-scroll",
+    "version": 1,
+    "title": "Invented guardian scroll",
+    "description": "Design an original folk guardian with a coherent role, implement, and companion.",
+    "category": "illustration-story",
+    "tags": [
+      "illustration story",
+      "original folklore guardian",
+      "scroll painting character"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Invented guardian scroll",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/invented-guardian-scroll.svg",
+      "alt": "First-party graphic preview for Invented guardian scroll, illustrating original guardian composition."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Design an original folk guardian with a coherent role, implement, and companion. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "The keeper of abandoned footpaths carrying a bell-staff"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "original guardian composition"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "gesture, ornament, and companion all express the guardian role"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "The keeper of abandoned footpaths carrying a bell-staff",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "original guardian composition",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "gesture, ornament, and companion all express the guardian role",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Design an original folk guardian with a coherent role, implement, and companion.",
+      "intentAliases": [
+        "original folklore guardian",
+        "scroll painting character",
+        "invent a protective spirit"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/invented-guardian-scroll.svg",
+        "alt": "First-party graphic preview for Invented guardian scroll, illustrating original guardian composition."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining original guardian composition method and this composition obligation: gesture, ornament, and companion all express the guardian role.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "landmark-shape-remix": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "landmark-shape-remix",
+    "version": 1,
+    "title": "Landmark shape remix",
+    "description": "Translate a source landmark into bold geometric color while preserving its recognition cues.",
+    "category": "photo-transformation",
+    "tags": [
+      "photo transformation",
+      "landmark color blocks",
+      "geometric city remix"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Landmark shape remix",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/landmark-shape-remix.svg",
+      "alt": "First-party graphic preview for Landmark shape remix, illustrating recognizable shape abstraction."
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "variations",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "edit",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Translate a source landmark into bold geometric color while preserving its recognition cues. Using the source image as factual ground truth, create an original transformation for {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "Turn this landmark photo into a layered geometric print"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "recognizable shape abstraction"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "silhouette, viewpoint, and defining structures remain readable"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "Turn this landmark photo into a layered geometric print",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "recognizable shape abstraction",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "silhouette, viewpoint, and defining structures remain readable",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source-photo",
+        "type": "references",
+        "title": "1. Source photo",
+        "sourceId": "source-image",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 80,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "2. Creative direction",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 340,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "3. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "4. Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "5. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 610,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Translate a source landmark into bold geometric color while preserving its recognition cues.",
+      "intentAliases": [
+        "landmark color blocks",
+        "geometric city remix",
+        "simplify architecture photo"
+      ],
+      "intents": [
+        "edit"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition"
+      ],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "One source image and a short direction"
+      ],
+      "inputSummary": [
+        "One photo and a creative direction"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps source identity",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/landmark-shape-remix.svg",
+        "alt": "First-party graphic preview for Landmark shape remix, illustrating recognizable shape abstraction."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "references": [
+      {
+        "id": "source-image",
+        "label": "Source image",
+        "role": "source-photo",
+        "description": "The photo to transform.",
+        "required": true,
+        "acceptedMimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "preserve": [
+          "identity and defining features",
+          "original composition unless the brief changes it"
+        ],
+        "instructions": "Use this image as the factual source. Do not invent changes outside the stated brief."
+      }
+    ],
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining recognizable shape abstraction method and this composition obligation: silhouette, viewpoint, and defining structures remain readable.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      },
+      {
+        "id": "source-truth",
+        "label": "Source truth",
+        "description": "silhouette, viewpoint, and defining structures remain readable",
+        "strength": "must",
+        "appliesTo": [
+          "source-image"
+        ]
+      }
+    ]
+  },
+  "layered-reflection-portrait": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "layered-reflection-portrait",
+    "version": 1,
+    "title": "Layered reflection portrait",
+    "description": "Build a cinematic portrait where glass, weather, or light reveals the subject in layers.",
+    "category": "portrait-camera",
+    "tags": [
+      "portrait camera",
+      "portrait through glass",
+      "cinematic reflection photo"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Layered reflection portrait",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/layered-reflection-portrait.svg",
+      "alt": "First-party graphic preview for Layered reflection portrait, illustrating reflection and partial reveal."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Build a cinematic portrait where glass, weather, or light reveals the subject in layers. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A traveler waiting inside a rain-darkened ferry terminal"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "reflection and partial reveal"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "one facial feature remains clear while the environment creates mystery"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A traveler waiting inside a rain-darkened ferry terminal",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "reflection and partial reveal",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "one facial feature remains clear while the environment creates mystery",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Build a cinematic portrait where glass, weather, or light reveals the subject in layers.",
+      "intentAliases": [
+        "portrait through glass",
+        "cinematic reflection photo",
+        "weathered film still"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/layered-reflection-portrait.svg",
+        "alt": "First-party graphic preview for Layered reflection portrait, illustrating reflection and partial reveal."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining reflection and partial reveal method and this composition obligation: one facial feature remains clear while the environment creates mystery.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
   },
   "learning-trail-map": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
@@ -3222,6 +10386,2416 @@ export const starterTemplates = {
       "typography"
     ]
   },
+  "low-vantage-encounter": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "low-vantage-encounter",
+    "version": 1,
+    "title": "Low-vantage encounter",
+    "description": "Create an intimate portrait built around a surprising downward point of view.",
+    "category": "portrait-camera",
+    "tags": [
+      "portrait camera",
+      "overhead candid portrait",
+      "person below camera"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Low-vantage encounter",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/low-vantage-encounter.svg",
+      "alt": "First-party graphic preview for Low-vantage encounter, illustrating close overhead encounter."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Create an intimate portrait built around a surprising downward point of view. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "An adult rediscovering a lost keepsake in a quiet archive"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "close overhead encounter"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "the nearby architecture naturally frames the action"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "An adult rediscovering a lost keepsake in a quiet archive",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "close overhead encounter",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "the nearby architecture naturally frames the action",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Create an intimate portrait built around a surprising downward point of view.",
+      "intentAliases": [
+        "overhead candid portrait",
+        "person below camera",
+        "intimate point of view"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/low-vantage-encounter.svg",
+        "alt": "First-party graphic preview for Low-vantage encounter, illustrating close overhead encounter."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining close overhead encounter method and this composition obligation: the nearby architecture naturally frames the action.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "material-lettering": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "material-lettering",
+    "version": 1,
+    "title": "Material lettering",
+    "description": "Construct a headline from a real material and show its physical behavior.",
+    "category": "type-as-space",
+    "tags": [
+      "type as space",
+      "letters made of material",
+      "physical typography"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Material lettering",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/material-lettering.svg",
+      "alt": "First-party graphic preview for Material lettering, illustrating material-built typography."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Construct a headline from a real material and show its physical behavior. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "The word FOLD made from heavy recycled paper"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "material-built typography"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "creases, weight, contact, and lighting follow the chosen material"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "The word FOLD made from heavy recycled paper",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "material-built typography",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "creases, weight, contact, and lighting follow the chosen material",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Construct a headline from a real material and show its physical behavior.",
+      "intentAliases": [
+        "letters made of material",
+        "physical typography",
+        "headline built from objects"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/material-lettering.svg",
+        "alt": "First-party graphic preview for Material lettering, illustrating material-built typography."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining material-built typography method and this composition obligation: creases, weight, contact, and lighting follow the chosen material.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "miniature-working-world": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "miniature-working-world",
+    "version": 1,
+    "title": "Miniature working world",
+    "description": "Build a dense isometric institution with clear zones, circulation, and tiny activity.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "isometric tiny world",
+      "miniature institution map"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Miniature working world",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/miniature-working-world.svg",
+      "alt": "First-party graphic preview for Miniature working world, illustrating isometric micro-world."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Build a dense isometric institution with clear zones, circulation, and tiny activity. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A rooftop seed library and weather station"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "isometric micro-world"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "specific props and working relationships make each zone understandable"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A rooftop seed library and weather station",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "isometric micro-world",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "specific props and working relationships make each zone understandable",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Build a dense isometric institution with clear zones, circulation, and tiny activity.",
+      "intentAliases": [
+        "isometric tiny world",
+        "miniature institution map",
+        "dense micro archive"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/miniature-working-world.svg",
+        "alt": "First-party graphic preview for Miniature working world, illustrating isometric micro-world."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining isometric micro-world method and this composition obligation: specific props and working relationships make each zone understandable.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "movement-instruction-plate": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "movement-instruction-plate",
+    "version": 1,
+    "title": "Movement instruction plate",
+    "description": "Explain a physical movement with readable phases, anchors, and safety cues.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "exercise reference plate",
+      "movement steps illustration"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Movement instruction plate",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/movement-instruction-plate.svg",
+      "alt": "First-party graphic preview for Movement instruction plate, illustrating sequential movement reference."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Explain a physical movement with readable phases, anchors, and safety cues. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A gentle standing hip hinge for everyday lifting"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "sequential movement reference"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "body positions remain consistent and phase changes are easy to compare"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A gentle standing hip hinge for everyday lifting",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "sequential movement reference",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "body positions remain consistent and phase changes are easy to compare",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Explain a physical movement with readable phases, anchors, and safety cues.",
+      "intentAliases": [
+        "exercise reference plate",
+        "movement steps illustration",
+        "fitness form guide"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/movement-instruction-plate.svg",
+        "alt": "First-party graphic preview for Movement instruction plate, illustrating sequential movement reference."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining sequential movement reference method and this composition obligation: body positions remain consistent and phase changes are easy to compare.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "moving-window-story": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "moving-window-story",
+    "version": 1,
+    "title": "Moving window story",
+    "description": "Tell a journey through an angled passenger view with layered motion and reflection.",
+    "category": "illustration-story",
+    "tags": [
+      "illustration story",
+      "train window poster",
+      "journey through glass"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Moving window story",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/moving-window-story.svg",
+      "alt": "First-party graphic preview for Moving window story, illustrating travel-window narrative."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Tell a journey through an angled passenger view with layered motion and reflection. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A sleeper train passing salt marshes before sunrise"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "travel-window narrative"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "near elements move, distant elements hold, and the interior reflection stays subtle"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A sleeper train passing salt marshes before sunrise",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "travel-window narrative",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "near elements move, distant elements hold, and the interior reflection stays subtle",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Tell a journey through an angled passenger view with layered motion and reflection.",
+      "intentAliases": [
+        "train window poster",
+        "journey through glass",
+        "moving landscape travel art"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/moving-window-story.svg",
+        "alt": "First-party graphic preview for Moving window story, illustrating travel-window narrative."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining travel-window narrative method and this composition obligation: near elements move, distant elements hold, and the interior reflection stays subtle.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "near-lens-depth": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "near-lens-depth",
+    "version": 1,
+    "title": "Near-lens depth portrait",
+    "description": "Use one near-camera gesture to create dramatic depth while keeping the person readable.",
+    "category": "portrait-camera",
+    "tags": [
+      "portrait camera",
+      "object close to lens",
+      "dramatic wide angle portrait"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Near-lens depth portrait",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/near-lens-depth.svg",
+      "alt": "First-party graphic preview for Near-lens depth portrait, illustrating near-lens foreground gesture."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Use one near-camera gesture to create dramatic depth while keeping the person readable. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A field researcher offering a leaf sample toward the viewer"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "near-lens foreground gesture"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "a clear depth path leads from the object to the face"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A field researcher offering a leaf sample toward the viewer",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "near-lens foreground gesture",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "a clear depth path leads from the object to the face",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Use one near-camera gesture to create dramatic depth while keeping the person readable.",
+      "intentAliases": [
+        "object close to lens",
+        "dramatic wide angle portrait",
+        "reach toward camera"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/near-lens-depth.svg",
+        "alt": "First-party graphic preview for Near-lens depth portrait, illustrating near-lens foreground gesture."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining near-lens foreground gesture method and this composition obligation: a clear depth path leads from the object to the face.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "object-anatomy-exhibit": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "object-anatomy-exhibit",
+    "version": 1,
+    "title": "Object anatomy exhibit",
+    "description": "Explain an object through a museum-style hero, structure, materials, and callouts.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "museum object breakdown",
+      "exploded artifact infographic"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Object anatomy exhibit",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/object-anatomy-exhibit.svg",
+      "alt": "First-party graphic preview for Object anatomy exhibit, illustrating museum teardown panel."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Explain an object through a museum-style hero, structure, materials, and callouts. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A hand-built mechanical music box"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "museum teardown panel"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "parts and annotations remain plausible and easy to follow"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A hand-built mechanical music box",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "museum teardown panel",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "parts and annotations remain plausible and easy to follow",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Explain an object through a museum-style hero, structure, materials, and callouts.",
+      "intentAliases": [
+        "museum object breakdown",
+        "exploded artifact infographic",
+        "materials and parts plate"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/object-anatomy-exhibit.svg",
+        "alt": "First-party graphic preview for Object anatomy exhibit, illustrating museum teardown panel."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining museum teardown panel method and this composition obligation: parts and annotations remain plausible and easy to follow.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
   "object-logic-atlas": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "object-logic-atlas",
@@ -3641,6 +13215,1770 @@ export const starterTemplates = {
       "typography"
     ]
   },
+  "one-symbol-poster": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "one-symbol-poster",
+    "version": 1,
+    "title": "One-symbol poster",
+    "description": "Create a quiet cinematic poster where one small colored mark carries the meaning.",
+    "category": "editorial-poster",
+    "tags": [
+      "editorial poster",
+      "minimal symbol poster",
+      "one red mark design"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "One-symbol poster",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/one-symbol-poster.svg",
+      "alt": "First-party graphic preview for One-symbol poster, illustrating minimal symbolic narrative."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Create a quiet cinematic poster where one small colored mark carries the meaning. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "An empty late-night bus shelter after the final route"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "minimal symbolic narrative"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "unused space and one necessary symbol do the emotional work"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "An empty late-night bus shelter after the final route",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "minimal symbolic narrative",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "unused space and one necessary symbol do the emotional work",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Create a quiet cinematic poster where one small colored mark carries the meaning.",
+      "intentAliases": [
+        "minimal symbol poster",
+        "one red mark design",
+        "quiet cinematic graphic"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/one-symbol-poster.svg",
+        "alt": "First-party graphic preview for One-symbol poster, illustrating minimal symbolic narrative."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining minimal symbolic narrative method and this composition obligation: unused space and one necessary symbol do the emotional work.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "packaging-system-portrait": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "packaging-system-portrait",
+    "version": 1,
+    "title": "Packaging system portrait",
+    "description": "Present a coordinated family of packages as one proposal-grade still life.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "packaging family design",
+      "brand system still life"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Packaging system portrait",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/packaging-system-portrait.svg",
+      "alt": "First-party graphic preview for Packaging system portrait, illustrating family-system still life."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Present a coordinated family of packages as one proposal-grade still life. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A fictional neighborhood tea house with tins, sleeves, and gift boxes"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "family-system still life"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "every carrier shares one identity while keeping a useful product role"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A fictional neighborhood tea house with tins, sleeves, and gift boxes",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "family-system still life",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "every carrier shares one identity while keeping a useful product role",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Present a coordinated family of packages as one proposal-grade still life.",
+      "intentAliases": [
+        "packaging family design",
+        "brand system still life",
+        "multiple packages one identity"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/packaging-system-portrait.svg",
+        "alt": "First-party graphic preview for Packaging system portrait, illustrating family-system still life."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining family-system still life method and this composition obligation: every carrier shares one identity while keeping a useful product role.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "perspective-word-plane": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "perspective-word-plane",
+    "version": 1,
+    "title": "Perspective word plane",
+    "description": "Lay crisp lettering into deep perspective as a floor, wall, or horizon.",
+    "category": "type-as-space",
+    "tags": [
+      "type as space",
+      "tilted word poster",
+      "type as floor"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Perspective word plane",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/perspective-word-plane.svg",
+      "alt": "First-party graphic preview for Perspective word plane, illustrating oblique planar typography."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Lay crisp lettering into deep perspective as a floor, wall, or horizon. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "The word ARRIVAL in a quiet transit hall"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "oblique planar typography"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "the lettering remains accurate while the plane carries depth"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "The word ARRIVAL in a quiet transit hall",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "oblique planar typography",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "the lettering remains accurate while the plane carries depth",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Lay crisp lettering into deep perspective as a floor, wall, or horizon.",
+      "intentAliases": [
+        "tilted word poster",
+        "type as floor",
+        "perspective typography"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/perspective-word-plane.svg",
+        "alt": "First-party graphic preview for Perspective word plane, illustrating oblique planar typography."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining oblique planar typography method and this composition obligation: the lettering remains accurate while the plane carries depth.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "pet-storybook-scene": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "pet-storybook-scene",
+    "version": 1,
+    "title": "Pet storybook scene",
+    "description": "Place a real pet into an original illustrated story while keeping its identity recognizable.",
+    "category": "photo-transformation",
+    "tags": [
+      "photo transformation",
+      "storybook pet portrait",
+      "turn my dog into illustration"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Pet storybook scene",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/pet-storybook-scene.svg",
+      "alt": "First-party graphic preview for Pet storybook scene, illustrating identity-preserving storybook edit."
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "variations",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "edit",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Place a real pet into an original illustrated story while keeping its identity recognizable. Using the source image as factual ground truth, create an original transformation for {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "Turn this pet into the keeper of a tiny midnight garden"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "identity-preserving storybook edit"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "markings, proportions, expression, and distinctive features stay recognizable"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "Turn this pet into the keeper of a tiny midnight garden",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "identity-preserving storybook edit",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "markings, proportions, expression, and distinctive features stay recognizable",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source-photo",
+        "type": "references",
+        "title": "1. Source photo",
+        "sourceId": "source-image",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 80,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "2. Creative direction",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 340,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "3. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "4. Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "5. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 610,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Place a real pet into an original illustrated story while keeping its identity recognizable.",
+      "intentAliases": [
+        "storybook pet portrait",
+        "turn my dog into illustration",
+        "pet in a picture book"
+      ],
+      "intents": [
+        "edit"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition"
+      ],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "One source image and a short direction"
+      ],
+      "inputSummary": [
+        "One photo and a creative direction"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps source identity",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/pet-storybook-scene.svg",
+        "alt": "First-party graphic preview for Pet storybook scene, illustrating identity-preserving storybook edit."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "references": [
+      {
+        "id": "source-image",
+        "label": "Source image",
+        "role": "source-photo",
+        "description": "The photo to transform.",
+        "required": true,
+        "acceptedMimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "preserve": [
+          "identity and defining features",
+          "original composition unless the brief changes it"
+        ],
+        "instructions": "Use this image as the factual source. Do not invent changes outside the stated brief."
+      }
+    ],
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining identity-preserving storybook edit method and this composition obligation: markings, proportions, expression, and distinctive features stay recognizable.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      },
+      {
+        "id": "source-truth",
+        "label": "Source truth",
+        "description": "markings, proportions, expression, and distinctive features stay recognizable",
+        "strength": "must",
+        "appliesTo": [
+          "source-image"
+        ]
+      }
+    ]
+  },
+  "pixel-world-atlas": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "pixel-world-atlas",
+    "version": 1,
+    "title": "Pixel world atlas",
+    "description": "Create a consistent pixel-art asset sheet for one original world.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "pixel asset sheet",
+      "sprite atlas"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Pixel world atlas",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/pixel-world-atlas.svg",
+      "alt": "First-party graphic preview for Pixel world atlas, illustrating coherent sprite atlas."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Create a consistent pixel-art asset sheet for one original world. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A cozy repair shop on a floating canal market"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "coherent sprite atlas"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "scale, palette, lighting, and viewing angle remain consistent across assets"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A cozy repair shop on a floating canal market",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "coherent sprite atlas",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "scale, palette, lighting, and viewing angle remain consistent across assets",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Create a consistent pixel-art asset sheet for one original world.",
+      "intentAliases": [
+        "pixel asset sheet",
+        "sprite atlas",
+        "game world object collection"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/pixel-world-atlas.svg",
+        "alt": "First-party graphic preview for Pixel world atlas, illustrating coherent sprite atlas."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining coherent sprite atlas method and this composition obligation: scale, palette, lighting, and viewing angle remain consistent across assets.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
   "poster-exact-text": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "poster-exact-text",
@@ -3933,6 +15271,392 @@ export const starterTemplates = {
       "resultEmphasis": "hero",
       "showPromptByDefault": false
     }
+  },
+  "relocate-portrait-world": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "relocate-portrait-world",
+    "version": 1,
+    "title": "Relocate a portrait world",
+    "description": "Keep the person intact while rebuilding the surrounding world around them.",
+    "category": "photo-transformation",
+    "tags": [
+      "photo transformation",
+      "put me somewhere else",
+      "keep person change world"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "reference-transformation"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Relocate a portrait world",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/relocate-portrait-world.svg",
+      "alt": "First-party graphic preview for Relocate a portrait world, illustrating subject-preserving relocation."
+    },
+    "capabilities": [
+      "image-to-image",
+      "image-edit",
+      "variations",
+      "upscale"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "edit",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Keep the person intact while rebuilding the surrounding world around them. Using the source image as factual ground truth, create an original transformation for {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "Move this portrait into a quiet greenhouse during rain"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "subject-preserving relocation"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "identity, pose, clothing, framing, and scale remain unchanged"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "Move this portrait into a quiet greenhouse during rain",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "subject-preserving relocation",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "identity, pose, clothing, framing, and scale remain unchanged",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "source-photo",
+        "type": "references",
+        "title": "1. Source photo",
+        "sourceId": "source-image",
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 80,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "2. Creative direction",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 340,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "3. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "4. Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "5. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 610,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Keep the person intact while rebuilding the surrounding world around them.",
+      "intentAliases": [
+        "put me somewhere else",
+        "keep person change world",
+        "relocate portrait background"
+      ],
+      "intents": [
+        "edit"
+      ],
+      "inputModes": [
+        "single-image"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition"
+      ],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "One source image and a short direction"
+      ],
+      "inputSummary": [
+        "One photo and a creative direction"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps source identity",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/relocate-portrait-world.svg",
+        "alt": "First-party graphic preview for Relocate a portrait world, illustrating subject-preserving relocation."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "references": [
+      {
+        "id": "source-image",
+        "label": "Source image",
+        "role": "source-photo",
+        "description": "The photo to transform.",
+        "required": true,
+        "acceptedMimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "preserve": [
+          "identity and defining features",
+          "original composition unless the brief changes it"
+        ],
+        "instructions": "Use this image as the factual source. Do not invent changes outside the stated brief."
+      }
+    ],
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining subject-preserving relocation method and this composition obligation: identity, pose, clothing, framing, and scale remain unchanged.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      },
+      {
+        "id": "source-truth",
+        "label": "Source truth",
+        "description": "identity, pose, clothing, framing, and scale remain unchanged",
+        "strength": "must",
+        "appliesTo": [
+          "source-image"
+        ]
+      }
+    ]
   },
   "remove-object": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
@@ -6038,6 +17762,1729 @@ export const starterTemplates = {
       "typography"
     ]
   },
+  "shadow-led-ensemble": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "shadow-led-ensemble",
+    "version": 1,
+    "title": "Shadow-led ensemble",
+    "description": "Use cast shadows to connect an ensemble and suggest unseen relationships.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "ensemble cover with shadows",
+      "cast shadow story poster"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Shadow-led ensemble",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/shadow-led-ensemble.svg",
+      "alt": "First-party graphic preview for Shadow-led ensemble, illustrating narrative shadow composition."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Use cast shadows to connect an ensemble and suggest unseen relationships. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "Five amateur astronomers closing an observatory after a discovery"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "narrative shadow composition"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "shadows are physically grounded yet reveal a second layer of story"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "Five amateur astronomers closing an observatory after a discovery",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "narrative shadow composition",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "shadows are physically grounded yet reveal a second layer of story",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Use cast shadows to connect an ensemble and suggest unseen relationships.",
+      "intentAliases": [
+        "ensemble cover with shadows",
+        "cast shadow story poster",
+        "group silhouette cover"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/shadow-led-ensemble.svg",
+        "alt": "First-party graphic preview for Shadow-led ensemble, illustrating narrative shadow composition."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining narrative shadow composition method and this composition obligation: shadows are physically grounded yet reveal a second layer of story.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "shared-object-portrait": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "shared-object-portrait",
+    "version": 1,
+    "title": "Shared-object portrait",
+    "description": "Connect two people through one object that crosses the frame.",
+    "category": "campaign-perspective",
+    "tags": [
+      "campaign perspective",
+      "two people holding one object",
+      "handoff portrait"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Shared-object portrait",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/shared-object-portrait.svg",
+      "alt": "First-party graphic preview for Shared-object portrait, illustrating shared-object connection."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Connect two people through one object that crosses the frame. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "Two gardeners passing a seedling tray between them"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "shared-object connection"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "both grips and the object remain anatomically and spatially coherent"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "Two gardeners passing a seedling tray between them",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "shared-object connection",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "both grips and the object remain anatomically and spatially coherent",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Connect two people through one object that crosses the frame.",
+      "intentAliases": [
+        "two people holding one object",
+        "handoff portrait",
+        "shared prop studio photo"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/shared-object-portrait.svg",
+        "alt": "First-party graphic preview for Shared-object portrait, illustrating shared-object connection."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining shared-object connection method and this composition obligation: both grips and the object remain anatomically and spatially coherent.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "single-accent-documentary": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "single-accent-documentary",
+    "version": 1,
+    "title": "Single-accent documentary",
+    "description": "Build an editorial image from documentary monochrome and one disciplined accent color.",
+    "category": "editorial-poster",
+    "tags": [
+      "editorial poster",
+      "black white one color poster",
+      "single accent editorial"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Single-accent documentary",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/single-accent-documentary.svg",
+      "alt": "First-party graphic preview for Single-accent documentary, illustrating one-pigment hierarchy."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Build an editorial image from documentary monochrome and one disciplined accent color. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A stagehand taping marks before a performance"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "one-pigment hierarchy"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "the accent appears only where it clarifies hierarchy or action"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A stagehand taping marks before a performance",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "one-pigment hierarchy",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "the accent appears only where it clarifies hierarchy or action",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Build an editorial image from documentary monochrome and one disciplined accent color.",
+      "intentAliases": [
+        "black white one color poster",
+        "single accent editorial",
+        "documentary fashion layout"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/single-accent-documentary.svg",
+        "alt": "First-party graphic preview for Single-accent documentary, illustrating one-pigment hierarchy."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining one-pigment hierarchy method and this composition obligation: the accent appears only where it clarifies hierarchy or action.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "soft-material-hard-space": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "soft-material-hard-space",
+    "version": 1,
+    "title": "Soft material, hard space",
+    "description": "Make tactile clothing or objects stand out against severe architecture.",
+    "category": "portrait-camera",
+    "tags": [
+      "portrait camera",
+      "fashion material contrast",
+      "soft textile brutal architecture"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Soft material, hard space",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/soft-material-hard-space.svg",
+      "alt": "First-party graphic preview for Soft material, hard space, illustrating material-against-architecture contrast."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Make tactile clothing or objects stand out against severe architecture. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A dancer wearing a handwoven wrap in a concrete passage"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "material-against-architecture contrast"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "texture, weight, and body geometry remain physically believable"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A dancer wearing a handwoven wrap in a concrete passage",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "material-against-architecture contrast",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "texture, weight, and body geometry remain physically believable",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Make tactile clothing or objects stand out against severe architecture.",
+      "intentAliases": [
+        "fashion material contrast",
+        "soft textile brutal architecture",
+        "tactile editorial portrait"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/soft-material-hard-space.svg",
+        "alt": "First-party graphic preview for Soft material, hard space, illustrating material-against-architecture contrast."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining material-against-architecture contrast method and this composition obligation: texture, weight, and body geometry remain physically believable.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "story-led-cover": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "story-led-cover",
+    "version": 1,
+    "title": "Story-led book cover",
+    "description": "Design an original cover from the story conflict, place, and emotional promise.",
+    "category": "illustration-story",
+    "tags": [
+      "illustration story",
+      "design a novel cover",
+      "book cover from story"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Story-led book cover",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/story-led-cover.svg",
+      "alt": "First-party graphic preview for Story-led book cover, illustrating narrative cover concept."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Design an original cover from the story conflict, place, and emotional promise. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A night custodian discovers a staircase that appears only during storms"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "narrative cover concept"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "one scene or object hints at the conflict without summarizing the plot"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A night custodian discovers a staircase that appears only during storms",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "narrative cover concept",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "one scene or object hints at the conflict without summarizing the plot",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Design an original cover from the story conflict, place, and emotional promise.",
+      "intentAliases": [
+        "design a novel cover",
+        "book cover from story",
+        "narrative cover art"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/story-led-cover.svg",
+        "alt": "First-party graphic preview for Story-led book cover, illustrating narrative cover concept."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining narrative cover concept method and this composition obligation: one scene or object hints at the conflict without summarizing the plot.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
   "symbol-language-sheet": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "symbol-language-sheet",
@@ -6437,6 +19884,1040 @@ export const starterTemplates = {
       "multiple-references",
       "structured-prompt",
       "typography"
+    ]
+  },
+  "terrain-specimen-archive": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "terrain-specimen-archive",
+    "version": 1,
+    "title": "Terrain specimen archive",
+    "description": "Organize one landscape as a layered physical model with labeled ecological evidence.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "landscape model infographic",
+      "terrain archive"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Terrain specimen archive",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/terrain-specimen-archive.svg",
+      "alt": "First-party graphic preview for Terrain specimen archive, illustrating landscape archive model."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Organize one landscape as a layered physical model with labeled ecological evidence. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A tidal marsh from freshwater edge to open estuary"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "landscape archive model"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "terrain, habitats, and scale relationships stay geographically coherent"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A tidal marsh from freshwater edge to open estuary",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "landscape archive model",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "terrain, habitats, and scale relationships stay geographically coherent",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Organize one landscape as a layered physical model with labeled ecological evidence.",
+      "intentAliases": [
+        "landscape model infographic",
+        "terrain archive",
+        "ecology cross section plate"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/terrain-specimen-archive.svg",
+        "alt": "First-party graphic preview for Terrain specimen archive, illustrating landscape archive model."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining landscape archive model method and this composition obligation: terrain, habitats, and scale relationships stay geographically coherent.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "thin-horizon-color-field": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "thin-horizon-color-field",
+    "version": 1,
+    "title": "Thin horizon color field",
+    "description": "Use a large field of color and one precise horizon to create a restrained poster.",
+    "category": "editorial-poster",
+    "tags": [
+      "editorial poster",
+      "minimal landscape color field",
+      "thin horizon poster"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Thin horizon color field",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/thin-horizon-color-field.svg",
+      "alt": "First-party graphic preview for Thin horizon color field, illustrating minimal color-field landscape."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Use a large field of color and one precise horizon to create a restrained poster. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A distant winter greenhouse at first light"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "minimal color-field landscape"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "scale comes from one fine landscape band and generous open space"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A distant winter greenhouse at first light",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "minimal color-field landscape",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "scale comes from one fine landscape band and generous open space",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Use a large field of color and one precise horizon to create a restrained poster.",
+      "intentAliases": [
+        "minimal landscape color field",
+        "thin horizon poster",
+        "large color block scenic poster"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/thin-horizon-color-field.svg",
+        "alt": "First-party graphic preview for Thin horizon color field, illustrating minimal color-field landscape."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining minimal color-field landscape method and this composition obligation: scale comes from one fine landscape band and generous open space.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "transformation-seam": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "transformation-seam",
+    "version": 1,
+    "title": "Transformation seam",
+    "description": "Show one subject changing language, material, or state through an expressive seam.",
+    "category": "editorial-poster",
+    "tags": [
+      "editorial poster",
+      "two states one object",
+      "transformation split poster"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Transformation seam",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/transformation-seam.svg",
+      "alt": "First-party graphic preview for Transformation seam, illustrating left-to-right translation."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Show one subject changing language, material, or state through an expressive seam. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A clay vessel becoming a measured line drawing"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "left-to-right translation"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "the transition itself explains how one state becomes the other"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A clay vessel becoming a measured line drawing",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "left-to-right translation",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "the transition itself explains how one state becomes the other",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Show one subject changing language, material, or state through an expressive seam.",
+      "intentAliases": [
+        "two states one object",
+        "transformation split poster",
+        "object becomes drawing"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/transformation-seam.svg",
+        "alt": "First-party graphic preview for Transformation seam, illustrating left-to-right translation."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining left-to-right translation method and this composition obligation: the transition itself explains how one state becomes the other.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
     ]
   },
   "travel-poster": {
@@ -7008,6 +21489,1041 @@ export const starterTemplates = {
       ]
     }
   },
+  "two-sided-city-story": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "two-sided-city-story",
+    "version": 1,
+    "title": "Two-sided city story",
+    "description": "Show two truthful sides of one city meeting in a narrow transition.",
+    "category": "editorial-poster",
+    "tags": [
+      "editorial poster",
+      "split city poster",
+      "two sides of a place"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Two-sided city story",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/two-sided-city-story.svg",
+      "alt": "First-party graphic preview for Two-sided city story, illustrating dual-place composition."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Show two truthful sides of one city meeting in a narrow transition. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A river city split between old workshops and new wetlands"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "dual-place composition"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "the center seam is a believable spatial transition, not a graphic divider"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A river city split between old workshops and new wetlands",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "dual-place composition",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "the center seam is a believable spatial transition, not a graphic divider",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Show two truthful sides of one city meeting in a narrow transition.",
+      "intentAliases": [
+        "split city poster",
+        "two sides of a place",
+        "city contrast composition"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/two-sided-city-story.svg",
+        "alt": "First-party graphic preview for Two-sided city story, illustrating dual-place composition."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining dual-place composition method and this composition obligation: the center seam is a believable spatial transition, not a graphic divider.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "type-meets-silhouette": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "type-meets-silhouette",
+    "version": 1,
+    "title": "Type meets silhouette",
+    "description": "Pair one sculptural silhouette with typography that reacts to the body.",
+    "category": "type-as-space",
+    "tags": [
+      "type as space",
+      "fashion typography composition",
+      "word behind garment"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Type meets silhouette",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/type-meets-silhouette.svg",
+      "alt": "First-party graphic preview for Type meets silhouette, illustrating body-and-type interaction."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Pair one sculptural silhouette with typography that reacts to the body. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "An original fashion look built from folded indigo fabric"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "body-and-type interaction"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "the figure interrupts and completes the letterforms"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "An original fashion look built from folded indigo fabric",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "body-and-type interaction",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "the figure interrupts and completes the letterforms",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Pair one sculptural silhouette with typography that reacts to the body.",
+      "intentAliases": [
+        "fashion typography composition",
+        "word behind garment",
+        "type overlaps silhouette"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/type-meets-silhouette.svg",
+        "alt": "First-party graphic preview for Type meets silhouette, illustrating body-and-type interaction."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining body-and-type interaction method and this composition obligation: the figure interrupts and completes the letterforms.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
+  "walkable-word": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "walkable-word",
+    "version": 1,
+    "title": "Walkable word",
+    "description": "Turn a short word into a believable place a subject can cross or enter.",
+    "category": "type-as-space",
+    "tags": [
+      "type as space",
+      "word as architecture",
+      "person walking through letters"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "Walkable word",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/walkable-word.svg",
+      "alt": "First-party graphic preview for Walkable word, illustrating letterforms as architecture."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt",
+      "typography"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Turn a short word into a believable place a subject can cross or enter. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A lone cyclist moving through the word CROSSING"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "letterforms as architecture"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "stairs, shadows, and occlusion make the word feel inhabitable"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A lone cyclist moving through the word CROSSING",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "letterforms as architecture",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "stairs, shadows, and occlusion make the word feel inhabitable",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Turn a short word into a believable place a subject can cross or enter.",
+      "intentAliases": [
+        "word as architecture",
+        "person walking through letters",
+        "architectural typography"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/walkable-word.svg",
+        "alt": "First-party graphic preview for Walkable word, illustrating letterforms as architecture."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining letterforms as architecture method and this composition obligation: stairs, shadows, and occlusion make the word feel inhabitable.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
+    ]
+  },
   "wordform-material-study": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "wordform-material-study",
@@ -7398,6 +22914,350 @@ export const starterTemplates = {
       "upscale",
       "multiple-references",
       "typography"
+    ]
+  },
+  "world-within-outline": {
+    "schema": "prompt-canvas.prompt-workspace-template@2",
+    "id": "world-within-outline",
+    "version": 1,
+    "title": "World within an outline",
+    "description": "Choose a meaningful silhouette and place a complete narrative world inside it.",
+    "category": "knowledge-brand",
+    "tags": [
+      "knowledge brand",
+      "landscape inside silhouette",
+      "world in a shape"
+    ],
+    "status": "starter",
+    "compatibility": {
+      "minimumAppVersion": "0.1.0",
+      "templateFamily": "parameterized"
+    },
+    "source": {
+      "kind": "first-party",
+      "creator": "Prompt Canvas",
+      "title": "World within an outline",
+      "promptUsage": "original",
+      "notes": "Independently authored for Prompt Canvas from a high-level creative use case."
+    },
+    "thumbnail": {
+      "assetPath": "/recipe-thumbnails/original-systems/world-within-outline.svg",
+      "alt": "First-party graphic preview for World within an outline, illustrating silhouette-contained world."
+    },
+    "capabilities": [
+      "text-to-image",
+      "image-edit",
+      "variations",
+      "upscale",
+      "structured-prompt"
+    ],
+    "generation": {
+      "provider": "codex",
+      "capability": "image-generation",
+      "delivery": "webmcp-import",
+      "operations": [
+        "generate",
+        "edit",
+        "variation",
+        "upscale"
+      ],
+      "defaultOperation": "generate",
+      "defaultVariationCount": 1,
+      "preferredMimeTypes": [
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "prompt": {
+      "title": "Creative direction",
+      "body": "Choose a meaningful silhouette and place a complete narrative world inside it. Create an original, polished image for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated text, logos, watermarks, copied characters, or unsupported factual claims.",
+      "variables": [
+        {
+          "id": "brief",
+          "label": "Creative brief",
+          "type": "text",
+          "required": true,
+          "defaultValue": "A coastal town remembered through the outline of a tide gate"
+        },
+        {
+          "id": "method",
+          "label": "Visual method",
+          "type": "string",
+          "defaultValue": "silhouette-contained world"
+        },
+        {
+          "id": "structure",
+          "label": "Composition rule",
+          "type": "string",
+          "defaultValue": "the outer shape and inner story reinforce the same theme"
+        }
+      ],
+      "agentInstructions": "Resolve all visible controls and reference obligations before generation. Produce one candidate by default and return it to the primary output slot."
+    },
+    "controlGroups": [
+      {
+        "id": "required",
+        "label": "Required",
+        "description": "The idea or source needed to begin."
+      },
+      {
+        "id": "essentials",
+        "label": "Essentials",
+        "description": "A few choices that shape the result."
+      },
+      {
+        "id": "more-control",
+        "label": "More control",
+        "collapsedByDefault": true
+      }
+    ],
+    "controls": [
+      {
+        "id": "brief",
+        "label": "What should the image show?",
+        "type": "textarea",
+        "required": true,
+        "defaultValue": "A coastal town remembered through the outline of a tide gate",
+        "binding": {
+          "mode": "variable",
+          "target": "brief"
+        }
+      },
+      {
+        "id": "method",
+        "label": "Visual method",
+        "type": "text",
+        "defaultValue": "silhouette-contained world",
+        "binding": {
+          "mode": "variable",
+          "target": "method"
+        }
+      },
+      {
+        "id": "structure",
+        "label": "Composition rule",
+        "type": "textarea",
+        "defaultValue": "the outer shape and inner story reinforce the same theme",
+        "binding": {
+          "mode": "variable",
+          "target": "structure"
+        }
+      },
+      {
+        "id": "aspect-ratio",
+        "label": "Format",
+        "type": "aspect-ratio",
+        "defaultValue": "4:5",
+        "options": [
+          {
+            "label": "Portrait 4:5",
+            "value": "4:5"
+          },
+          {
+            "label": "Tall 9:16",
+            "value": "9:16"
+          },
+          {
+            "label": "Square 1:1",
+            "value": "1:1"
+          },
+          {
+            "label": "Landscape 3:2",
+            "value": "3:2"
+          }
+        ],
+        "binding": {
+          "mode": "generation",
+          "target": "aspectRatio"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "primary",
+        "label": "Result",
+        "role": "primary",
+        "kind": "image",
+        "count": 1,
+        "aspectRatio": "4:5",
+        "operations": [
+          "generate",
+          "edit",
+          "variation",
+          "upscale"
+        ],
+        "layoutHint": "hero",
+        "required": true
+      }
+    ],
+    "blocks": [
+      {
+        "id": "creative-brief",
+        "type": "controls",
+        "title": "1. Creative brief",
+        "content": {
+          "controlIds": [
+            "brief"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 120,
+          "w": 360,
+          "h": 220
+        }
+      },
+      {
+        "id": "visual-method",
+        "type": "controls",
+        "title": "2. Visual method",
+        "content": {
+          "controlIds": [
+            "method"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 90,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "composition-rule",
+        "type": "controls",
+        "title": "Composition rule",
+        "content": {
+          "controlIds": [
+            "structure"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 300,
+          "w": 350,
+          "h": 210
+        }
+      },
+      {
+        "id": "format",
+        "type": "controls",
+        "title": "Format",
+        "content": {
+          "controlIds": [
+            "aspect-ratio"
+          ]
+        },
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 500,
+          "y": 550,
+          "w": 350,
+          "h": 170
+        }
+      },
+      {
+        "id": "primary-output",
+        "type": "output",
+        "title": "3. Result",
+        "sourceId": "primary",
+        "x-geometry": {
+          "x": 930,
+          "y": 100,
+          "w": 620,
+          "h": 620
+        }
+      },
+      {
+        "id": "full-prompt",
+        "type": "prompt",
+        "title": "More control · Full prompt",
+        "collapsedByDefault": true,
+        "x-connectTo": "primary-output",
+        "x-geometry": {
+          "x": 80,
+          "y": 390,
+          "w": 360,
+          "h": 330
+        }
+      }
+    ],
+    "layout": {
+      "mode": "seeded",
+      "arrangement": "prompt-left-output-right",
+      "preserveManualGeometry": true
+    },
+    "x-discovery": {
+      "collection": "original-systems",
+      "userPromise": "Choose a meaningful silhouette and place a complete narrative world inside it.",
+      "intentAliases": [
+        "landscape inside silhouette",
+        "world in a shape",
+        "narrative cutout poster"
+      ],
+      "intents": [
+        "create"
+      ],
+      "inputModes": [
+        "text"
+      ],
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "complexity": "guided",
+      "requiredInputSummary": [
+        "A short creative brief"
+      ],
+      "inputSummary": [
+        "A creative brief"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "thumbnail": {
+        "src": "/recipe-thumbnails/original-systems/world-within-outline.svg",
+        "alt": "First-party graphic preview for World within an outline, illustrating silhouette-contained world."
+      }
+    },
+    "x-presentation": {
+      "primaryControlIds": [
+        "brief",
+        "method",
+        "structure",
+        "aspect-ratio"
+      ],
+      "advancedControlIds": [],
+      "initialView": "canvas",
+      "resultEmphasis": "hero",
+      "showPromptByDefault": false
+    },
+    "x-agent-authoring": {
+      "origin": "independent-first-party",
+      "reviewState": "owner-requested-original-authoring",
+      "generationDefault": 1
+    },
+    "preservation": [
+      {
+        "id": "creative-mechanism",
+        "label": "Creative mechanism",
+        "description": "Preserve the defining silhouette-contained world method and this composition obligation: the outer shape and inner story reinforce the same theme.",
+        "strength": "must",
+        "appliesTo": [
+          "method",
+          "structure"
+        ]
+      }
     ]
   }
 } as const satisfies Record<string, PromptWorkspaceTemplate>

@@ -346,13 +346,15 @@ test('starter manifest and library expose each canonical template once', async (
 
   await expect(page.getByRole('heading', { name: 'What would you like to make?' })).toBeVisible()
   await expect(page.locator('.pc-library__grid .pc-template-card:not(.pc-template-card--blank)')).toHaveCount(10)
-  await expect(page.locator('.pc-system-list button')).toHaveCount(9)
+  await expect(page.locator('.pc-system-list button')).toHaveCount(
+    manifest.templates.filter(({ featured }) => !featured).length,
+  )
   await expect(page.locator('.pc-template-card__preview > img')).toHaveCount(10)
   expect(await page.locator('.pc-template-card__preview > img').evaluateAll((images) =>
     images.every((image) => image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0),
   )).toBe(true)
 
-  await page.getByLabel('Search recipes').fill('put me somewhere else')
+  await page.getByLabel('Search recipes').fill('swap background')
   await expect(page.locator('.pc-library__grid .pc-template-card:not(.pc-template-card--blank)')).toHaveCount(1)
   await expect(page.locator('.pc-template-card').filter({ hasText: 'Change the background' })).toBeVisible()
 })

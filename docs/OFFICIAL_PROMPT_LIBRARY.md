@@ -1,6 +1,6 @@
 # Official Prompt Library
 
-The Official Prompt Library is Prompt Canvas's owner-reviewed, read-only recipe catalog. It makes a larger curated
+The Official Prompt Library is Prompt Canvas's owner-controlled, read-only recipe catalog. It makes a larger curated
 library retrievable without loading every complete prompt into the page or an agent's context. It does not replace the
 local recipe library and it does not grant the page image-generation authority.
 
@@ -80,11 +80,9 @@ The public `.openai/hosting.json` contains a placeholder project id so a clone c
 Site owner supplies the real project identity only in the private deployment source. No secrets or database credentials
 belong in source files, migrations, browser storage, or route responses.
 
-## Deferred intake
+## Independent first-party collection
 
-A separate 42-system `chatgpt-image-original-library.md` corpus was reviewed for this release. Its own documentation
-describes the material as rewritten from public third-party prompting techniques, while the parent index says prompts
-remain third-party content and should be reused according to the original authors' intent. It also has no qualified
-first-party recipe thumbnails. Those 42 candidates are therefore not copied into the MIT source tree, D1 seed, bundled
-fallback, or deployed catalog. They may be admitted later only with a documented redistribution basis or after fresh,
-independently authored Prompt Canvas recipes and owned thumbnails pass the same review gates.
+The catalog includes 42 fresh Prompt Canvas recipes that cover a reviewed inventory of creative jobs. Their titles,
+prompt expression, controls, preservation rules, discovery metadata, and canvas composition were authored independently
+for this project. The external research corpus itself is not copied, bundled, migrated, or distributed, and no
+third-party prompt text or assets are required at runtime. Each recipe has a dedicated, owned first-party SVG preview.

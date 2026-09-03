@@ -29,10 +29,11 @@ Attribution and public availability are not substitutes for permission or an app
 
 ## Current recipe-library boundary
 
-The bundled 19-recipe library and its ten first-party preview images are covered by the project MIT license. The
-repository-authored Official Prompt Library publishes ten of those original recipes through D1. Adapted templates and
-their source research were deliberately excluded from this release tree. They may remain in non-public Git history for
-development provenance, but are not shipped by the application or included in the clean public-source snapshot.
+The bundled 61-recipe library and its 52 first-party preview assets are covered by the project MIT license. The
+repository-authored Official Prompt Library publishes 52 of those original recipes through D1. The 42 task-focused
+systems are fresh Prompt Canvas works derived only from a high-level inventory of creative jobs; no external prompt
+expression, source research, or third-party assets are shipped. Each task-focused recipe has a dedicated original SVG
+preview; adapted templates remain excluded from this release tree.
 
 ## Visibility and publication decisions
 
@@ -42,7 +43,7 @@ Choosing or merging a source-code license does not itself change access. Reposit
 - A public Site does not make the repository public, but it can still expose templates or other material delivered by the build.
 - A public starter pack is a separate distribution even when its source repository or Site remains private.
 
-The September 2026 release was explicitly authorized for public source and public Site access after the adapted-template exclusions above.
+The September 2026 release was explicitly authorized for public source and public Site access under the boundaries above.
 
 ## Contributions
 

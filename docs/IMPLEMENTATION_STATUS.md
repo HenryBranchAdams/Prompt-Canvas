@@ -1,8 +1,8 @@
 # Implementation status
 
-Prompt Canvas is a standalone React, strict-TypeScript, and tldraw application. Its release includes 19 first-party
-original recipes: ten outcome-first recipes with owned thumbnails plus nine preserved advanced creative systems. Ten
-owner-reviewed recipes are also published through the read-only Official Prompt Library; a bundled copy remains the
+Prompt Canvas is a standalone React, strict-TypeScript, and tldraw application. Its release includes 61 first-party
+original recipes: ten outcome-first recipes, 42 independently authored task-focused systems, and nine preserved
+advanced creative systems. Fifty-two owner-controlled recipes are also prepared for publication through the read-only Official Prompt Library; a bundled copy remains the
 offline and outage fallback. It
 registers eleven schema-backed WebMCP tools: the stable original ten plus guarded project deletion.
 
