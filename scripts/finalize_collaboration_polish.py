@@ -78,12 +78,23 @@ new_preview = '''function generationPreview(
 }
 '''
 app = replace_once(app, old_preview, new_preview, "generation preview")
-app = replace_once(
-    app,
-    "  context: GenerationContext\n  onClose: () => void\n}) {\n  return (\n    <CodexRequestDialog",
-    "  context: GenerationContext\n  project: RuntimeSnapshot['activeWorkspace']\n  onClose: () => void\n}) {\n  return (\n    <CodexRequestDialog",
-    "generation dialog project prop",
-)
+old_generation_header = '''function GenerationDialog({
+  context,
+  onClose,
+}: {
+  context: GenerationContext
+  onClose: () => void
+}) {'''
+new_generation_header = '''function GenerationDialog({
+  context,
+  project,
+  onClose,
+}: {
+  context: GenerationContext
+  project: RuntimeSnapshot['activeWorkspace']
+  onClose: () => void
+}) {'''
+app = replace_once(app, old_generation_header, new_generation_header, "generation dialog header")
 app = replace_once(
     app,
     "      preview={generationPreview(context)}",
@@ -145,8 +156,14 @@ e2e = replace_once(
 )
 e2e = replace_once(
     e2e,
+    "  await expect(page.getByLabel('Request for ChatGPT')).toHaveValue(/Do not generate an image yet/)",
+    "  await expect(page.getByLabel('Message for Codex')).toHaveValue(/Do not generate an image yet/)",
+    "shape-help request label",
+)
+e2e = replace_once(
+    e2e,
     "  await expect(page.getByRole('heading', { name: 'Codex will use' })).toBeVisible()\n  await expect(page.getByText('Nothing is locked.",
-    "  await expect(page.getByRole('heading', { name: 'Codex will use' })).toBeVisible()\n  await expect(page.getByText('A quiet observatory beneath a vivid desert night sky')).toBeVisible()\n  await expect(page.getByText('Cinematic · Wide shot')).toBeVisible()\n  await expect(page.getByText('Nothing is locked.",
+    "  const preview = page.locator('.pc-codex-preview')\n  await expect(preview.getByText('A quiet observatory beneath a vivid desert night sky')).toBeVisible()\n  await expect(preview.getByText('cinematic · wide-shot')).toBeVisible()\n  await expect(page.getByText('Nothing is locked.",
     "generation preview assertions",
 )
 e2e_path.write_text(e2e, encoding="utf-8")
