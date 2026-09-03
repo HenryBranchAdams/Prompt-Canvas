@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: finalize-collaboration-polish
+  cancel-in-progress: true
+
 jobs:
   apply-and-verify:
     if: github.actor != 'github-actions[bot]'
@@ -41,11 +45,19 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Run browser integration tests
         run: npm run test:e2e
-      - name: Commit verified changes
+      - name: Commit and push verified changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --check
           git commit -m "polish: refine collaboration handoff preview"
-          git push origin HEAD:polish/codex-collaboration-ux
+          for attempt in 1 2 3; do
+            git fetch origin polish/codex-collaboration-ux
+            if git rebase origin/polish/codex-collaboration-ux && git push origin HEAD:polish/codex-collaboration-ux; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 2))
+          done
+          exit 1
