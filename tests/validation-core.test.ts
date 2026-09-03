@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {
+  blockExtensionValidationErrors,
   compatibilityLint,
   createValidationResult,
   creativeReview,
@@ -56,6 +57,19 @@ test('JSON-style template round trips retain source attribution and inert proven
     result.normalizedPreview?.controls?.[0]?.binding['x-binding-provenance'],
     template.controls?.[0]?.binding['x-binding-provenance'],
   )
+})
+
+test('active block extensions reject unknown semantic references and invalid block types', () => {
+  const template = createBlankTemplate('Modular validation', 'Create a modular study.')
+  template.blocks = [
+    { id: 'wrong-kind', type: 'notes', 'x-controlIds': ['missing'] },
+    { id: 'wrong-prompt-kind', type: 'controls', 'x-promptPart': 'body' },
+  ]
+
+  const errors = blockExtensionValidationErrors(template)
+  assert.ok(errors.some((error) => error.code === 'schema.block-extension.control-type'))
+  assert.ok(errors.some((error) => error.code === 'schema.block-extension.unknown-control'))
+  assert.ok(errors.some((error) => error.code === 'schema.block-extension.prompt-type'))
 })
 
 test('author shorthand is normalized without weakening generation, prompt, or output requirements', () => {

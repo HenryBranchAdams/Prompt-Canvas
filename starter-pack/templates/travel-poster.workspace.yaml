@@ -1,6 +1,6 @@
 schema: prompt-canvas.prompt-workspace-template@2
 id: travel-poster
-version: 1
+version: 2
 title: Premium City Travel Poster
 description: Create an original, city-specific minimalist flat-vector travel poster through a long-form prompt,
   editable presets, and Codex image generation.
@@ -408,29 +408,132 @@ controls:
   binding:
     mode: agent-context
     target: palette
+- id: typography-direction
+  label: Typography
+  type: textarea
+  required: false
+  defaultValue: Understated editorial type with generous spacing. Keep the city name in the upper-left and add one short, atmospheric English tagline.
+  binding:
+    mode: agent-context
+    target: typography-direction
+- id: local-character
+  label: Local character
+  type: textarea
+  required: false
+  defaultValue: Use only authentic city-specific architecture, transit, vegetation, street furniture, wayfinding, food, recreation, pavement, or cultural details that strengthen the sense of place.
+  binding:
+    mode: agent-context
+    target: local-character
+- id: mood
+  label: Mood
+  type: text
+  required: false
+  defaultValue: Fresh, airy, peaceful, refined, contemporary, elegant.
+  binding:
+    mode: agent-context
+    target: mood
 blocks:
-- id: prompt-panel
-  type: prompt
-  title: Prompt block
+- id: subject-card
+  type: controls
+  title: Subject
   region: left
   order: 10
-- id: preset-panel
+  x-controlIds:
+  - city-name
+  x-geometry: { x: 40, y: 40, w: 180, h: 130 }
+- id: format-card
   type: controls
-  title: Presets
+  title: Format
   region: left
   order: 20
+  x-controlIds:
+  - aspect-ratio
+  x-geometry: { x: 40, y: 190, w: 180, h: 110 }
+- id: people-card
+  type: controls
+  title: People
+  region: left
+  order: 30
+  x-controlIds:
+  - people-count
+  x-geometry: { x: 40, y: 320, w: 180, h: 110 }
+- id: style-card
+  type: controls
+  title: Style
+  region: center
+  order: 40
+  x-controlIds:
+  - art-direction
+  x-geometry: { x: 240, y: 40, w: 200, h: 140 }
+- id: composition-card
+  type: controls
+  title: Composition
+  region: center
+  order: 50
+  x-controlIds:
+  - composition
+  - landmark-emphasis
+  x-geometry: { x: 240, y: 200, w: 200, h: 150 }
+- id: palette-card
+  type: controls
+  title: Color palette
+  region: center
+  order: 60
+  x-controlIds:
+  - palette
+  x-geometry: { x: 240, y: 370, w: 200, h: 130 }
+- id: typography-card
+  type: controls
+  title: Typography
+  region: center
+  order: 70
+  x-controlIds:
+  - typography-direction
+  x-geometry: { x: 460, y: 40, w: 200, h: 150 }
+- id: local-character-card
+  type: controls
+  title: Local character
+  region: center
+  order: 80
+  x-controlIds:
+  - local-character
+  x-geometry: { x: 460, y: 210, w: 200, h: 160 }
+- id: mood-card
+  type: controls
+  title: Mood
+  region: center
+  order: 90
+  x-controlIds:
+  - mood
+  x-geometry: { x: 460, y: 390, w: 200, h: 120 }
+- id: core-direction-card
+  type: prompt
+  title: Core direction
+  region: center
+  order: 100
+  x-promptPart: body
+  x-geometry: { x: 240, y: 530, w: 420, h: 150 }
 - id: poster-output
   type: output
-  title: Poster
+  title: Generated image
   sourceId: primary
   region: right
-  order: 10
+  order: 110
+  x-geometry: { x: 690, y: 90, w: 280, h: 373 }
+- id: negative-prompt-card
+  type: prompt
+  title: Avoid
+  region: left
+  order: 120
+  x-promptPart: negative
+  x-geometry: { x: 40, y: 450, w: 180, h: 150 }
 - id: variation-strip
   type: variations
   title: Variations
   sourceId: variations
   region: right
-  order: 20
+  order: 130
+  x-geometry: { x: 690, y: 483, w: 360, h: 150 }
 source:
   kind: user-provided
   title: Premium minimalist flat-vector travel poster
@@ -446,7 +549,7 @@ capabilities:
 - structured-prompt
 layout:
   mode: auto
-  arrangement: prompt-left-output-right
+  arrangement: open-canvas
   preserveManualGeometry: true
   regions:
   - id: left

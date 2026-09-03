@@ -89,11 +89,12 @@ type InspectResult = {
   }
   revision: number
   controls?: { values: Record<string, unknown> }
+  prompt?: { body: string; negativePrompt: string; displayPart?: string }
   workflow?: {
     workflow: { stages: Array<{ id: string }> }
     statuses: Record<string, string>
   } | null
-  elements: Array<{ semanticId: string; x: number; y: number }>
+  elements: Array<{ semanticId: string; x: number; y: number; width?: number; height?: number }>
   selection?: { semanticIds: string[]; assetIds: string[] }
 }
 
@@ -347,6 +348,122 @@ test('starter manifest and library expose each canonical template once', async (
   await expect(page.locator('.pc-library__count')).toContainText(
     `${manifest.templateCount} compatible templates`,
   )
+})
+
+test('travel poster opens as editable modular prompt blocks with stable seeded geometry', async ({ page }) => {
+  await openApp(page)
+
+  const created = await callTool<{ workspaceId: string; revision: number; createdElements: string[] }>(
+    page,
+    'prompt_canvas_create_workspace',
+    { source: { kind: 'template', templateId: 'travel-poster', values: {} }, openAfterCreate: true },
+  )
+  expect(created.createdElements).toEqual([
+    'subject-card',
+    'format-card',
+    'people-card',
+    'style-card',
+    'composition-card',
+    'palette-card',
+    'typography-card',
+    'local-character-card',
+    'mood-card',
+    'core-direction-card',
+    'poster-output',
+    'negative-prompt-card',
+    'variation-strip',
+  ])
+
+  const inspected = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+    workspaceId: created.workspaceId,
+    include: ['prompt', 'controls', 'layout'],
+  })
+  expect(inspected.elements.find(({ semanticId }) => semanticId === 'subject-card')).toMatchObject({
+    x: 40,
+    y: 40,
+    width: 180,
+    height: 130,
+  })
+  expect(inspected.elements.find(({ semanticId }) => semanticId === 'poster-output')).toMatchObject({
+    x: 690,
+    y: 90,
+    width: 280,
+    height: 373,
+  })
+  expect(inspected.elements.find(({ semanticId }) => semanticId === 'core-direction-card')).toMatchObject({
+    x: 240,
+    y: 530,
+    width: 420,
+    height: 150,
+  })
+  expect(inspected.controls?.values).toMatchObject({
+    'typography-direction': expect.any(String),
+    'local-character': expect.any(String),
+    mood: 'Fresh, airy, peaceful, refined, contemporary, elegant.',
+  })
+
+  const editedBody = 'Create a premium Chicago travel poster with a calm, unmistakably local point of view.'
+  const bodyLayer = page.locator('.pc-layer-list button').filter({ hasText: 'Core direction' })
+  await bodyLayer.dblclick()
+  const bodyEditor = page.locator('.pc-panel--prompt.is-editing').filter({ hasText: 'Core direction' })
+  await bodyEditor.locator('textarea').fill(editedBody)
+  await bodyEditor.locator('textarea').press('Tab')
+  await expect.poll(async () => {
+    const current = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+      workspaceId: created.workspaceId,
+      include: ['prompt'],
+    })
+    return current.prompt?.body
+  }).toBe(editedBody)
+  const bodyEdited = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+    workspaceId: created.workspaceId,
+    include: ['prompt', 'controls', 'layout'],
+  })
+
+  const context = await callTool<GenerationContext>(page, 'prompt_canvas_get_generation_context', {
+    workspaceId: created.workspaceId,
+    operation: 'generate',
+    outputSlotId: 'primary',
+  })
+  expect(context.controlContext).toMatchObject({
+    'typography-direction': expect.any(String),
+    'local-character': expect.any(String),
+    mood: 'Fresh, airy, peaceful, refined, contemporary, elegant.',
+  })
+
+  const movedPosition = { x: 131, y: 117 }
+  const moved = await callTool<{ revision: number }>(page, 'prompt_canvas_update_workspace', {
+    workspaceId: created.workspaceId,
+    expectedRevision: bodyEdited.revision,
+    operations: [{ op: 'move_element', elementId: 'subject-card', ...movedPosition }],
+  })
+  const revised = await callTool<{ revision: number }>(page, 'prompt_canvas_update_workspace', {
+    workspaceId: created.workspaceId,
+    expectedRevision: moved.revision,
+    operations: [
+      { op: 'set_control', controlId: 'mood', value: 'Quiet, lucid, lake-breezy.' },
+      { op: 'set_negative_prompt', body: 'Avoid clutter, crowds, and generic landmark collages.' },
+    ],
+  })
+  const after = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+    workspaceId: created.workspaceId,
+    include: ['prompt', 'controls', 'layout'],
+  })
+  expect(after.revision).toBe(revised.revision)
+  expect(after.prompt?.negativePrompt).toBe('Avoid clutter, crowds, and generic landmark collages.')
+  expect(after.prompt?.body).toBe(editedBody)
+  expect(after.controls?.values.mood).toBe('Quiet, lucid, lake-breezy.')
+  expect(after.elements.find(({ semanticId }) => semanticId === 'subject-card')).toMatchObject(movedPosition)
+
+  await waitForPersistedWorkspace(page, created.workspaceId, after.revision)
+  await openApp(page)
+  const reloaded = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+    workspaceId: created.workspaceId,
+    include: ['prompt', 'controls', 'layout'],
+  })
+  expect(reloaded.prompt?.body).toBe(editedBody)
+  expect(reloaded.prompt?.negativePrompt).toBe('Avoid clutter, crowds, and generic landmark collages.')
+  expect(reloaded.elements.find(({ semanticId }) => semanticId === 'subject-card')).toMatchObject(movedPosition)
 })
 
 test('expanded templates wire presets, workflow stages, and generation context', async ({ page }) => {

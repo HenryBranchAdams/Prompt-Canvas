@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { ensureRequiredBlocks } from '../src/workspaces/layout-compiler.js'
+import { compileWorkspacePanels, ensureRequiredBlocks } from '../src/workspaces/layout-compiler.js'
+import { createWorkspaceManifest } from '../src/workspaces/workspace-factory.js'
 import type { PromptWorkspaceTemplate, WorkspaceBlock } from '../src/workspaces/types.js'
 
 function fixture(): PromptWorkspaceTemplate {
@@ -83,4 +84,73 @@ test('custom layouts retain authored blocks and append missing semantic panels',
     1,
   )
   assert.equal(result.at(-1)?.sourceId, 'detail')
+})
+
+test('a negative-only authored prompt block cannot hide the editable prompt body', () => {
+  const template = fixture()
+  const result = ensureRequiredBlocks(template, [
+    { id: 'avoid', type: 'prompt', 'x-promptPart': 'negative' },
+  ])
+
+  assert.equal(result.filter((block) => block.type === 'prompt').length, 2)
+  assert.equal(result.find((block) => block.id === 'prompt-panel')?.['x-promptPart'], 'body')
+})
+
+test('modular blocks can select controls, split prompt surfaces, and declare seeded geometry', () => {
+  const template = fixture()
+  template.prompt.negativePrompt = 'Avoid clutter.'
+  template.controls!.push({
+    id: 'mood',
+    label: 'Mood',
+    type: 'text',
+    defaultValue: 'quiet',
+    binding: { mode: 'agent-context', target: 'mood' },
+  })
+  template.blocks = [
+    {
+      id: 'subject-card',
+      type: 'controls',
+      title: 'Subject',
+      'x-controlIds': ['audience'],
+      'x-geometry': { x: 120, y: 90, w: 240, h: 150 },
+    },
+    {
+      id: 'core-brief-card',
+      type: 'prompt',
+      title: 'Core direction',
+      'x-promptPart': 'body',
+      'x-geometry': { x: 500, y: 320, w: 420, h: 260 },
+    },
+    {
+      id: 'negative-prompt-card',
+      type: 'prompt',
+      title: 'Avoid',
+      'x-promptPart': 'negative',
+      'x-geometry': { x: 120, y: 320, w: 300, h: 180 },
+    },
+    { id: 'primary-view', type: 'output', sourceId: 'primary', title: 'Generated image' },
+  ]
+
+  const panels = compileWorkspacePanels(createWorkspaceManifest(template))
+  const subject = panels.find((panel) => panel.semanticId === 'subject-card')
+  const body = panels.find((panel) => panel.semanticId === 'core-brief-card')
+  const negative = panels.find((panel) => panel.semanticId === 'negative-prompt-card')
+  const additional = panels.find((panel) => panel.semanticId === 'controls-panel')
+
+  assert.deepEqual(
+    { x: subject?.x, y: subject?.y, w: subject?.w, h: subject?.h },
+    { x: 120, y: 90, w: 240, h: 150 },
+  )
+  assert.deepEqual(
+    subject?.payload.kind === 'controls' ? subject.payload.controls.map((control) => control.id) : [],
+    ['audience'],
+  )
+  assert.equal(body?.payload.kind === 'prompt' ? body.payload.displayPart : undefined, 'body')
+  assert.equal(negative?.payload.kind === 'prompt' ? negative.payload.displayPart : undefined, 'negative')
+  assert.deepEqual(
+    additional?.payload.kind === 'controls'
+      ? additional.payload.controls.map((control) => control.id)
+      : [],
+    ['mood'],
+  )
 })

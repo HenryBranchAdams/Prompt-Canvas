@@ -417,6 +417,7 @@ export type WorkspaceManifest = {
   controlValues: Record<string, JsonValue>
   generationState: GenerationState
   latestGenerationRequestId?: string
+  pendingAssetCleanupIds?: string[]
 }
 
 export type ReferenceAsset = {
@@ -549,6 +550,7 @@ export type PromptPanelPayload = {
   promptTitle: string
   body: string
   negativePrompt: string
+  displayPart?: 'body' | 'negative' | 'both'
 }
 
 export type ControlsPanelPayload = {
@@ -574,6 +576,7 @@ export type OutputPanelPayload = {
    */
   supportedOperations?: GenerationOperation[]
   assetIds: string[]
+  pendingAssetCleanupIds?: string[]
   promotedAssetId?: string
   archivedAssetIds?: string[]
   compareAssetIds?: string[]

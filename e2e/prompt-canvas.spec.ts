@@ -315,6 +315,65 @@ async function waitForPersistedAsset(
   await flushTldrawPersistence(page)
 }
 
+async function waitForPersistedOutputDeletion(
+  page: Page,
+  assetId: string,
+  workspaceId: string,
+  revision: number,
+) {
+  await page.waitForFunction(
+    async ({ id, workspace, expectedRevision }) => {
+      const database = await new Promise<IDBDatabase>((resolve, reject) => {
+        const request = indexedDB.open('TLDRAW_DOCUMENT_v2prompt-canvas-document-v1')
+        request.onerror = () => reject(request.error)
+        request.onsuccess = () => resolve(request.result)
+      })
+      try {
+        const records = await new Promise<unknown[]>((resolve, reject) => {
+          const request = database.transaction('records', 'readonly').objectStore('records').getAll()
+          request.onerror = () => reject(request.error)
+          request.onsuccess = () => resolve(request.result)
+        })
+        const pagePersisted = records.some((record) => {
+          if (!record || typeof record !== 'object') return false
+          const pageRecord = record as {
+            typeName?: unknown
+            meta?: { promptCanvas?: { workspaceId?: unknown; documentRevision?: unknown } }
+          }
+          const manifest = pageRecord.meta?.promptCanvas
+          return pageRecord.typeName === 'page' && manifest?.workspaceId === workspace &&
+            manifest.documentRevision === expectedRevision
+        })
+        const outputPayloads = records.flatMap((record) => {
+          if (!record || typeof record !== 'object') return []
+          const shape = record as { typeName?: unknown; type?: unknown; props?: { payload?: unknown } }
+          if (shape.typeName !== 'shape' || shape.type !== 'prompt-canvas-panel' ||
+            typeof shape.props?.payload !== 'string') return []
+          try {
+            const payload = JSON.parse(shape.props.payload) as { kind?: unknown; assetIds?: unknown }
+            return payload.kind === 'output' || payload.kind === 'variations' ? [payload] : []
+          } catch {
+            return []
+          }
+        })
+        const outputsPersisted = outputPayloads.length > 0 && outputPayloads.every(
+          (payload) => !Array.isArray(payload.assetIds) || !payload.assetIds.includes(id),
+        )
+        const sync = (window as unknown as {
+          tlsync?: { diffQueue?: unknown[]; isPersisting?: boolean; scheduledPersistTimeout?: unknown }
+        }).tlsync
+        const persistenceIdle = Boolean(sync) && sync!.diffQueue?.length === 0 &&
+          sync!.isPersisting === false && !sync!.scheduledPersistTimeout
+        return pagePersisted && outputsPersisted && persistenceIdle
+      } finally {
+        database.close()
+      }
+    },
+    { id: assetId, workspace: workspaceId, expectedRevision: revision },
+  )
+  await flushTldrawPersistence(page)
+}
+
 async function flushTldrawPersistence(page: Page): Promise<void> {
   await page.evaluate(async () => {
     const sync = (window as unknown as {
@@ -607,7 +666,12 @@ test('native-sized generated assets use durable local asset storage', async ({ p
   await expect(page.locator('img[alt="Native-sized persistence image"]')).toBeVisible()
   await page.keyboard.press('Control+Shift+z')
   await expect(page.locator('img[alt="Native-sized persistence image"]')).toBeHidden()
-  await flushTldrawPersistence(page)
+  await waitForPersistedOutputDeletion(
+    page,
+    imported.assetIds[0],
+    imported.workspaceId,
+    deleted.revision,
+  )
 
   await page.reload()
   await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
@@ -992,7 +1056,7 @@ test('Layers inspector double-click opens an editable panel', async ({ page }) =
   await page.goto('/')
   await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
 
-  const controlsLayer = page.locator('.pc-layer-list button').filter({ hasText: 'Presets' })
+  const controlsLayer = page.locator('.pc-layer-list button').filter({ hasText: 'Format' })
   await expect(controlsLayer).toBeVisible()
   await expect(controlsLayer).toHaveAttribute('title', 'Double-click to edit this panel')
   await controlsLayer.dblclick()

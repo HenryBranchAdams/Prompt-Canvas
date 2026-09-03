@@ -1136,7 +1136,33 @@
         "lockedByDefault": {
           "type": "boolean"
         },
-        "content": {}
+        "content": {},
+        "x-controlIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        "x-promptPart": {
+          "enum": [
+            "body",
+            "negative"
+          ]
+        },
+        "x-geometry": {
+          "type": "object",
+          "properties": {
+            "x": { "type": "number", "minimum": -10000, "maximum": 10000 },
+            "y": { "type": "number", "minimum": -10000, "maximum": 10000 },
+            "w": { "type": "number", "minimum": 80, "maximum": 4000 },
+            "h": { "type": "number", "minimum": 80, "maximum": 4000 }
+          },
+          "required": ["x", "y", "w", "h"],
+          "additionalProperties": false
+        }
       },
       "required": [
         "id",

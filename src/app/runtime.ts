@@ -51,6 +51,7 @@ import type {
   OutputPanelPayload,
   PanelDescriptor,
   PanelPayload,
+  PromptPanelPayload,
   PromptWorkspaceTemplate,
   ReferenceAsset,
   TemplateValidationResult,
@@ -127,6 +128,15 @@ function pageMetaWithManifest(page: TLPage, manifest: WorkspaceManifest): JsonOb
   return {
     ...asJsonObject(page.meta),
     [PAGE_META_KEY]: manifest as unknown as JsonValue,
+  }
+}
+
+function canonicalPromptPayload(manifest: WorkspaceManifest): PromptPanelPayload {
+  return {
+    kind: 'prompt',
+    promptTitle: manifest.templateSnapshot.prompt.title ?? manifest.title,
+    body: manifest.templateSnapshot.prompt.body,
+    negativePrompt: manifest.templateSnapshot.prompt.negativePrompt ?? '',
   }
 }
 
@@ -249,7 +259,8 @@ export class PromptCanvasRuntime {
   private async compactUnreachableLocalImages(editor: Editor): Promise<void> {
     this.assertEditorCurrent(editor)
     const reachable = new Set<TLAssetId>()
-    for (const { manifest } of this.listWorkspacePages()) {
+    const workspaces = this.listWorkspacePages()
+    for (const { manifest } of workspaces) {
       for (const assetId of this.workspaceAssetIds(manifest.workspaceId)) {
         reachable.add(assetId as TLAssetId)
       }
@@ -283,7 +294,50 @@ export class PromptCanvasRuntime {
         promptCanvas.kind === 'reference'
       return owned && !reachable.has(asset.id)
     })
-    await this.removeLocalImages(editor, unreachable.map((asset) => asset.id))
+    const pendingCleanupIds = uniqueStrings([
+      ...workspaces.flatMap(({ manifest }) => manifest.pendingAssetCleanupIds ?? []),
+      ...workspaces.flatMap(({ manifest }) => this.outputPanels(manifest.workspaceId).flatMap((panel) => {
+        const payload = parsePanelPayload(panel.props.payload)
+        return payload.kind === 'output' || payload.kind === 'variations'
+          ? payload.pendingAssetCleanupIds ?? []
+          : []
+      })),
+    ]).map((assetId) => assetId as TLAssetId)
+    const cleanupIds = uniqueStrings([
+      ...unreachable.map((asset) => asset.id),
+      ...pendingCleanupIds.filter((assetId) => !reachable.has(assetId)),
+    ]) as TLAssetId[]
+    await this.removeLocalImages(editor, cleanupIds)
+
+    if (cleanupIds.length > 0) {
+      const cleaned = new Set<string>(cleanupIds)
+      editor.run(() => {
+        for (const { page, manifest } of workspaces) {
+          const remaining = (manifest.pendingAssetCleanupIds ?? []).filter(
+            (assetId) => !cleaned.has(assetId),
+          )
+          if (remaining.length === (manifest.pendingAssetCleanupIds ?? []).length) continue
+          const next = clone(manifest)
+          if (remaining.length > 0) next.pendingAssetCleanupIds = remaining
+          else delete next.pendingAssetCleanupIds
+          editor.updatePage({ id: page.id, meta: pageMetaWithManifest(page, next) })
+        }
+        for (const { manifest } of workspaces) {
+          for (const panel of this.outputPanels(manifest.workspaceId)) {
+            const payload = parsePanelPayload(panel.props.payload)
+            if (payload.kind !== 'output' && payload.kind !== 'variations') continue
+            const remaining = (payload.pendingAssetCleanupIds ?? []).filter(
+              (assetId) => !cleaned.has(assetId),
+            )
+            if (remaining.length === (payload.pendingAssetCleanupIds ?? []).length) continue
+            const next = { ...payload }
+            if (remaining.length > 0) next.pendingAssetCleanupIds = remaining
+            else delete next.pendingAssetCleanupIds
+            this.updatePanelPayload(panel, next)
+          }
+        }
+      }, { history: 'ignore' })
+    }
   }
 
   async attachEditor(editor: Editor): Promise<void> {
@@ -788,22 +842,26 @@ export class PromptCanvasRuntime {
             switch (operation.op) {
             case 'set_prompt_body': {
               nextTemplate.prompt.body = operation.body
-              const shape = this.panelsByPayloadKind(input.workspaceId, 'prompt')[0]
-              if (!shape) throw new Error('Prompt panel is missing.')
-              const payload = parsePanelPayload(shape.props.payload)
-              if (payload.kind !== 'prompt') throw new Error('Prompt panel has invalid data.')
-              this.updatePanelPayload(shape, { ...payload, body: operation.body })
-              changedElements.push(shape.props.semanticId)
+              const shapes = this.panelsByPayloadKind(input.workspaceId, 'prompt')
+              if (shapes.length === 0) throw new Error('Prompt panel is missing.')
+              for (const shape of shapes) {
+                const payload = parsePanelPayload(shape.props.payload)
+                if (payload.kind !== 'prompt') throw new Error('Prompt panel has invalid data.')
+                this.updatePanelPayload(shape, { ...payload, body: operation.body })
+                changedElements.push(shape.props.semanticId)
+              }
               break
             }
             case 'set_negative_prompt': {
               nextTemplate.prompt.negativePrompt = operation.body
-              const shape = this.panelsByPayloadKind(input.workspaceId, 'prompt')[0]
-              if (!shape) throw new Error('Prompt panel is missing.')
-              const payload = parsePanelPayload(shape.props.payload)
-              if (payload.kind !== 'prompt') throw new Error('Prompt panel has invalid data.')
-              this.updatePanelPayload(shape, { ...payload, negativePrompt: operation.body })
-              changedElements.push(shape.props.semanticId)
+              const shapes = this.panelsByPayloadKind(input.workspaceId, 'prompt')
+              if (shapes.length === 0) throw new Error('Prompt panel is missing.')
+              for (const shape of shapes) {
+                const payload = parsePanelPayload(shape.props.payload)
+                if (payload.kind !== 'prompt') throw new Error('Prompt panel has invalid data.')
+                this.updatePanelPayload(shape, { ...payload, negativePrompt: operation.body })
+                changedElements.push(shape.props.semanticId)
+              }
               break
             }
             case 'set_variable': {
@@ -1063,14 +1121,7 @@ export class PromptCanvasRuntime {
     }
 
     if (include.has('prompt')) {
-      const promptPanel = panels.find((shape) => {
-        try {
-          return parsePanelPayload(shape.props.payload).kind === 'prompt'
-        } catch {
-          return false
-        }
-      })
-      if (promptPanel) result.prompt = parsePanelPayload(promptPanel.props.payload) as unknown as JsonValue
+      result.prompt = canonicalPromptPayload(manifest) as unknown as JsonValue
     }
     if (include.has('controls')) {
       result.controls = {
@@ -1167,16 +1218,7 @@ export class PromptCanvasRuntime {
     chatDirection?: string
   }): GenerationContext {
     const { page, manifest } = this.findWorkspacePage(input.workspaceId)
-    const promptPanel = this.panelShapes(page.id).find((shape) => {
-      try {
-        return parsePanelPayload(shape.props.payload).kind === 'prompt'
-      } catch {
-        return false
-      }
-    })
-    if (!promptPanel) throw new Error('Prompt panel is missing.')
-    const promptPayload = parsePanelPayload(promptPanel.props.payload)
-    if (promptPayload.kind !== 'prompt') throw new Error('Prompt panel has invalid data.')
+    const promptPayload = canonicalPromptPayload(manifest)
 
     const selection = resolveOutputSelection({
       workspaceId: input.workspaceId,
@@ -1548,6 +1590,7 @@ export class PromptCanvasRuntime {
     }
 
     const affected = new Set<string>()
+    const deletedAssetIds = new Set<string>()
     const locate = (assetId: string) => {
       for (const panel of panels) {
         const payload = payloads.get(panel.id)
@@ -1619,7 +1662,22 @@ export class PromptCanvasRuntime {
           }
           // Visible deletion is undoable because the asset record remains locally available.
           affected.add(assetId)
+          deletedAssetIds.add(assetId)
         }
+      }
+    }
+
+    if (deletedAssetIds.size > 0) {
+      const cleanupPanel = panels[0]
+      const payload = cleanupPanel ? payloads.get(cleanupPanel.id) : undefined
+      if (cleanupPanel && payload) {
+        payloads.set(cleanupPanel.id, {
+          ...payload,
+          pendingAssetCleanupIds: uniqueStrings([
+            ...(payload.pendingAssetCleanupIds ?? []),
+            ...deletedAssetIds,
+          ]),
+        })
       }
     }
 
@@ -1634,6 +1692,12 @@ export class PromptCanvasRuntime {
           if (payload) this.updatePanelPayload(panel, payload)
         }
         nextManifest.generationState = [...payloads.values()].some((payload) => payload.assetIds.length > 0) ? 'complete' : 'empty'
+        if (deletedAssetIds.size > 0) {
+          nextManifest.pendingAssetCleanupIds = uniqueStrings([
+            ...(nextManifest.pendingAssetCleanupIds ?? []),
+            ...deletedAssetIds,
+          ])
+        }
         return {
           workspaceId: input.workspaceId,
           revision: nextManifest.documentRevision,
@@ -1699,14 +1763,6 @@ export class PromptCanvasRuntime {
 
   templateFromWorkspace(manifest: WorkspaceManifest): PromptWorkspaceTemplate {
     const template = clone(manifest.templateSnapshot)
-    const promptPanel = this.panelsByPayloadKind(manifest.workspaceId, 'prompt')[0]
-    if (promptPanel) {
-      const payload = parsePanelPayload(promptPanel.props.payload)
-      if (payload.kind === 'prompt') {
-        template.prompt.body = payload.body
-        template.prompt.negativePrompt = payload.negativePrompt
-      }
-    }
     template.title = manifest.title
     template.prompt.variables = template.prompt.variables?.map((variable) => {
       const value = manifest.controlValues[variable.id]

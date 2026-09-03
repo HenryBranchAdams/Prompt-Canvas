@@ -3,6 +3,7 @@ import addFormats from 'ajv-formats'
 import templateSchema from '../../schemas/prompt-workspace-template.schema.json'
 import {
   createValidationResult,
+  blockExtensionValidationErrors,
   normalizeTemplateInput,
   workflowValidationErrors,
 } from './validation-core'
@@ -43,11 +44,14 @@ export function validateTemplate(
     }
   }
   const template = normalizedCandidate as PromptWorkspaceTemplate
-  const workflowErrors = workflowValidationErrors(template)
-  if (workflowErrors.length > 0) {
+  const semanticErrors = [
+    ...workflowValidationErrors(template),
+    ...blockExtensionValidationErrors(template),
+  ]
+  if (semanticErrors.length > 0) {
     return {
       valid: false,
-      schemaErrors: workflowErrors,
+      schemaErrors: semanticErrors,
       compatibilityWarnings: [],
       creativeSuggestions: [],
     }

@@ -269,10 +269,11 @@ function PromptPanel(props: {
 }) {
   const [body, setBody] = usePropDraft(props.payload.body)
   const [negative, setNegative] = usePropDraft(props.payload.negativePrompt)
+  const displayPart = props.payload.displayPart ?? 'both'
 
   return (
-    <div className="pc-panel__body pc-prompt-panel">
-      <label>
+    <div className={`pc-panel__body pc-prompt-panel is-${displayPart}`}>
+      {displayPart !== 'negative' ? <label>
         <span className="pc-section-label">Task / prompt</span>
         <textarea
           disabled={!props.editing}
@@ -288,9 +289,9 @@ function PromptPanel(props: {
             }
           }}
         />
-      </label>
-      <label className="pc-negative-prompt">
-        <span className="pc-section-label">Negative prompt</span>
+      </label> : null}
+      {displayPart !== 'body' ? <label className="pc-negative-prompt">
+        <span className="pc-section-label">Avoid</span>
         <textarea
           disabled={!props.editing}
           value={negative}
@@ -305,7 +306,7 @@ function PromptPanel(props: {
             }
           }}
         />
-      </label>
+      </label> : null}
     </div>
   )
 }
@@ -316,7 +317,7 @@ function ControlsPanel(props: {
   editing: boolean
 }) {
   return (
-    <div className="pc-panel__body pc-controls-panel">
+    <div className={`pc-panel__body pc-controls-panel ${props.payload.controls.length === 1 ? 'is-single' : ''}`}>
       {props.payload.controls.length === 0 ? (
         <p className="pc-empty-copy">This prompt intentionally stays freeform.</p>
       ) : (

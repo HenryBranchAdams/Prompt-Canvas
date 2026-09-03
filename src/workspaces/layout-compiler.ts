@@ -48,12 +48,25 @@ function payloadForBlock(
         promptTitle: template.prompt.title ?? template.title,
         body: template.prompt.body,
         negativePrompt: template.prompt.negativePrompt ?? '',
+        ...(block['x-promptPart'] === 'body' || block['x-promptPart'] === 'negative'
+          ? { displayPart: block['x-promptPart'] }
+          : {}),
       }
     case 'controls':
+      {
+        const requestedIds = Array.isArray(block['x-controlIds'])
+          ? block['x-controlIds'].filter((id): id is string => typeof id === 'string')
+          : []
+        const requested = new Set(requestedIds)
       return {
         kind: 'controls',
-        controls: structuredClone(template.controls ?? []),
+        controls: structuredClone(
+          requested.size > 0
+            ? (template.controls ?? []).filter((control) => requested.has(control.id))
+            : (template.controls ?? []),
+        ),
         values: structuredClone(controlValues),
+      }
       }
     case 'references':
       return {
@@ -171,14 +184,43 @@ export function ensureRequiredBlocks(
     blocks.push({ ...block, id, order: nextOrder++ })
   }
 
-  if (!blocks.some((block) => block.type === 'prompt')) {
-    append({ id: 'prompt-panel', type: 'prompt', title: 'Prompt', region: 'left' })
+  const promptBlocks = blocks.filter((block) => block.type === 'prompt')
+  const hasVisiblePromptBody = promptBlocks.some((block) => block['x-promptPart'] !== 'negative')
+  if (!hasVisiblePromptBody) {
+    append({
+      id: 'prompt-panel',
+      type: 'prompt',
+      title: 'Prompt',
+      region: 'left',
+      ...(promptBlocks.length > 0 ? { 'x-promptPart': 'body' } : {}),
+    })
   }
-  if (
-    (template.controls?.length ?? 0) > 0 &&
-    !blocks.some((block) => block.type === 'controls')
-  ) {
-    append({ id: 'controls-panel', type: 'controls', title: 'Controls', region: 'left' })
+  const controls = template.controls ?? []
+  if (controls.length > 0) {
+    const authoredControlBlocks = blocks.filter((block) => block.type === 'controls')
+    const hasCompleteControlBlock = authoredControlBlocks.some((block) => {
+      const requested = block['x-controlIds']
+      return !Array.isArray(requested) || requested.length === 0
+    })
+    const representedControlIds = new Set(
+      authoredControlBlocks.flatMap((block) => (
+        Array.isArray(block['x-controlIds'])
+          ? block['x-controlIds'].filter((id): id is string => typeof id === 'string')
+          : []
+      )),
+    )
+    const missingControlIds = hasCompleteControlBlock
+      ? []
+      : controls.map((control) => control.id).filter((id) => !representedControlIds.has(id))
+    if (authoredControlBlocks.length === 0 || missingControlIds.length > 0) {
+      append({
+        id: 'controls-panel',
+        type: 'controls',
+        title: authoredControlBlocks.length === 0 ? 'Controls' : 'Additional controls',
+        region: 'left',
+        ...(authoredControlBlocks.length > 0 ? { 'x-controlIds': missingControlIds } : {}),
+      })
+    }
   }
   if (
     (template.references?.length ?? 0) > 0 &&
@@ -216,7 +258,26 @@ export function ensureRequiredBlocks(
   return blocks
 }
 
-function dimensions(kind: PanelKind, family: string | undefined): { w: number; h: number } {
+function explicitGeometry(block: WorkspaceBlock): Partial<{ x: number; y: number; w: number; h: number }> {
+  const value = block['x-geometry']
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
+  const geometry = value as Record<string, unknown>
+  return Object.fromEntries(
+    ['x', 'y', 'w', 'h']
+      .filter((key) => typeof geometry[key] === 'number' && Number.isFinite(geometry[key]))
+      .map((key) => [key, geometry[key]]),
+  )
+}
+
+function dimensions(
+  kind: PanelKind,
+  family: string | undefined,
+  block: WorkspaceBlock,
+): { w: number; h: number } {
+  const explicit = explicitGeometry(block)
+  if ((explicit.w ?? 0) > 0 && (explicit.h ?? 0) > 0) {
+    return { w: explicit.w!, h: explicit.h! }
+  }
   switch (kind) {
     case 'prompt':
       return { w: 430, h: family === 'lightweight' ? 300 : 520 }
@@ -243,13 +304,14 @@ function blockPosition(
   cursors: { left: number; right: number; center: number },
   family: string | undefined,
 ): { x: number; y: number; w: number; h: number; region: 'left' | 'right' | 'center' } {
-  const size = dimensions(kind, family)
+  const size = dimensions(kind, family, block)
+  const explicit = explicitGeometry(block)
   const requested = block.region ?? (kind === 'output' || kind === 'variations' ? 'right' : 'left')
   const region: 'left' | 'right' | 'center' =
     requested === 'right' || requested === 'center' ? requested : 'left'
-  const x =
-    region === 'left' ? LEFT_X : region === 'center' ? 560 : family === 'multi-stage' ? 1060 : 560
-  return { x, y: cursors[region], ...size, region }
+  const x = explicit.x ??
+    (region === 'left' ? LEFT_X : region === 'center' ? 560 : family === 'multi-stage' ? 1060 : 560)
+  return { x, y: explicit.y ?? cursors[region], ...size, region }
 }
 
 export function compileWorkspacePanels(
@@ -274,7 +336,10 @@ export function compileWorkspacePanels(
     if (!payload) continue
     const kind = kindForBlock(block)
     const position = blockPosition(block, kind, cursors, family)
-    cursors[position.region] += position.h + GAP
+    cursors[position.region] = Math.max(
+      cursors[position.region],
+      position.y + position.h + GAP,
+    )
     descriptors.push({
       semanticId: block.id,
       title: block.title ?? template.title,

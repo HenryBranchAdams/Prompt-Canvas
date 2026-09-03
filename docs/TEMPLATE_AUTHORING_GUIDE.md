@@ -470,6 +470,18 @@ Examples:
 
 Use `region`, `order`, and `layout.arrangement` as hints. The compiler chooses actual dimensions and positions, preserving manual geometry after creation.
 
+Prompt Canvas also recognizes three bounded first-party block extensions when a
+template needs a deliberately composed opening canvas:
+
+- `x-controlIds`: render only the named controls in that controls block;
+- `x-promptPart`: render `body` or `negative` in that prompt block while keeping
+  the complete canonical prompt available to WebMCP and generation context;
+- `x-geometry`: seed finite `x`, `y`, `w`, and `h` values at creation time.
+
+These extensions affect only the initial compiled view. They do not change tool
+authority, validation, or generation semantics, and later manual geometry remains
+authoritative.
+
 A template can omit blocks entirely. The app then builds a default workspace from prompt, controls, references, workflow, and outputs.
 
 ---

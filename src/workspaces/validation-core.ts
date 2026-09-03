@@ -161,6 +161,40 @@ export function workflowValidationErrors(template: PromptWorkspaceTemplate): Val
   return errors
 }
 
+/** Supported first-party block extensions stay bounded and reference declared semantics. */
+export function blockExtensionValidationErrors(template: PromptWorkspaceTemplate): ValidationIssue[] {
+  const errors: ValidationIssue[] = []
+  const controlIds = new Set((template.controls ?? []).map((control) => control.id))
+  for (const block of template.blocks ?? []) {
+    if (block['x-controlIds'] !== undefined && block.type !== 'controls') {
+      errors.push(issue(
+        `/blocks/${block.id}/x-controlIds`,
+        'schema.block-extension.control-type',
+        'x-controlIds is supported only on controls blocks.',
+      ))
+    }
+    if (Array.isArray(block['x-controlIds'])) {
+      for (const controlId of block['x-controlIds']) {
+        if (typeof controlId === 'string' && !controlIds.has(controlId)) {
+          errors.push(issue(
+            `/blocks/${block.id}/x-controlIds`,
+            'schema.block-extension.unknown-control',
+            `The control “${controlId}” is not declared by this template.`,
+          ))
+        }
+      }
+    }
+    if (block['x-promptPart'] !== undefined && block.type !== 'prompt') {
+      errors.push(issue(
+        `/blocks/${block.id}/x-promptPart`,
+        'schema.block-extension.prompt-type',
+        'x-promptPart is supported only on prompt blocks.',
+      ))
+    }
+  }
+  return errors
+}
+
 export function compatibilityLint(template: PromptWorkspaceTemplate): ValidationIssue[] {
   const warnings: ValidationIssue[] = []
   warnings.push(...duplicateIdIssues(template.controls, '/controls'))

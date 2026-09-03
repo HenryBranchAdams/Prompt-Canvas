@@ -628,6 +628,11 @@ button:disabled {
   padding: 12px;
 }
 
+.pc-prompt-panel.is-body,
+.pc-prompt-panel.is-negative {
+  grid-template-rows: minmax(0, 1fr);
+}
+
 .pc-prompt-panel label {
   min-height: 0;
   display: grid;
@@ -673,6 +678,14 @@ button:disabled {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 11px 12px;
   padding: 12px;
+}
+
+.pc-controls-panel.is-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pc-controls-panel.is-single .pc-control textarea {
+  min-height: 82px;
 }
 
 .pc-control {
