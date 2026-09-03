@@ -29,8 +29,8 @@ The page never asks for an OpenAI API key and never calls an image model directl
 - Directly interactive prompt and preset-control panels; the header is the canvas drag handle.
 - A first-run recipe gallery with six everyday `Start fast` recipes, real first-party previews, ordinary-language search, and one obvious `Start` action.
 - Four additional outcome-first official recipes for exact-text posters, collectible cards, four-direction exploration, and composition-preserving restyles.
-- Nine preserved advanced creative systems, for 19 original first-party recipes in the bundled fallback. The gallery is a baseline, not a product limit.
-- A read-only D1 catalog for the ten owner-reviewed official recipes, with bounded FTS5 retrieval and structured facets. User-saved recipes remain local to the browser.
+- Forty-two independently authored task-focused systems and nine preserved advanced creative systems, for 61 original first-party recipes in the bundled fallback. The gallery is a baseline, not a product limit.
+- A read-only, owner-controlled D1 catalog for 52 official recipes, with bounded FTS5 retrieval and structured facets. User-saved recipes remain local to the browser.
 - Modular input, essential-choice, prompt, reference, workflow, result, and variation blocks connected visibly to the intended output.
 - Blank workspace creation, duplication, immutable starter instances, and save-as-template.
 - Thin `prompt-canvas.prompt-workspace-template@2` compatibility core with non-blocking lint and creative guidance.

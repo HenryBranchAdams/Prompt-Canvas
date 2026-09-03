@@ -1,0 +1,249 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: object-anatomy-exhibit
+version: 1
+title: Object anatomy exhibit
+description: Explain an object through a museum-style hero, structure, materials, and callouts.
+category: knowledge-brand
+tags:
+- knowledge brand
+- museum object breakdown
+- exploded artifact infographic
+status: starter
+compatibility:
+  minimumAppVersion: 0.1.0
+  templateFamily: parameterized
+source:
+  kind: first-party
+  creator: Prompt Canvas
+  title: Object anatomy exhibit
+  promptUsage: original
+  notes: Independently authored for Prompt Canvas from a high-level creative use case.
+thumbnail:
+  assetPath: /recipe-thumbnails/original-systems/object-anatomy-exhibit.svg
+  alt: First-party graphic preview for Object anatomy exhibit, illustrating museum teardown panel.
+capabilities:
+- text-to-image
+- image-edit
+- variations
+- upscale
+- structured-prompt
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations: &id001
+  - generate
+  - edit
+  - variation
+  - upscale
+  defaultOperation: generate
+  defaultVariationCount: 1
+  preferredMimeTypes:
+  - image/png
+  - image/webp
+prompt:
+  title: Creative direction
+  body: 'Explain an object through a museum-style hero, structure, materials, and callouts. Create an original, polished image
+    for this brief: {{brief}}. Use {{method}} as the visual method. Organize the image so {{structure}}. Favor one clear focal
+    idea, intentional negative space, coherent lighting, believable depth, and material-specific detail. Do not add unrelated
+    text, logos, watermarks, copied characters, or unsupported factual claims.'
+  variables:
+  - id: brief
+    label: Creative brief
+    type: text
+    required: true
+    defaultValue: A hand-built mechanical music box
+  - id: method
+    label: Visual method
+    type: string
+    defaultValue: museum teardown panel
+  - id: structure
+    label: Composition rule
+    type: string
+    defaultValue: parts and annotations remain plausible and easy to follow
+  agentInstructions: Resolve all visible controls and reference obligations before generation. Produce one candidate by default
+    and return it to the primary output slot.
+controlGroups:
+- id: required
+  label: Required
+  description: The idea or source needed to begin.
+- id: essentials
+  label: Essentials
+  description: A few choices that shape the result.
+- id: more-control
+  label: More control
+  collapsedByDefault: true
+controls:
+- id: brief
+  label: What should the image show?
+  type: textarea
+  required: true
+  defaultValue: A hand-built mechanical music box
+  binding:
+    mode: variable
+    target: brief
+- id: method
+  label: Visual method
+  type: text
+  defaultValue: museum teardown panel
+  binding:
+    mode: variable
+    target: method
+- id: structure
+  label: Composition rule
+  type: textarea
+  defaultValue: parts and annotations remain plausible and easy to follow
+  binding:
+    mode: variable
+    target: structure
+- id: aspect-ratio
+  label: Format
+  type: aspect-ratio
+  defaultValue: '4:5'
+  options:
+  - label: Portrait 4:5
+    value: '4:5'
+  - label: Tall 9:16
+    value: '9:16'
+  - label: Square 1:1
+    value: '1:1'
+  - label: Landscape 3:2
+    value: '3:2'
+  binding:
+    mode: generation
+    target: aspectRatio
+outputs:
+- id: primary
+  label: Result
+  role: primary
+  kind: image
+  count: 1
+  aspectRatio: '4:5'
+  operations: *id001
+  layoutHint: hero
+  required: true
+blocks:
+- id: creative-brief
+  type: controls
+  title: 1. Creative brief
+  content:
+    controlIds:
+    - brief
+  x-connectTo: primary-output
+  x-geometry:
+    x: 80
+    y: 120
+    w: 360
+    h: 220
+- id: visual-method
+  type: controls
+  title: 2. Visual method
+  content:
+    controlIds:
+    - method
+  x-connectTo: primary-output
+  x-geometry:
+    x: 500
+    y: 90
+    w: 350
+    h: 170
+- id: composition-rule
+  type: controls
+  title: Composition rule
+  content:
+    controlIds:
+    - structure
+  x-connectTo: primary-output
+  x-geometry:
+    x: 500
+    y: 300
+    w: 350
+    h: 210
+- id: format
+  type: controls
+  title: Format
+  content:
+    controlIds:
+    - aspect-ratio
+  x-connectTo: primary-output
+  x-geometry:
+    x: 500
+    y: 550
+    w: 350
+    h: 170
+- id: primary-output
+  type: output
+  title: 3. Result
+  sourceId: primary
+  x-geometry:
+    x: 930
+    y: 100
+    w: 620
+    h: 620
+- id: full-prompt
+  type: prompt
+  title: More control · Full prompt
+  collapsedByDefault: true
+  x-connectTo: primary-output
+  x-geometry:
+    x: 80
+    y: 390
+    w: 360
+    h: 330
+layout:
+  mode: seeded
+  arrangement: prompt-left-output-right
+  preserveManualGeometry: true
+x-discovery:
+  collection: original-systems
+  userPromise: Explain an object through a museum-style hero, structure, materials, and callouts.
+  intentAliases:
+  - museum object breakdown
+  - exploded artifact infographic
+  - materials and parts plate
+  intents:
+  - create
+  inputModes:
+  - text
+  subjectKinds:
+  - person
+  - object
+  - place
+  - concept
+  outputKinds:
+  - image
+  preservationNeeds: []
+  complexity: guided
+  requiredInputSummary:
+  - A short creative brief
+  inputSummary:
+  - A creative brief
+  badges:
+  - No photo needed
+  - Makes 1 image
+  thumbnail:
+    src: /recipe-thumbnails/original-systems/object-anatomy-exhibit.svg
+    alt: First-party graphic preview for Object anatomy exhibit, illustrating museum teardown panel.
+x-presentation:
+  primaryControlIds:
+  - brief
+  - method
+  - structure
+  - aspect-ratio
+  advancedControlIds: []
+  initialView: canvas
+  resultEmphasis: hero
+  showPromptByDefault: false
+x-agent-authoring:
+  origin: independent-first-party
+  reviewState: owner-requested-original-authoring
+  generationDefault: 1
+preservation:
+- id: creative-mechanism
+  label: Creative mechanism
+  description: 'Preserve the defining museum teardown panel method and this composition obligation: parts and annotations
+    remain plausible and easy to follow.'
+  strength: must
+  appliesTo:
+  - method
+  - structure

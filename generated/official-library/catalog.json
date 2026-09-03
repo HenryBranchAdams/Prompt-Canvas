@@ -1,7 +1,126 @@
 {
-  "buildHash": "sha256:c793fa82ebe18c59fef155107c96a318912cba9854495665a70437e0b8e03e50",
-  "count": 10,
+  "buildHash": "sha256:e48c2d7967653846c7c97892954421d9ad8476444ff2d42c1c9737a329a6385a",
+  "count": 52,
   "prompts": [
+    {
+      "aliases": [
+        "child dream illustration",
+        "many mini stories one image",
+        "branching storybook scene"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "illustration-story",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Expand a simple dream into one central event with several connected side stories.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:184ea8cf5cbefe93d9e68fa26e001758f418ca3b938dd5288736d7a91421f067",
+      "id": "branching-dream-tableau",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "branching-dream-tableau",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Branching dream tableau, illustrating connected storybook world.",
+        "src": "/recipe-thumbnails/original-systems/branching-dream-tableau.svg"
+      },
+      "title": "Branching dream tableau",
+      "userPromise": "Expand a simple dream into one central event with several connected side stories.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "people inside letters",
+        "group typography poster",
+        "cast around giant word"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "type-as-space",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Arrange a group through the spaces of oversized typography.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:94068f37ac478396050b99413d79fb041f31c5740274f9e8de390eb7c8f0b08d",
+      "id": "cast-inside-letterforms",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "cast-inside-letterforms",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Cast inside letterforms, illustrating people inhabiting giant letters.",
+        "src": "/recipe-thumbnails/original-systems/cast-inside-letterforms.svg"
+      },
+      "title": "Cast inside letterforms",
+      "userPromise": "Arrange a group through the spaces of oversized typography.",
+      "version": 1
+    },
     {
       "aliases": [
         "swap background",
@@ -151,6 +270,130 @@
     },
     {
       "aliases": [
+        "character constellation poster",
+        "cast relationship map",
+        "story characters visualized"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Make a cast relationship system feel like a designed story poster rather than a diagram.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:0b521dde5e216d27d5a3334107f320ac565a7529b71ab97865b7fc7090a000ea",
+      "id": "character-relationship-map",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "character-relationship-map",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Character relationship map, illustrating character constellation.",
+        "src": "/recipe-thumbnails/original-systems/character-relationship-map.svg"
+      },
+      "title": "Character relationship map",
+      "userPromise": "Make a cast relationship system feel like a designed story poster rather than a diagram.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "pastel city comparison",
+        "two color versions of city",
+        "paired urban palette"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps source identity",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "category": "photo-transformation",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "edit",
+      "description": "Create two coordinated interpretations of a city photo with distinct pastel atmospheres.",
+      "family": "reference-transformation",
+      "featuredRank": null,
+      "hash": "sha256:d6833fdd1de9bced19dff89c7c562d579d5f3b33d489b209db4bc93dd7a0843e",
+      "id": "city-palette-comparison",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition"
+      ],
+      "preserves": [
+        "identity",
+        "composition"
+      ],
+      "requiredInputs": [
+        "One source image and a short direction"
+      ],
+      "slug": "city-palette-comparison",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for City palette comparison, illustrating paired color interpretation.",
+        "src": "/recipe-thumbnails/original-systems/city-palette-comparison.svg"
+      },
+      "title": "City palette comparison",
+      "userPromise": "Create two coordinated interpretations of a city photo with distinct pastel atmospheres.",
+      "version": 1
+    },
+    {
+      "aliases": [
         "put my dog on a battle card",
         "make a pet trading card",
         "turn this photo into a collectible card",
@@ -224,6 +467,124 @@
     },
     {
       "aliases": [
+        "encyclopedia plate",
+        "visual field guide",
+        "collectible knowledge page"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Turn a topic into a beautiful visual learning plate with a clear information hierarchy.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:be38aeb7c75e126d1951c6ac3a613623bd2240a2a4f88f3028bad449f13e29f8",
+      "id": "collectible-field-guide",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "collectible-field-guide",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Collectible field guide, illustrating hero-and-callout knowledge page.",
+        "src": "/recipe-thumbnails/original-systems/collectible-field-guide.svg"
+      },
+      "title": "Collectible field guide",
+      "userPromise": "Turn a topic into a beautiful visual learning plate with a clear information hierarchy.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "tiny person giant world",
+        "colossal fantasy landscape",
+        "impossible scale scene"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "illustration-story",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Use a tiny traveler to make an impossible realm and its resident feel truly vast.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:1c3124c6673e4180bff8cd0dd906c9d0f615d5e367fc19ce94d9c50dad38e3be",
+      "id": "colossal-realm-scale",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "colossal-realm-scale",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Colossal realm scale, illustrating human scale against colossus.",
+        "src": "/recipe-thumbnails/original-systems/colossal-realm-scale.svg"
+      },
+      "title": "Colossal realm scale",
+      "userPromise": "Use a tiny traveler to make an impossible realm and its resident feel truly vast.",
+      "version": 1
+    },
+    {
+      "aliases": [
         "make a picture",
         "create art",
         "draw this",
@@ -281,6 +642,66 @@
       },
       "title": "Create an image from words",
       "userPromise": "Describe anything and get a polished first image.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "retro palette poster",
+        "period color study",
+        "historical editorial mood"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "editorial-poster",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Translate a period mood into an original palette and print treatment without imitation.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:95c6b30689df8455f5298b544ea30d7961e9cdc70f315241e98637e59bbb1c7c",
+      "id": "era-palette-editorial",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "era-palette-editorial",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Era palette editorial, illustrating period-informed palette.",
+        "src": "/recipe-thumbnails/original-systems/era-palette-editorial.svg"
+      },
+      "title": "Era palette editorial",
+      "userPromise": "Translate a period mood into an original palette and print treatment without imitation.",
       "version": 1
     },
     {
@@ -359,6 +780,184 @@
     },
     {
       "aliases": [
+        "op art object",
+        "form from lines",
+        "contour field poster"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "editorial-poster",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Reveal a subject only through the way a precise line field bends around it.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:e55d710a4da1931d90d372e643e13e7dc6d9078e1459cfb7335d69d1e1a634a4",
+      "id": "field-revealed-form",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "field-revealed-form",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Field-revealed form, illustrating deformed-line volume.",
+        "src": "/recipe-thumbnails/original-systems/field-revealed-form.svg"
+      },
+      "title": "Field-revealed form",
+      "userPromise": "Reveal a subject only through the way a precise line field bends around it.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "camera on the floor portrait",
+        "strong low angle stance",
+        "upward lifestyle photo"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "portrait-camera",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Turn a simple stance into a confident environmental portrait from ground height.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:3bbf8e88049b7825f4819a4e498c9038d6f0d215ef234984a93090826f43d35d",
+      "id": "floor-level-presence",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "floor-level-presence",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Floor-level presence, illustrating ground-level upward view.",
+        "src": "/recipe-thumbnails/original-systems/floor-level-presence.svg"
+      },
+      "title": "Floor-level presence",
+      "userPromise": "Turn a simple stance into a confident environmental portrait from ground height.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "huge foreground object poster",
+        "action perspective campaign",
+        "tool close to camera"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "campaign-perspective",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Make a real action and its near-camera tool drive a bold campaign image.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:b1579ef48d4104cb06fa0ae2200ab79192bea73438323d31cc69c5cd149b9486",
+      "id": "foreground-action-poster",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "foreground-action-poster",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Foreground action poster, illustrating action-linked foreground.",
+        "src": "/recipe-thumbnails/original-systems/foreground-action-poster.svg"
+      },
+      "title": "Foreground action poster",
+      "userPromise": "Make a real action and its near-camera tool drive a bold campaign image.",
+      "version": 1
+    },
+    {
+      "aliases": [
         "show me four options",
         "four creative directions",
         "explore different looks",
@@ -431,6 +1030,1145 @@
     },
     {
       "aliases": [
+        "scene through doorway",
+        "borrowed view poster",
+        "environmental frame composition"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "editorial-poster",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Compose a place through a meaningful opening, reflection, or interior frame.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:91002a0f5e6c387f19bce5eeea18a5e575733b6595dad58d7b62204083d23f51",
+      "id": "framed-borrowed-view",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "framed-borrowed-view",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Framed borrowed view, illustrating view-within-a-view.",
+        "src": "/recipe-thumbnails/original-systems/framed-borrowed-view.svg"
+      },
+      "title": "Framed borrowed view",
+      "userPromise": "Compose a place through a meaningful opening, reflection, or interior frame.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "educational picture book spread",
+        "guided tour illustration",
+        "learn through a scene"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Create a playful learning spread that guides the eye through a place and its discoveries.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:7fae17468448010d6fd4e46e0d73f68503f2d089214c30eefcdcc7785b64eccf",
+      "id": "guided-discovery-book",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "guided-discovery-book",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Guided discovery picture book, illustrating guided-tour illustration.",
+        "src": "/recipe-thumbnails/original-systems/guided-discovery-book.svg"
+      },
+      "title": "Guided discovery picture book",
+      "userPromise": "Create a playful learning spread that guides the eye through a place and its discoveries.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "restaurant brand board",
+        "hospitality contact sheet",
+        "food identity matrix"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Show a restaurant identity across food, place, service objects, and printed touchpoints.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:5f40919350c4d7a8eadcd050dcc117067d8554936ceb8f440c9404601d5962d6",
+      "id": "hospitality-identity-matrix",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "hospitality-identity-matrix",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Hospitality identity matrix, illustrating hospitality contact matrix.",
+        "src": "/recipe-thumbnails/original-systems/hospitality-identity-matrix.svg"
+      },
+      "title": "Hospitality identity matrix",
+      "userPromise": "Show a restaurant identity across food, place, service objects, and printed touchpoints.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "black and white action poster",
+        "ink motion design",
+        "brush weather campaign"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "editorial-poster",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Merge a monochrome action photograph with environmental marks that feel hand-made.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:8013abd9c90099eaf94cd0448908ff47791be3190939f66abdbb7cc7418eb29e",
+      "id": "ink-weather-motion",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "ink-weather-motion",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Ink-weather motion, illustrating motion becoming ink.",
+        "src": "/recipe-thumbnails/original-systems/ink-weather-motion.svg"
+      },
+      "title": "Ink-weather motion",
+      "userPromise": "Merge a monochrome action photograph with environmental marks that feel hand-made.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "original folklore guardian",
+        "scroll painting character",
+        "invent a protective spirit"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "illustration-story",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Design an original folk guardian with a coherent role, implement, and companion.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:ff2a1236a685275bc07be6fa5b874ddc4956e7facf23b45781a58c3479378b87",
+      "id": "invented-guardian-scroll",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "invented-guardian-scroll",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Invented guardian scroll, illustrating original guardian composition.",
+        "src": "/recipe-thumbnails/original-systems/invented-guardian-scroll.svg"
+      },
+      "title": "Invented guardian scroll",
+      "userPromise": "Design an original folk guardian with a coherent role, implement, and companion.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "landmark color blocks",
+        "geometric city remix",
+        "simplify architecture photo"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps source identity",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "category": "photo-transformation",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "edit",
+      "description": "Translate a source landmark into bold geometric color while preserving its recognition cues.",
+      "family": "reference-transformation",
+      "featuredRank": null,
+      "hash": "sha256:23334aace756964294a1b11fc6bd8b07c258033ee6f7e04799c04bf128bcb783",
+      "id": "landmark-shape-remix",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition"
+      ],
+      "preserves": [
+        "identity",
+        "composition"
+      ],
+      "requiredInputs": [
+        "One source image and a short direction"
+      ],
+      "slug": "landmark-shape-remix",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Landmark shape remix, illustrating recognizable shape abstraction.",
+        "src": "/recipe-thumbnails/original-systems/landmark-shape-remix.svg"
+      },
+      "title": "Landmark shape remix",
+      "userPromise": "Translate a source landmark into bold geometric color while preserving its recognition cues.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "portrait through glass",
+        "cinematic reflection photo",
+        "weathered film still"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "portrait-camera",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Build a cinematic portrait where glass, weather, or light reveals the subject in layers.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:8835166165dde8361d5c39beb267c9f5d0825cb00e2f88da2e9f40bd03c1a2bf",
+      "id": "layered-reflection-portrait",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "layered-reflection-portrait",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Layered reflection portrait, illustrating reflection and partial reveal.",
+        "src": "/recipe-thumbnails/original-systems/layered-reflection-portrait.svg"
+      },
+      "title": "Layered reflection portrait",
+      "userPromise": "Build a cinematic portrait where glass, weather, or light reveals the subject in layers.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "overhead candid portrait",
+        "person below camera",
+        "intimate point of view"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "portrait-camera",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Create an intimate portrait built around a surprising downward point of view.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:9df0b7399ed12447992e10ab37b5880390fa8b5d9301f588aeef887d78f09e6b",
+      "id": "low-vantage-encounter",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "low-vantage-encounter",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Low-vantage encounter, illustrating close overhead encounter.",
+        "src": "/recipe-thumbnails/original-systems/low-vantage-encounter.svg"
+      },
+      "title": "Low-vantage encounter",
+      "userPromise": "Create an intimate portrait built around a surprising downward point of view.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "letters made of material",
+        "physical typography",
+        "headline built from objects"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "type-as-space",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Construct a headline from a real material and show its physical behavior.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:4da5158d82ea75c0a3ee7421e36e6b6a5b905fa4baea1126832ae99b7df2e3b3",
+      "id": "material-lettering",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "material-lettering",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Material lettering, illustrating material-built typography.",
+        "src": "/recipe-thumbnails/original-systems/material-lettering.svg"
+      },
+      "title": "Material lettering",
+      "userPromise": "Construct a headline from a real material and show its physical behavior.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "isometric tiny world",
+        "miniature institution map",
+        "dense micro archive"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Build a dense isometric institution with clear zones, circulation, and tiny activity.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:72e15e38641abcbece5163a0644005679fe88558e3b0fd9925bd0f44c58d007a",
+      "id": "miniature-working-world",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "miniature-working-world",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Miniature working world, illustrating isometric micro-world.",
+        "src": "/recipe-thumbnails/original-systems/miniature-working-world.svg"
+      },
+      "title": "Miniature working world",
+      "userPromise": "Build a dense isometric institution with clear zones, circulation, and tiny activity.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "exercise reference plate",
+        "movement steps illustration",
+        "fitness form guide"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Explain a physical movement with readable phases, anchors, and safety cues.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:dd504ce9faefb675671aedf58266671b9060d118dc7557cca5d4bdebcdee15e2",
+      "id": "movement-instruction-plate",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "movement-instruction-plate",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Movement instruction plate, illustrating sequential movement reference.",
+        "src": "/recipe-thumbnails/original-systems/movement-instruction-plate.svg"
+      },
+      "title": "Movement instruction plate",
+      "userPromise": "Explain a physical movement with readable phases, anchors, and safety cues.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "train window poster",
+        "journey through glass",
+        "moving landscape travel art"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "illustration-story",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Tell a journey through an angled passenger view with layered motion and reflection.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:7a93d93397fec20b5ab4a31bad102c27fe1853f3c6c091139faa60426b1b0a94",
+      "id": "moving-window-story",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "moving-window-story",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Moving window story, illustrating travel-window narrative.",
+        "src": "/recipe-thumbnails/original-systems/moving-window-story.svg"
+      },
+      "title": "Moving window story",
+      "userPromise": "Tell a journey through an angled passenger view with layered motion and reflection.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "object close to lens",
+        "dramatic wide angle portrait",
+        "reach toward camera"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "portrait-camera",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Use one near-camera gesture to create dramatic depth while keeping the person readable.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:7488562c381665f929348e713f2918d12b0b6cc677edba13c0378faa83314f23",
+      "id": "near-lens-depth",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "near-lens-depth",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Near-lens depth portrait, illustrating near-lens foreground gesture.",
+        "src": "/recipe-thumbnails/original-systems/near-lens-depth.svg"
+      },
+      "title": "Near-lens depth portrait",
+      "userPromise": "Use one near-camera gesture to create dramatic depth while keeping the person readable.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "museum object breakdown",
+        "exploded artifact infographic",
+        "materials and parts plate"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Explain an object through a museum-style hero, structure, materials, and callouts.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:01c04ac20833ddf568cc0497ec033c4e88ef8039507fcded5f3ef847b49cdd81",
+      "id": "object-anatomy-exhibit",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "object-anatomy-exhibit",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Object anatomy exhibit, illustrating museum teardown panel.",
+        "src": "/recipe-thumbnails/original-systems/object-anatomy-exhibit.svg"
+      },
+      "title": "Object anatomy exhibit",
+      "userPromise": "Explain an object through a museum-style hero, structure, materials, and callouts.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "minimal symbol poster",
+        "one red mark design",
+        "quiet cinematic graphic"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "editorial-poster",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Create a quiet cinematic poster where one small colored mark carries the meaning.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:a83566e9badfd697729c9ffdd1522f04c8f3d547d9f6d4f65d647fa5eebe8d3a",
+      "id": "one-symbol-poster",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "one-symbol-poster",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for One-symbol poster, illustrating minimal symbolic narrative.",
+        "src": "/recipe-thumbnails/original-systems/one-symbol-poster.svg"
+      },
+      "title": "One-symbol poster",
+      "userPromise": "Create a quiet cinematic poster where one small colored mark carries the meaning.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "packaging family design",
+        "brand system still life",
+        "multiple packages one identity"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Present a coordinated family of packages as one proposal-grade still life.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:4f482641320ae5e5c2650ee2f464ea3a35ff43ca149a5023c7731db6d6f0ec2b",
+      "id": "packaging-system-portrait",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "packaging-system-portrait",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Packaging system portrait, illustrating family-system still life.",
+        "src": "/recipe-thumbnails/original-systems/packaging-system-portrait.svg"
+      },
+      "title": "Packaging system portrait",
+      "userPromise": "Present a coordinated family of packages as one proposal-grade still life.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "tilted word poster",
+        "type as floor",
+        "perspective typography"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "type-as-space",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Lay crisp lettering into deep perspective as a floor, wall, or horizon.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:2564c0830056bed6e59218430912593c994a9e0d8ccc2eadd58900f2210a31e2",
+      "id": "perspective-word-plane",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "perspective-word-plane",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Perspective word plane, illustrating oblique planar typography.",
+        "src": "/recipe-thumbnails/original-systems/perspective-word-plane.svg"
+      },
+      "title": "Perspective word plane",
+      "userPromise": "Lay crisp lettering into deep perspective as a floor, wall, or horizon.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "storybook pet portrait",
+        "turn my dog into illustration",
+        "pet in a picture book"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps source identity",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "category": "photo-transformation",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "edit",
+      "description": "Place a real pet into an original illustrated story while keeping its identity recognizable.",
+      "family": "reference-transformation",
+      "featuredRank": null,
+      "hash": "sha256:86408b9c2b15c8750ed152eace5a93390835680d6131a1bcad1f25892892478b",
+      "id": "pet-storybook-scene",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition"
+      ],
+      "preserves": [
+        "identity",
+        "composition"
+      ],
+      "requiredInputs": [
+        "One source image and a short direction"
+      ],
+      "slug": "pet-storybook-scene",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Pet storybook scene, illustrating identity-preserving storybook edit.",
+        "src": "/recipe-thumbnails/original-systems/pet-storybook-scene.svg"
+      },
+      "title": "Pet storybook scene",
+      "userPromise": "Place a real pet into an original illustrated story while keeping its identity recognizable.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "pixel asset sheet",
+        "sprite atlas",
+        "game world object collection"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Create a consistent pixel-art asset sheet for one original world.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:06a52258454f46f4d7205ca6e20cd007ac678b3345a7cd5228b54c1906999fcd",
+      "id": "pixel-world-atlas",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "pixel-world-atlas",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Pixel world atlas, illustrating coherent sprite atlas.",
+        "src": "/recipe-thumbnails/original-systems/pixel-world-atlas.svg"
+      },
+      "title": "Pixel world atlas",
+      "userPromise": "Create a consistent pixel-art asset sheet for one original world.",
+      "version": 1
+    },
+    {
+      "aliases": [
         "poster with exact tournament name",
         "make an event poster",
         "keep my headline exact",
@@ -499,6 +2237,71 @@
       },
       "title": "Poster with exact text",
       "userPromise": "Make a polished poster that keeps your supplied title exactly.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "put me somewhere else",
+        "keep person change world",
+        "relocate portrait background"
+      ],
+      "badges": [
+        "Needs 1 photo",
+        "Keeps source identity",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "image-to-image",
+        "image-edit",
+        "variations",
+        "upscale"
+      ],
+      "category": "photo-transformation",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "edit",
+      "description": "Keep the person intact while rebuilding the surrounding world around them.",
+      "family": "reference-transformation",
+      "featuredRank": null,
+      "hash": "sha256:a5adb00b019dffc84f1e5d4f7da6b2bba83abe6d14e480eb760caaae683de08a",
+      "id": "relocate-portrait-world",
+      "inputMode": "single-image",
+      "inputModes": [
+        "single-image"
+      ],
+      "intents": [
+        "edit"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [
+        "identity",
+        "composition"
+      ],
+      "preserves": [
+        "identity",
+        "composition"
+      ],
+      "requiredInputs": [
+        "One source image and a short direction"
+      ],
+      "slug": "relocate-portrait-world",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Relocate a portrait world, illustrating subject-preserving relocation.",
+        "src": "/recipe-thumbnails/original-systems/relocate-portrait-world.svg"
+      },
+      "title": "Relocate a portrait world",
+      "userPromise": "Keep the person intact while rebuilding the surrounding world around them.",
       "version": 1
     },
     {
@@ -720,6 +2523,722 @@
       },
       "title": "Restyle while preserving composition",
       "userPromise": "Change the style while keeping the original layout and framing.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "ensemble cover with shadows",
+        "cast shadow story poster",
+        "group silhouette cover"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Use cast shadows to connect an ensemble and suggest unseen relationships.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:2038b4c09c0859e768e3d6508355b5a0097b8a0e9553b73551d0945041126368",
+      "id": "shadow-led-ensemble",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "shadow-led-ensemble",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Shadow-led ensemble, illustrating narrative shadow composition.",
+        "src": "/recipe-thumbnails/original-systems/shadow-led-ensemble.svg"
+      },
+      "title": "Shadow-led ensemble",
+      "userPromise": "Use cast shadows to connect an ensemble and suggest unseen relationships.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "two people holding one object",
+        "handoff portrait",
+        "shared prop studio photo"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "campaign-perspective",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Connect two people through one object that crosses the frame.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:2edc43ee105ee5fc9683c9c097141afe15712b375355004bf42d738cb6a5a21b",
+      "id": "shared-object-portrait",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "shared-object-portrait",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Shared-object portrait, illustrating shared-object connection.",
+        "src": "/recipe-thumbnails/original-systems/shared-object-portrait.svg"
+      },
+      "title": "Shared-object portrait",
+      "userPromise": "Connect two people through one object that crosses the frame.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "black white one color poster",
+        "single accent editorial",
+        "documentary fashion layout"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "editorial-poster",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Build an editorial image from documentary monochrome and one disciplined accent color.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:55443ae0844269d6b9d9592b68203d6e4b6a0639b1a8c45d2a13eba78d814dad",
+      "id": "single-accent-documentary",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "single-accent-documentary",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Single-accent documentary, illustrating one-pigment hierarchy.",
+        "src": "/recipe-thumbnails/original-systems/single-accent-documentary.svg"
+      },
+      "title": "Single-accent documentary",
+      "userPromise": "Build an editorial image from documentary monochrome and one disciplined accent color.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "fashion material contrast",
+        "soft textile brutal architecture",
+        "tactile editorial portrait"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "portrait-camera",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Make tactile clothing or objects stand out against severe architecture.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:e9522f9b8d933daa154d30530a32783b0e0c63c7607d03f4305a5b1fd3854067",
+      "id": "soft-material-hard-space",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "soft-material-hard-space",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Soft material, hard space, illustrating material-against-architecture contrast.",
+        "src": "/recipe-thumbnails/original-systems/soft-material-hard-space.svg"
+      },
+      "title": "Soft material, hard space",
+      "userPromise": "Make tactile clothing or objects stand out against severe architecture.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "design a novel cover",
+        "book cover from story",
+        "narrative cover art"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "illustration-story",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Design an original cover from the story conflict, place, and emotional promise.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:e7917b6a56e766a5bf6c4cd93451c9c724aff71da9b88859009909bafc842a1f",
+      "id": "story-led-cover",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "story-led-cover",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Story-led book cover, illustrating narrative cover concept.",
+        "src": "/recipe-thumbnails/original-systems/story-led-cover.svg"
+      },
+      "title": "Story-led book cover",
+      "userPromise": "Design an original cover from the story conflict, place, and emotional promise.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "landscape model infographic",
+        "terrain archive",
+        "ecology cross section plate"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Organize one landscape as a layered physical model with labeled ecological evidence.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:acc809c795165cf9852a262bbfec5ec189c5117f301be10e507372e1d83c94f1",
+      "id": "terrain-specimen-archive",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "terrain-specimen-archive",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Terrain specimen archive, illustrating landscape archive model.",
+        "src": "/recipe-thumbnails/original-systems/terrain-specimen-archive.svg"
+      },
+      "title": "Terrain specimen archive",
+      "userPromise": "Organize one landscape as a layered physical model with labeled ecological evidence.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "minimal landscape color field",
+        "thin horizon poster",
+        "large color block scenic poster"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "editorial-poster",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Use a large field of color and one precise horizon to create a restrained poster.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:b32050bdd663c9183426d4ca97385ddf36c2c4c048e4677eaad4eba5fe5c6332",
+      "id": "thin-horizon-color-field",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "thin-horizon-color-field",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Thin horizon color field, illustrating minimal color-field landscape.",
+        "src": "/recipe-thumbnails/original-systems/thin-horizon-color-field.svg"
+      },
+      "title": "Thin horizon color field",
+      "userPromise": "Use a large field of color and one precise horizon to create a restrained poster.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "two states one object",
+        "transformation split poster",
+        "object becomes drawing"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "editorial-poster",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Show one subject changing language, material, or state through an expressive seam.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:1ecc1531fa3a9d391638eace486522825d9d82de95bf20385ac491aca1b6ebc7",
+      "id": "transformation-seam",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "transformation-seam",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Transformation seam, illustrating left-to-right translation.",
+        "src": "/recipe-thumbnails/original-systems/transformation-seam.svg"
+      },
+      "title": "Transformation seam",
+      "userPromise": "Show one subject changing language, material, or state through an expressive seam.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "split city poster",
+        "two sides of a place",
+        "city contrast composition"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "editorial-poster",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Show two truthful sides of one city meeting in a narrow transition.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:7577588a3054e2b2ebd7a64b562d0e2accb10e098acd1b84b7fba9769eb04c77",
+      "id": "two-sided-city-story",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "two-sided-city-story",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Two-sided city story, illustrating dual-place composition.",
+        "src": "/recipe-thumbnails/original-systems/two-sided-city-story.svg"
+      },
+      "title": "Two-sided city story",
+      "userPromise": "Show two truthful sides of one city meeting in a narrow transition.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "fashion typography composition",
+        "word behind garment",
+        "type overlaps silhouette"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "type-as-space",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Pair one sculptural silhouette with typography that reacts to the body.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:3b57003d2a90a4748de0b9d46e904cede029d9777d989f647de26754801aeda9",
+      "id": "type-meets-silhouette",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "type-meets-silhouette",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Type meets silhouette, illustrating body-and-type interaction.",
+        "src": "/recipe-thumbnails/original-systems/type-meets-silhouette.svg"
+      },
+      "title": "Type meets silhouette",
+      "userPromise": "Pair one sculptural silhouette with typography that reacts to the body.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "word as architecture",
+        "person walking through letters",
+        "architectural typography"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt",
+        "typography"
+      ],
+      "category": "type-as-space",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Turn a short word into a believable place a subject can cross or enter.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:c33802829fb632405101bc8d54f520887a01a22305f55514e6276184dd68f9c5",
+      "id": "walkable-word",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "walkable-word",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for Walkable word, illustrating letterforms as architecture.",
+        "src": "/recipe-thumbnails/original-systems/walkable-word.svg"
+      },
+      "title": "Walkable word",
+      "userPromise": "Turn a short word into a believable place a subject can cross or enter.",
+      "version": 1
+    },
+    {
+      "aliases": [
+        "landscape inside silhouette",
+        "world in a shape",
+        "narrative cutout poster"
+      ],
+      "badges": [
+        "No photo needed",
+        "Makes 1 image"
+      ],
+      "capabilities": [
+        "text-to-image",
+        "image-edit",
+        "variations",
+        "upscale",
+        "structured-prompt"
+      ],
+      "category": "knowledge-brand",
+      "collection": "original-systems",
+      "complexity": "guided",
+      "defaultOperation": "generate",
+      "description": "Choose a meaningful silhouette and place a complete narrative world inside it.",
+      "family": "parameterized",
+      "featuredRank": null,
+      "hash": "sha256:d281d93ab5844e08249d4e82484ae49fcaebe4ad06626f3e50d4872275a50055",
+      "id": "world-within-outline",
+      "inputMode": "text",
+      "inputModes": [
+        "text"
+      ],
+      "intents": [
+        "create"
+      ],
+      "outputKind": "image",
+      "outputKinds": [
+        "image"
+      ],
+      "preservationNeeds": [],
+      "preserves": [],
+      "requiredInputs": [
+        "A short creative brief"
+      ],
+      "slug": "world-within-outline",
+      "source": "official",
+      "subjectKinds": [
+        "person",
+        "object",
+        "place",
+        "concept"
+      ],
+      "templateSchema": "prompt-canvas.prompt-workspace-template@2",
+      "thumbnail": {
+        "alt": "First-party graphic preview for World within an outline, illustrating silhouette-contained world.",
+        "src": "/recipe-thumbnails/original-systems/world-within-outline.svg"
+      },
+      "title": "World within an outline",
+      "userPromise": "Choose a meaningful silhouette and place a complete narrative world inside it.",
       "version": 1
     }
   ],

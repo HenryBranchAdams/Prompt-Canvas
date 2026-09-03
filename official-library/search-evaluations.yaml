@@ -25,3 +25,27 @@ cases:
     expectedFirst: restyle-preserve-layout
     facets:
       preservation-need: [composition]
+  - name: build a word from material
+    query: physical typography made from a real material
+    expectedFirst: material-lettering
+  - name: visualize a colossal realm
+    query: tiny traveler in a world with an enormous creature
+    expectedFirst: colossal-realm-scale
+  - name: explain object construction
+    query: museum breakdown of an object's parts and materials
+    expectedFirst: object-anatomy-exhibit
+  - name: create a sprite collection
+    query: pixel art asset sheet for a game world
+    expectedFirst: pixel-world-atlas
+  - name: preserve a pet in a story
+    query: turn my dog into a storybook illustration
+    expectedFirst: pet-storybook-scene
+  - name: place a person somewhere new
+    query: keep the person but put them somewhere else
+    expectedFirst: relocate-portrait-world
+  - name: make a movement guide
+    query: exercise reference showing each movement step
+    expectedFirst: movement-instruction-plate
+  - name: show restaurant identity
+    query: restaurant brand board with food and printed touchpoints
+    expectedFirst: hospitality-identity-matrix

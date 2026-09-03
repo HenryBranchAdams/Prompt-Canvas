@@ -1,10 +1,10 @@
 schema: prompt-canvas.starter-pack@2
 id: core-starter-pack
-version: 3
+version: 4
 title: Prompt Canvas Recipe Library
-description: Six quick-start creative recipes and nine original advanced creative systems for Prompt Canvas.
+description: Ten quick-start recipes, forty-two original task-focused systems, and nine advanced creative systems for Prompt Canvas.
 templateSchema: ../schemas/prompt-workspace-template.schema.json
-templateCount: 19
+templateCount: 61
 templates:
 - id: create-from-words
   path: templates/create-from-words.workspace.yaml
@@ -355,5 +355,1022 @@ templates:
   source:
     creator: Prompt Canvas
     title: Sequential Moment Page
+    url: null
+    promptUsage: original
+- id: low-vantage-encounter
+  path: templates/low-vantage-encounter.workspace.yaml
+  title: Low-vantage encounter
+  description: Create an intimate portrait built around a surprising downward point of view.
+  category: portrait-camera
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 20
+  source:
+    creator: Prompt Canvas
+    title: Low-vantage encounter
+    url: null
+    promptUsage: original
+- id: floor-level-presence
+  path: templates/floor-level-presence.workspace.yaml
+  title: Floor-level presence
+  description: Turn a simple stance into a confident environmental portrait from ground height.
+  category: portrait-camera
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 21
+  source:
+    creator: Prompt Canvas
+    title: Floor-level presence
+    url: null
+    promptUsage: original
+- id: near-lens-depth
+  path: templates/near-lens-depth.workspace.yaml
+  title: Near-lens depth portrait
+  description: Use one near-camera gesture to create dramatic depth while keeping the person readable.
+  category: portrait-camera
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 22
+  source:
+    creator: Prompt Canvas
+    title: Near-lens depth portrait
+    url: null
+    promptUsage: original
+- id: layered-reflection-portrait
+  path: templates/layered-reflection-portrait.workspace.yaml
+  title: Layered reflection portrait
+  description: Build a cinematic portrait where glass, weather, or light reveals the subject in layers.
+  category: portrait-camera
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 23
+  source:
+    creator: Prompt Canvas
+    title: Layered reflection portrait
+    url: null
+    promptUsage: original
+- id: soft-material-hard-space
+  path: templates/soft-material-hard-space.workspace.yaml
+  title: Soft material, hard space
+  description: Make tactile clothing or objects stand out against severe architecture.
+  category: portrait-camera
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 24
+  source:
+    creator: Prompt Canvas
+    title: Soft material, hard space
+    url: null
+    promptUsage: original
+- id: cast-inside-letterforms
+  path: templates/cast-inside-letterforms.workspace.yaml
+  title: Cast inside letterforms
+  description: Arrange a group through the spaces of oversized typography.
+  category: type-as-space
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 25
+  source:
+    creator: Prompt Canvas
+    title: Cast inside letterforms
+    url: null
+    promptUsage: original
+- id: type-meets-silhouette
+  path: templates/type-meets-silhouette.workspace.yaml
+  title: Type meets silhouette
+  description: Pair one sculptural silhouette with typography that reacts to the body.
+  category: type-as-space
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 26
+  source:
+    creator: Prompt Canvas
+    title: Type meets silhouette
+    url: null
+    promptUsage: original
+- id: walkable-word
+  path: templates/walkable-word.workspace.yaml
+  title: Walkable word
+  description: Turn a short word into a believable place a subject can cross or enter.
+  category: type-as-space
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 27
+  source:
+    creator: Prompt Canvas
+    title: Walkable word
+    url: null
+    promptUsage: original
+- id: material-lettering
+  path: templates/material-lettering.workspace.yaml
+  title: Material lettering
+  description: Construct a headline from a real material and show its physical behavior.
+  category: type-as-space
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 28
+  source:
+    creator: Prompt Canvas
+    title: Material lettering
+    url: null
+    promptUsage: original
+- id: perspective-word-plane
+  path: templates/perspective-word-plane.workspace.yaml
+  title: Perspective word plane
+  description: Lay crisp lettering into deep perspective as a floor, wall, or horizon.
+  category: type-as-space
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 29
+  source:
+    creator: Prompt Canvas
+    title: Perspective word plane
+    url: null
+    promptUsage: original
+- id: foreground-action-poster
+  path: templates/foreground-action-poster.workspace.yaml
+  title: Foreground action poster
+  description: Make a real action and its near-camera tool drive a bold campaign image.
+  category: campaign-perspective
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 30
+  source:
+    creator: Prompt Canvas
+    title: Foreground action poster
+    url: null
+    promptUsage: original
+- id: shared-object-portrait
+  path: templates/shared-object-portrait.workspace.yaml
+  title: Shared-object portrait
+  description: Connect two people through one object that crosses the frame.
+  category: campaign-perspective
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 31
+  source:
+    creator: Prompt Canvas
+    title: Shared-object portrait
+    url: null
+    promptUsage: original
+- id: thin-horizon-color-field
+  path: templates/thin-horizon-color-field.workspace.yaml
+  title: Thin horizon color field
+  description: Use a large field of color and one precise horizon to create a restrained poster.
+  category: editorial-poster
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 32
+  source:
+    creator: Prompt Canvas
+    title: Thin horizon color field
+    url: null
+    promptUsage: original
+- id: framed-borrowed-view
+  path: templates/framed-borrowed-view.workspace.yaml
+  title: Framed borrowed view
+  description: Compose a place through a meaningful opening, reflection, or interior frame.
+  category: editorial-poster
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 33
+  source:
+    creator: Prompt Canvas
+    title: Framed borrowed view
+    url: null
+    promptUsage: original
+- id: era-palette-editorial
+  path: templates/era-palette-editorial.workspace.yaml
+  title: Era palette editorial
+  description: Translate a period mood into an original palette and print treatment without imitation.
+  category: editorial-poster
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 34
+  source:
+    creator: Prompt Canvas
+    title: Era palette editorial
+    url: null
+    promptUsage: original
+- id: two-sided-city-story
+  path: templates/two-sided-city-story.workspace.yaml
+  title: Two-sided city story
+  description: Show two truthful sides of one city meeting in a narrow transition.
+  category: editorial-poster
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 35
+  source:
+    creator: Prompt Canvas
+    title: Two-sided city story
+    url: null
+    promptUsage: original
+- id: ink-weather-motion
+  path: templates/ink-weather-motion.workspace.yaml
+  title: Ink-weather motion
+  description: Merge a monochrome action photograph with environmental marks that feel hand-made.
+  category: editorial-poster
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 36
+  source:
+    creator: Prompt Canvas
+    title: Ink-weather motion
+    url: null
+    promptUsage: original
+- id: single-accent-documentary
+  path: templates/single-accent-documentary.workspace.yaml
+  title: Single-accent documentary
+  description: Build an editorial image from documentary monochrome and one disciplined accent color.
+  category: editorial-poster
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 37
+  source:
+    creator: Prompt Canvas
+    title: Single-accent documentary
+    url: null
+    promptUsage: original
+- id: transformation-seam
+  path: templates/transformation-seam.workspace.yaml
+  title: Transformation seam
+  description: Show one subject changing language, material, or state through an expressive seam.
+  category: editorial-poster
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 38
+  source:
+    creator: Prompt Canvas
+    title: Transformation seam
+    url: null
+    promptUsage: original
+- id: field-revealed-form
+  path: templates/field-revealed-form.workspace.yaml
+  title: Field-revealed form
+  description: Reveal a subject only through the way a precise line field bends around it.
+  category: editorial-poster
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 39
+  source:
+    creator: Prompt Canvas
+    title: Field-revealed form
+    url: null
+    promptUsage: original
+- id: one-symbol-poster
+  path: templates/one-symbol-poster.workspace.yaml
+  title: One-symbol poster
+  description: Create a quiet cinematic poster where one small colored mark carries the meaning.
+  category: editorial-poster
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 40
+  source:
+    creator: Prompt Canvas
+    title: One-symbol poster
+    url: null
+    promptUsage: original
+- id: invented-guardian-scroll
+  path: templates/invented-guardian-scroll.workspace.yaml
+  title: Invented guardian scroll
+  description: Design an original folk guardian with a coherent role, implement, and companion.
+  category: illustration-story
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 41
+  source:
+    creator: Prompt Canvas
+    title: Invented guardian scroll
+    url: null
+    promptUsage: original
+- id: colossal-realm-scale
+  path: templates/colossal-realm-scale.workspace.yaml
+  title: Colossal realm scale
+  description: Use a tiny traveler to make an impossible realm and its resident feel truly vast.
+  category: illustration-story
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 42
+  source:
+    creator: Prompt Canvas
+    title: Colossal realm scale
+    url: null
+    promptUsage: original
+- id: branching-dream-tableau
+  path: templates/branching-dream-tableau.workspace.yaml
+  title: Branching dream tableau
+  description: Expand a simple dream into one central event with several connected side stories.
+  category: illustration-story
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 43
+  source:
+    creator: Prompt Canvas
+    title: Branching dream tableau
+    url: null
+    promptUsage: original
+- id: story-led-cover
+  path: templates/story-led-cover.workspace.yaml
+  title: Story-led book cover
+  description: Design an original cover from the story conflict, place, and emotional promise.
+  category: illustration-story
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 44
+  source:
+    creator: Prompt Canvas
+    title: Story-led book cover
+    url: null
+    promptUsage: original
+- id: moving-window-story
+  path: templates/moving-window-story.workspace.yaml
+  title: Moving window story
+  description: Tell a journey through an angled passenger view with layered motion and reflection.
+  category: illustration-story
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 45
+  source:
+    creator: Prompt Canvas
+    title: Moving window story
+    url: null
+    promptUsage: original
+- id: collectible-field-guide
+  path: templates/collectible-field-guide.workspace.yaml
+  title: Collectible field guide
+  description: Turn a topic into a beautiful visual learning plate with a clear information hierarchy.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 46
+  source:
+    creator: Prompt Canvas
+    title: Collectible field guide
+    url: null
+    promptUsage: original
+- id: object-anatomy-exhibit
+  path: templates/object-anatomy-exhibit.workspace.yaml
+  title: Object anatomy exhibit
+  description: Explain an object through a museum-style hero, structure, materials, and callouts.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 47
+  source:
+    creator: Prompt Canvas
+    title: Object anatomy exhibit
+    url: null
+    promptUsage: original
+- id: packaging-system-portrait
+  path: templates/packaging-system-portrait.workspace.yaml
+  title: Packaging system portrait
+  description: Present a coordinated family of packages as one proposal-grade still life.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 48
+  source:
+    creator: Prompt Canvas
+    title: Packaging system portrait
+    url: null
+    promptUsage: original
+- id: miniature-working-world
+  path: templates/miniature-working-world.workspace.yaml
+  title: Miniature working world
+  description: Build a dense isometric institution with clear zones, circulation, and tiny activity.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 49
+  source:
+    creator: Prompt Canvas
+    title: Miniature working world
+    url: null
+    promptUsage: original
+- id: world-within-outline
+  path: templates/world-within-outline.workspace.yaml
+  title: World within an outline
+  description: Choose a meaningful silhouette and place a complete narrative world inside it.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 50
+  source:
+    creator: Prompt Canvas
+    title: World within an outline
+    url: null
+    promptUsage: original
+- id: character-relationship-map
+  path: templates/character-relationship-map.workspace.yaml
+  title: Character relationship map
+  description: Make a cast relationship system feel like a designed story poster rather than a diagram.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 51
+  source:
+    creator: Prompt Canvas
+    title: Character relationship map
+    url: null
+    promptUsage: original
+- id: guided-discovery-book
+  path: templates/guided-discovery-book.workspace.yaml
+  title: Guided discovery picture book
+  description: Create a playful learning spread that guides the eye through a place and its discoveries.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 52
+  source:
+    creator: Prompt Canvas
+    title: Guided discovery picture book
+    url: null
+    promptUsage: original
+- id: movement-instruction-plate
+  path: templates/movement-instruction-plate.workspace.yaml
+  title: Movement instruction plate
+  description: Explain a physical movement with readable phases, anchors, and safety cues.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 53
+  source:
+    creator: Prompt Canvas
+    title: Movement instruction plate
+    url: null
+    promptUsage: original
+- id: terrain-specimen-archive
+  path: templates/terrain-specimen-archive.workspace.yaml
+  title: Terrain specimen archive
+  description: Organize one landscape as a layered physical model with labeled ecological evidence.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 54
+  source:
+    creator: Prompt Canvas
+    title: Terrain specimen archive
+    url: null
+    promptUsage: original
+- id: pixel-world-atlas
+  path: templates/pixel-world-atlas.workspace.yaml
+  title: Pixel world atlas
+  description: Create a consistent pixel-art asset sheet for one original world.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 55
+  source:
+    creator: Prompt Canvas
+    title: Pixel world atlas
+    url: null
+    promptUsage: original
+- id: shadow-led-ensemble
+  path: templates/shadow-led-ensemble.workspace.yaml
+  title: Shadow-led ensemble
+  description: Use cast shadows to connect an ensemble and suggest unseen relationships.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  - typography
+  featured: false
+  order: 56
+  source:
+    creator: Prompt Canvas
+    title: Shadow-led ensemble
+    url: null
+    promptUsage: original
+- id: hospitality-identity-matrix
+  path: templates/hospitality-identity-matrix.workspace.yaml
+  title: Hospitality identity matrix
+  description: Show a restaurant identity across food, place, service objects, and printed touchpoints.
+  category: knowledge-brand
+  family: parameterized
+  operations:
+  - generate
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - text-to-image
+  - image-edit
+  - variations
+  - upscale
+  - structured-prompt
+  featured: false
+  order: 57
+  source:
+    creator: Prompt Canvas
+    title: Hospitality identity matrix
+    url: null
+    promptUsage: original
+- id: relocate-portrait-world
+  path: templates/relocate-portrait-world.workspace.yaml
+  title: Relocate a portrait world
+  description: Keep the person intact while rebuilding the surrounding world around them.
+  category: photo-transformation
+  family: reference-transformation
+  operations:
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - image-to-image
+  - image-edit
+  - variations
+  - upscale
+  featured: false
+  order: 58
+  source:
+    creator: Prompt Canvas
+    title: Relocate a portrait world
+    url: null
+    promptUsage: original
+- id: landmark-shape-remix
+  path: templates/landmark-shape-remix.workspace.yaml
+  title: Landmark shape remix
+  description: Translate a source landmark into bold geometric color while preserving its recognition cues.
+  category: photo-transformation
+  family: reference-transformation
+  operations:
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - image-to-image
+  - image-edit
+  - variations
+  - upscale
+  featured: false
+  order: 59
+  source:
+    creator: Prompt Canvas
+    title: Landmark shape remix
+    url: null
+    promptUsage: original
+- id: city-palette-comparison
+  path: templates/city-palette-comparison.workspace.yaml
+  title: City palette comparison
+  description: Create two coordinated interpretations of a city photo with distinct pastel atmospheres.
+  category: photo-transformation
+  family: reference-transformation
+  operations:
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - image-to-image
+  - image-edit
+  - variations
+  - upscale
+  featured: false
+  order: 60
+  source:
+    creator: Prompt Canvas
+    title: City palette comparison
+    url: null
+    promptUsage: original
+- id: pet-storybook-scene
+  path: templates/pet-storybook-scene.workspace.yaml
+  title: Pet storybook scene
+  description: Place a real pet into an original illustrated story while keeping its identity recognizable.
+  category: photo-transformation
+  family: reference-transformation
+  operations:
+  - edit
+  - variation
+  - upscale
+  capabilities:
+  - image-to-image
+  - image-edit
+  - variations
+  - upscale
+  featured: false
+  order: 61
+  source:
+    creator: Prompt Canvas
+    title: Pet storybook scene
     url: null
     promptUsage: original
