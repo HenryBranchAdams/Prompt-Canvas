@@ -953,6 +953,9 @@ button:disabled {
 }
 
 .pc-variation-panel {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 8px;
   padding: 10px;
 }
 
@@ -963,6 +966,34 @@ button:disabled {
   grid-auto-columns: minmax(120px, 1fr);
   gap: 9px;
   overflow-x: auto;
+}
+
+.pc-variation-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pc-variation-actions button {
+  min-height: 29px;
+  padding: 0 12px;
+  border: 1px solid #d5dce8;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--pc-ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pc-variation-actions button:hover:not(:disabled) {
+  border-color: var(--pc-blue);
+  color: var(--pc-blue);
+}
+
+.pc-variation-actions button:disabled {
+  color: var(--pc-muted);
+  cursor: default;
 }
 
 .pc-workflow-panel {

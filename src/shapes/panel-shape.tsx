@@ -449,6 +449,8 @@ function OutputPanel(props: {
   workspaceId: string
   payload: OutputPanelPayload
   editing: boolean
+  variationSlotId?: string
+  promotedResultAssetId?: string
 }) {
   const assets = props.payload.assetIds
   const promoted = props.payload.promotedAssetId ?? assets[0]
@@ -456,6 +458,7 @@ function OutputPanel(props: {
   const supportedOperations = props.payload.supportedOperations ?? props.payload.slot.operations
   const supportsOperation = (operation: GenerationOperation) =>
     supportedOperations ? supportedOperations.includes(operation) : true
+  const canVaryPrimary = props.payload.slot.role === 'primary' && Boolean(props.variationSlotId)
   if (assets.length === 0) {
     if (isVariation) {
       return <div className="pc-panel__body pc-output-empty pc-output-empty--variations">Variations will appear here</div>
@@ -490,7 +493,7 @@ function OutputPanel(props: {
     return (
       <div className="pc-panel__body pc-output-panel">
         {primaryId ? <AssetThumb assetId={primaryId} label={props.payload.labels?.[primaryId]} /> : null}
-        {props.editing && (supportsOperation('edit') || supportsOperation('upscale')) ? (
+        {props.editing && (supportsOperation('edit') || canVaryPrimary || supportsOperation('upscale')) ? (
           <div className="pc-output-actions">
             {supportsOperation('edit') ? (
               <button
@@ -506,6 +509,22 @@ function OutputPanel(props: {
               >
                 <EditIcon />
                 Change something
+              </button>
+            ) : null}
+            {canVaryPrimary && props.variationSlotId && primaryId ? (
+              <button
+                type="button"
+                onClick={() =>
+                  dispatchPanelAction({
+                    workspaceId: props.workspaceId,
+                    type: 'prepare-generation',
+                    outputSlotId: props.variationSlotId,
+                    operation: 'variation',
+                    selectedOutputIds: [primaryId],
+                  })
+                }
+              >
+                Vary
               </button>
             ) : null}
             {supportsOperation('upscale') ? (
@@ -530,28 +549,56 @@ function OutputPanel(props: {
     )
   }
 
+  return <VariationsPanel {...props} assets={assets} />
+}
+
+function VariationsPanel(props: {
+  workspaceId: string
+  payload: OutputPanelPayload
+  editing: boolean
+  assets: string[]
+  promotedResultAssetId?: string
+}) {
+  const preferredAssetId =
+    (props.promotedResultAssetId && props.assets.includes(props.promotedResultAssetId)
+      ? props.promotedResultAssetId
+      : undefined) ?? props.payload.promotedAssetId ?? props.assets[0]
+  const [requestedAssetId, setRequestedAssetId] = useState(preferredAssetId)
+  const selectedAssetId =
+    requestedAssetId && props.assets.includes(requestedAssetId)
+      ? requestedAssetId
+      : preferredAssetId
+
   return (
     <div className="pc-panel__body pc-variation-panel">
       <div className="pc-variation-grid">
-        {assets.map((assetId, index) => (
+        {props.assets.map((assetId, index) => (
           <AssetThumb
             key={assetId}
             assetId={assetId}
             label={props.payload.labels?.[assetId] ?? `Variation ${index + 1}`}
-            selected={assetId === promoted}
-            onClick={
-              props.editing
-                ? () =>
-                    dispatchPanelAction({
-                      workspaceId: props.workspaceId,
-                      type: 'manage-output',
-                      operation: { op: 'promote', assetId },
-                    })
-                : undefined
-            }
+            selected={assetId === selectedAssetId}
+            onClick={props.editing ? () => setRequestedAssetId(assetId) : undefined}
           />
         ))}
       </div>
+      {props.editing && selectedAssetId ? (
+        <div className="pc-variation-actions">
+          <button
+            type="button"
+            disabled={selectedAssetId === props.promotedResultAssetId}
+            onClick={() =>
+              dispatchPanelAction({
+                workspaceId: props.workspaceId,
+                type: 'manage-output',
+                operation: { op: 'promote', assetId: selectedAssetId },
+              })
+            }
+          >
+            {selectedAssetId === props.promotedResultAssetId ? 'Current result' : 'Promote to result'}
+          </button>
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -597,6 +644,8 @@ function PanelBody(props: {
   workspaceId: string
   payload: PanelPayload
   editing: boolean
+  variationSlotId?: string
+  promotedResultAssetId?: string
 }) {
   switch (props.payload.kind) {
     case 'prompt':
@@ -607,7 +656,15 @@ function PanelBody(props: {
       return <ReferencesPanel workspaceId={props.workspaceId} payload={props.payload} editing={props.editing} />
     case 'output':
     case 'variations':
-      return <OutputPanel workspaceId={props.workspaceId} payload={props.payload} editing={props.editing} />
+      return (
+        <OutputPanel
+          workspaceId={props.workspaceId}
+          payload={props.payload}
+          editing={props.editing}
+          variationSlotId={props.variationSlotId}
+          promotedResultAssetId={props.promotedResultAssetId}
+        />
+      )
     case 'workflow':
       return <WorkflowPanel workspaceId={props.workspaceId} payload={props.payload} editing={props.editing} />
     case 'json':
@@ -625,6 +682,32 @@ function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Edito
     [editor],
   )
   const editing = editingShapeId === shape.id
+  const relatedOutputState = useValue(
+    'prompt canvas related output state',
+    () => {
+      let variationSlotId = ''
+      let promotedResultAssetId = ''
+      for (const candidate of editor.getCurrentPageShapes()) {
+        if (candidate.type !== PROMPT_CANVAS_PANEL_TYPE) continue
+        const panel = candidate as PromptCanvasPanelShape
+        if (panel.props.workspaceId !== shape.props.workspaceId) continue
+        try {
+          const payload = parsePanelPayload(panel.props.payload)
+          if (payload.kind === 'variations') {
+            const operations = payload.supportedOperations ?? payload.slot.operations
+            if (!operations || operations.includes('variation')) variationSlotId = payload.slot.id
+          } else if (payload.kind === 'output') {
+            promotedResultAssetId = payload.promotedAssetId ?? payload.assetIds[0] ?? ''
+          }
+        } catch {
+          // Invalid sibling payloads are rendered by their own panel error boundary.
+        }
+      }
+      return `${variationSlotId}\u0000${promotedResultAssetId}`
+    },
+    [editor, shape.props.workspaceId],
+  )
+  const [variationSlotId, promotedResultAssetId] = relatedOutputState.split('\u0000')
   const parsed = useMemo(() => {
     try {
       return { payload: parsePanelPayload(shape.props.payload) }
@@ -685,6 +768,8 @@ function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Edito
           workspaceId={shape.props.workspaceId}
           payload={parsed.payload}
           editing
+          variationSlotId={variationSlotId || undefined}
+          promotedResultAssetId={promotedResultAssetId || undefined}
         />
       ) : (
         <div className="pc-panel__error">{parsed.error}</div>

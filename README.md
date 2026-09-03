@@ -17,7 +17,7 @@ correct canvas output with lineage.
 
 **Live app:** https://prompt-canvas.madebyhenry.chatgpt.site
 
-**Competition build:** [v0.4.4 exact tagged source](https://github.com/HenryBranchAdams/Prompt-Canvas/releases/tag/v0.4.4)
+**Competition build:** [v0.5.0 exact tagged source](https://github.com/HenryBranchAdams/Prompt-Canvas/releases/tag/v0.5.0)
 
 Try it in a Website Tools-enabled ChatGPT desktop session:
 

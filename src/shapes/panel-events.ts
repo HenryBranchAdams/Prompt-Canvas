@@ -25,6 +25,7 @@ export type PanelActionDetail =
       type: 'prepare-generation'
       outputSlotId?: string
       operation?: 'generate' | 'edit' | 'variation' | 'upscale'
+      selectedOutputIds?: string[]
     }
   | {
       workspaceId: string

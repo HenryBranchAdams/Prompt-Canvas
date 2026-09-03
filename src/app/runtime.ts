@@ -1644,6 +1644,7 @@ export class PromptCanvasRuntime {
     workspaceId: string
     operation?: GenerationOperation
     outputSlotId?: string
+    selectedOutputIds?: string[]
   }): GenerationContext {
     const { manifest } = this.findWorkspacePage(input.workspaceId)
     const operation = resolveGenerationOperation({
@@ -1655,6 +1656,7 @@ export class PromptCanvasRuntime {
       workspaceId: input.workspaceId,
       operation,
       ...(input.outputSlotId ? { outputSlotId: input.outputSlotId } : {}),
+      ...(input.selectedOutputIds ? { selectedOutputIds: input.selectedOutputIds } : {}),
     })
     this.snapshot = { ...this.snapshot, preparedContext: context }
     this.activity.add({
@@ -2258,6 +2260,7 @@ export class PromptCanvasRuntime {
               workspaceId: detail.workspaceId,
               ...(detail.operation ? { operation: detail.operation } : {}),
               ...(detail.outputSlotId ? { outputSlotId: detail.outputSlotId } : {}),
+              ...(detail.selectedOutputIds ? { selectedOutputIds: detail.selectedOutputIds } : {}),
             })
           }
         } catch (error) {
