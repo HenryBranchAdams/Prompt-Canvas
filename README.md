@@ -28,7 +28,9 @@ The page never asks for an OpenAI API key and never calls an image model directl
 - A light, warm-white tldraw surface with a quiet dot grid as the default visual direction.
 - Directly interactive prompt and preset-control panels; the header is the canvas drag handle.
 - A first-run recipe gallery with six everyday `Start fast` recipes, real first-party previews, ordinary-language search, and one obvious `Start` action.
-- Nine preserved advanced creative systems, for 15 original first-party recipes in total. The gallery is a baseline, not a product limit.
+- Four additional outcome-first official recipes for exact-text posters, collectible cards, four-direction exploration, and composition-preserving restyles.
+- Nine preserved advanced creative systems, for 19 original first-party recipes in the bundled fallback. The gallery is a baseline, not a product limit.
+- A read-only D1 catalog for the ten owner-reviewed official recipes, with bounded FTS5 retrieval and structured facets. User-saved recipes remain local to the browser.
 - Modular input, essential-choice, prompt, reference, workflow, result, and variation blocks connected visibly to the intended output.
 - Blank workspace creation, duplication, immutable starter instances, and save-as-template.
 - Thin `prompt-canvas.prompt-workspace-template@2` compatibility core with non-blocking lint and creative guidance.
@@ -86,6 +88,21 @@ cp .env.example .env.local
 
 Do not place OpenAI credentials in the page. None are required.
 
+### Official recipe catalog
+
+The public application works without D1 by falling back to the ten bundled official recipe summaries and exact bundled
+templates. To validate and seed the local D1 catalog:
+
+```bash
+npm run catalog:build
+npm run catalog:seed:local
+```
+
+Official source files live under `starter-pack/templates/`; `npm run catalog:build` validates them, records immutable
+version hashes, and emits the deterministic catalog plus D1 seed/migrations. Production publishing is repository-driven:
+there are no public create, update, delete, submission, or moderation routes. See
+[Official Prompt Library](docs/OFFICIAL_PROMPT_LIBRARY.md) for the complete publishing and recovery contract.
+
 ## Verification
 
 ```bash
@@ -101,7 +118,7 @@ Release checks and host results are evidence for one exact commit and deployment
 The Playwright suite installs a mock top-level WebMCP host and proves the page-side portion of the vertical slice:
 
 1. the catalog's baseline tools register;
-2. first run presents six everyday recipes and preserves nine advanced systems without auto-creating a project;
+2. first run presents six everyday recipes, four additional official task recipes, and nine advanced systems without auto-creating a project;
 3. a recipe opens as a connected modular canvas whose controls work directly;
 4. the Travel Poster advanced example retains its authored workflow geometry;
 5. generation context resolves;
@@ -137,6 +154,7 @@ A useful one-sentence prompt and a sophisticated multi-stage brand workflow are 
 ## Project documents
 
 - [Template authoring guide](docs/TEMPLATE_AUTHORING_GUIDE.md)
+- [Official Prompt Library](docs/OFFICIAL_PROMPT_LIBRARY.md)
 - [WebMCP tool contracts](docs/WEBMCP_TOOL_CONTRACTS.md)
 - [Licensing and public-release boundary](docs/LICENSING.md)
 - [Asset notices](docs/ASSET_NOTICES.md)

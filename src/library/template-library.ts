@@ -8,6 +8,12 @@ import type {
 } from '../workspaces/types'
 import { validateTemplate } from '../workspaces/validation'
 import { slugifyTemplateId } from './template-library-core'
+import { sha256Hex, stableStringify } from '../workspaces/hash'
+import {
+  OfficialPromptCatalog,
+  type OfficialPromptSearchInput,
+  type OfficialPromptSummary,
+} from './official-prompt-catalog'
 export { createBlankTemplate } from './template-library-core'
 
 export type SaveTemplateMode = 'create' | 'new-version' | 'fork'
@@ -39,12 +45,33 @@ function userEntry(template: PromptWorkspaceTemplate, order: number): TemplateMa
 
 export class TemplateLibrary {
   private userTemplates = new Map<string, PromptWorkspaceTemplate[]>()
+  private readonly officialCatalog: OfficialPromptCatalog
 
-  constructor(private readonly database: PromptCanvasDatabase) {}
+  constructor(private readonly database: PromptCanvasDatabase) {
+    this.officialCatalog = new OfficialPromptCatalog(database)
+  }
 
   async initialize(): Promise<void> {
-    const templates = await this.database.listTemplates()
+    const [templates] = await Promise.all([
+      this.database.listTemplates(),
+      this.officialCatalog.initialize(),
+    ])
     for (const template of templates) this.insertUserTemplate(template)
+  }
+
+  officialSummaries(): OfficialPromptSummary[] {
+    return this.officialCatalog.list()
+  }
+
+  localRecords(): TemplateSearchRecord[] {
+    const records: TemplateSearchRecord[] = []
+    let order = 1000
+    for (const versions of this.userTemplates.values()) {
+      const current = versions[0]
+      if (!current) continue
+      records.push({ entry: userEntry(current, order++), template: structuredClone(current) })
+    }
+    return records
   }
 
   private insertUserTemplate(template: PromptWorkspaceTemplate): void {
@@ -60,14 +87,7 @@ export class TemplateLibrary {
       entry: entry as TemplateManifestEntry,
       template: starterTemplates[entry.id] as PromptWorkspaceTemplate,
     }))
-    const userRecords: TemplateSearchRecord[] = []
-    let order = 1000
-    for (const versions of this.userTemplates.values()) {
-      const current = versions[0]
-      if (!current) continue
-      userRecords.push({ entry: userEntry(current, order++), template: structuredClone(current) })
-    }
-    return [...starterRecords, ...userRecords]
+    return [...starterRecords, ...this.localRecords()]
   }
 
   search(
@@ -85,6 +105,35 @@ export class TemplateLibrary {
     const versions = this.userTemplates.get(templateId) ?? []
     const template = version === undefined ? versions[0] : versions.find((item) => item.version === version)
     return template ? structuredClone(template) : undefined
+  }
+
+  getLocal(templateId: string, version?: number): PromptWorkspaceTemplate | undefined {
+    const versions = this.userTemplates.get(templateId) ?? []
+    const template = version === undefined ? versions[0] : versions.find((item) => item.version === version)
+    return template ? structuredClone(template) : undefined
+  }
+
+  async searchOfficial(input: OfficialPromptSearchInput): Promise<OfficialPromptSummary[]> {
+    return this.officialCatalog.search(input)
+  }
+
+  async getOfficial(templateId: string, version?: number, expectedHash?: string): Promise<{
+    template: PromptWorkspaceTemplate
+    summary: OfficialPromptSummary
+  } | undefined> {
+    const remote = await this.officialCatalog.getPrompt(templateId, version, expectedHash)
+    if (remote) {
+      const validation = validateTemplate(remote.template, 'full')
+      if (!validation.valid || !validation.normalizedPreview) throw new Error('The official recipe failed runtime validation.')
+      return { template: structuredClone(validation.normalizedPreview), summary: remote.summary }
+    }
+    const summary = this.officialCatalog.list().find((item) => item.id === templateId &&
+      (version === undefined || item.version === version) && (!expectedHash || item.hash === expectedHash))
+    const starter = starterTemplates[templateId as keyof typeof starterTemplates]
+    if (!summary || !starter || starter.version !== summary.version) return undefined
+    const starterHash = `sha256:${await sha256Hex(stableStringify(starter))}`
+    if (starterHash !== summary.hash) throw new Error('The bundled official recipe did not match its catalog hash.')
+    return { template: structuredClone(starter) as PromptWorkspaceTemplate, summary }
   }
 
   async save(input: {

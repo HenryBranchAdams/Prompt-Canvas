@@ -1,0 +1,52 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: four-directions
+version: 1
+title: Four creative directions
+description: Explore four genuinely different visual approaches to the same brief.
+category: explore-and-refine
+tags: [directions, concepts, variations, exploration]
+status: starter
+compatibility: { minimumAppVersion: 0.1.0, templateFamily: parameterized }
+source: { kind: first-party, creator: Prompt Canvas, title: Four creative directions, promptUsage: original }
+thumbnail: { assetPath: /recipe-thumbnails/four-directions.webp, alt: The same ceramic teapot interpreted in four clearly different visual styles }
+capabilities: [text-to-image, image-to-image, variations, batch-output, structured-prompt]
+generation: { provider: codex, capability: image-generation, delivery: webmcp-import, operations: [generate, edit, variation], defaultOperation: generate, defaultVariationCount: 4 }
+prompt:
+  title: Exploration brief
+  body: >-
+    Create four genuinely different visual directions for {{brief}}. Hold {{invariants}} constant across all four.
+    Make each direction distinct in composition, visual language, palette, lighting, and emotional tone rather than
+    making minor parameter changes. Present four individually useful candidates.
+  variables:
+  - { id: brief, label: Brief, type: text, required: true, defaultValue: A welcoming hero image for a handmade ceramic teapot }
+  - { id: invariants, label: Keep consistent, type: text, defaultValue: "the same subject, purpose, and essential product geometry" }
+controls:
+- { id: brief, label: "What are you exploring?", type: textarea, required: true, defaultValue: A welcoming hero image for a handmade ceramic teapot, binding: { mode: variable, target: brief } }
+- { id: invariants, label: Keep consistent, type: textarea, defaultValue: "the same subject, purpose, and essential product geometry", binding: { mode: variable, target: invariants } }
+references:
+- { id: optional-source, label: Optional source image, role: content, required: false, multiple: false, acceptedMimeTypes: [image/png, image/jpeg, image/webp], preserve: [recognizable subject when supplied] }
+preservation:
+- { id: shared-core, label: Shared core, description: Preserve the declared invariants across all directions., strength: must, appliesTo: [invariants, optional-source] }
+outputs:
+- { id: directions, label: Four directions, role: primary, kind: image-set, count: 4, operations: [generate, edit, variation], layoutHint: grid }
+blocks:
+- { id: input, type: controls, title: Your brief, content: { controlIds: [brief, invariants] }, x-connectTo: directions-output }
+- { id: source, type: references, title: Optional reference, sourceId: optional-source, x-connectTo: directions-output }
+- { id: prompt, type: prompt, title: More control, collapsedByDefault: true, x-connectTo: directions-output }
+- { id: directions-output, type: variations, title: Four directions, sourceId: directions }
+x-discovery:
+  collection: explore-refine
+  userPromise: See four genuinely different visual approaches to the same brief.
+  intentAliases: [show me four options, four creative directions, explore different looks, give me distinct concepts]
+  intents: [explore, create]
+  inputModes: [text, optional-image]
+  subjectKinds: [person, pet, product, object, place, concept]
+  outputKinds: [image-set]
+  preservationNeeds: [declared-invariants, subject-identity, product-geometry]
+  complexity: quick
+  requiredInputSummary: [A creative brief]
+  inputSummary: [A creative brief, Optional source image]
+  badges: [Makes 4 images, Distinct directions]
+  thumbnail: { src: /recipe-thumbnails/four-directions.webp, alt: The same ceramic teapot interpreted in four clearly different visual styles }
+  featuredRank: 9
+x-presentation: { primaryControlIds: [brief, invariants], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }

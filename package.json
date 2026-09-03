@@ -1,6 +1,6 @@
 {
   "name": "prompt-canvas",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -11,6 +11,9 @@
     "build": "npm run generate && vite build",
     "preview": "vite preview",
     "generate": "python3 scripts/generate_sources.py",
+    "catalog:build": "python3 scripts/build_official_catalog.py",
+    "catalog:validate": "python3 scripts/build_official_catalog.py --check",
+    "catalog:seed:local": "wrangler d1 migrations apply DB --local --config wrangler.catalog.jsonc && wrangler d1 execute DB --local --config wrangler.catalog.jsonc --file=generated/official-library/seed.sql",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test:templates": "python3 scripts/validate_templates.py",
@@ -18,7 +21,7 @@
     "test": "npm run generate && npm run test:templates && npm run test:core",
     "qa:serve": "python3 -m http.server 4174 -d qa",
     "test:e2e": "npm run generate && playwright test",
-    "check": "npm run generate && npm run test:templates && npm run test:core && npm run typecheck && npm run lint && npm run build",
+    "check": "npm run generate && npm run catalog:validate && npm run test:templates && npm run test:core && npm run typecheck && npm run lint && npm run build",
     "test:e2e:headed": "npm run generate && playwright test --headed"
   },
   "dependencies": {

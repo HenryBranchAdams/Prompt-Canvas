@@ -58,6 +58,13 @@ type TemplateSummary = {
   referenceCount: number
   controlCount: number
   source?: { creator?: string; title?: string; url?: string | null; promptUsage?: string }
+  sourceKind?: 'official' | 'local' | 'bundled'
+  hash?: string
+  userPromise?: string
+  requiredInputs?: string[]
+  preserves?: string[]
+  badges?: string[]
+  thumbnail?: { src: string; alt: string }
 }
 
 type RecipeDiscovery = {
@@ -66,6 +73,7 @@ type RecipeDiscovery = {
   inputSummary?: string[]
   badges?: string[]
   featuredRank?: number
+  complexity?: string
 }
 
 function connectionLabel(snapshot: RuntimeSnapshot): string {
@@ -119,12 +127,30 @@ function recipeDetails(item: TemplateSummary): {
   discovery: RecipeDiscovery
   thumbnail?: { assetPath: string; alt: string }
 } {
+  if (item.sourceKind === 'local') {
+    return {
+      discovery: {
+        ...(item.userPromise ? { userPromise: item.userPromise } : {}),
+        ...(item.requiredInputs ? { inputSummary: item.requiredInputs } : {}),
+        ...(item.badges ? { badges: item.badges } : {}),
+      },
+      ...(item.thumbnail ? { thumbnail: { assetPath: item.thumbnail.src, alt: item.thumbnail.alt } } : {}),
+    }
+  }
   const template = runtime.getTemplate(item.id, item.version)
   const raw = template['x-discovery']
   const discovery = raw && typeof raw === 'object' && !Array.isArray(raw)
     ? raw as RecipeDiscovery
     : {}
-  return { discovery, thumbnail: template.thumbnail }
+  return {
+    discovery: {
+      ...discovery,
+      ...(item.userPromise ? { userPromise: item.userPromise } : {}),
+      ...(item.requiredInputs ? { inputSummary: item.requiredInputs } : {}),
+      ...(item.badges ? { badges: item.badges } : {}),
+    },
+    thumbnail: item.thumbnail ? { assetPath: item.thumbnail.src, alt: item.thumbnail.alt } : template.thumbnail,
+  }
 }
 
 function TemplatePreview({ item }: { item: TemplateSummary }) {
@@ -146,7 +172,7 @@ function TemplateLibrary({
   open: boolean
   dismissible: boolean
   onClose: () => void
-  onCreate: (templateId: string) => Promise<void>
+  onCreate: (item: TemplateSummary) => Promise<void>
   onCreateBlank: () => void
 }) {
   const snapshot = useRuntimeSnapshot()
@@ -172,15 +198,21 @@ function TemplateLibrary({
         limit: 100,
       }).templates ?? []) as unknown as TemplateSummary[])
     : []
-  const quick = items
-    .filter((item) => recipeDetails(item).discovery.collection === 'start-fast')
+  const official = items.filter((item) => item.sourceKind !== 'local')
+  const local = items.filter((item) => item.sourceKind === 'local')
+  const quick = official
+    .filter((item) => {
+      const discovery = recipeDetails(item).discovery
+      return discovery.collection === 'start-fast' || discovery.complexity === 'quick'
+    })
     .sort((a, b) => (recipeDetails(a).discovery.featuredRank ?? 999) - (recipeDetails(b).discovery.featuredRank ?? 999))
-  const systems = items.filter((item) => recipeDetails(item).discovery.collection !== 'start-fast')
+  const quickIds = new Set(quick.map((item) => item.id))
+  const systems = official.filter((item) => !quickIds.has(item.id))
 
-  const create = async (templateId: string) => {
-    setCreating(templateId)
+  const create = async (item: TemplateSummary) => {
+    setCreating(item.id)
     try {
-      await onCreate(templateId)
+      await onCreate(item)
     } finally {
       setCreating(undefined)
     }
@@ -221,7 +253,7 @@ function TemplateLibrary({
               <button
                 type="button"
                 disabled={Boolean(creating)}
-                onClick={() => void create(item.id)}
+                onClick={() => void create(item)}
               >
                 <PlusIcon />
                 {creating === item.id ? 'Starting…' : 'Start'}
@@ -243,9 +275,17 @@ function TemplateLibrary({
         ) : null}
       </div>
       {systems.length > 0 ? <section className="pc-creative-systems">
-        <div><span className="pc-eyebrow">More control</span><h3>Creative systems</h3><p>Advanced recipes for multi-stage and structured creative work.</p></div>
+        <div><span className="pc-eyebrow">Official recipes</span><h3>Creative systems</h3><p>Advanced recipes for multi-stage and structured creative work.</p></div>
         <div className="pc-system-list">{systems.map((item) => (
-          <button key={`${item.id}@${item.version}`} type="button" disabled={Boolean(creating)} onClick={() => void create(item.id)}>
+          <button key={`${item.id}@${item.version}`} type="button" disabled={Boolean(creating)} onClick={() => void create(item)}>
+            <SparkIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
+          </button>
+        ))}</div>
+      </section> : null}
+      {local.length > 0 ? <section className="pc-creative-systems pc-my-recipes">
+        <div><span className="pc-eyebrow">My recipes</span><h3>Saved by you</h3><p>Saved in this browser on this device.</p></div>
+        <div className="pc-system-list">{local.map((item) => (
+          <button key={`local:${item.id}@${item.version}`} type="button" disabled={Boolean(creating)} onClick={() => void create(item)}>
             <SparkIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
           </button>
         ))}</div>
@@ -656,8 +696,16 @@ export default function App() {
             open={snapshot.initialized && (libraryOpen || !active)}
             dismissible={Boolean(active)}
             onClose={closeLibrary}
-            onCreate={async (templateId) => {
-              await run(() => runtime.createWorkspace({ kind: 'template', templateId }, 'new-page', true))
+            onCreate={async (item) => {
+              await run(() => runtime.createWorkspace({
+                kind: 'template',
+                templateId: item.id,
+                ...(item.sourceKind === 'official' ? {
+                  origin: 'official' as const,
+                  version: item.version,
+                  ...(item.hash ? { expectedHash: item.hash } : {}),
+                } : item.sourceKind === 'local' ? { origin: 'local' as const, version: item.version } : {}),
+              }, 'new-page', true))
               closeLibrary()
               window.requestAnimationFrame(() => {
                 runtime.getEditor().setEditingShape(null)

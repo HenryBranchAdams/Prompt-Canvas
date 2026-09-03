@@ -29,12 +29,24 @@ function toolFailure(name: string, error: unknown): never {
 type InspectInput = { workspaceId?: string; include?: string[]; maxItems?: number }
 type ListTemplatesInput = {
   query?: string
+  scope?: 'official' | 'local' | 'all'
   categories?: string[]
   families?: string[]
   capabilities?: string[]
+  intents?: string[]
+  inputModes?: string[]
+  subjectKinds?: string[]
+  outputKinds?: string[]
+  preservationNeeds?: string[]
+  collections?: string[]
   limit?: number
 }
-type GetTemplateInput = { templateId: string; version?: number }
+type GetTemplateInput = {
+  source?: 'official' | 'local'
+  templateId: string
+  version?: number
+  expectedHash?: string
+}
 type ValidateTemplateInput = {
   template: unknown
   mode?: 'schema-only' | 'compatibility' | 'full'
@@ -48,7 +60,14 @@ type GenerationContextInput = {
 }
 type CreateWorkspaceInput = {
   source:
-    | { kind: 'template'; templateId: string; values?: Record<string, unknown> }
+    | {
+        kind: 'template'
+        origin?: 'official' | 'local'
+        templateId: string
+        version?: number
+        expectedHash?: string
+        values?: Record<string, unknown>
+      }
     | { kind: 'definition'; template: unknown }
     | { kind: 'blank'; title: string; prompt?: string }
   placement?: 'new-page' | 'current-view' | 'beside-selection'
@@ -96,15 +115,18 @@ function handlerFor(name: string, runtime: PromptCanvasRuntime): (input: unknown
     case 'prompt_canvas_inspect':
       return (input) => runtime.inspect(input as InspectInput)
     case 'prompt_canvas_list_templates':
-      return (input) => runtime.listTemplates(input as ListTemplatesInput)
+      return (input) => runtime.listTemplatesAsync(input as ListTemplatesInput)
     case 'prompt_canvas_get_template':
-      return (input) => {
+      return async (input) => {
         const value = input as GetTemplateInput
-        const template = runtime.getTemplate(value.templateId, value.version)
+        const resolved = await runtime.getTemplateAsync(value)
+        const template = resolved.template
         return {
           template,
           validation: runtime.validateTemplate(template, 'full'),
           provenance: template.source ?? null,
+          source: resolved.source,
+          hash: resolved.hash ?? null,
         }
       }
     case 'prompt_canvas_validate_template':
@@ -122,6 +144,9 @@ function handlerFor(name: string, runtime: PromptCanvasRuntime): (input: unknown
             ? {
                 kind: 'template' as const,
                 templateId: value.source.templateId,
+                ...(value.source.origin ? { origin: value.source.origin } : {}),
+                ...(value.source.version ? { version: value.source.version } : {}),
+                ...(value.source.expectedHash ? { expectedHash: value.source.expectedHash } : {}),
                 values: (value.source.values ?? {}) as JsonObject,
               }
             : value.source

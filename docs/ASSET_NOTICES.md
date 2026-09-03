@@ -4,7 +4,7 @@ The release source and hosted bundle intentionally omit binary design references
 the Site's former social preview. Their repository metadata did not independently establish a redistribution record
 suitable for the public release gate.
 
-The six files under `public/recipe-thumbnails/` were generated specifically for Prompt Canvas as first-party recipe
+The ten files under `public/recipe-thumbnails/` were generated specifically for Prompt Canvas as first-party recipe
 previews. They contain no supplied photograph, logo, trademark, or copied interface and are included under the project
 MIT release grant for original Prompt Canvas material.
 

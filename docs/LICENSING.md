@@ -11,7 +11,7 @@ The root `LICENSE` applies to original Prompt Canvas material owned by the proje
 - application and worker source code;
 - tests, scripts, configuration, schemas, and original project documentation;
 - first-party templates whose source metadata identifies `promptUsage: original`, including templates authored by Prompt Canvas or supplied by Henry Adams for this project; and
-- the six original first-party recipe-preview images under `public/recipe-thumbnails/`; and
+- the ten original first-party recipe-preview images under `public/recipe-thumbnails/`; and
 - original modifications to project-owned code and first-party templates.
 
 Copyright remains with the named copyright holder and contributors as applicable.
@@ -29,7 +29,8 @@ Attribution and public availability are not substitutes for permission or an app
 
 ## Current recipe-library boundary
 
-The bundled 15-recipe library and its six first-party preview images are covered by the project MIT license. Adapted templates and
+The bundled 19-recipe library and its ten first-party preview images are covered by the project MIT license. The
+repository-authored Official Prompt Library publishes ten of those original recipes through D1. Adapted templates and
 their source research were deliberately excluded from this release tree. They may remain in non-public Git history for
 development provenance, but are not shipped by the application or included in the clean public-source snapshot.
 
