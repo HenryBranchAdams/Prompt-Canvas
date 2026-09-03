@@ -165,6 +165,7 @@ export function workflowValidationErrors(template: PromptWorkspaceTemplate): Val
 export function blockExtensionValidationErrors(template: PromptWorkspaceTemplate): ValidationIssue[] {
   const errors: ValidationIssue[] = []
   const controlIds = new Set((template.controls ?? []).map((control) => control.id))
+  const blockIds = new Set((template.blocks ?? []).map((block) => block.id))
   for (const block of template.blocks ?? []) {
     if (block['x-controlIds'] !== undefined && block.type !== 'controls') {
       errors.push(issue(
@@ -190,6 +191,26 @@ export function blockExtensionValidationErrors(template: PromptWorkspaceTemplate
         'schema.block-extension.prompt-type',
         'x-promptPart is supported only on prompt blocks.',
       ))
+    }
+    const connectionTargets = typeof block['x-connectTo'] === 'string'
+      ? [block['x-connectTo']]
+      : Array.isArray(block['x-connectTo'])
+        ? block['x-connectTo']
+        : []
+    for (const targetId of connectionTargets) {
+      if (targetId === block.id) {
+        errors.push(issue(
+          `/blocks/${block.id}/x-connectTo`,
+          'schema.block-extension.self-connection',
+          'A workflow block cannot connect to itself.',
+        ))
+      } else if (!blockIds.has(targetId)) {
+        errors.push(issue(
+          `/blocks/${block.id}/x-connectTo`,
+          'schema.block-extension.unknown-connection-target',
+          `The workflow target “${targetId}” is not declared by this template.`,
+        ))
+      }
     }
   }
   return errors

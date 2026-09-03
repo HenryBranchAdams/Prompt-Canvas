@@ -22,7 +22,7 @@ import {
   PANEL_ACTION_EVENT,
   type PanelActionDetail,
 } from '../shapes/panel-events'
-import { compileWorkspacePanels } from '../workspaces/layout-compiler'
+import { compileWorkspaceConnections, compileWorkspacePanels } from '../workspaces/layout-compiler'
 import { createGenerationRequestId } from '../workspaces/ids'
 import { parsePanelPayload, serializePanelPayload } from '../workspaces/panel-data'
 import {
@@ -91,6 +91,15 @@ type PreparedAsset = {
   operation: GenerationOperation
   parentAssetIds: string[]
   promptDigest: string
+}
+
+type WorkspaceConnectionEndpoint = {
+  id: TLShapeId
+  semanticId: string
+  x: number
+  y: number
+  w: number
+  h: number
 }
 
 type GeneratedAssetInput = {
@@ -361,6 +370,7 @@ export class PromptCanvasRuntime {
         if (first) editor.setCurrentPage(first.page.id)
       }
     }
+    this.ensureExistingWorkspaceConnections()
     await this.compactUnreachableLocalImages(editor)
     this.snapshot = { ...this.snapshot, initialized: true }
     this.refreshSnapshot()
@@ -514,6 +524,157 @@ export class PromptCanvasRuntime {
     } as const
   }
 
+  private createWorkspaceConnections(
+    manifest: WorkspaceManifest,
+    pageId: TLPageId,
+    endpoints: WorkspaceConnectionEndpoint[],
+    compatibleTemplate?: PromptWorkspaceTemplate,
+  ): void {
+    const editor = this.getEditor()
+    const endpointById = new Map(endpoints.map((endpoint) => [endpoint.semanticId, endpoint]))
+    const existingKeys = new Set<string>()
+    for (const shapeId of editor.getPageShapeIds(pageId)) {
+      const connection = editor.getShape(shapeId)?.meta?.promptCanvasConnection
+      if (!connection || typeof connection !== 'object') continue
+      const candidate = connection as {
+        workspaceId?: unknown
+        sourceSemanticId?: unknown
+        targetSemanticId?: unknown
+      }
+      if (
+        candidate.workspaceId === manifest.workspaceId &&
+        typeof candidate.sourceSemanticId === 'string' &&
+        typeof candidate.targetSemanticId === 'string'
+      ) {
+        existingKeys.add(`${candidate.sourceSemanticId}->${candidate.targetSemanticId}`)
+      }
+    }
+    const arrows = compileWorkspaceConnections(manifest, compatibleTemplate).flatMap((connection) => {
+      const key = `${connection.sourceSemanticId}->${connection.targetSemanticId}`
+      if (existingKeys.has(key)) return []
+      const source = endpointById.get(connection.sourceSemanticId)
+      const target = endpointById.get(connection.targetSemanticId)
+      if (!source || !target) return []
+
+      const sourceCenter = { x: source.x + source.w / 2, y: source.y + source.h / 2 }
+      const targetCenter = { x: target.x + target.w / 2, y: target.y + target.h / 2 }
+      const delta = { x: targetCenter.x - sourceCenter.x, y: targetCenter.y - sourceCenter.y }
+      const horizontal = Math.abs(delta.x) >= Math.abs(delta.y)
+      const sourceAnchor = horizontal
+        ? { x: delta.x >= 0 ? 1 : 0, y: 0.5 }
+        : {
+            x: Math.max(0.12, Math.min(0.88, (targetCenter.x - source.x) / source.w)),
+            y: delta.y >= 0 ? 1 : 0,
+          }
+      const targetAnchor = horizontal
+        ? {
+            x: delta.x >= 0 ? 0 : 1,
+            y: Math.max(0.12, Math.min(0.88, (sourceCenter.y - target.y) / target.h)),
+          }
+        : {
+            x: Math.max(0.12, Math.min(0.88, (sourceCenter.x - target.x) / target.w)),
+            y: delta.y >= 0 ? 0 : 1,
+          }
+      const start = {
+        x: source.x + source.w * sourceAnchor.x,
+        y: source.y + source.h * sourceAnchor.y,
+      }
+      const end = {
+        x: target.x + target.w * targetAnchor.x,
+        y: target.y + target.h * targetAnchor.y,
+      }
+      const id = createShapeId()
+      return [{
+        id,
+        sourceId: source.id,
+        targetId: target.id,
+        sourceAnchor,
+        targetAnchor,
+        input: {
+          id,
+          type: 'arrow' as const,
+          parentId: pageId,
+          x: start.x,
+          y: start.y,
+          opacity: 0.46,
+          isLocked: false,
+          props: {
+            kind: 'elbow' as const,
+            start: { x: 0, y: 0 },
+            end: { x: end.x - start.x, y: end.y - start.y },
+            bend: 0,
+            elbowMidPoint: 0.55,
+            color: 'grey' as const,
+            dash: 'solid' as const,
+            size: 's' as const,
+            arrowheadStart: 'none' as const,
+            arrowheadEnd: 'arrow' as const,
+          },
+          meta: {
+            promptCanvasConnection: {
+              workspaceId: manifest.workspaceId,
+              sourceSemanticId: connection.sourceSemanticId,
+              targetSemanticId: connection.targetSemanticId,
+            },
+          },
+        },
+      }]
+    })
+
+    if (arrows.length === 0) return
+    editor.createShapes(arrows.map((arrow) => arrow.input))
+    editor.createBindings(arrows.flatMap((arrow) => [
+      {
+        type: 'arrow' as const,
+        fromId: arrow.id,
+        toId: arrow.sourceId,
+        props: {
+          terminal: 'start' as const,
+          normalizedAnchor: arrow.sourceAnchor,
+          isExact: false,
+          isPrecise: true,
+          snap: 'edge' as const,
+        },
+      },
+      {
+        type: 'arrow' as const,
+        fromId: arrow.id,
+        toId: arrow.targetId,
+        props: {
+          terminal: 'end' as const,
+          normalizedAnchor: arrow.targetAnchor,
+          isExact: false,
+          isPrecise: true,
+          snap: 'edge' as const,
+        },
+      },
+    ]))
+    editor.sendToBack(arrows.map((arrow) => arrow.id))
+    editor.updateShapes(
+      arrows.map((arrow) => ({ id: arrow.id, type: 'arrow' as const, isLocked: true })),
+    )
+    editor.bringToFront(endpoints.map((endpoint) => endpoint.id))
+    editor.selectNone()
+  }
+
+  private ensureExistingWorkspaceConnections(): void {
+    const editor = this.getEditor()
+    editor.run(() => {
+      for (const { page, manifest } of this.listWorkspacePages()) {
+        const currentTemplate = this.library.get(manifest.templateSnapshot.id)
+        const endpoints = this.panelShapes(page.id).map((panel) => ({
+          id: panel.id,
+          semanticId: panel.props.semanticId,
+          x: panel.x,
+          y: panel.y,
+          w: panel.props.w,
+          h: panel.props.h,
+        }))
+        this.createWorkspaceConnections(manifest, page.id, endpoints, currentTemplate)
+      }
+    }, { history: 'ignore' })
+  }
+
   private chooseWorkspacePage(title: string, placement: string): TLPage {
     const editor = this.getEditor()
     const current = editor.getCurrentPage()
@@ -573,9 +734,17 @@ export class PromptCanvasRuntime {
             : { x: 0, y: 0 }
         const panels = compileWorkspacePanels(manifest, origin)
         createdElements = panels.map((descriptor) => descriptor.semanticId)
-        editor.createShapes(
-          panels.map((descriptor) => this.panelShapeInput(manifest.workspaceId, page!.id, descriptor)),
-        )
+        const panelInputs = panels.map((descriptor) =>
+          this.panelShapeInput(manifest.workspaceId, page!.id, descriptor))
+        editor.createShapes(panelInputs)
+        this.createWorkspaceConnections(manifest, page!.id, panels.map((descriptor, index) => ({
+          id: panelInputs[index].id,
+          semanticId: descriptor.semanticId,
+          x: descriptor.x,
+          y: descriptor.y,
+          w: descriptor.w,
+          h: descriptor.h,
+        })))
       })
       editor.squashToMark(mark)
     } catch (error) {

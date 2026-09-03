@@ -1162,6 +1162,19 @@
           },
           "required": ["x", "y", "w", "h"],
           "additionalProperties": false
+        },
+        "x-connectTo": {
+          "description": "Optional first-party layout hint naming one or more downstream block IDs.",
+          "oneOf": [
+            { "$ref": "#/$defs/id" },
+            {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/id" }
+            }
+          ]
         }
       },
       "required": [

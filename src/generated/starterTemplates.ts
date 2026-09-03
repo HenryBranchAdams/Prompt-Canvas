@@ -3555,6 +3555,7 @@ export const starterTemplates = {
         "x-controlIds": [
           "city-name"
         ],
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 40,
           "y": 40,
@@ -3571,6 +3572,7 @@ export const starterTemplates = {
         "x-controlIds": [
           "aspect-ratio"
         ],
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 40,
           "y": 190,
@@ -3587,6 +3589,7 @@ export const starterTemplates = {
         "x-controlIds": [
           "people-count"
         ],
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 40,
           "y": 320,
@@ -3603,6 +3606,7 @@ export const starterTemplates = {
         "x-controlIds": [
           "art-direction"
         ],
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 240,
           "y": 40,
@@ -3620,6 +3624,7 @@ export const starterTemplates = {
           "composition",
           "landmark-emphasis"
         ],
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 240,
           "y": 200,
@@ -3636,6 +3641,7 @@ export const starterTemplates = {
         "x-controlIds": [
           "palette"
         ],
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 240,
           "y": 370,
@@ -3652,6 +3658,7 @@ export const starterTemplates = {
         "x-controlIds": [
           "typography-direction"
         ],
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 460,
           "y": 40,
@@ -3668,6 +3675,7 @@ export const starterTemplates = {
         "x-controlIds": [
           "local-character"
         ],
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 460,
           "y": 210,
@@ -3684,6 +3692,7 @@ export const starterTemplates = {
         "x-controlIds": [
           "mood"
         ],
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 460,
           "y": 390,
@@ -3698,6 +3707,7 @@ export const starterTemplates = {
         "region": "center",
         "order": 100,
         "x-promptPart": "body",
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 240,
           "y": 530,
@@ -3717,7 +3727,8 @@ export const starterTemplates = {
           "y": 90,
           "w": 280,
           "h": 373
-        }
+        },
+        "x-connectTo": "variation-strip"
       },
       {
         "id": "negative-prompt-card",
@@ -3726,6 +3737,7 @@ export const starterTemplates = {
         "region": "left",
         "order": 120,
         "x-promptPart": "negative",
+        "x-connectTo": "poster-output",
         "x-geometry": {
           "x": 40,
           "y": 450,
