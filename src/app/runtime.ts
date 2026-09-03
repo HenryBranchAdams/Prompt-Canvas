@@ -508,13 +508,6 @@ export class PromptCanvasRuntime {
     if (!Number.isFinite(requestedHeight)) return
     const { page, shape } = this.findPanel(workspaceId, semanticId)
     const promptCanvas = shape.meta.promptCanvas
-    if (
-      promptCanvas &&
-      typeof promptCanvas === 'object' &&
-      !Array.isArray(promptCanvas) &&
-      promptCanvas.manuallySized === true
-    ) return
-
     const height = Math.ceil(requestedHeight)
     if (height <= shape.props.h) return
     const editor = this.getEditor()
@@ -1216,17 +1209,10 @@ export class PromptCanvasRuntime {
                 throw new Error('Element dimensions must be positive.')
               }
               const { shape } = this.findPanel(input.workspaceId, operation.elementId)
-              const promptCanvas = shape.meta.promptCanvas
               editor.updateShape({
                 id: shape.id,
                 type: shape.type,
                 props: { w: operation.width, h: operation.height },
-                meta: {
-                  promptCanvas: {
-                    ...(promptCanvas && typeof promptCanvas === 'object' && !Array.isArray(promptCanvas) ? promptCanvas : {}),
-                    manuallySized: true,
-                  },
-                },
               })
               changedElements.push(operation.elementId)
               break
