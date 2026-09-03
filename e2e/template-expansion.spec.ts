@@ -470,6 +470,26 @@ test('undersized canvas cards grow to reveal their full content', async ({ page 
     include: ['layout'],
   })
   expect(afterContentGrowth.elements.find(({ semanticId }) => semanticId === 'full-prompt')?.y).toBe(manuallyMovedY)
+
+  const beforeResize = afterContentGrowth.elements.find(({ semanticId }) => semanticId === 'all-controls')!
+  const resized = await callTool<{ revision: number }>(page, 'prompt_canvas_update_workspace', {
+    workspaceId: created.workspaceId,
+    expectedRevision: afterContentGrowth.revision,
+    operations: [{
+      op: 'resize_element',
+      elementId: 'all-controls',
+      width: beforeResize.width!,
+      height: 90,
+    }],
+  })
+  await expect.poll(async () => {
+    const state = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+      workspaceId: created.workspaceId,
+      include: ['layout'],
+    })
+    return state.elements.find(({ semanticId }) => semanticId === 'all-controls')?.height ?? 0
+  }).toBeGreaterThan(90)
+  expect(resized.revision).toBeGreaterThan(afterContentGrowth.revision)
 })
 
 test('official retrieval returns summaries, snapshots exact lineage, and keeps saved recipes local', async ({ page }) => {

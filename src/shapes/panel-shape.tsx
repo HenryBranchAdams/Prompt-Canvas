@@ -5,7 +5,6 @@ import {
   type Editor,
   type RecordProps,
   type TLAssetId,
-  type TLResizeInfo,
   type TLShape,
   useImageOrVideoAsset,
   useValue,
@@ -620,12 +619,6 @@ function PanelBody(props: {
 
 function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Editor }) {
   const { shape, editor } = props
-  const manuallySized = Boolean(
-    shape.meta.promptCanvas &&
-    typeof shape.meta.promptCanvas === 'object' &&
-    !Array.isArray(shape.meta.promptCanvas) &&
-    shape.meta.promptCanvas.manuallySized === true,
-  )
   const editingShapeId = useValue(
     'prompt canvas editing shape',
     () => editor.getEditingShapeId(),
@@ -641,7 +634,6 @@ function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Edito
   }, [shape.props.payload])
 
   useLayoutEffect(() => {
-    if (manuallySized) return
     let frame = 0
     const root = document.getElementById(shape.id)
     const body = root?.querySelector<HTMLElement>('.pc-panel__body')
@@ -664,7 +656,6 @@ function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Edito
       cancelAnimationFrame(frame)
     }
   }, [
-    manuallySized,
     shape.id,
     shape.props.h,
     shape.props.payload,
@@ -718,21 +709,6 @@ export class PromptCanvasPanelShapeUtil extends BaseBoxShapeUtil<PromptCanvasPan
 
   override canResize(): boolean {
     return true
-  }
-
-  override onResize(shape: PromptCanvasPanelShape, info: TLResizeInfo<PromptCanvasPanelShape>) {
-    const resized = super.onResize(shape, info)
-    const promptCanvas = resized.meta.promptCanvas
-    return {
-      ...resized,
-      meta: {
-        ...resized.meta,
-        promptCanvas: {
-          ...(promptCanvas && typeof promptCanvas === 'object' ? promptCanvas : {}),
-          manuallySized: true,
-        },
-      },
-    }
   }
 
   override onTranslateEnd(initial: PromptCanvasPanelShape, current: PromptCanvasPanelShape) {
