@@ -53,6 +53,8 @@ export type OfficialPromptSearchInput = {
   outputKinds?: string[]
   preservationNeeds?: string[]
   collections?: string[]
+  categories?: string[]
+  families?: string[]
   capabilities?: string[]
   limit?: number
 }
@@ -199,6 +201,8 @@ export class OfficialPromptRepository {
       ['output-kind', boundedUnique(input.outputKinds)],
       ['preservation-need', boundedUnique(input.preservationNeeds)],
       ['collection', boundedUnique(input.collections)],
+      ['category', boundedUnique(input.categories)],
+      ['family', boundedUnique(input.families)],
       ['capability', boundedUnique(input.capabilities)],
     ].filter((group): group is [string, string[]] => group[1].length > 0)
 
@@ -264,6 +268,8 @@ export class OfficialPromptRepository {
     if (boundedUnique(input.inputModes).includes(row.input_mode.toLowerCase())) reasons.push(`${row.input_mode} input`)
     if (boundedUnique(input.outputKinds).includes(row.output_kind.toLowerCase())) reasons.push(`${row.output_kind} output`)
     if (boundedUnique(input.collections).includes(row.collection.toLowerCase())) reasons.push(`${row.collection} collection`)
+    if (boundedUnique(input.categories).includes(row.category.toLowerCase())) reasons.push(`${row.category} category`)
+    if (boundedUnique(input.families).includes(row.template_family.toLowerCase())) reasons.push(`${row.template_family} family`)
     return reasons.slice(0, 6)
   }
 }

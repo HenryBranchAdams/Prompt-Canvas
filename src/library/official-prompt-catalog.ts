@@ -41,6 +41,8 @@ export type OfficialPromptSearchInput = {
   outputKinds?: string[]
   preservationNeeds?: string[]
   collections?: string[]
+  categories?: string[]
+  families?: string[]
   capabilities?: string[]
   limit?: number
 }
@@ -66,8 +68,16 @@ function isSummary(value: unknown): value is OfficialPromptSummary {
   if (!value || typeof value !== 'object') return false
   const item = value as Partial<OfficialPromptSummary>
   return item.source === 'official' && typeof item.id === 'string' && Number.isInteger(item.version) &&
-    typeof item.hash === 'string' && typeof item.title === 'string' && typeof item.userPromise === 'string' &&
-    Array.isArray(item.requiredInputs) && Array.isArray(item.aliases)
+    (item.version ?? 0) > 0 && /^sha256:[0-9a-f]{64}$/.test(item.hash ?? '') &&
+    typeof item.title === 'string' && typeof item.description === 'string' && typeof item.userPromise === 'string' &&
+    typeof item.collection === 'string' && typeof item.category === 'string' && typeof item.family === 'string' &&
+    typeof item.defaultOperation === 'string' && typeof item.inputMode === 'string' && typeof item.outputKind === 'string' &&
+    typeof item.complexity === 'string' && Array.isArray(item.intents) && Array.isArray(item.inputModes) &&
+    Array.isArray(item.subjectKinds) && Array.isArray(item.outputKinds) && Array.isArray(item.preservationNeeds) &&
+    Array.isArray(item.requiredInputs) && Array.isArray(item.preserves) && Array.isArray(item.badges) &&
+    Array.isArray(item.aliases) && Array.isArray(item.capabilities) &&
+    Boolean(item.thumbnail && typeof item.thumbnail.src === 'string' && typeof item.thumbnail.alt === 'string') &&
+    (item.featuredRank === null || Number.isFinite(item.featuredRank))
 }
 
 function localSearch(records: OfficialPromptSummary[], input: OfficialPromptSearchInput): OfficialPromptSummary[] {
@@ -88,6 +98,8 @@ function localSearch(records: OfficialPromptSummary[], input: OfficialPromptSear
       (!input.outputKinds?.length || input.outputKinds.some((value) => record.outputKinds.includes(value))) &&
       (!input.preservationNeeds?.length || input.preservationNeeds.some((value) => record.preservationNeeds.includes(value))) &&
       (!input.collections?.length || input.collections.includes(record.collection)) &&
+      (!input.categories?.length || input.categories.includes(record.category)) &&
+      (!input.families?.length || input.families.includes(record.family)) &&
       (!input.capabilities?.length || input.capabilities.every((value) => record.capabilities.includes(value))))
     .sort((a, b) => b.score - a.score || (a.record.featuredRank ?? 999) - (b.record.featuredRank ?? 999))
     .slice(0, Math.min(Math.max(input.limit ?? 8, 1), 20))
@@ -118,7 +130,8 @@ export class OfficialPromptCatalog {
       })
       if (!response.ok) return
       const payload = await response.json() as CatalogResponse
-      if (!payload.ok || !Array.isArray(payload.catalog) || payload.catalog.some((item) => !isSummary(item))) return
+      if (!payload.ok || !Array.isArray(payload.catalog) || payload.catalog.length === 0 ||
+        payload.catalog.some((item) => !isSummary(item)) || new Set(payload.catalog.map((item) => item.id)).size !== payload.catalog.length) return
       this.summaries = new Map(payload.catalog.map((item) => [item.id, structuredClone(item)]))
       await this.database.setSetting(CATALOG_CACHE_KEY, payload as unknown as JsonValue)
     } catch {
@@ -162,7 +175,14 @@ export class OfficialPromptCatalog {
     const cacheKey = `official-library:version:${id}@${resolvedVersion}:${resolvedHash}`
     const cached = await this.database.getSetting<JsonValue>(cacheKey)
     if (cached && typeof cached === 'object' && !Array.isArray(cached)) {
-      return { template: structuredClone(cached as unknown as PromptWorkspaceTemplate), summary: structuredClone(summary) }
+      const cachedTemplate = cached as unknown as PromptWorkspaceTemplate
+      const cachedHash = `sha256:${await sha256Hex(stableStringify(cachedTemplate))}`
+      if (cachedHash === resolvedHash) {
+        return {
+          template: structuredClone(cachedTemplate),
+          summary: { ...structuredClone(summary), version: resolvedVersion, hash: resolvedHash },
+        }
+      }
     }
     try {
       const response = await this.fetcher(`/api/official-library/prompts/${encodeURIComponent(id)}/versions/${resolvedVersion}`, {
@@ -175,7 +195,10 @@ export class OfficialPromptCatalog {
       const actualHash = `sha256:${await sha256Hex(stableStringify(payload.template))}`
       if (actualHash !== resolvedHash) throw new Error('Official recipe content did not match its expected hash.')
       await this.database.setSetting(cacheKey, payload.template as unknown as JsonValue)
-      return { template: structuredClone(payload.template), summary: structuredClone(summary) }
+      return {
+        template: structuredClone(payload.template),
+        summary: { ...structuredClone(summary), version: resolvedVersion, hash: resolvedHash },
+      }
     } catch {
       return undefined
     }

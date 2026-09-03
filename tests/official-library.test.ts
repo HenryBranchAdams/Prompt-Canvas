@@ -94,6 +94,8 @@ test('official search uses bound values and returns compact summaries', async ()
     query: 'replace room',
     inputModes: ['single-image'],
     preservationNeeds: ['identity'],
+    categories: ['start-fast'],
+    families: ['reference-transformation'],
     limit: 8,
   })
   assert.equal(candidate?.source, 'official')
@@ -106,7 +108,11 @@ test('official search uses bound values and returns compact summaries', async ()
 })
 
 test('search request validation is closed and bounded', () => {
-  assert.deepEqual(parseOfficialPromptSearch({ query: 'wider banner', limit: 8 }), { query: 'wider banner', limit: 8 })
+  assert.deepEqual(parseOfficialPromptSearch({
+    query: 'wider banner', limit: 8, categories: ['start-fast'], families: ['canvas-expansion'],
+  }), {
+    query: 'wider banner', limit: 8, categories: ['start-fast'], families: ['canvas-expansion'],
+  })
   assert.throws(() => parseOfficialPromptSearch({ query: 'x', unexpected: true }), /unsupported fields/)
   assert.throws(() => parseOfficialPromptSearch({ query: 'x', limit: 21 }), /1 to 20/)
 })
@@ -143,12 +149,63 @@ test('versioned prompt route is immutable and public writes do not exist', async
 })
 
 test('search route caps bodies even without Content-Length', async () => {
+  let cancelled = false
+  const stream = new ReadableStream<Uint8Array>({
+    start(controller) {
+      controller.enqueue(new TextEncoder().encode(JSON.stringify({ query: 'x'.repeat(17_000) })))
+    },
+    cancel() {
+      cancelled = true
+    },
+  })
   const response = await handleOfficialLibraryRequest(
     new Request('https://example.test/api/official-library/search', {
       method: 'POST',
-      body: JSON.stringify({ query: 'x'.repeat(17_000) }),
-    }),
+      headers: { 'Content-Type': 'application/json' },
+      body: stream,
+      duplex: 'half',
+    } as RequestInit & { duplex: 'half' }),
     new FakeDatabase(),
   )
   assert.equal(response?.status, 413)
+  assert.equal(cancelled, true)
+})
+
+test('search route returns stable client errors and does not expose internal failures', async () => {
+  const malformed = await handleOfficialLibraryRequest(
+    new Request('https://example.test/api/official-library/search', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{',
+    }),
+    new FakeDatabase(),
+  )
+  assert.equal(malformed?.status, 400)
+  assert.equal((await malformed?.json() as { error: { code: string } }).error.code, 'INVALID_JSON')
+
+  const unsupported = await handleOfficialLibraryRequest(
+    new Request('https://example.test/api/official-library/search', {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: '{}',
+    }),
+    new FakeDatabase(),
+  )
+  assert.equal(unsupported?.status, 415)
+
+  const failingDatabase: D1Database = {
+    prepare() {
+      throw new Error('secret database detail')
+    },
+  }
+  const failed = await handleOfficialLibraryRequest(
+    new Request('https://example.test/api/official-library/catalog'),
+    failingDatabase,
+  )
+  assert.equal(failed?.status, 500)
+  assert.equal((await failed?.text())?.includes('secret database detail'), false)
+})
+
+test('catalog pagination is finite and bounded', async () => {
+  const response = await handleOfficialLibraryRequest(
+    new Request('https://example.test/api/official-library/catalog?offset=Infinity'),
+    new FakeDatabase(),
+  )
+  assert.equal(response?.status, 400)
 })

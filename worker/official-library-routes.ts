@@ -1,5 +1,46 @@
 import { OfficialPromptRepository, type D1Database } from './official-prompt-repository.js'
-import { parseOfficialPromptSearch, validOfficialPromptId } from './request-validation.js'
+import { OfficialLibraryInputError, parseOfficialPromptSearch, validOfficialPromptId } from './request-validation.js'
+
+const MAX_SEARCH_BODY_BYTES = 16_384
+
+class RequestTooLargeError extends Error {}
+
+async function readBoundedBody(request: Request): Promise<string> {
+  if (!request.body) return ''
+  const reader = request.body.getReader()
+  const chunks: Uint8Array[] = []
+  let total = 0
+  try {
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      total += value.byteLength
+      if (total > MAX_SEARCH_BODY_BYTES) {
+        await reader.cancel('Search request exceeded the byte limit.')
+        throw new RequestTooLargeError()
+      }
+      chunks.push(value)
+    }
+  } finally {
+    reader.releaseLock()
+  }
+  const bytes = new Uint8Array(total)
+  let offset = 0
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset)
+    offset += chunk.byteLength
+  }
+  return new TextDecoder().decode(bytes)
+}
+
+function boundedQueryInteger(value: string | null, fallback: number, minimum: number, maximum: number): number {
+  if (value === null) return fallback
+  const parsed = Number(value)
+  if (!Number.isSafeInteger(parsed) || parsed < minimum || parsed > maximum) {
+    throw new OfficialLibraryInputError(`Query pagination must use integers from ${minimum} to ${maximum}.`)
+  }
+  return parsed
+}
 
 const JSON_HEADERS = {
   'Content-Type': 'application/json; charset=utf-8',
@@ -21,8 +62,8 @@ export async function handleOfficialLibraryRequest(request: Request, db: D1Datab
 
   try {
     if (request.method === 'GET' && url.pathname === '/api/official-library/catalog') {
-      const limit = Math.min(Math.max(Number(url.searchParams.get('limit') ?? 100) || 100, 1), 100)
-      const offset = Math.max(Number(url.searchParams.get('offset') ?? 0) || 0, 0)
+      const limit = boundedQueryInteger(url.searchParams.get('limit'), 100, 1, 100)
+      const offset = boundedQueryInteger(url.searchParams.get('offset'), 0, 0, 10_000)
       const [catalog, meta] = await Promise.all([repository.catalog(limit, offset), repository.catalogMeta()])
       if (!meta) return error(503, 'CATALOG_NOT_READY', 'The official recipe catalog is not available yet.')
       const etag = `"${meta.buildHash}"`
@@ -33,13 +74,23 @@ export async function handleOfficialLibraryRequest(request: Request, db: D1Datab
     }
 
     if (request.method === 'POST' && url.pathname === '/api/official-library/search') {
-      const contentLength = Number(request.headers.get('Content-Length') ?? 0)
-      if (contentLength > 16_384) return error(413, 'REQUEST_TOO_LARGE', 'The search request is too large.')
-      const body = await request.text()
-      if (new TextEncoder().encode(body).byteLength > 16_384) {
+      const contentLengthHeader = request.headers.get('Content-Length')
+      const contentLength = contentLengthHeader === null ? 0 : Number(contentLengthHeader)
+      if (!Number.isFinite(contentLength) || contentLength < 0 || contentLength > MAX_SEARCH_BODY_BYTES) {
         return error(413, 'REQUEST_TOO_LARGE', 'The search request is too large.')
       }
-      const input = parseOfficialPromptSearch(JSON.parse(body))
+      const contentType = request.headers.get('Content-Type')?.split(';', 1)[0].trim().toLowerCase()
+      if (contentType !== 'application/json') {
+        return error(415, 'UNSUPPORTED_MEDIA_TYPE', 'Official recipe search requires application/json.')
+      }
+      const body = await readBoundedBody(request)
+      let candidate: unknown
+      try {
+        candidate = JSON.parse(body)
+      } catch {
+        return error(400, 'INVALID_JSON', 'The search request body must contain valid JSON.')
+      }
+      const input = parseOfficialPromptSearch(candidate)
       const candidates = await repository.search(input)
       return json({ ok: true, candidates }, { headers: { 'Cache-Control': 'private, no-store' } })
     }
@@ -67,7 +118,12 @@ export async function handleOfficialLibraryRequest(request: Request, db: D1Datab
 
     return error(404, 'OFFICIAL_LIBRARY_ROUTE_NOT_FOUND', 'No read-only official-library route matches this request.')
   } catch (cause) {
-    const message = cause instanceof Error ? cause.message : 'The official recipe request failed.'
-    return error(message.includes('must be') || message.includes('unsupported') ? 400 : 500, 'OFFICIAL_LIBRARY_REQUEST_FAILED', message)
+    if (cause instanceof RequestTooLargeError) {
+      return error(413, 'REQUEST_TOO_LARGE', 'The search request is too large.')
+    }
+    if (cause instanceof OfficialLibraryInputError) {
+      return error(400, 'INVALID_REQUEST', cause.message)
+    }
+    return error(500, 'OFFICIAL_LIBRARY_REQUEST_FAILED', 'The official recipe request failed.')
   }
 }

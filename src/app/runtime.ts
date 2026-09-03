@@ -725,11 +725,13 @@ export class PromptCanvasRuntime {
           hash: found.summary.hash,
         }
       } else if (source.origin === 'local') {
+        if (source.expectedHash) throw new Error('expectedHash is only supported for official recipes.')
         const found = this.library.getLocal(source.templateId, source.version)
         if (!found) throw new Error(`Local recipe “${source.templateId}” was not found.`)
         template = found
         templateSource = { origin: 'local', id: found.id, version: found.version }
       } else {
+        if (source.expectedHash) throw new Error('expectedHash requires origin “official”.')
         const found = this.library.get(source.templateId, source.version)
         if (!found) throw new Error(`Template “${source.templateId}” was not found.`)
         template = found
@@ -1421,7 +1423,8 @@ export class PromptCanvasRuntime {
   } = {}): Promise<JsonObject> {
     const usesOfficialRetrieval = input.scope !== undefined || Boolean(
       input.intents?.length || input.inputModes?.length || input.subjectKinds?.length ||
-      input.outputKinds?.length || input.preservationNeeds?.length || input.collections?.length,
+      input.outputKinds?.length || input.preservationNeeds?.length || input.collections?.length ||
+      input.categories?.length || input.families?.length || input.capabilities?.length,
     )
     if (!usesOfficialRetrieval) return this.listTemplates(input)
     const scope = input.scope ?? 'all'
@@ -1434,6 +1437,8 @@ export class PromptCanvasRuntime {
       outputKinds: input.outputKinds,
       preservationNeeds: input.preservationNeeds,
       collections: input.collections,
+      categories: input.categories,
+      families: input.families,
       capabilities: input.capabilities,
       limit,
     })
@@ -1470,10 +1475,12 @@ export class PromptCanvasRuntime {
       return { template: found.template, source: 'official', hash: found.summary.hash }
     }
     if (input.source === 'local') {
+      if (input.expectedHash) throw new Error('expectedHash is only supported for official recipes.')
       const template = this.library.getLocal(input.templateId, input.version)
       if (!template) throw new Error(`Local recipe “${input.templateId}” was not found.`)
       return { template, source: 'local' }
     }
+    if (input.expectedHash) throw new Error('expectedHash requires source “official”.')
     return { template: this.getTemplate(input.templateId, input.version), source: 'bundled' }
   }
 
