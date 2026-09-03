@@ -1,0 +1,123 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: change-one-thing
+version: 1
+title: Change one thing in a photo
+description: Make one targeted edit while preserving everything you did not mention.
+category: start-fast
+tags: [photo edit, keep everything else, targeted change, preserve subject]
+status: starter
+compatibility: { minimumAppVersion: 0.1.0, templateFamily: reference-transformation }
+thumbnail:
+  assetPath: /recipe-thumbnails/change-one-thing.webp
+  alt: The same vase and table with only the flower color changed.
+  accent: '#E76F51'
+capabilities: [image-to-image, image-edit, variations, upscale]
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations: [edit, variation, upscale]
+  defaultOperation: edit
+  preferredMimeTypes: [image/png, image/webp]
+prompt:
+  title: Targeted photo edit
+  body: >-
+    Change only this detail in the supplied source photo: {{requested_change}}.
+    Preserve every unmentioned person, object, word, pose, viewpoint, crop,
+    spatial relationship, material, and lighting characteristic. Reconstruct
+    edited edges and shadows naturally. Do not add unrelated content.
+  variables:
+    - id: requested_change
+      label: Desired change
+      type: text
+      required: true
+      defaultValue: Change the flower color to deep blue
+references:
+  - id: source-photo
+    label: Source photo
+    role: source-photo
+    required: true
+    multiple: false
+    acceptedMimeTypes: [image/jpeg, image/png, image/webp]
+    preserve: [all unmentioned details, subject identity, pose, camera viewpoint, framing]
+controls:
+  - id: requested-change
+    label: What should change?
+    type: textarea
+    required: true
+    defaultValue: Change the flower color to deep blue
+    binding: { mode: variable, target: requested_change }
+  - id: change-strength
+    label: Amount of change
+    type: chips
+    defaultValue: precise
+    options:
+      - { label: Subtle, value: subtle }
+      - { label: Precise, value: precise }
+      - { label: Strong, value: strong }
+    binding: { mode: agent-context, target: edit.strength }
+preservation:
+  - id: preserve-unmentioned
+    description: Preserve everything not explicitly named in the requested change.
+    strength: must
+  - id: preserve-identity
+    description: Preserve subject identity, pose, framing, viewpoint, and object count.
+    strength: must
+outputs:
+  - id: primary
+    label: Your edited photo
+    role: primary
+    kind: image
+    count: 1
+    operations: [edit, upscale]
+    layoutHint: hero
+  - id: variations
+    label: Variations
+    role: variation
+    kind: image-set
+    count: 4
+    operations: [variation]
+blocks:
+  - id: source
+    type: references
+    title: 1. Your photo
+    x-connectTo: primary-output
+    x-geometry: { x: 80, y: 130, w: 380, h: 310 }
+  - id: desired-change
+    type: controls
+    title: 2. Desired change
+    x-controlIds: [requested-change]
+    x-connectTo: primary-output
+    x-geometry: { x: 510, y: 130, w: 360, h: 240 }
+  - id: change-strength
+    type: controls
+    title: Amount of change
+    x-controlIds: [change-strength]
+    x-connectTo: primary-output
+    x-geometry: { x: 510, y: 410, w: 360, h: 170 }
+  - id: primary-output
+    type: output
+    title: 3. Your result
+    sourceId: primary
+    x-connectTo: variation-strip
+    x-geometry: { x: 930, y: 120, w: 620, h: 600 }
+  - id: variation-strip
+    type: variations
+    title: Variations
+    sourceId: variations
+    x-geometry: { x: 930, y: 760, w: 620, h: 210 }
+  - id: full-prompt
+    type: prompt
+    title: More control · Preservation and prompt
+    x-connectTo: primary-output
+    x-geometry: { x: 80, y: 500, w: 790, h: 330 }
+layout: { mode: seeded, arrangement: reference-transform, preserveManualGeometry: true }
+source: { kind: first-party, title: Change one thing in a photo, creator: Prompt Canvas, promptUsage: original }
+x-discovery:
+  collection: start-fast
+  userPromise: Make one targeted edit and preserve everything else.
+  intentAliases: [keep everything else, change just this, fix one thing, keep my face]
+  inputSummary: [1 source photo, The change you want]
+  badges: [Needs 1 photo, Keeps unmentioned details]
+  featuredRank: 2
+x-presentation: { primaryControlIds: [requested-change, change-strength], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }

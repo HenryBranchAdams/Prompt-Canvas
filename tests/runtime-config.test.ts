@@ -32,6 +32,23 @@ test('the worker fails closed when the production tldraw key is missing', async 
   })
 })
 
+test('development uses tldraw keyless mode without requesting production runtime config', async () => {
+  let requested = false
+  const fetchImpl: typeof fetch = async () => {
+    requested = true
+    throw new Error('development should not request production runtime config')
+  }
+
+  const key = await loadTldrawLicenseKey({
+    development: true,
+    signal: new AbortController().signal,
+    fetchImpl,
+  })
+
+  assert.equal(key, undefined)
+  assert.equal(requested, false)
+})
+
 test('a stalled runtime-license response fails visibly within the configured bound', async () => {
   const delayedFetch: typeof fetch = async () => {
     await new Promise((resolve) => setTimeout(resolve, 50))

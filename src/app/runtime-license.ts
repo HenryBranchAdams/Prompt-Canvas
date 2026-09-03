@@ -16,6 +16,9 @@ export async function loadTldrawLicenseKey({
   fetchImpl = fetch,
 }: RuntimeLicenseOptions): Promise<string | undefined> {
   if (bundledKey) return bundledKey
+  // The SDK's development mode is intentionally keyless. Avoid a guaranteed
+  // 503 from the production-only worker binding so local first run stays quiet.
+  if (development) return undefined
   if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
     throw new Error('The tldraw production license timeout must be positive.')
   }
@@ -40,10 +43,7 @@ export async function loadTldrawLicenseKey({
       credentials: 'same-origin',
       signal: requestController.signal,
     })
-    if (!response.ok) {
-      if (development) return undefined
-      throw new Error('The tldraw production license is unavailable.')
-    }
+    if (!response.ok) throw new Error('The tldraw production license is unavailable.')
 
     const payload: unknown = await response.json()
     const key = payload && typeof payload === 'object'

@@ -55,7 +55,17 @@ type TemplateSummary = {
   capabilities: string[]
   featured: boolean
   version: number
+  referenceCount: number
+  controlCount: number
   source?: { creator?: string; title?: string; url?: string | null; promptUsage?: string }
+}
+
+type RecipeDiscovery = {
+  collection?: string
+  userPromise?: string
+  inputSummary?: string[]
+  badges?: string[]
+  featuredRank?: number
 }
 
 function connectionLabel(snapshot: RuntimeSnapshot): string {
@@ -105,31 +115,42 @@ function trapDialogTab(event: KeyboardEvent, container: HTMLElement | null) {
   }
 }
 
+function recipeDetails(item: TemplateSummary): {
+  discovery: RecipeDiscovery
+  thumbnail?: { assetPath: string; alt: string }
+} {
+  const template = runtime.getTemplate(item.id, item.version)
+  const raw = template['x-discovery']
+  const discovery = raw && typeof raw === 'object' && !Array.isArray(raw)
+    ? raw as RecipeDiscovery
+    : {}
+  return { discovery, thumbnail: template.thumbnail }
+}
+
 function TemplatePreview({ item }: { item: TemplateSummary }) {
+  const { thumbnail } = recipeDetails(item)
   return (
     <div className="pc-template-card__preview" aria-hidden="true">
-      {item.featured ? <small>Featured</small> : null}
-      <div className={`pc-template-art is-${item.family}`}>
-        <span />
-        <span />
-        <span />
-      </div>
+      {thumbnail ? <img src={thumbnail.assetPath} alt="" /> : <div className="pc-recipe-fallback"><SparkIcon /></div>}
     </div>
   )
 }
 
 function TemplateLibrary({
   open,
+  dismissible,
   onClose,
   onCreate,
+  onCreateBlank,
 }: {
   open: boolean
+  dismissible: boolean
   onClose: () => void
   onCreate: (templateId: string) => Promise<void>
+  onCreateBlank: () => void
 }) {
   const snapshot = useRuntimeSnapshot()
   const [query, setQuery] = useState('')
-  const [category, setCategory] = useState('')
   const [creating, setCreating] = useState<string | undefined>(undefined)
   const searchRef = useRef<HTMLInputElement>(null)
 
@@ -137,27 +158,24 @@ function TemplateLibrary({
     if (!open) return
     searchRef.current?.focus()
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
+      if (event.key === 'Escape' && dismissible) onClose()
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [onClose, open])
+  }, [dismissible, onClose, open])
 
   if (!open) return null
 
-  const all = snapshot.initialized
-    ? ((runtime.listTemplates({ limit: 100 }).templates ?? []) as unknown as TemplateSummary[])
-    : []
-  const categories = [...new Set(all.map((item) => item.category))].sort((a, b) =>
-    a.localeCompare(b),
-  )
   const items = snapshot.initialized
     ? ((runtime.listTemplates({
         query,
-        ...(category ? { categories: [category] } : {}),
         limit: 100,
       }).templates ?? []) as unknown as TemplateSummary[])
     : []
+  const quick = items
+    .filter((item) => recipeDetails(item).discovery.collection === 'start-fast')
+    .sort((a, b) => (recipeDetails(a).discovery.featuredRank ?? 999) - (recipeDetails(b).discovery.featuredRank ?? 999))
+  const systems = items.filter((item) => recipeDetails(item).discovery.collection !== 'start-fast')
 
   const create = async (templateId: string) => {
     setCreating(templateId)
@@ -169,15 +187,14 @@ function TemplateLibrary({
   }
 
   return (
-    <aside className="pc-library is-open" aria-label="Prompt workspace library">
+    <aside className="pc-library is-open" aria-label="Prompt Canvas recipes">
       <header>
         <div>
-          <span className="pc-eyebrow">Starter pack and saved templates</span>
-          <h2>Prompt workspace library</h2>
+          <span className="pc-eyebrow">Prompt Canvas recipes</span>
+          <h2>What would you like to make?</h2>
+          <p>Choose a recipe to get started. Each one guides you step by step.</p>
         </div>
-        <button className="pc-icon-button" type="button" onClick={onClose} aria-label="Close library">
-          <CloseIcon />
-        </button>
+        {dismissible ? <button className="pc-icon-button" type="button" onClick={onClose} aria-label="Close recipes"><CloseIcon /></button> : null}
       </header>
       <div className="pc-library__tools">
         <label className="pc-search-field">
@@ -186,45 +203,54 @@ function TemplateLibrary({
             ref={searchRef}
             value={query}
             onChange={(event) => setQuery(event.currentTarget.value)}
-            placeholder="Search by style, task, capability, or creator"
-            aria-label="Search templates"
+            placeholder="Try “make this wider” or “keep my face”"
+            aria-label="Search recipes"
           />
         </label>
-        <select value={category} onChange={(event) => setCategory(event.currentTarget.value)} aria-label="Filter by category">
-          <option value="">All categories</option>
-          {categories.map((value) => (
-            <option value={value} key={value}>
-              {value.replace(/-/g, ' ')}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="pc-library__count">
-        {items.length} compatible template{items.length === 1 ? '' : 's'} · Codex generates the images
       </div>
       <div className="pc-library__grid">
-        {items.map((item) => (
+        {quick.map((item) => {
+          const { discovery } = recipeDetails(item)
+          return (
           <article className="pc-template-card" key={`${item.id}@${item.version}`}>
             <TemplatePreview item={item} />
             <div className="pc-template-card__body">
               <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <div className="pc-template-card__meta">
-                <span>{item.family.replace(/-/g, ' ')}</span>
-                <span>{item.operations.join(' · ')}</span>
-              </div>
+              <p>{discovery.userPromise ?? item.description}</p>
+              <div className="pc-template-card__meta">{(discovery.badges ?? []).slice(0, 2).map((badge) => <span key={badge}>{badge}</span>)}</div>
               <button
                 type="button"
                 disabled={Boolean(creating)}
                 onClick={() => void create(item.id)}
               >
                 <PlusIcon />
-                {creating === item.id ? 'Creating…' : 'Create workspace'}
+                {creating === item.id ? 'Starting…' : 'Start'}
               </button>
             </div>
           </article>
-        ))}
+          )
+        })}
+        {!query ? (
+          <article className="pc-template-card pc-template-card--blank">
+            <div className="pc-template-card__preview"><div className="pc-recipe-fallback"><PlusIcon /></div></div>
+            <div className="pc-template-card__body">
+              <h3>Start with a blank canvas</h3>
+              <p>Begin with an open prompt and shape the project your way.</p>
+              <div className="pc-template-card__meta"><span>Completely open</span></div>
+              <button type="button" onClick={onCreateBlank}><PlusIcon /> Start</button>
+            </div>
+          </article>
+        ) : null}
       </div>
+      {systems.length > 0 ? <section className="pc-creative-systems">
+        <div><span className="pc-eyebrow">More control</span><h3>Creative systems</h3><p>Advanced recipes for multi-stage and structured creative work.</p></div>
+        <div className="pc-system-list">{systems.map((item) => (
+          <button key={`${item.id}@${item.version}`} type="button" disabled={Boolean(creating)} onClick={() => void create(item.id)}>
+            <SparkIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
+          </button>
+        ))}</div>
+      </section> : null}
+      {items.length === 0 ? <p className="pc-empty-copy">No recipes match that request.</p> : null}
     </aside>
   )
 }
@@ -235,7 +261,7 @@ function LayersInspector({ shapes }: { shapes: PromptCanvasPanelShape[] }) {
       <header>
         <div>
           <span className="pc-eyebrow">Current tldraw page</span>
-          <h3>Workspace layers</h3>
+          <h3>Project layers</h3>
         </div>
         <small>{shapes.length}</small>
       </header>
@@ -244,23 +270,12 @@ function LayersInspector({ shapes }: { shapes: PromptCanvasPanelShape[] }) {
           <button
             type="button"
             key={shape.id}
-            title="Double-click to edit this panel"
-            aria-label={`${shape.props.title}. Double-click to edit this panel.`}
+            title="Open this block"
+            aria-label={`${shape.props.title}. Open this block.`}
             onClick={() => {
               const editor = runtime.getEditor()
               editor.select(shape.id)
               editor.zoomToSelection({ animation: { duration: 160 } })
-            }}
-            onDoubleClick={() => {
-              const editor = runtime.getEditor()
-              editor.select(shape.id)
-              editor.zoomToSelection({ animation: { duration: 160 } })
-              editor.setEditingShape(shape.id)
-            }}
-            onKeyDown={(event) => {
-              if (event.key !== 'Enter') return
-              const editor = runtime.getEditor()
-              editor.select(shape.id)
               editor.setEditingShape(shape.id)
             }}
           >
@@ -368,7 +383,7 @@ function BlankWorkspaceDialog({
   onClose: () => void
   onCreate: (title: string, prompt: string) => Promise<void>
 }) {
-  const [title, setTitle] = useState('Untitled image workspace')
+  const [title, setTitle] = useState('Untitled image project')
   const [prompt, setPrompt] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const titleRef = useRef<HTMLInputElement>(null)
@@ -394,23 +409,22 @@ function BlankWorkspaceDialog({
       <section ref={dialogRef} className="pc-dialog" role="dialog" aria-modal="true" aria-labelledby="blank-workspace-title">
         <header>
           <div>
-            <span className="pc-eyebrow">Open-ended by default</span>
-            <h2 id="blank-workspace-title">Create a prompt workspace</h2>
+            <span className="pc-eyebrow">Blank canvas</span>
+            <h2 id="blank-workspace-title">Create an image project</h2>
           </div>
           <button className="pc-icon-button" type="button" onClick={onClose} aria-label="Close dialog"><CloseIcon /></button>
         </header>
         <p>
-          Begin with a freeform prompt and a small set of useful controls. Codex can add or reshape
-          the workspace later through WebMCP without forcing it into a rigid template.
+          Begin with a freeform direction and a useful format choice. You can add more control later.
         </p>
         <label>
-          Workspace title
+          Project title
           <input ref={titleRef} value={title} onChange={(event) => setTitle(event.currentTarget.value)} maxLength={120} />
         </label>
         <label>
           Starting prompt
           <small>Optional. You can write directly on the canvas after creation.</small>
-          <textarea rows={8} value={prompt} onChange={(event) => setPrompt(event.currentTarget.value)} />
+          <textarea rows={6} value={prompt} onChange={(event) => setPrompt(event.currentTarget.value)} />
         </label>
         <footer>
           <button type="button" onClick={onClose}>Cancel</button>
@@ -423,7 +437,7 @@ function BlankWorkspaceDialog({
               void onCreate(title.trim(), prompt).finally(() => setSubmitting(false))
             }}
           >
-            <PlusIcon /> {submitting ? 'Creating…' : 'Create workspace'}
+            <PlusIcon /> {submitting ? 'Creating…' : 'Create project'}
           </button>
         </footer>
       </section>
@@ -451,7 +465,7 @@ function GenerationDialog({
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [onClose])
   const copy = async () => {
-    await navigator.clipboard.writeText(context.resolvedPrompt)
+    await navigator.clipboard.writeText('Generate this Prompt Canvas project.')
     setCopied(true)
     window.setTimeout(() => setCopied(false), 1300)
   }
@@ -462,38 +476,33 @@ function GenerationDialog({
       <section ref={dialogRef} className="pc-dialog pc-dialog--generation" role="dialog" aria-modal="true" aria-labelledby="generation-context-title">
         <header>
           <div>
-            <span className="pc-eyebrow">Prepared for Codex image generation</span>
-            <h2 id="generation-context-title">Workspace context is ready</h2>
+            <span className="pc-eyebrow">Ready to generate</span>
+            <h2 id="generation-context-title">Your project is ready</h2>
           </div>
           <button ref={closeRef} className="pc-icon-button" type="button" onClick={onClose} aria-label="Close dialog"><CloseIcon /></button>
         </header>
         <p>
-          Continue in the Codex app chat. Codex can read this exact context through WebMCP, generate
-          the image itself, and write the result back into the target canvas output.
+          In the Codex chat, send this message. Codex will read the project, create the image,
+          and place it in the result card automatically.
         </p>
-        <div className="pc-context-summary">
-          <div><span>Operation</span><strong>{context.operation}</strong></div>
-          <div><span>Generation rev</span><strong>{context.generationRevision}</strong></div>
-          <div><span>Target</span><strong>{context.targetOutputId}</strong></div>
-          <div><span>Aspect ratio</span><strong>{context.outputRequirements.aspectRatio}</strong></div>
-        </div>
-        <details open>
-          <summary>Resolved prompt sent to Codex</summary>
+        <div className="pc-chat-instruction">Generate this Prompt Canvas project.</div>
+        <details className="pc-technical-details">
+          <summary>View technical details</summary>
+          <div className="pc-context-summary">
+            <div><span>Operation</span><strong>{context.operation}</strong></div>
+            <div><span>Generation revision</span><strong>{context.generationRevision}</strong></div>
+            <div><span>Target output</span><strong>{context.targetOutputId}</strong></div>
+            <div><span>Aspect ratio</span><strong>{context.outputRequirements.aspectRatio}</strong></div>
+          </div>
+          <h3>Resolved prompt</h3>
           <pre>{context.resolvedPrompt}</pre>
-        </details>
-        {context.negativePrompt ? (
-          <details>
-            <summary>Negative prompt</summary>
-            <pre>{context.negativePrompt}</pre>
-          </details>
-        ) : null}
-        <details>
-          <summary>Host instruction and request identity</summary>
+          {context.negativePrompt ? <><h3>Avoid</h3><pre>{context.negativePrompt}</pre></> : null}
+          <h3>Request identity</h3>
           <pre>{context.hostInstruction}\n\nRequest: {context.requestId}</pre>
         </details>
         <footer>
-          <button type="button" onClick={() => void copy()}><CopyIcon /> {copied ? 'Copied' : 'Copy prompt'}</button>
-          <button className="pc-primary-button" type="button" onClick={onClose}>Close and continue in Codex</button>
+          <button type="button" onClick={() => void copy()}><CopyIcon /> {copied ? 'Copied' : 'Copy message'}</button>
+          <button className="pc-primary-button" type="button" onClick={onClose}>Done</button>
         </footer>
       </section>
     </div>
@@ -504,6 +513,7 @@ export default function App() {
   const snapshot = useRuntimeSnapshot()
   const [libraryOpen, setLibraryOpen] = useState(false)
   const [blankOpen, setBlankOpen] = useState(false)
+  const [inspectorOpen, setInspectorOpen] = useState(false)
   const libraryButtonRef = useRef<HTMLButtonElement>(null)
   const blankButtonRef = useRef<HTMLButtonElement>(null)
   const prepareButtonRef = useRef<HTMLButtonElement>(null)
@@ -587,50 +597,41 @@ export default function App() {
       <header className="pc-topbar">
         <div className="pc-brand">
           <span className="pc-brand-mark"><SparkIcon /></span>
-          <div><strong>Prompt Canvas</strong><small>Codex image workspaces</small></div>
+          <div><strong>Prompt Canvas</strong><small>Creative image projects</small></div>
         </div>
         <label className="pc-workspace-switcher">
           <select
             value={active?.workspaceId ?? ''}
             disabled={!snapshot.initialized}
             onChange={(event) => runtime.setActiveWorkspace(event.currentTarget.value)}
-            aria-label="Active workspace"
+            aria-label="Active project"
           >
-            {!active ? <option value="">Loading workspaces…</option> : null}
+            {!active ? <option value="">{snapshot.initialized ? 'No project open' : 'Loading projects…'}</option> : null}
             {snapshot.workspaces.map((workspace) => (
               <option key={workspace.workspaceId} value={workspace.workspaceId}>{workspace.title}</option>
             ))}
           </select>
-          <span>{active ? `r${active.documentRevision}` : '—'}</span>
         </label>
         <div className="pc-topbar__actions">
-          <span className={connected ? 'pc-host-status is-connected' : 'pc-host-status'} title={snapshot.connection.errors.join('\n')}>
-            <span /> {connectionLabel(snapshot)}
-          </span>
-          <button ref={libraryButtonRef} type="button" onClick={() => setLibraryOpen(true)}><LibraryIcon /><span>Library</span></button>
-          <button
-            type="button"
-            disabled={!active}
-            onClick={() => active && void run(() => runtime.duplicateWorkspace(active.workspaceId))}
-          ><DuplicateIcon /><span>Duplicate</span></button>
-          <button
-            type="button"
-            disabled={!active}
-            onClick={() => active && void run(() => runtime.saveTemplate({
-              source: { kind: 'workspace', workspaceId: active.workspaceId },
-              title: `${active.title} copy`,
-              mode: 'fork',
-            }))}
-          ><SaveIcon /><span>Save template</span></button>
-          <button ref={blankButtonRef} type="button" onClick={() => setBlankOpen(true)}><PlusIcon /><span>Blank</span></button>
+          <span className={connected ? 'pc-connection-dot is-connected' : 'pc-connection-dot'} title={connectionLabel(snapshot)}><span /></span>
+          <button ref={libraryButtonRef} type="button" onClick={() => setLibraryOpen(true)}><LibraryIcon /><span>Recipes</span></button>
+          <button ref={blankButtonRef} type="button" onClick={() => setBlankOpen(true)}><PlusIcon /><span>New</span></button>
+          <details className="pc-more-menu">
+            <summary>More</summary>
+            <div>
+              <button type="button" disabled={!active} onClick={() => active && void run(() => runtime.duplicateWorkspace(active.workspaceId))}><DuplicateIcon /> Duplicate project</button>
+              <button type="button" disabled={!active} onClick={() => active && void run(() => runtime.saveTemplate({ source: { kind: 'workspace', workspaceId: active.workspaceId }, title: `${active.title} copy`, mode: 'fork' }))}><SaveIcon /> Save as recipe</button>
+              <button type="button" onClick={() => setInspectorOpen((value) => !value)}><LayersIcon /> {inspectorOpen ? 'Hide diagnostics' : 'Diagnostics'}</button>
+            </div>
+          </details>
           <button ref={prepareButtonRef} className="pc-primary-button" type="button" disabled={!active} onClick={prepareGeneration}>
-            <SparkIcon /><span>Prepare for Codex</span>
+            <SparkIcon /><span>Generate with Codex</span>
           </button>
         </div>
       </header>
 
-      <section className="pc-main">
-        <div className="pc-canvas-shell" aria-label="Prompt workspace canvas">
+      <section className={inspectorOpen ? 'pc-main has-inspector' : 'pc-main'}>
+        <div className="pc-canvas-shell" aria-label="Prompt project canvas">
           {tldrawLicense.status === 'ready' ? (
             <Tldraw
               persistenceKey="prompt-canvas-document-v1"
@@ -649,25 +650,33 @@ export default function App() {
               <span>{tldrawLicense.message}</span>
             </div>
           ) : !snapshot.initialized ? (
-            <div className="pc-loading" role="status" aria-live="polite"><SparkIcon /><strong>Opening Prompt Canvas</strong><span>Loading the local library and travel poster workspace…</span></div>
+            <div className="pc-loading" role="status" aria-live="polite"><SparkIcon /><strong>Opening Prompt Canvas</strong><span>Loading your projects and recipes…</span></div>
           ) : null}
+          <TemplateLibrary
+            open={snapshot.initialized && (libraryOpen || !active)}
+            dismissible={Boolean(active)}
+            onClose={closeLibrary}
+            onCreate={async (templateId) => {
+              await run(() => runtime.createWorkspace({ kind: 'template', templateId }, 'new-page', true))
+              closeLibrary()
+              window.requestAnimationFrame(() => {
+                runtime.getEditor().setEditingShape(null)
+                runtime.getEditor().selectNone()
+              })
+            }}
+            onCreateBlank={() => {
+              setLibraryOpen(false)
+              setBlankOpen(true)
+            }}
+          />
         </div>
-        <Inspector snapshot={snapshot} />
+        {inspectorOpen ? <Inspector snapshot={snapshot} /> : null}
       </section>
 
       <footer className="pc-statusbar">
-        <span><i className={connected ? 'is-live' : ''} /> {connected ? 'Codex can read and write this workspace through WebMCP' : 'Canvas works locally; WebMCP appears when opened in the Codex desktop host'}</span>
-        <span>{active ? `${active.generationState.replace(/-/g, ' ')} · generation r${active.generationRevision}` : 'No active workspace'}</span>
+        <span><i className={connected ? 'is-live' : ''} /> {active ? 'Your project saves automatically on this device' : 'Choose a recipe to start'}</span>
+        <span>{active ? active.generationState.replace(/-/g, ' ') : 'No project open'}</span>
       </footer>
-
-      <TemplateLibrary
-        open={libraryOpen}
-        onClose={closeLibrary}
-        onCreate={async (templateId) => {
-          await run(() => runtime.createWorkspace({ kind: 'template', templateId }, 'new-page', true))
-          closeLibrary()
-        }}
-      />
 
       <BlankWorkspaceDialog
         open={blankOpen}

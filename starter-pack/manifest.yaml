@@ -1,11 +1,77 @@
 schema: prompt-canvas.starter-pack@2
 id: core-starter-pack
-version: 2
-title: Prompt Canvas Starter Library
-description: Nine original Codex-powered image prompt workspaces for the standalone Prompt Canvas app.
+version: 3
+title: Prompt Canvas Recipe Library
+description: Six quick-start creative recipes and nine original advanced creative systems for Prompt Canvas.
 templateSchema: ../schemas/prompt-workspace-template.schema.json
-templateCount: 9
+templateCount: 15
 templates:
+- id: create-from-words
+  path: templates/create-from-words.workspace.yaml
+  title: Create an image from words
+  description: Describe an idea, choose a few essentials, and create one polished image.
+  category: start-fast
+  family: lightweight
+  operations: [generate, edit, variation, upscale]
+  capabilities: [text-to-image, image-edit, variations, upscale]
+  featured: true
+  order: 1
+  source: { creator: Prompt Canvas, title: Create an image from words, url: null, promptUsage: original }
+- id: change-one-thing
+  path: templates/change-one-thing.workspace.yaml
+  title: Change one thing in a photo
+  description: Make one targeted edit while preserving everything you did not mention.
+  category: start-fast
+  family: reference-transformation
+  operations: [edit, variation, upscale]
+  capabilities: [image-to-image, image-edit, variations, upscale]
+  featured: true
+  order: 2
+  source: { creator: Prompt Canvas, title: Change one thing in a photo, url: null, promptUsage: original }
+- id: change-background
+  path: templates/change-background.workspace.yaml
+  title: Change the background
+  description: Keep the subject and replace only the environment.
+  category: start-fast
+  family: reference-transformation
+  operations: [edit, variation, upscale]
+  capabilities: [image-to-image, image-edit, variations, upscale]
+  featured: true
+  order: 3
+  source: { creator: Prompt Canvas, title: Change the background, url: null, promptUsage: original }
+- id: remove-object
+  path: templates/remove-object.workspace.yaml
+  title: Remove or clean up an object
+  description: Remove a distraction and rebuild the area naturally.
+  category: start-fast
+  family: reference-transformation
+  operations: [edit, variation, upscale]
+  capabilities: [image-to-image, image-edit, variations, upscale]
+  featured: true
+  order: 4
+  source: { creator: Prompt Canvas, title: Remove or clean up an object, url: null, promptUsage: original }
+- id: expand-reframe
+  path: templates/expand-reframe.workspace.yaml
+  title: Expand or reframe an image
+  description: Adapt an image to a new shape without awkward cropping.
+  category: start-fast
+  family: reference-transformation
+  operations: [edit, upscale]
+  capabilities: [image-to-image, image-edit, upscale]
+  featured: true
+  order: 5
+  source: { creator: Prompt Canvas, title: Expand or reframe an image, url: null, promptUsage: original }
+- id: restore-retouch
+  path: templates/restore-retouch.workspace.yaml
+  title: Restore and lightly retouch
+  description: Improve exposure, color, noise, or damage without redrawing the scene.
+  category: start-fast
+  family: reference-transformation
+  operations: [edit, upscale]
+  capabilities: [image-to-image, image-edit, upscale]
+  featured: true
+  order: 6
+  source: { creator: Prompt Canvas, title: Restore and lightly retouch, url: null, promptUsage: original }
 - id: travel-poster
   path: templates/travel-poster.workspace.yaml
   title: Premium City Travel Poster
@@ -25,8 +91,8 @@ templates:
   - upscale
   - typography
   - structured-prompt
-  featured: true
-  order: 1
+  featured: false
+  order: 101
   source:
     creator: Henry Adams
     title: Premium minimalist flat-vector travel poster

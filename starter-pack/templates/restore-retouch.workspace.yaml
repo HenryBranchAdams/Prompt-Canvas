@@ -1,0 +1,78 @@
+schema: prompt-canvas.prompt-workspace-template@2
+id: restore-retouch
+version: 1
+title: Restore and lightly retouch
+description: Improve exposure, color, noise, or damage without redrawing the scene.
+category: start-fast
+tags: [fix lighting, restore photo, retouch, remove scratches, washed out]
+status: starter
+compatibility: { minimumAppVersion: 0.1.0, templateFamily: reference-transformation }
+thumbnail:
+  assetPath: /recipe-thumbnails/restore-retouch.webp
+  alt: An archival desk photograph with subtle exposure and damage restoration.
+  accent: '#B08968'
+capabilities: [image-to-image, image-edit, upscale]
+generation:
+  provider: codex
+  capability: image-generation
+  delivery: webmcp-import
+  operations: [edit, upscale]
+  defaultOperation: edit
+  preferredMimeTypes: [image/png, image/webp]
+prompt:
+  title: Gentle restoration
+  body: >-
+    Restore the supplied photo using only the selected corrections. Improve
+    technical quality without redrawing, beautifying, modernizing, or changing
+    the scene. Preserve identity, objects, framing, era-appropriate texture,
+    and authentic detail. Keep the result natural rather than over-processed.
+references:
+  - id: source-photo
+    label: Photo to restore
+    role: source-photo
+    required: true
+    multiple: false
+    acceptedMimeTypes: [image/jpeg, image/png, image/webp]
+    preserve: [identity, original objects, framing, scene content, era-appropriate texture]
+controls:
+  - id: corrections
+    label: Corrections
+    type: multi-chips
+    defaultValue: [exposure, color, noise]
+    options:
+      - { label: Exposure, value: exposure }
+      - { label: Color balance, value: color }
+      - { label: Noise, value: noise }
+      - { label: Scratches, value: damage }
+    binding: { mode: agent-context, target: edit.corrections }
+  - id: restoration-strength
+    label: Strength
+    type: chips
+    defaultValue: gentle
+    options:
+      - { label: Very gentle, value: very-gentle }
+      - { label: Gentle, value: gentle }
+      - { label: Moderate, value: moderate }
+    binding: { mode: agent-context, target: edit.strength }
+preservation:
+  - id: authentic-scene
+    description: Preserve identity, original objects, framing, scene content, and era-appropriate texture.
+    strength: must
+outputs:
+  - { id: primary, label: Restored photo, role: primary, kind: image, count: 1, operations: [edit, upscale], layoutHint: hero }
+blocks:
+  - { id: source, type: references, title: '1. Your photo', x-connectTo: primary-output, x-geometry: { x: 80, y: 130, w: 380, h: 310 } }
+  - { id: corrections, type: controls, title: '2. Corrections', x-controlIds: [corrections], x-connectTo: primary-output, x-geometry: { x: 510, y: 130, w: 360, h: 210 } }
+  - { id: strength, type: controls, title: Strength, x-controlIds: [restoration-strength], x-connectTo: primary-output, x-geometry: { x: 510, y: 380, w: 360, h: 180 } }
+  - { id: primary-output, type: output, title: '3. Your result', sourceId: primary, x-geometry: { x: 930, y: 120, w: 620, h: 600 } }
+  - { id: full-prompt, type: prompt, title: 'More control · Preservation and prompt', x-connectTo: primary-output, x-geometry: { x: 80, y: 500, w: 790, h: 330 } }
+layout: { mode: seeded, arrangement: reference-transform, preserveManualGeometry: true }
+source: { kind: first-party, title: Restore and lightly retouch, creator: Prompt Canvas, promptUsage: original }
+x-discovery:
+  collection: start-fast
+  userPromise: Improve photo quality without changing the scene.
+  intentAliases: [fix washed-out lighting, restore old photo, remove scratches, reduce noise]
+  inputSummary: [1 source photo]
+  badges: [Needs 1 photo, Keeps scene]
+  featuredRank: 6
+x-presentation: { primaryControlIds: [corrections, restoration-strength], initialView: canvas, resultEmphasis: hero, showPromptByDefault: false }
