@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { compileWorkspacePanels, ensureRequiredBlocks } from '../src/workspaces/layout-compiler.js'
+import {
+  compileWorkspaceConnections,
+  compileWorkspacePanels,
+  ensureRequiredBlocks,
+} from '../src/workspaces/layout-compiler.js'
 import { createWorkspaceManifest } from '../src/workspaces/workspace-factory.js'
 import type { PromptWorkspaceTemplate, WorkspaceBlock } from '../src/workspaces/types.js'
 
@@ -152,5 +156,42 @@ test('modular blocks can select controls, split prompt surfaces, and declare see
       ? additional.payload.controls.map((control) => control.id)
       : [],
     ['mood'],
+  )
+})
+
+test('directed block relationships compile as a deduplicated workflow graph', () => {
+  const template = fixture()
+  template.blocks = [
+    { id: 'prompt-card', type: 'prompt', 'x-connectTo': 'primary-view' },
+    { id: 'controls-card', type: 'controls', 'x-connectTo': ['primary-view', 'primary-view'] },
+    { id: 'primary-view', type: 'output', sourceId: 'primary', 'x-connectTo': 'detail-view' },
+    { id: 'detail-view', type: 'output', sourceId: 'detail' },
+  ]
+
+  assert.deepEqual(compileWorkspaceConnections(createWorkspaceManifest(template)), [
+    { sourceSemanticId: 'prompt-card', targetSemanticId: 'primary-view' },
+    { sourceSemanticId: 'controls-card', targetSemanticId: 'primary-view' },
+    { sourceSemanticId: 'primary-view', targetSemanticId: 'detail-view' },
+  ])
+})
+
+test('a compatible current template supplies presentation connections to older workspace snapshots', () => {
+  const snapshotTemplate = fixture()
+  snapshotTemplate.blocks = [
+    { id: 'prompt-card', type: 'prompt' },
+    { id: 'primary-view', type: 'output', sourceId: 'primary' },
+  ]
+  const currentTemplate = structuredClone(snapshotTemplate)
+  currentTemplate.blocks![0]['x-connectTo'] = 'primary-view'
+
+  assert.deepEqual(
+    compileWorkspaceConnections(createWorkspaceManifest(snapshotTemplate), currentTemplate),
+    [{ sourceSemanticId: 'prompt-card', targetSemanticId: 'primary-view' }],
+  )
+
+  currentTemplate.version += 1
+  assert.deepEqual(
+    compileWorkspaceConnections(createWorkspaceManifest(snapshotTemplate), currentTemplate),
+    [],
   )
 })

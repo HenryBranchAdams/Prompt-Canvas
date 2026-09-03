@@ -455,6 +455,69 @@ test.beforeEach(async ({ page }) => {
   await installMockWebMcp(page)
 })
 
+test('Travel Poster renders bound workflow connections that follow cards and survive reload', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+  await page.waitForFunction(
+    () =>
+      Object.keys(
+        (window as unknown as { __promptCanvasTools: Record<string, RegisteredTool> })
+          .__promptCanvasTools,
+      ).length === (window as unknown as { __promptCanvasExpectedToolNames: string[] })
+        .__promptCanvasExpectedToolNames.length,
+  )
+
+  const inspect = await callTool<{
+    workspace: { workspaceId: string }
+    revision: number
+    elements: Array<{ semanticId: string; x: number; y: number }>
+  }>(page, 'prompt_canvas_inspect', { include: ['layout'], maxItems: 200 })
+  const subject = inspect.elements.find((element) => element.semanticId === 'subject-card')
+  expect(subject).toBeTruthy()
+
+  const arrows = page.locator('[data-shape-type="arrow"]')
+  await expect(arrows).toHaveCount(12)
+  const beforeRender = await arrows.evaluateAll((elements) =>
+    elements.map((element) => `${element.getAttribute('style')}|${element.innerHTML}`),
+  )
+
+  const updated = await callTool<{ revision: number }>(page, 'prompt_canvas_update_workspace', {
+    workspaceId: inspect.workspace.workspaceId,
+    expectedRevision: inspect.revision,
+    operations: [{
+      op: 'move_element',
+      elementId: 'subject-card',
+      x: subject!.x + 40,
+      y: subject!.y + 20,
+    }],
+    reason: 'Verify bound workflow connection movement',
+  })
+  expect(updated.revision).toBe(inspect.revision + 1)
+  await expect.poll(async () =>
+    arrows.evaluateAll((elements) =>
+      elements.map((element) => `${element.getAttribute('style')}|${element.innerHTML}`),
+    ),
+  ).not.toEqual(beforeRender)
+
+  await flushTldrawPersistence(page)
+  await page.reload()
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+  await expect(page.locator('[data-shape-type="arrow"]')).toHaveCount(12)
+  const restored = await callTool<{
+    revision: number
+    elements: Array<{ semanticId: string; x: number; y: number }>
+  }>(page, 'prompt_canvas_inspect', {
+    workspaceId: inspect.workspace.workspaceId,
+    include: ['layout'],
+    maxItems: 200,
+  })
+  expect(restored.revision).toBe(updated.revision)
+  expect(restored.elements.find((element) => element.semanticId === 'subject-card')).toMatchObject({
+    x: subject!.x + 40,
+    y: subject!.y + 20,
+  })
+})
+
 test('Codex context, generated-asset import, lineage, and persistence round trip', async ({ page }) => {
   await page.goto('/')
   await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })

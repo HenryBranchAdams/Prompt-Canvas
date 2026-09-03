@@ -9,6 +9,11 @@ import type {
   WorkspaceManifest,
 } from './types.js'
 
+export type WorkspaceConnectionDescriptor = {
+  sourceSemanticId: string
+  targetSemanticId: string
+}
+
 const GAP = 32
 const LEFT_X = 80
 const TOP_Y = 80
@@ -379,4 +384,46 @@ export function compileWorkspacePanels(
   }
 
   return descriptors
+}
+
+/**
+ * Compile optional directed workflow relationships separately from panels.
+ * Connections are presentation-only and never alter generation semantics.
+ */
+export function compileWorkspaceConnections(
+  manifest: WorkspaceManifest,
+  compatibleTemplate?: PromptWorkspaceTemplate,
+): WorkspaceConnectionDescriptor[] {
+  const snapshotHasConnections = manifest.templateSnapshot.blocks?.some(
+    (block) => block['x-connectTo'] !== undefined,
+  ) ?? false
+  const template = !snapshotHasConnections &&
+      compatibleTemplate?.id === manifest.templateSnapshot.id &&
+      compatibleTemplate.version === manifest.templateSnapshot.version
+    ? compatibleTemplate
+    : manifest.templateSnapshot
+  const blocks = template.blocks
+    ? ensureRequiredBlocks(template, template.blocks)
+    : defaultBlocks(template)
+  const knownIds = new Set(blocks.map((block) => block.id))
+  const seen = new Set<string>()
+  const connections: WorkspaceConnectionDescriptor[] = []
+
+  for (const block of blocks) {
+    const rawTargets = block['x-connectTo']
+    const targets = typeof rawTargets === 'string'
+      ? [rawTargets]
+      : Array.isArray(rawTargets)
+        ? rawTargets.filter((target): target is string => typeof target === 'string')
+        : []
+    for (const targetSemanticId of targets) {
+      if (targetSemanticId === block.id || !knownIds.has(targetSemanticId)) continue
+      const key = `${block.id}->${targetSemanticId}`
+      if (seen.has(key)) continue
+      seen.add(key)
+      connections.push({ sourceSemanticId: block.id, targetSemanticId })
+    }
+  }
+
+  return connections
 }

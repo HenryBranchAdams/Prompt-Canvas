@@ -62,14 +62,17 @@ test('JSON-style template round trips retain source attribution and inert proven
 test('active block extensions reject unknown semantic references and invalid block types', () => {
   const template = createBlankTemplate('Modular validation', 'Create a modular study.')
   template.blocks = [
-    { id: 'wrong-kind', type: 'notes', 'x-controlIds': ['missing'] },
+    { id: 'wrong-kind', type: 'notes', 'x-controlIds': ['missing'], 'x-connectTo': 'missing-target' },
     { id: 'wrong-prompt-kind', type: 'controls', 'x-promptPart': 'body' },
+    { id: 'self-connected', type: 'prompt', 'x-connectTo': 'self-connected' },
   ]
 
   const errors = blockExtensionValidationErrors(template)
   assert.ok(errors.some((error) => error.code === 'schema.block-extension.control-type'))
   assert.ok(errors.some((error) => error.code === 'schema.block-extension.unknown-control'))
   assert.ok(errors.some((error) => error.code === 'schema.block-extension.prompt-type'))
+  assert.ok(errors.some((error) => error.code === 'schema.block-extension.unknown-connection-target'))
+  assert.ok(errors.some((error) => error.code === 'schema.block-extension.self-connection'))
 })
 
 test('author shorthand is normalized without weakening generation, prompt, or output requirements', () => {

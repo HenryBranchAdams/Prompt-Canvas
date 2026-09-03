@@ -237,6 +237,8 @@ export type WorkspaceBlock = {
   collapsedByDefault?: boolean
   lockedByDefault?: boolean
   content?: JsonValue
+  /** First-party layout hint for directed canvas workflow connections. */
+  'x-connectTo'?: string | string[]
   [extension: `x-${string}`]: JsonValue | undefined
 }
 
