@@ -21,6 +21,7 @@ import {
 } from '../shapes/panel-shape'
 import {
   PANEL_ACTION_EVENT,
+  PANEL_LAYOUT_READY_EVENT,
   type PanelActionDetail,
 } from '../shapes/panel-events'
 import { compileWorkspaceConnections, compileWorkspacePanels } from '../workspaces/layout-compiler'
@@ -369,6 +370,7 @@ export class PromptCanvasRuntime {
       this.bindPanelActions(),
       this.bindStoreChanges(editor),
     )
+    window.dispatchEvent(new Event(PANEL_LAYOUT_READY_EVENT))
 
     if (this.listWorkspacePages().length > 0) {
       const active = manifestFromPage(editor.getCurrentPage())

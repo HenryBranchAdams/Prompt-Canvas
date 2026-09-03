@@ -11,7 +11,7 @@ import {
 } from 'tldraw'
 import { useLayoutEffect, useMemo, useState } from 'react'
 import { EditIcon, ImageIcon, PlayIcon, UpscaleIcon } from '../app/icons'
-import { dispatchPanelAction } from './panel-events'
+import { dispatchPanelAction, PANEL_LAYOUT_READY_EVENT } from './panel-events'
 import { parsePanelPayload } from '../workspaces/panel-data'
 import type {
   ControlsPanelPayload,
@@ -650,10 +650,12 @@ function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Edito
         height: h,
       })
     }
+    window.addEventListener(PANEL_LAYOUT_READY_EVENT, growToFit)
     frame = requestAnimationFrame(growToFit)
 
     return () => {
       cancelAnimationFrame(frame)
+      window.removeEventListener(PANEL_LAYOUT_READY_EVENT, growToFit)
     }
   }, [
     shape.id,

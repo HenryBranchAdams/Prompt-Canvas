@@ -490,6 +490,35 @@ test('undersized canvas cards grow to reveal their full content', async ({ page 
     return state.elements.find(({ semanticId }) => semanticId === 'all-controls')?.height ?? 0
   }).toBeGreaterThan(90)
   expect(resized.revision).toBeGreaterThan(afterContentGrowth.revision)
+
+  const beforeReload = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+    workspaceId: created.workspaceId,
+    include: ['layout'],
+  })
+  await callTool(page, 'prompt_canvas_update_workspace', {
+    workspaceId: created.workspaceId,
+    expectedRevision: beforeReload.revision,
+    operations: [{
+      op: 'resize_element',
+      elementId: 'all-controls',
+      width: beforeResize.width!,
+      height: 90,
+    }],
+  })
+  await page.reload()
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+  await page.waitForFunction(
+    () => Object.keys(
+      (window as unknown as { __promptCanvasTools: Record<string, RegisteredTool> }).__promptCanvasTools,
+    ).length === (window as unknown as { __promptCanvasExpectedToolNames: string[] }).__promptCanvasExpectedToolNames.length,
+  )
+  await expect.poll(async () => {
+    const state = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+      workspaceId: created.workspaceId,
+      include: ['layout'],
+    })
+    return state.elements.find(({ semanticId }) => semanticId === 'all-controls')?.height ?? 0
+  }).toBeGreaterThan(90)
 })
 
 test('official retrieval returns summaries, snapshots exact lineage, and keeps saved recipes local', async ({ page }) => {

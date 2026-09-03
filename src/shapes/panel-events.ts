@@ -1,6 +1,7 @@
 import type { JsonValue, OutputManagementOperation, WorkspaceUpdateOperation } from '../workspaces/types'
 
 export const PANEL_ACTION_EVENT = 'prompt-canvas:panel-action'
+export const PANEL_LAYOUT_READY_EVENT = 'prompt-canvas:layout-ready'
 
 export type PanelActionDetail =
   | {
