@@ -588,15 +588,23 @@ function generationDialogTitle(context: GenerationContext): string {
   }
 }
 
-function generationPreview(context: GenerationContext): RequestPreviewItem[] {
-  const entries = Object.entries(context.controlContext)
-    .flatMap(([key, value]) => {
-      const rendered = compactPreviewValue(value)
-      return rendered ? [{ key, label: humanizePreviewKey(key), value: rendered }] : []
-    })
-  const brief = entries.find((entry) => /brief|subject|description|prompt/i.test(entry.key))
+function generationPreview(
+  context: GenerationContext,
+  project: RuntimeSnapshot['activeWorkspace'],
+): RequestPreviewItem[] {
+  const projectEntries = (project?.templateSnapshot.controls ?? []).flatMap((control) => {
+    const valueKey = control.binding.mode === 'variable' ? control.binding.target : control.id
+    const rendered = compactPreviewValue(project?.controlValues[valueKey] ?? control.defaultValue)
+    return rendered ? [{ key: control.id, label: control.label, value: rendered }] : []
+  })
+  const contextEntries = Object.entries(context.controlContext).flatMap(([key, value]) => {
+    const rendered = compactPreviewValue(value)
+    return rendered ? [{ key, label: humanizePreviewKey(key), value: rendered }] : []
+  })
+  const entries = projectEntries.length > 0 ? projectEntries : contextEntries
+  const brief = entries.find((entry) => /brief|subject|description|prompt|image/i.test(`${entry.key} ${entry.label}`))
   const direction = entries
-    .filter((entry) => entry !== brief && !/aspect|ratio|format/i.test(entry.key))
+    .filter((entry) => entry !== brief && !/aspect|ratio|format/i.test(`${entry.key} ${entry.label}`))
     .slice(0, 3)
     .map((entry) => entry.value)
     .join(' · ')
@@ -686,7 +694,7 @@ function CodexRequestDialog({
           </section>
         ) : null}
         <label className="pc-codex-request">
-          Request for ChatGPT
+          Message for Codex
           <textarea
             readOnly
             rows={3}
@@ -708,9 +716,11 @@ function CodexRequestDialog({
 
 function GenerationDialog({
   context,
+  project,
   onClose,
 }: {
   context: GenerationContext
+  project: RuntimeSnapshot['activeWorkspace']
   onClose: () => void
 }) {
   return (
@@ -719,7 +729,7 @@ function GenerationDialog({
       title={generationDialogTitle(context)}
       description="Prompt Canvas prepared a revision-bound request from the live canvas. Copy it into the ChatGPT conversation beside this Site; Codex will use the current state and return the image to the right card."
       request={generationRequest(context)}
-      preview={generationPreview(context)}
+      preview={generationPreview(context, project)}
       note="Nothing is locked. You can keep editing the brief, change one thing, or make variations at any time."
       technical={(
         <details className="pc-technical-details">
@@ -981,6 +991,7 @@ export default function App() {
       {snapshot.preparedContext ? (
         <GenerationDialog
           context={snapshot.preparedContext}
+          project={active}
           onClose={closeGenerationDialog}
         />
       ) : null}

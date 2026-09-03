@@ -1715,7 +1715,7 @@ button:disabled {
   margin-left: auto;
   flex: 0 0 auto;
   color: #84909a;
-  font-size: 8px !important;
+  font-size: 10px !important;
   font-weight: 620 !important;
   letter-spacing: .01em;
 }

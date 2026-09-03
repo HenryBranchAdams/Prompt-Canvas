@@ -681,13 +681,13 @@ function PanelBody(props: {
 }
 
 function collaborationCue(kind: string, semanticId: string): string | undefined {
-  if (kind === 'output') return 'Codex returns images here'
+  if (kind === 'output') return 'Codex returns here'
   if (kind === 'variations') return 'Keep exploring'
-  if (kind === 'references') return 'You provide · Codex uses this'
+  if (kind === 'references') return 'You provide'
   if (kind === 'controls') {
     return /brief|input|change|source/i.test(semanticId)
-      ? 'You can edit'
-      : 'You edit · Codex uses this'
+      ? 'You edit'
+      : 'Codex uses this'
   }
   return undefined
 }
