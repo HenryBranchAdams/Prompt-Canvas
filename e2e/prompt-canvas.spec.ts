@@ -591,7 +591,7 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
   expect(inspect.workspace.workspaceId).toBeTruthy()
   expect(inspect.verifiedAssetTransports).toContain('data_url')
   expect(inspect.capabilities.pageTools.sort()).toEqual(toolNames)
-  await page.locator('.pc-topbar').getByRole('button', { name: 'Generate with Codex' }).click()
+  await page.locator('.pc-topbar').getByRole('button', { name: 'Ask Codex to generate' }).click()
   const closeDialog = page.getByRole('button', { name: 'Close dialog' })
   const continueButton = page.getByRole('button', { name: 'Done' })
   await expect(continueButton).toBeVisible()
@@ -1376,4 +1376,29 @@ test('factuality source notes reach the registered generation context', async ({
   )
   expect(revised.factuality.suppliedClaims).toBe(revised.factuality.sourceNotes)
   expect(revised.promptDigest).not.toBe(initial.promptDigest)
+})
+
+
+test('collaboration model is explicit before generation', async ({ page }) => {
+  await installMockWebMcp(page)
+  await page.goto('/')
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+
+  await expect(page.getByText('Build the brief here; Codex turns it into images and returns them to your canvas.')).toBeVisible()
+  await page.getByRole('button', { name: 'Start' }).first().click()
+
+  await expect(page.getByText('You direct. Codex creates.')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Help me shape it' })).toBeVisible()
+  await expect(page.locator('.pc-panel--controls .pc-panel__collaboration-cue').first()).toContainText('You')
+  await expect(page.locator('.pc-panel--output .pc-panel__collaboration-cue')).toHaveText('Codex returns images here')
+
+  await page.getByRole('button', { name: 'Help me shape it' }).click()
+  await expect(page.getByRole('heading', { name: 'Ask Codex to help with the brief' })).toBeVisible()
+  await expect(page.getByLabel('Request for ChatGPT')).toHaveValue(/Do not generate an image yet/)
+  await page.getByRole('button', { name: 'Done' }).click()
+
+  await page.locator('.pc-topbar').getByRole('button', { name: 'Ask Codex to generate' }).click()
+  await expect(page.getByRole('heading', { name: 'Ask Codex to create this image' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Codex will use' })).toBeVisible()
+  await expect(page.getByText('Nothing is locked. You can keep editing the brief, change one thing, or make variations at any time.')).toBeVisible()
 })

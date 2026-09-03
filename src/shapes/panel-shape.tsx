@@ -10,7 +10,7 @@ import {
   useValue,
 } from 'tldraw'
 import { useLayoutEffect, useMemo, useState } from 'react'
-import { EditIcon, ImageIcon, PlayIcon, UpscaleIcon } from '../app/icons'
+import { EditIcon, ImageIcon, PlayIcon, UpscaleIcon, VariationsIcon } from '../app/icons'
 import { dispatchPanelAction, PANEL_LAYOUT_READY_EVENT } from './panel-events'
 import { parsePanelPayload } from '../workspaces/panel-data'
 import type {
@@ -481,7 +481,7 @@ function OutputPanel(props: {
             }
           >
             <PlayIcon />
-            Generate with Codex
+            Ask Codex to generate
           </button>
         ) : null}
       </div>
@@ -524,6 +524,7 @@ function OutputPanel(props: {
                   })
                 }
               >
+                <VariationsIcon />
                 Vary
               </button>
             ) : null}
@@ -544,6 +545,11 @@ function OutputPanel(props: {
               </button>
             ) : null}
           </div>
+        ) : null}
+        {props.editing ? (
+          <p className="pc-output-reassurance">
+            Keep refining: edit the brief, change one thing, or make variations at any time.
+          </p>
         ) : null}
       </div>
     )
@@ -674,6 +680,18 @@ function PanelBody(props: {
   }
 }
 
+function collaborationCue(kind: string, semanticId: string): string | undefined {
+  if (kind === 'output') return 'Codex returns images here'
+  if (kind === 'variations') return 'Keep exploring'
+  if (kind === 'references') return 'You provide · Codex uses this'
+  if (kind === 'controls') {
+    return /brief|input|change|source/i.test(semanticId)
+      ? 'You can edit'
+      : 'You edit · Codex uses this'
+  }
+  return undefined
+}
+
 function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Editor }) {
   const { shape, editor } = props
   const editingShapeId = useValue(
@@ -761,6 +779,11 @@ function PromptCanvasPanel(props: { shape: PromptCanvasPanelShape; editor: Edito
     >
       <header className="pc-panel__header">
         <span>{shape.props.title}</span>
+        {collaborationCue(shape.props.kind, shape.props.semanticId) ? (
+          <span className="pc-panel__collaboration-cue">
+            {collaborationCue(shape.props.kind, shape.props.semanticId)}
+          </span>
+        ) : null}
         <span className="pc-panel__grip" aria-hidden="true" />
       </header>
       {parsed.payload ? (
