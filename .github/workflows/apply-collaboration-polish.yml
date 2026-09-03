@@ -5,6 +5,7 @@ on:
     branches: [polish/codex-collaboration-ux]
     paths:
       - scripts/apply_collaboration_polish.py
+      - scripts/fix_collaboration_applicator.py
       - .github/workflows/apply-collaboration-polish.yml
 
 permissions:
@@ -30,10 +31,12 @@ jobs:
         run: python -m pip install --disable-pip-version-check pyyaml==6.0.3 jsonschema==4.26.0
       - name: Install JavaScript dependencies
         run: npm ci --no-audit --no-fund
-      - name: Apply collaboration UX patch
-        run: python scripts/apply_collaboration_polish.py
+      - name: Correct and apply collaboration UX patch
+        run: |
+          python scripts/fix_collaboration_applicator.py
+          python scripts/apply_collaboration_polish.py
       - name: Remove one-shot applicator
-        run: rm scripts/apply_collaboration_polish.py .github/workflows/apply-collaboration-polish.yml
+        run: rm scripts/apply_collaboration_polish.py scripts/fix_collaboration_applicator.py .github/workflows/apply-collaboration-polish.yml
       - name: Validate, type-check, lint, and build
         run: npm run check
       - name: Install Chromium
