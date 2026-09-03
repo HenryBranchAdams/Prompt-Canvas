@@ -5,7 +5,7 @@ import type { PromptWorkspaceTemplate, StarterManifest } from '../workspaces/typ
 export const starterManifest = {
   "schema": "prompt-canvas.starter-pack@2",
   "id": "core-starter-pack",
-  "version": 5,
+  "version": 6,
   "title": "Prompt Canvas Recipe Library",
   "description": "Ten quick-start recipes, forty-two original task-focused systems, and nine advanced creative systems for Prompt Canvas.",
   "templateSchema": "../schemas/prompt-workspace-template.schema.json",
@@ -5152,7 +5152,7 @@ export const starterTemplates = {
   "create-from-words": {
     "schema": "prompt-canvas.prompt-workspace-template@2",
     "id": "create-from-words",
-    "version": 2,
+    "version": 3,
     "title": "Create an image from words",
     "description": "Describe an idea, choose a few essentials, and create one polished image.",
     "category": "start-fast",
@@ -5335,60 +5335,57 @@ export const starterTemplates = {
     ],
     "blocks": [
       {
-        "id": "your-input",
+        "id": "brief",
         "type": "controls",
-        "title": "1. Your input",
+        "title": "Brief",
         "x-controlIds": [
           "brief"
         ],
-        "x-connectTo": "primary-output",
         "x-geometry": {
           "x": 80,
-          "y": 150,
-          "w": 360,
-          "h": 280
+          "y": 80,
+          "w": 330,
+          "h": 220
         }
       },
       {
-        "id": "visual-direction",
+        "id": "direction",
         "type": "controls",
-        "title": "2. Essential choices",
+        "title": "Direction",
         "x-controlIds": [
           "visual-direction",
           "composition",
           "aspect-ratio"
         ],
-        "x-connectTo": "primary-output",
         "x-geometry": {
-          "x": 500,
-          "y": 120,
-          "w": 360,
-          "h": 420
+          "x": 80,
+          "y": 324,
+          "w": 330,
+          "h": 360
         }
       },
       {
-        "id": "primary-output",
+        "id": "result",
         "type": "output",
-        "title": "3. Your result",
+        "title": "Result",
         "sourceId": "primary",
-        "x-connectTo": "variation-strip",
         "x-geometry": {
-          "x": 930,
-          "y": 120,
-          "w": 620,
-          "h": 600
+          "x": 450,
+          "y": 80,
+          "w": 720,
+          "h": 500
         }
       },
       {
-        "id": "variation-strip",
+        "id": "variations",
         "type": "variations",
         "title": "Variations",
         "sourceId": "variations",
         "x-geometry": {
-          "x": 930,
-          "y": 760,
-          "w": 620,
-          "h": 280
+          "x": 450,
+          "y": 604,
+          "w": 720,
+          "h": 150
         }
       }
     ],

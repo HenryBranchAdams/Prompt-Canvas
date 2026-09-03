@@ -469,6 +469,7 @@ test('official retrieval returns summaries, snapshots exact lineage, and keeps s
 })
 
 test('start-fast recipe opens a connected canvas with directly interactive controls', async ({ page }) => {
+  await page.setViewportSize({ width: 1150, height: 800 })
   await openApp(page)
 
   const recipe = page.locator('.pc-template-card').filter({ hasText: 'Create an image from words' })
@@ -480,15 +481,69 @@ test('start-fast recipe opens a connected canvas with directly interactive contr
   })
   expect(initial.workspace.templateId).toBe('create-from-words')
   expect(initial.elements.map(({ semanticId }) => semanticId)).toEqual(expect.arrayContaining([
-    'your-input',
-    'visual-direction',
-    'primary-output',
-    'variation-strip',
+    'brief',
+    'direction',
+    'result',
+    'variations',
   ]))
   expect(initial.elements).toHaveLength(4)
+  expect(initial.elements.find(({ semanticId }) => semanticId === 'brief')).toMatchObject({
+    x: 80,
+    y: 80,
+    width: 330,
+    height: 220,
+  })
+  expect(initial.elements.find(({ semanticId }) => semanticId === 'direction')).toMatchObject({
+    x: 80,
+    y: 324,
+    width: 330,
+    height: 360,
+  })
+  expect(initial.elements.find(({ semanticId }) => semanticId === 'result')).toMatchObject({
+    x: 450,
+    y: 80,
+    width: 720,
+    height: 500,
+  })
+  expect(initial.elements.find(({ semanticId }) => semanticId === 'variations')).toMatchObject({
+    x: 450,
+    y: 604,
+    width: 720,
+    height: 150,
+  })
+  await expect(page.locator('.pc-panel')).toHaveCount(4)
+  await expect(page.locator('.pc-panel--prompt')).toHaveCount(0)
+  await expect(page.locator('.tl-arrow-shape')).toHaveCount(0)
+  await expect(page.locator('.tlui-style-panel__wrapper')).toHaveCount(0)
+  await expect(page.locator('.tlui-page-menu')).toHaveCount(0)
+  await expect(page.getByRole('toolbar', { name: 'Tools' })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Undo/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Redo/ })).toBeVisible()
+  await expect(page.getByText('Your image will appear here', { exact: true })).toBeVisible()
+  await expect(page.getByText('Variations will appear here', { exact: true })).toBeVisible()
+  await expect(page.getByText('Drag', { exact: true })).toHaveCount(0)
+
+  const resultPanel = page.locator('.pc-panel--output').filter({ hasText: 'Result' })
+  const panelBounds = await Promise.all([
+    page.locator('.pc-panel').filter({ hasText: 'Brief' }).boundingBox(),
+    page.locator('.pc-panel').filter({ hasText: 'Direction' }).boundingBox(),
+    resultPanel.boundingBox(),
+    page.locator('.pc-panel--variations').boundingBox(),
+  ])
+  for (const bounds of panelBounds) {
+    expect(bounds).not.toBeNull()
+    expect(bounds!.x).toBeGreaterThanOrEqual(0)
+    expect(bounds!.y).toBeGreaterThanOrEqual(100)
+    expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(1150)
+    expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(760)
+  }
+  const resultBounds = panelBounds[2]!
+  expect(resultBounds.width * resultBounds.height).toBeGreaterThan(
+    Math.max(...panelBounds.filter(Boolean).filter((bounds) => bounds !== resultBounds).map((bounds) => bounds!.width * bounds!.height)),
+  )
 
   const nextBrief = 'A glass greenhouse glowing softly in a snowy forest at blue hour'
-  const inputPanel = page.locator('.pc-panel--controls').filter({ hasText: '1. Your input' })
+  const inputPanel = page.locator('.pc-panel--controls').filter({ hasText: 'Brief' })
   const brief = inputPanel.getByRole('textbox', { name: 'Describe your image' })
   await expect(brief).toBeEnabled()
   await brief.fill(nextBrief)

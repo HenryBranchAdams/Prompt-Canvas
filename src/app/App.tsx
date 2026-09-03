@@ -1,4 +1,4 @@
-import { Tldraw, type Editor } from 'tldraw'
+import { Tldraw, type Editor, type TLComponents } from 'tldraw'
 import {
   useCallback,
   useEffect,
@@ -8,6 +8,8 @@ import {
 } from 'react'
 import {
   ActivityIcon,
+  AgentIcon,
+  AppMarkIcon,
   CloseIcon,
   CopyIcon,
   DuplicateIcon,
@@ -16,7 +18,8 @@ import {
   PlusIcon,
   SaveIcon,
   SearchIcon,
-  SparkIcon,
+  ImageIcon,
+  PlayIcon,
 } from './icons'
 import { loadTldrawLicenseKey } from './runtime-license'
 import { PromptCanvasRuntime, type RuntimeSnapshot } from './runtime'
@@ -44,6 +47,11 @@ type TldrawLicenseState =
   | { status: 'error'; message: string }
 
 const bundledTldrawLicenseKey = import.meta.env.VITE_TLDRAW_LICENSE_KEY?.trim()
+
+const tldrawComponents = {
+  StylePanel: null,
+  PageMenu: null,
+} satisfies TLComponents
 
 type TemplateSummary = {
   id: string
@@ -92,6 +100,24 @@ function formatTime(value: string): string {
     minute: '2-digit',
     second: '2-digit',
   }).format(date)
+}
+
+type WorkspaceOption = RuntimeSnapshot['workspaces'][number]
+
+function workspaceOptionLabels(workspaces: WorkspaceOption[]): Map<string, string> {
+  const titleCounts = new Map<string, number>()
+  for (const workspace of workspaces) {
+    titleCounts.set(workspace.title, (titleCounts.get(workspace.title) ?? 0) + 1)
+  }
+
+  const titleOccurrences = new Map<string, number>()
+  return new Map(workspaces.map((workspace) => {
+    const count = titleCounts.get(workspace.title) ?? 0
+    const occurrence = (titleOccurrences.get(workspace.title) ?? 0) + 1
+    titleOccurrences.set(workspace.title, occurrence)
+    const label = count > 1 ? `${workspace.title} · ${occurrence}` : workspace.title
+    return [workspace.workspaceId, label]
+  }))
 }
 
 function panelShapes(): PromptCanvasPanelShape[] {
@@ -157,7 +183,7 @@ function TemplatePreview({ item }: { item: TemplateSummary }) {
   const { thumbnail } = recipeDetails(item)
   return (
     <div className="pc-template-card__preview" aria-hidden="true">
-      {thumbnail ? <img src={thumbnail.assetPath} alt="" /> : <div className="pc-recipe-fallback"><SparkIcon /></div>}
+      {thumbnail ? <img src={thumbnail.assetPath} alt="" /> : <div className="pc-recipe-fallback"><ImageIcon /></div>}
     </div>
   )
 }
@@ -282,7 +308,7 @@ function TemplateLibrary({
         <div><span className="pc-eyebrow">Official recipes</span><h3>Explore more recipes</h3><p>Advanced and specialized starting points.</p></div>
         <div className="pc-system-list">{visibleSystems.map((item) => (
           <button key={`${item.id}@${item.version}`} type="button" disabled={Boolean(creating)} onClick={() => void create(item)}>
-            <SparkIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
+            <ImageIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
           </button>
         ))}</div>
         {!hasQuery ? (
@@ -300,7 +326,7 @@ function TemplateLibrary({
         <div><span className="pc-eyebrow">Creative systems</span><h3>Advanced creative systems</h3><p>Flexible starting points for deeper workflows.</p></div>
         <div className="pc-system-list">{bundled.map((item) => (
           <button key={`${item.id}@${item.version}`} type="button" disabled={Boolean(creating)} onClick={() => void create(item)}>
-            <SparkIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
+            <ImageIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
           </button>
         ))}</div>
       </section> : null}
@@ -308,7 +334,7 @@ function TemplateLibrary({
         <div><span className="pc-eyebrow">My recipes</span><h3>Saved by you</h3><p>Saved in this browser on this device.</p></div>
         <div className="pc-system-list">{local.map((item) => (
           <button key={`local:${item.id}@${item.version}`} type="button" disabled={Boolean(creating)} onClick={() => void create(item)}>
-            <SparkIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
+            <ImageIcon /><span><strong>{item.title}</strong><small>{item.description}</small></span>
           </button>
         ))}</div>
       </section> : null}
@@ -430,7 +456,7 @@ function Inspector({ snapshot }: { snapshot: RuntimeSnapshot }) {
           <ActivityIcon /> Activity
         </button>
         <button className={tab === 'host' ? 'is-active' : ''} type="button" onClick={() => setTab('host')}>
-          <SparkIcon /> Host
+          <AgentIcon /> Host
         </button>
       </nav>
       {tab === 'layers' ? <LayersInspector shapes={shapes} /> : null}
@@ -627,6 +653,7 @@ export default function App() {
 
   const active = snapshot.activeWorkspace
   const connected = snapshot.connection.available && snapshot.connection.failed === 0
+  const workspaceLabels = workspaceOptionLabels(snapshot.workspaces)
 
   const run = async (task: () => Promise<unknown> | unknown) => {
     try {
@@ -662,7 +689,7 @@ export default function App() {
     <main className="pc-app">
       <header className="pc-topbar">
         <div className="pc-brand">
-          <span className="pc-brand-mark"><SparkIcon /></span>
+          <span className="pc-brand-mark"><AppMarkIcon /></span>
           <div><strong>Prompt Canvas</strong><small>Creative image projects</small></div>
         </div>
         <label className="pc-workspace-switcher">
@@ -674,14 +701,14 @@ export default function App() {
           >
             {!active ? <option value="">{snapshot.initialized ? 'No project open' : 'Loading projects…'}</option> : null}
             {snapshot.workspaces.map((workspace) => (
-              <option key={workspace.workspaceId} value={workspace.workspaceId}>{workspace.title}</option>
+              <option key={workspace.workspaceId} value={workspace.workspaceId}>{workspaceLabels.get(workspace.workspaceId) ?? workspace.title}</option>
             ))}
           </select>
         </label>
         <div className="pc-topbar__actions">
           <span className={connected ? 'pc-connection-dot is-connected' : 'pc-connection-dot'} title={connectionLabel(snapshot)}><span /></span>
-          <button ref={libraryButtonRef} type="button" onClick={() => setLibraryOpen(true)}><LibraryIcon /><span>Recipes</span></button>
-          <button ref={blankButtonRef} type="button" onClick={() => setBlankOpen(true)}><PlusIcon /><span>New</span></button>
+          <button ref={libraryButtonRef} type="button" aria-label="Recipes" onClick={() => setLibraryOpen(true)}><LibraryIcon /><span>Recipes</span></button>
+          <button ref={blankButtonRef} type="button" aria-label="New project" onClick={() => setBlankOpen(true)}><PlusIcon /><span>New</span></button>
           <details className="pc-more-menu">
             <summary>More</summary>
             <div>
@@ -691,7 +718,7 @@ export default function App() {
             </div>
           </details>
           <button ref={prepareButtonRef} className="pc-primary-button" type="button" disabled={!active} onClick={prepareGeneration}>
-            <SparkIcon /><span>Generate with Codex</span>
+            <PlayIcon /><span>Generate with Codex</span>
           </button>
         </div>
       </header>
@@ -702,6 +729,7 @@ export default function App() {
             <Tldraw
               persistenceKey="prompt-canvas-document-v1"
               shapeUtils={promptCanvasShapeUtils}
+              components={tldrawComponents}
               options={{ maxPages: 100 }}
               onMount={attachEditor}
               colorScheme="light"
@@ -711,12 +739,12 @@ export default function App() {
           ) : null}
           {tldrawLicense.status === 'error' ? (
             <div className="pc-loading" role="alert">
-              <SparkIcon />
+              <AppMarkIcon />
               <strong>Prompt Canvas could not open</strong>
               <span>{tldrawLicense.message}</span>
             </div>
           ) : !snapshot.initialized ? (
-            <div className="pc-loading" role="status" aria-live="polite"><SparkIcon /><strong>Opening Prompt Canvas</strong><span>Loading your projects and recipes…</span></div>
+            <div className="pc-loading" role="status" aria-live="polite"><AppMarkIcon /><strong>Opening Prompt Canvas</strong><span>Loading your projects and recipes…</span></div>
           ) : null}
           <TemplateLibrary
             open={snapshot.initialized && (libraryOpen || !active)}

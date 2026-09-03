@@ -1,5 +1,6 @@
 import {
   AssetRecordType,
+  Box,
   createShapeId,
   type Editor,
   type TLAssetId,
@@ -60,7 +61,7 @@ import type {
 } from '../workspaces/types'
 
 const PAGE_META_KEY = 'promptCanvas'
-const APP_VERSION = '0.4.0'
+const APP_VERSION = '0.4.1'
 
 type ConnectionState = {
   checked: boolean
@@ -748,6 +749,7 @@ export class PromptCanvasRuntime {
     const mark = editor.markHistoryStoppingPoint('create prompt workspace')
     let page: TLPage | undefined
     let createdElements: string[] = []
+    let createdPanelIds: TLShapeId[] = []
     const warnings: string[] = []
     try {
       this.runtimeMutationDepth += 1
@@ -762,6 +764,7 @@ export class PromptCanvasRuntime {
         createdElements = panels.map((descriptor) => descriptor.semanticId)
         const panelInputs = panels.map((descriptor) =>
           this.panelShapeInput(manifest.workspaceId, page!.id, descriptor))
+        createdPanelIds = panelInputs.map((panel) => panel.id)
         editor.createShapes(panelInputs)
         this.createWorkspaceConnections(manifest, page!.id, panels.map((descriptor, index) => ({
           id: panelInputs[index].id,
@@ -789,7 +792,20 @@ export class PromptCanvasRuntime {
       queueMicrotask(() => {
         editor.setEditingShape(null)
         editor.selectNone()
-        editor.zoomToFit({ animation: { duration: 180 } })
+        const panelBounds = createdPanelIds
+          .map((shapeId) => editor.getShapePageBounds(shapeId))
+          .filter((bounds): bounds is Box => Boolean(bounds))
+        if (panelBounds.length > 0) {
+          const fitBounds = Box.Common(panelBounds)
+          // Reserve room for tldraw's supported top and bottom controls without
+          // including any unrelated shapes in the project framing calculation.
+          fitBounds.y -= 48
+          fitBounds.h += 72
+          editor.zoomToBounds(fitBounds, {
+            inset: 48,
+            animation: { duration: 180 },
+          })
+        }
       })
     }
     this.activity.add({

@@ -10,7 +10,7 @@ import {
   useValue,
 } from 'tldraw'
 import { useMemo, useState } from 'react'
-import { SparkIcon } from '../app/icons'
+import { EditIcon, ImageIcon, PlayIcon, UpscaleIcon } from '../app/icons'
 import { dispatchPanelAction } from './panel-events'
 import { parsePanelPayload } from '../workspaces/panel-data'
 import type {
@@ -457,13 +457,13 @@ function OutputPanel(props: {
   const supportsOperation = (operation: GenerationOperation) =>
     supportedOperations ? supportedOperations.includes(operation) : true
   if (assets.length === 0) {
+    if (isVariation) {
+      return <div className="pc-panel__body pc-output-empty pc-output-empty--variations">Variations will appear here</div>
+    }
     return (
       <div className="pc-panel__body pc-output-empty">
-        <div className="pc-output-empty__art" aria-hidden="true">
-          <SparkIcon />
-        </div>
-        <strong>{isVariation ? 'Variations will appear here' : 'Your image will appear here'}</strong>
-        <p>{isVariation ? 'Ask Codex for alternate directions when the first result needs exploration.' : 'Generate when the inputs and essential choices look right.'}</p>
+        <ImageIcon className="pc-output-empty__icon" />
+        <strong>Your image will appear here</strong>
         {props.editing ? (
           <button
             type="button"
@@ -477,6 +477,7 @@ function OutputPanel(props: {
               })
             }
           >
+            <PlayIcon />
             Generate with Codex
           </button>
         ) : null}
@@ -503,6 +504,7 @@ function OutputPanel(props: {
                   })
                 }
               >
+                <EditIcon />
                 Change something
               </button>
             ) : null}
@@ -518,6 +520,7 @@ function OutputPanel(props: {
                   })
                 }
               >
+                <UpscaleIcon />
                 Upscale
               </button>
             ) : null}
