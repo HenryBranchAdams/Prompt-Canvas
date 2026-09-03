@@ -20,7 +20,7 @@ await context.addInitScript(() => {
   })
 })
 const page = await context.newPage()
-await page.goto('http://127.0.0.1:5173', { waitUntil: 'networkidle' })
+await page.goto('http://127.0.0.1:4173', { waitUntil: 'networkidle' })
 await page.locator('.pc-loading').waitFor({ state: 'hidden', timeout: 30_000 })
 await page.screenshot({ path: `${output}/01-recipe-gallery.png`, fullPage: true })
 
