@@ -213,6 +213,7 @@ export class PromptCanvasRuntime {
   }
   private manualRevisionScheduled = false
   private runtimeMutationDepth = 0
+  private contentFitSequence = 0
   private panelActionChain: Promise<void> = Promise.resolve()
 
   subscribe(listener: RuntimeListener): () => void {
@@ -501,6 +502,80 @@ export class PromptCanvasRuntime {
       type: PROMPT_CANVAS_PANEL_TYPE,
       props: { payload: serializePanelPayload(payload) },
     })
+  }
+
+  private fitPanelContent(workspaceId: string, semanticId: string, requestedHeight: number): void {
+    if (!Number.isFinite(requestedHeight)) return
+    const { page, shape } = this.findPanel(workspaceId, semanticId)
+    const promptCanvas = shape.meta.promptCanvas
+    if (
+      promptCanvas &&
+      typeof promptCanvas === 'object' &&
+      !Array.isArray(promptCanvas) &&
+      promptCanvas.manuallySized === true
+    ) return
+
+    const height = Math.ceil(requestedHeight)
+    if (height <= shape.props.h) return
+    const editor = this.getEditor()
+    const delta = height - shape.props.h
+    this.contentFitSequence += 1
+    const contentFitToken = `${Date.now()}-${this.contentFitSequence}`
+    const originalBottom = shape.y + shape.props.h
+    const originalRight = shape.x + shape.props.w
+    const panelsBelow = this.panelShapes(page.id).filter((candidate) =>
+      {
+        const candidateMeta = candidate.meta.promptCanvas
+        const manuallyPositioned = Boolean(
+          candidateMeta &&
+          typeof candidateMeta === 'object' &&
+          !Array.isArray(candidateMeta) &&
+          candidateMeta.manuallyPositioned === true,
+        )
+        return candidate.id !== shape.id &&
+          candidate.props.workspaceId === workspaceId &&
+          !manuallyPositioned &&
+          candidate.y >= originalBottom - 1 &&
+          candidate.x < originalRight &&
+          candidate.x + candidate.props.w > shape.x
+      },
+    )
+
+    this.runtimeMutationDepth += 1
+    try {
+      editor.run(() => {
+        editor.updateShapes([
+          {
+            id: shape.id,
+            type: PROMPT_CANVAS_PANEL_TYPE,
+            props: { h: height },
+            meta: {
+              promptCanvas: {
+                ...(promptCanvas && typeof promptCanvas === 'object' && !Array.isArray(promptCanvas) ? promptCanvas : {}),
+                contentFitToken,
+              },
+            },
+          },
+          ...panelsBelow.map((candidate) => {
+            const candidateMeta = candidate.meta.promptCanvas
+            return {
+              id: candidate.id,
+              type: PROMPT_CANVAS_PANEL_TYPE,
+              y: candidate.y + delta,
+              meta: {
+                promptCanvas: {
+                  ...(candidateMeta && typeof candidateMeta === 'object' && !Array.isArray(candidateMeta) ? candidateMeta : {}),
+                  contentFitToken,
+                },
+              },
+            } as const
+          }),
+        ])
+      }, { history: 'ignore' })
+    } finally {
+      this.runtimeMutationDepth -= 1
+    }
+    this.refreshSnapshot()
   }
 
   private panelShapeInput(workspaceId: string, pageId: TLPageId, descriptor: PanelDescriptor) {
@@ -1120,7 +1195,19 @@ export class PromptCanvasRuntime {
             }
             case 'move_element': {
               const { shape } = this.findPanel(input.workspaceId, operation.elementId)
-              editor.updateShape({ id: shape.id, type: shape.type, x: operation.x, y: operation.y })
+              const promptCanvas = shape.meta.promptCanvas
+              editor.updateShape({
+                id: shape.id,
+                type: shape.type,
+                x: operation.x,
+                y: operation.y,
+                meta: {
+                  promptCanvas: {
+                    ...(promptCanvas && typeof promptCanvas === 'object' && !Array.isArray(promptCanvas) ? promptCanvas : {}),
+                    manuallyPositioned: true,
+                  },
+                },
+              })
               changedElements.push(operation.elementId)
               break
             }
@@ -1129,10 +1216,17 @@ export class PromptCanvasRuntime {
                 throw new Error('Element dimensions must be positive.')
               }
               const { shape } = this.findPanel(input.workspaceId, operation.elementId)
+              const promptCanvas = shape.meta.promptCanvas
               editor.updateShape({
                 id: shape.id,
                 type: shape.type,
                 props: { w: operation.width, h: operation.height },
+                meta: {
+                  promptCanvas: {
+                    ...(promptCanvas && typeof promptCanvas === 'object' && !Array.isArray(promptCanvas) ? promptCanvas : {}),
+                    manuallySized: true,
+                  },
+                },
               })
               changedElements.push(operation.elementId)
               break
@@ -2153,7 +2247,9 @@ export class PromptCanvasRuntime {
       if (!detail) return
       this.panelActionChain = this.panelActionChain.then(async () => {
         try {
-          if (detail.type === 'set-control-values') {
+          if (detail.type === 'fit-content') {
+            this.fitPanelContent(detail.workspaceId, detail.semanticId, detail.height)
+          } else if (detail.type === 'set-control-values') {
             await this.setControlFromUi(detail.workspaceId, detail.controlId, detail.value)
           } else if (detail.type === 'workspace-update') {
             const { manifest } = this.findWorkspacePage(detail.workspaceId)
@@ -2215,7 +2311,26 @@ export class PromptCanvasRuntime {
             (record as { typeName?: unknown }).typeName === 'shape' &&
             (record as { type?: unknown }).type === PROMPT_CANVAS_PANEL_TYPE,
         )
-        if (panelChanged && !pageChanged) this.scheduleManualRevisionBump()
+        const changedPanelFitToken = (record: unknown): unknown => {
+          if (!record || typeof record !== 'object') return undefined
+          const promptCanvas = (record as { meta?: { promptCanvas?: unknown } }).meta?.promptCanvas
+          if (!promptCanvas || typeof promptCanvas !== 'object' || Array.isArray(promptCanvas)) return undefined
+          return (promptCanvas as { contentFitToken?: unknown }).contentFitToken
+        }
+        const panelAddedOrRemoved = [
+          ...Object.values(entry.changes.added),
+          ...Object.values(entry.changes.removed),
+        ].some(
+          (record) =>
+            record.typeName === 'shape' && record.type === PROMPT_CANVAS_PANEL_TYPE,
+        )
+        const updatedPanels = Object.values(entry.changes.updated).filter(
+          (pair) => pair[1].typeName === 'shape' && pair[1].type === PROMPT_CANVAS_PANEL_TYPE,
+        )
+        const contentFitOnly = !panelAddedOrRemoved && updatedPanels.length > 0 && updatedPanels.every(
+          (pair) => changedPanelFitToken(pair[0]) !== changedPanelFitToken(pair[1]),
+        )
+        if (panelChanged && !pageChanged && !contentFitOnly) this.scheduleManualRevisionBump()
       },
       { source: 'user', scope: 'document' },
     )

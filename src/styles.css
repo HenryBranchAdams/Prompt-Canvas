@@ -622,7 +622,7 @@ button:disabled {
 
 .pc-panel__body {
   min-height: 0;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .pc-panel__error {
@@ -633,14 +633,14 @@ button:disabled {
 
 .pc-prompt-panel {
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
   gap: 10px;
   padding: 12px;
 }
 
 .pc-prompt-panel.is-body,
 .pc-prompt-panel.is-negative {
-  grid-template-rows: minmax(0, 1fr);
+  grid-template-rows: auto;
 }
 
 .pc-prompt-panel label {
@@ -659,8 +659,10 @@ button:disabled {
 
 .pc-prompt-panel textarea {
   width: 100%;
-  min-height: 0;
+  min-height: 120px;
+  field-sizing: content;
   resize: none;
+  overflow: hidden;
   padding: 10px;
   border: 1px solid #e1e6e8;
   border-radius: 9px;
@@ -722,7 +724,11 @@ button:disabled {
   font-weight: 520;
 }
 
-.pc-control textarea { resize: vertical; }
+.pc-control textarea {
+  field-sizing: content;
+  resize: none;
+  overflow: hidden;
+}
 .pc-control input:disabled,
 .pc-control select:disabled,
 .pc-control textarea:disabled { opacity: 1; color: #4c5861; -webkit-text-fill-color: #4c5861; background: #fafbf9; }
@@ -1403,6 +1409,7 @@ button:disabled {
   inset: 0;
   z-index: 400;
   width: 100%;
+  display: block;
   padding: 42px clamp(24px, 5vw, 76px) 52px;
   transform: none;
   overflow: auto;
