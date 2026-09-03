@@ -58,9 +58,10 @@ npm run test:e2e
 ```
 
 `catalog:build` validates the template schema and discovery metadata, verifies thumbnail presence, updates the version
-lock, generates compact JSON and an idempotent SQL seed, copies the schema migration, and creates a hash-named Sites
-seed migration. The builder applies the schema and seed twice to an in-memory SQLite database, checks version integrity,
-and runs the ordinary-language retrieval cases in `official-library/search-evaluations.yaml` against actual FTS5 ranking.
+lock, generates compact JSON and an idempotent SQL seed, copies the schema migration, and creates ordered hash-named
+Sites seed chunks capped at 20 KB. The builder applies both the monolithic local seed and the exact deployment chunks
+twice to in-memory SQLite databases, checks version integrity, and runs the ordinary-language retrieval cases in
+`official-library/search-evaluations.yaml` against actual FTS5 ranking.
 
 Review the source YAML, thumbnail, version-lock delta, catalog JSON, and hash-named migration together. Deployment then
 applies the checked-in files under `drizzle/` to the Site's `DB` binding. Never hand-edit generated catalog or seed files.
