@@ -169,3 +169,42 @@ test('startup prunes legacy activity rows to the default retention window', asyn
     return count
   })).toBe(300)
 })
+
+test('startup recovers when local storage is blocked by another Prompt Canvas tab', async ({ context, page }) => {
+  await page.goto('/')
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+
+  const blocker = await context.newPage()
+  await blocker.goto('/')
+  await expect(blocker.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+  const blockedDatabaseNames = await blocker.evaluate(async () => {
+    const names = (await indexedDB.databases())
+      .map((database) => database.name)
+      .filter((name): name is string => Boolean(name))
+      .filter((name) => name === 'prompt-canvas-local' || name.startsWith('TLDRAW_DOCUMENT_v2'))
+    const connections = await Promise.all(names.map((name) => new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open(name)
+      request.onsuccess = () => resolve(request.result)
+      request.onerror = () => reject(request.error)
+    })))
+    for (const database of connections) database.onversionchange = () => undefined
+    Object.defineProperty(window, '__blockedPromptCanvasDatabases', {
+      configurable: true,
+      value: connections,
+    })
+    return names
+  })
+  expect(blockedDatabaseNames).toContain('prompt-canvas-local')
+  expect(blockedDatabaseNames.some((name) => name.startsWith('TLDRAW_DOCUMENT_v2'))).toBe(true)
+
+  await page.evaluate((names) => {
+    for (const name of names) indexedDB.deleteDatabase(name)
+  }, blockedDatabaseNames)
+  await page.reload()
+
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 15_000 })
+  await expect(page.getByText('Device storage is busy')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'What would you like to make?' })).toBeVisible()
+
+  await blocker.close()
+})

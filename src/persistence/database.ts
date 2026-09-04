@@ -10,6 +10,7 @@ const DB_VERSION = 1
 const TEMPLATES = 'templates'
 const ACTIVITY = 'activity'
 const SETTINGS = 'settings'
+const OPEN_TIMEOUT_MS = 3_000
 
 type TemplateRecord = {
   key: string
@@ -44,13 +45,26 @@ function transactionDone(transaction: IDBTransaction): Promise<void> {
 
 export class PromptCanvasDatabase {
   private databasePromise: Promise<IDBDatabase | null> | null = null
+  private database: IDBDatabase | null = null
 
   private open(): Promise<IDBDatabase | null> {
     if (this.databasePromise) return this.databasePromise
     if (typeof indexedDB === 'undefined') return Promise.resolve(null)
 
-    const databasePromise = new Promise<IDBDatabase>((resolve, reject) => {
+    let settled = false
+    const opening = new Promise<IDBDatabase>((resolve, reject) => {
       const request = indexedDB.open(DB_NAME, DB_VERSION)
+      const timeout = window.setTimeout(() => {
+        if (settled) return
+        settled = true
+        reject(new Error('Prompt Canvas local storage did not become available in time.'))
+      }, OPEN_TIMEOUT_MS)
+      const fail = (error: Error) => {
+        if (settled) return
+        settled = true
+        window.clearTimeout(timeout)
+        reject(error)
+      }
       request.onupgradeneeded = () => {
         const db = request.result
         if (!db.objectStoreNames.contains(TEMPLATES)) {
@@ -66,15 +80,32 @@ export class PromptCanvasDatabase {
           db.createObjectStore(SETTINGS, { keyPath: 'key' })
         }
       }
-      request.onsuccess = () => resolve(request.result)
-      request.onerror = () => reject(request.error ?? new Error('Unable to open local Prompt Canvas database.'))
-      request.onblocked = () => reject(new Error('Prompt Canvas database upgrade is blocked by another tab.'))
+      request.onsuccess = () => {
+        const database = request.result
+        if (settled) {
+          database.close()
+          return
+        }
+        settled = true
+        window.clearTimeout(timeout)
+        this.database = database
+        database.onversionchange = () => {
+          database.close()
+          if (this.database === database) {
+            this.database = null
+            this.databasePromise = null
+          }
+        }
+        resolve(database)
+      }
+      request.onerror = () => fail(request.error ?? new Error('Unable to open local Prompt Canvas database.'))
+      request.onblocked = () => fail(new Error('Prompt Canvas database upgrade is blocked by another tab.'))
     }).catch((error): IDBDatabase | null => {
       console.warn('Prompt Canvas is using memory-only persistence.', error)
       return null
     })
-    this.databasePromise = databasePromise
-    return databasePromise
+    this.databasePromise = opening
+    return opening
   }
 
   async listTemplates(): Promise<PromptWorkspaceTemplate[]> {
