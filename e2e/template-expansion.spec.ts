@@ -432,7 +432,8 @@ test('undersized canvas cards grow to reveal their full content', async ({ page 
   await expect.poll(async () => promptPanel.evaluate((element) => {
     const body = element.querySelector<HTMLElement>('.pc-panel__body')
     const textareas = [...element.querySelectorAll('textarea')]
-    return Boolean(body) && body!.scrollHeight - body!.clientHeight <= 1 &&
+    return Boolean(body) && textareas.length > 0 &&
+      body!.scrollHeight - body!.clientHeight <= 1 &&
       textareas.every((textarea) => textarea.scrollHeight - textarea.clientHeight <= 1)
   })).toBe(true)
 
