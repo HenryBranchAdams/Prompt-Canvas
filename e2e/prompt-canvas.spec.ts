@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import packageMetadata from '../package.json' with { type: 'json' }
 import { webmcpCatalog } from '../src/generated/webmcpCatalog'
 
 const TINY_PNG =
@@ -580,6 +581,7 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
   await createTravelWorkspace(page)
 
   const inspect = await callTool<{
+    version: string
     workspace: { workspaceId: string }
     revision: number
     generationRevision: number
@@ -589,6 +591,7 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
     include: ['prompt', 'controls', 'outputs', 'capabilities'],
   })
   expect(inspect.workspace.workspaceId).toBeTruthy()
+  expect(inspect.version).toBe(packageMetadata.version)
   expect(inspect.verifiedAssetTransports).toContain('data_url')
   expect(inspect.capabilities.pageTools.sort()).toEqual(toolNames)
   await page.locator('.pc-topbar').getByRole('button', { name: 'Ask Codex to generate' }).click()
@@ -606,6 +609,13 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
   expect(modalLayerZ).toBeGreaterThan(0)
   await expect(page.locator('.tlui-style-panel__wrapper')).toHaveCount(0)
   await page.getByRole('button', { name: 'Done' }).click()
+
+  await expect(callTool(page, 'prompt_canvas_get_generation_context', {
+    workspaceId: inspect.workspace.workspaceId,
+    operation: 'generate',
+    outputSlotId: 'missing-output',
+  })).rejects.toThrow(/Output.*was not found/)
+  await expect(page.getByRole('alert')).toContainText('Output “missing-output” was not found')
 
   const context = await callTool<{
     requestId: string
@@ -653,6 +663,7 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
   expect(imported.assetIds).toHaveLength(1)
   expect(imported.rejectedAssets).toEqual([])
   expect(imported.lineage).toHaveLength(1)
+  await expect(page.getByRole('alert')).toHaveCount(0)
   await expect(page.locator('img[alt="Codex E2E image"]')).toBeVisible()
 
   await page.keyboard.press('Control+z')

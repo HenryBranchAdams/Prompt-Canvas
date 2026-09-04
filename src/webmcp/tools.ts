@@ -189,7 +189,9 @@ export function createPromptCanvasWebMcpTools(runtime: PromptCanvasRuntime): Web
           throw new Error(`Invalid input for ${definition.name}: ${errorText(validate.errors)}`)
         }
         try {
-          return await handler(candidate)
+          const result = await handler(candidate)
+          if (!definition.annotations.readOnlyHint) runtime.clearLastError()
+          return result
         } catch (error) {
           runtime.setLastError(error)
           toolFailure(definition.name, error)

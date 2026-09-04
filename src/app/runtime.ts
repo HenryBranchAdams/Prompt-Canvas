@@ -9,6 +9,7 @@ import {
   type TLPageId,
   type TLShapeId,
 } from 'tldraw'
+import packageMetadata from '../../package.json' with { type: 'json' }
 import { ActivityStore } from '../activity/activity-store'
 import { resolveAssetSource, AssetTransportRegistry } from '../generation/asset-transport'
 import { DEFAULT_MAX_IMAGES_PER_IMPORT } from '../generation/asset-validation-core'
@@ -62,7 +63,7 @@ import type {
 } from '../workspaces/types'
 
 const PAGE_META_KEY = 'promptCanvas'
-const APP_VERSION = '0.4.1'
+const APP_VERSION = packageMetadata.version
 
 type ConnectionState = {
   checked: boolean
@@ -410,6 +411,14 @@ export class PromptCanvasRuntime {
   setLastError(error: unknown): void {
     const message = error instanceof Error ? error.message : String(error)
     this.snapshot = { ...this.snapshot, lastError: message }
+    this.emit()
+  }
+
+  clearLastError(): void {
+    if (!this.snapshot.lastError) return
+    const next = { ...this.snapshot }
+    delete next.lastError
+    this.snapshot = next
     this.emit()
   }
 
