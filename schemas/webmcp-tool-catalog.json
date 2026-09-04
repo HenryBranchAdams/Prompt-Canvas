@@ -292,7 +292,9 @@
           "references",
           "preservation",
           "outputRequirements",
-          "verifiedAssetTransports"
+          "verifiedAssetTransports",
+          "assetReturn",
+          "hostInstruction"
         ]
       }
     },
@@ -822,7 +824,7 @@
     {
       "name": "prompt_canvas_add_generated_asset",
       "title": "Return a generated image to Prompt Canvas",
-      "description": "Import one or more images generated or edited by Codex, validate their bytes and request identity, record operation and parent lineage, and place them into the specified project output slots. Supply the matching project, request ID, generation revision, prompt digest, and target slot. This tool does not perform generation.",
+      "description": "Import one or more images generated or edited by Codex, validate their bytes and request identity, record operation and parent lineage, and place them into the specified project output slots. Supply the matching project, request ID, generation revision, prompt digest, and target slot. For data_url delivery, pass the native generator image_url directly as source.dataUrl, or prefix a raw base64 result with data:<mime-type>;base64,. Ignore savedPath and never use file:// as an asset source. This tool does not perform generation.",
       "annotations": {
         "readOnlyHint": false,
         "untrustedContentHint": true

@@ -626,6 +626,16 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
     promptDigest: string
     controlContext: { chatDirection?: string }
     outputRequirements: { aspectRatio: string; requestedCount: number }
+    assetReturn: {
+      acceptedTransports: string[]
+      preferredTransport: string | null
+      directDataUrlFields: string[]
+      rawBase64DataUrlTemplate: string
+      ignoredLocalPathFields: string[]
+      prohibitedSchemes: string[]
+      fallbackTransport: string | null
+    }
+    hostInstruction: string
   }>(page, 'prompt_canvas_get_generation_context', {
     workspaceId: inspect.workspace.workspaceId,
     operation: 'generate',
@@ -637,6 +647,18 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
     'Use Lisbon as the city and keep the palette slightly cooler.',
   )
   expect(context.outputRequirements.aspectRatio).toBeTruthy()
+  expect(context.assetReturn).toEqual({
+    acceptedTransports: ['data_url'],
+    preferredTransport: 'data_url',
+    directDataUrlFields: ['image_url', 'result'],
+    rawBase64DataUrlTemplate: 'data:<mime-type>;base64,<result>',
+    ignoredLocalPathFields: ['savedPath'],
+    prohibitedSchemes: ['file://'],
+    fallbackTransport: null,
+  })
+  expect(context.hostInstruction).toContain('source.dataUrl')
+  expect(context.hostInstruction).toContain('savedPath')
+  expect(context.hostInstruction).toContain('file://')
 
   const imported = await callTool<{
     workspaceId: string

@@ -10,11 +10,12 @@ image bytes. Each public release must run one bounded acceptance flow against th
 3. Apply one harmless semantic control mutation with `expectedRevision`.
 4. Replay the old revision and confirm rejection without partial mutation.
 5. Prepare one generation context and record request ID, generation revision, prompt digest, operation, and output slot.
-6. Generate one candidate with Codex and return it through `prompt_canvas_add_generated_asset`.
+6. From the normal zero-context “generate” instruction, generate one representative full-size candidate with Codex and return it through `prompt_canvas_add_generated_asset`. Confirm the host forwards `image_url` or raw-base64 `result` through an advertised transport and does not attempt to fetch `savedPath` or a `file://` URL.
 7. Confirm visible placement and exact request, digest, slot, MIME, byte, and provider lineage.
 8. Promote or compare the returned output, then verify undo, redo, and reload persistence.
 
 Only transports and MIME types observed in this flow may be advertised. Configured limits are not measured host maxima.
+Small fixture success does not qualify the host envelope: the release flow must carry a representative full-size generated image.
 Do not record private image bytes, credentials, environment values, or owner-only access tokens in public evidence.
 
 ## Historical evidence

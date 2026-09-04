@@ -394,6 +394,27 @@ export function resolveGenerationContext(input: {
     selection,
     ...(factuality ? { factuality } : {}),
   })
+  const preferredTransport = verifiedAssetTransports.includes('data_url')
+    ? 'data_url'
+    : verifiedAssetTransports[0] ?? null
+  const fallbackTransport = verifiedAssetTransports.includes('host_attachment')
+    ? 'host_attachment'
+    : null
+  const assetReturn: GenerationContext['assetReturn'] = {
+    acceptedTransports: verifiedAssetTransports,
+    preferredTransport,
+    directDataUrlFields: ['image_url', 'result'],
+    rawBase64DataUrlTemplate: 'data:<mime-type>;base64,<result>',
+    ignoredLocalPathFields: ['savedPath'],
+    prohibitedSchemes: ['file://'],
+    fallbackTransport,
+  }
+  const dataUrlInstruction = verifiedAssetTransports.includes('data_url')
+    ? ' For data_url delivery, pass the native generator image_url directly as assets[].source.dataUrl. If the generator instead returns raw base64 in result, construct assets[].source.dataUrl as data:<mime-type>;base64,<result> without fetching or decoding it.'
+    : ''
+  const fallbackInstruction = fallbackTransport
+    ? ' If the direct payload cannot fit the tool call, use a real host_attachment token because that transport is verified.'
+    : ' If the direct payload is unavailable or cannot fit the tool call, report HOST_ASSET_TRANSFER_UNAVAILABLE; do not claim that Prompt Canvas rejected local filesystem access.'
 
   return {
     schema: 'prompt-canvas.generation-context@1',
@@ -413,9 +434,13 @@ export function resolveGenerationContext(input: {
     outputRequirements,
     selection,
     verifiedAssetTransports,
+    assetReturn,
     ...(factuality ? { factuality } : {}),
     hostInstruction:
       'Use Codex native image generation for this context. Apply controlContext.chatDirection as the latest user direction when present, then return each image with prompt_canvas_add_generated_asset. The page does not generate images itself.' +
+      dataUrlInstruction +
+      ' Ignore local convenience fields such as savedPath when returning the asset: savedPath and file:// URLs are not valid Prompt Canvas asset sources.' +
+      fallbackInstruction +
       (factuality ? factualityInstruction(factuality) : ''),
   }
 }

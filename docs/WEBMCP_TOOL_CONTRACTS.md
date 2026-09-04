@@ -465,13 +465,19 @@ Each returned asset remains bound to:
 - declared and decoded type;
 - qualified transport.
 
-## 9.3 Target request token
+## 9.3 Host return rule
+
+For the currently qualified `data_url` transport, the host returns native image-generator output directly. It passes a returned `image_url` as `assets[].source.dataUrl`; when the generator exposes raw base64 in `result`, it prefixes that value with `data:<mime-type>;base64,` and passes the resulting string without fetching or decoding it.
+
+Local convenience fields are not transport results. The host must ignore `savedPath` for this handoff and must never pass or fetch a `file://` URL as an asset source. If the direct payload is unavailable or exceeds the host's tool-call envelope, the host may use `host_attachment` only when that transport is advertised and a real attachment token exists. Otherwise it reports `HOST_ASSET_TRANSFER_UNAVAILABLE` without claiming that Prompt Canvas rejected filesystem access.
+
+## 9.4 Target request token
 
 The target import should validate the prepared context token and request lifecycle in addition to current IDs and digests.
 
 A consumed, expired, cancelled, invalidated, mismatched, cross-workspace, or replayed request publishes nothing.
 
-## 9.4 Atomic batch behavior
+## 9.5 Atomic batch behavior
 
 When the tool promises an atomic batch:
 
@@ -482,7 +488,7 @@ When the tool promises an atomic batch:
 - one successful import is one undo step;
 - result includes one receipt and per-asset lineage.
 
-## 9.5 Evaluation readiness
+## 9.6 Evaluation readiness
 
 Import should return the compiled rubric reference or enough linkage for an evaluation record. It should not claim the pixels pass the rubric automatically.
 
