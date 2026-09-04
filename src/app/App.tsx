@@ -48,6 +48,7 @@ type TldrawLicenseState =
   | { status: 'error'; message: string }
 
 const bundledTldrawLicenseKey = import.meta.env.VITE_TLDRAW_LICENSE_KEY?.trim()
+const TLDRAW_STARTUP_TIMEOUT_MS = 5_000
 
 const tldrawComponents = {
   StylePanel: null,
@@ -781,6 +782,7 @@ export default function App() {
   const [blankOpen, setBlankOpen] = useState(false)
   const [inspectorOpen, setInspectorOpen] = useState(false)
   const [shapeHelpOpen, setShapeHelpOpen] = useState(false)
+  const [canvasPersistence, setCanvasPersistence] = useState<'device' | 'session'>('device')
   const libraryButtonRef = useRef<HTMLButtonElement>(null)
   const blankButtonRef = useRef<HTMLButtonElement>(null)
   const prepareButtonRef = useRef<HTMLButtonElement>(null)
@@ -824,6 +826,17 @@ export default function App() {
     )
     return () => controller.abort()
   }, [tldrawLicense.status])
+
+  useEffect(() => {
+    if (tldrawLicense.status !== 'ready' || snapshot.initialized || canvasPersistence === 'session') return
+    const timeout = window.setTimeout(() => {
+      runtime.setLastError(
+        'Device storage is busy, so Prompt Canvas opened a temporary session. Close other Prompt Canvas tabs and reload before creating work you need to keep.',
+      )
+      setCanvasPersistence('session')
+    }, TLDRAW_STARTUP_TIMEOUT_MS)
+    return () => window.clearTimeout(timeout)
+  }, [canvasPersistence, snapshot.initialized, tldrawLicense.status])
 
   useEffect(() => () => runtime.dispose(), [])
 
@@ -926,7 +939,8 @@ export default function App() {
         <div className="pc-canvas-shell" aria-label="Prompt project canvas">
           {tldrawLicense.status === 'ready' ? (
             <Tldraw
-              persistenceKey="prompt-canvas-document-v1"
+              key={canvasPersistence}
+              persistenceKey={canvasPersistence === 'device' ? 'prompt-canvas-document-v1' : undefined}
               shapeUtils={promptCanvasShapeUtils}
               components={tldrawComponents}
               options={{ maxPages: 100 }}
