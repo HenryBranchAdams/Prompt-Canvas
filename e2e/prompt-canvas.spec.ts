@@ -591,7 +591,7 @@ test('Codex context, generated-asset import, lineage, and persistence round trip
   expect(inspect.workspace.workspaceId).toBeTruthy()
   expect(inspect.verifiedAssetTransports).toContain('data_url')
   expect(inspect.capabilities.pageTools.sort()).toEqual(toolNames)
-  await page.locator('.pc-topbar').getByRole('button', { name: 'Generate with Codex' }).click()
+  await page.locator('.pc-topbar').getByRole('button', { name: 'Ask Codex to generate' }).click()
   const closeDialog = page.getByRole('button', { name: 'Close dialog' })
   const continueButton = page.getByRole('button', { name: 'Done' })
   await expect(continueButton).toBeVisible()
@@ -1376,4 +1376,47 @@ test('factuality source notes reach the registered generation context', async ({
   )
   expect(revised.factuality.suppliedClaims).toBe(revised.factuality.sourceNotes)
   expect(revised.promptDigest).not.toBe(initial.promptDigest)
+})
+
+
+test('collaboration model is explicit before generation', async ({ page }) => {
+  await installMockWebMcp(page)
+  await page.goto('/')
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+
+  await expect(page.getByText('Build the brief here; Codex turns it into images and returns them to your canvas.')).toBeVisible()
+  await page.getByRole('button', { name: 'Start' }).first().click()
+
+  await expect(page.getByText('You direct. Codex creates.')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Help me shape it' })).toBeVisible()
+  await expect(page.locator('.pc-panel--controls .pc-panel__collaboration-cue').filter({ hasText: 'You edit' })).toBeVisible()
+  await expect(page.locator('.pc-panel--controls .pc-panel__collaboration-cue').filter({ hasText: 'Codex uses this' })).toBeVisible()
+  await expect(page.locator('.pc-panel--output .pc-panel__collaboration-cue')).toHaveText('Codex returns here')
+
+  await page.getByRole('button', { name: 'Help me shape it' }).click()
+  await expect(page.getByRole('heading', { name: 'Ask Codex to help with the brief' })).toBeVisible()
+  await expect(page.getByLabel('Message for Codex')).toHaveValue(/Do not generate an image yet/)
+  await page.getByRole('button', { name: 'Done' }).click()
+
+  await page.locator('.pc-topbar').getByRole('button', { name: 'Ask Codex to generate' }).click()
+  await expect(page.getByRole('heading', { name: 'Ask Codex to create this image' })).toBeVisible()
+  const preview = page.locator('.pc-codex-preview')
+  await expect(preview.getByText('A quiet observatory beneath a vivid desert night sky')).toBeVisible()
+  await expect(preview.getByText('cinematic · wide-shot')).toBeVisible()
+  await expect(page.getByText('Nothing is locked. You can keep editing the brief, change one thing, or make variations at any time.')).toBeVisible()
+})
+
+
+
+test('compact ChatGPT layouts keep collaboration actions visible', async ({ page }) => {
+  await page.setViewportSize({ width: 760, height: 800 })
+  await page.goto('/')
+  await expect(page.locator('.pc-loading')).toBeHidden({ timeout: 30_000 })
+
+  await page.getByRole('button', { name: 'Start' }).first().click()
+
+  await expect(page.getByRole('button', { name: 'Recipes' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'New project' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Help me shape it' })).toBeVisible()
+  await expect(page.locator('.pc-topbar').getByRole('button', { name: 'Ask Codex to generate' })).toBeVisible()
 })

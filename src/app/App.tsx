@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
   useSyncExternalStore,
+  type ReactNode,
 } from 'react'
 import {
   ActivityIcon,
@@ -254,7 +255,7 @@ function TemplateLibrary({
         <div>
           <span className="pc-eyebrow">Prompt Canvas recipes</span>
           <h2>What would you like to make?</h2>
-          <p>Choose a recipe to get started. Each one guides you step by step.</p>
+          <p>Build the brief here; Codex turns it into images and returns them to your canvas.</p>
         </div>
         {dismissible ? <button className="pc-icon-button" type="button" onClick={onClose} aria-label="Close recipes"><CloseIcon /></button> : null}
       </header>
@@ -537,16 +538,114 @@ function BlankWorkspaceDialog({
   )
 }
 
-function GenerationDialog({
-  context,
+type RequestPreviewItem = {
+  label: string
+  value: string
+}
+
+function humanizePreviewKey(value: string): string {
+  return value
+    .replace(/[._-]+/g, ' ')
+    .replace(/\b\w/g, (letter) => letter.toUpperCase())
+}
+
+function compactPreviewValue(value: unknown): string | undefined {
+  let rendered: string | undefined
+  if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+    rendered = String(value)
+  } else if (Array.isArray(value)) {
+    rendered = value.map((item) => compactPreviewValue(item)).filter(Boolean).join(', ')
+  }
+  if (!rendered?.trim()) return undefined
+  return rendered.length > 110 ? `${rendered.slice(0, 107)}…` : rendered
+}
+
+function generationRequest(context: GenerationContext): string {
+  switch (context.operation) {
+    case 'edit':
+      return 'Apply the prepared change to my current Prompt Canvas result and return the new image to the Result card.'
+    case 'variation':
+      return 'Create the prepared variations from my current Prompt Canvas result and return them to the Variations card.'
+    case 'upscale':
+      return 'Upscale the selected Prompt Canvas result and return it to the canvas.'
+    case 'generate':
+    default:
+      return 'Generate an image from my current Prompt Canvas project and return it to the Result card. Use the canvas’s latest live state.'
+  }
+}
+
+function generationDialogTitle(context: GenerationContext): string {
+  switch (context.operation) {
+    case 'edit':
+      return 'Ask Codex to change this image'
+    case 'variation':
+      return 'Ask Codex to create variations'
+    case 'upscale':
+      return 'Ask Codex to upscale this image'
+    case 'generate':
+    default:
+      return 'Ask Codex to create this image'
+  }
+}
+
+function generationPreview(
+  context: GenerationContext,
+  project: RuntimeSnapshot['activeWorkspace'],
+): RequestPreviewItem[] {
+  const projectEntries = (project?.templateSnapshot.controls ?? []).flatMap((control) => {
+    const valueKey = control.binding.mode === 'variable' ? control.binding.target : control.id
+    const rendered = compactPreviewValue(project?.controlValues[valueKey] ?? control.defaultValue)
+    return rendered ? [{ key: control.id, label: control.label, value: rendered }] : []
+  })
+  const contextEntries = Object.entries(context.controlContext).flatMap(([key, value]) => {
+    const rendered = compactPreviewValue(value)
+    return rendered ? [{ key, label: humanizePreviewKey(key), value: rendered }] : []
+  })
+  const entries = projectEntries.length > 0 ? projectEntries : contextEntries
+  const brief = entries.find((entry) => /brief|subject|description|prompt|image/i.test(`${entry.key} ${entry.label}`))
+  const direction = entries
+    .filter((entry) => entry !== brief && !/aspect|ratio|format/i.test(`${entry.key} ${entry.label}`))
+    .slice(0, 3)
+    .map((entry) => entry.value)
+    .join(' · ')
+
+  return [
+    ...(brief ? [{ label: 'Brief', value: brief.value }] : []),
+    ...(direction ? [{ label: 'Direction', value: direction }] : []),
+    { label: 'Format', value: context.outputRequirements.aspectRatio },
+    {
+      label: 'References',
+      value: context.references.length > 0
+        ? `${context.references.length} attached`
+        : 'None attached',
+    },
+  ]
+}
+
+function CodexRequestDialog({
+  eyebrow,
+  title,
+  description,
+  request,
+  preview,
+  note,
+  technical,
   onClose,
 }: {
-  context: GenerationContext
+  eyebrow: string
+  title: string
+  description: string
+  request: string
+  preview?: RequestPreviewItem[]
+  note: string
+  technical?: ReactNode
   onClose: () => void
 }) {
   const [copied, setCopied] = useState(false)
+  const [copyError, setCopyError] = useState(false)
   const closeRef = useRef<HTMLButtonElement>(null)
   const dialogRef = useRef<HTMLElement>(null)
+
   useEffect(() => {
     closeRef.current?.focus()
     const onKeyDown = (event: KeyboardEvent) => {
@@ -556,28 +655,83 @@ function GenerationDialog({
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [onClose])
+
   const copy = async () => {
-    await navigator.clipboard.writeText('Generate this Prompt Canvas project.')
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1300)
+    try {
+      await navigator.clipboard.writeText(request)
+      setCopied(true)
+      setCopyError(false)
+      window.setTimeout(() => setCopied(false), 1600)
+    } catch {
+      setCopyError(true)
+    }
   }
+
   return (
     <div className="pc-modal-layer" role="presentation" onMouseDown={(event) => {
       if (event.target === event.currentTarget) onClose()
     }}>
-      <section ref={dialogRef} className="pc-dialog pc-dialog--generation" role="dialog" aria-modal="true" aria-labelledby="generation-context-title">
+      <section ref={dialogRef} className="pc-dialog pc-dialog--generation pc-dialog--codex-request" role="dialog" aria-modal="true" aria-labelledby="codex-request-title">
         <header>
           <div>
-            <span className="pc-eyebrow">Ready to generate</span>
-            <h2 id="generation-context-title">Your project is ready</h2>
+            <span className="pc-eyebrow">{eyebrow}</span>
+            <h2 id="codex-request-title">{title}</h2>
           </div>
           <button ref={closeRef} className="pc-icon-button" type="button" onClick={onClose} aria-label="Close dialog"><CloseIcon /></button>
         </header>
-        <p>
-          In the Codex chat, send this message. Codex will read the project, create the image,
-          and place it in the result card automatically.
-        </p>
-        <div className="pc-chat-instruction">Generate this Prompt Canvas project.</div>
+        <p>{description}</p>
+        {preview?.length ? (
+          <section className="pc-codex-preview" aria-labelledby="codex-preview-title">
+            <h3 id="codex-preview-title">Codex will use</h3>
+            <dl>
+              {preview.map((item) => (
+                <div key={`${item.label}:${item.value}`}>
+                  <dt>{item.label}</dt>
+                  <dd>{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
+        <label className="pc-codex-request">
+          Message for Codex
+          <textarea
+            readOnly
+            rows={3}
+            value={request}
+            onFocus={(event) => event.currentTarget.select()}
+          />
+        </label>
+        <p className="pc-codex-note">{note}</p>
+        {technical}
+        {copyError ? <p className="pc-copy-error" role="alert">Clipboard access is unavailable. Select the request above and copy it manually.</p> : null}
+        <footer>
+          <button className="pc-primary-button" type="button" onClick={() => void copy()}><CopyIcon /> {copied ? 'Copied' : 'Copy request'}</button>
+          <button type="button" onClick={onClose}>Done</button>
+        </footer>
+      </section>
+    </div>
+  )
+}
+
+function GenerationDialog({
+  context,
+  project,
+  onClose,
+}: {
+  context: GenerationContext
+  project: RuntimeSnapshot['activeWorkspace']
+  onClose: () => void
+}) {
+  return (
+    <CodexRequestDialog
+      eyebrow="Prepared for Codex"
+      title={generationDialogTitle(context)}
+      description="Prompt Canvas prepared a revision-bound request from the live canvas. Copy it into the ChatGPT conversation beside this Site; Codex will use the current state and return the image to the right card."
+      request={generationRequest(context)}
+      preview={generationPreview(context, project)}
+      note="Nothing is locked. You can keep editing the brief, change one thing, or make variations at any time."
+      technical={(
         <details className="pc-technical-details">
           <summary>View technical details</summary>
           <div className="pc-context-summary">
@@ -592,12 +746,32 @@ function GenerationDialog({
           <h3>Request identity</h3>
           <pre>{context.hostInstruction}\n\nRequest: {context.requestId}</pre>
         </details>
-        <footer>
-          <button type="button" onClick={() => void copy()}><CopyIcon /> {copied ? 'Copied' : 'Copy message'}</button>
-          <button className="pc-primary-button" type="button" onClick={onClose}>Done</button>
-        </footer>
-      </section>
-    </div>
+      )}
+      onClose={onClose}
+    />
+  )
+}
+
+function ShapeHelpDialog({
+  projectTitle,
+  onClose,
+}: {
+  projectTitle: string
+  onClose: () => void
+}) {
+  return (
+    <CodexRequestDialog
+      eyebrow="Shape it together"
+      title="Ask Codex to help with the brief"
+      description="Codex can inspect the live project, ask a small number of useful questions, and update the brief or direction on this canvas. It will not generate an image until you ask."
+      request="Help me shape the current Prompt Canvas project. Review the live brief and direction, ask at most two focused questions if needed, then update the canvas with a strong starting point. Do not generate an image yet."
+      preview={[
+        { label: 'Project', value: projectTitle },
+        { label: 'Codex can', value: 'Inspect and update the live canvas' },
+      ]}
+      note="You stay in control: review or edit every suggestion directly on the canvas."
+      onClose={onClose}
+    />
   )
 }
 
@@ -606,9 +780,11 @@ export default function App() {
   const [libraryOpen, setLibraryOpen] = useState(false)
   const [blankOpen, setBlankOpen] = useState(false)
   const [inspectorOpen, setInspectorOpen] = useState(false)
+  const [shapeHelpOpen, setShapeHelpOpen] = useState(false)
   const libraryButtonRef = useRef<HTMLButtonElement>(null)
   const blankButtonRef = useRef<HTMLButtonElement>(null)
   const prepareButtonRef = useRef<HTMLButtonElement>(null)
+  const shapeHelpButtonRef = useRef<HTMLButtonElement>(null)
   const [tldrawLicense, setTldrawLicense] = useState<TldrawLicenseState>(() => (
     bundledTldrawLicenseKey
       ? { status: 'ready', key: bundledTldrawLicenseKey }
@@ -685,12 +861,17 @@ export default function App() {
     window.requestAnimationFrame(() => prepareButtonRef.current?.focus())
   }, [])
 
+  const closeShapeHelpDialog = useCallback(() => {
+    setShapeHelpOpen(false)
+    window.requestAnimationFrame(() => shapeHelpButtonRef.current?.focus())
+  }, [])
+
   return (
     <main className="pc-app">
       <header className="pc-topbar">
         <div className="pc-brand">
           <span className="pc-brand-mark"><AppMarkIcon /></span>
-          <div><strong>Prompt Canvas</strong><small>Creative image projects</small></div>
+          <div><strong>Prompt Canvas</strong><small>You direct. Codex creates.</small></div>
         </div>
         <label className="pc-workspace-switcher">
           <select
@@ -709,6 +890,17 @@ export default function App() {
           <span className={connected ? 'pc-connection-dot is-connected' : 'pc-connection-dot'} title={connectionLabel(snapshot)}><span /></span>
           <button ref={libraryButtonRef} type="button" aria-label="Recipes" onClick={() => setLibraryOpen(true)}><LibraryIcon /><span>Recipes</span></button>
           <button ref={blankButtonRef} type="button" aria-label="New project" onClick={() => setBlankOpen(true)}><PlusIcon /><span>New</span></button>
+          {active ? (
+            <button
+              ref={shapeHelpButtonRef}
+              className="pc-collaboration-button"
+              type="button"
+              aria-label="Help me shape it"
+              onClick={() => setShapeHelpOpen(true)}
+            >
+              <AgentIcon /><span>Help me shape it</span>
+            </button>
+          ) : null}
           <details className="pc-more-menu">
             <summary>More</summary>
             <div>
@@ -718,7 +910,7 @@ export default function App() {
             </div>
           </details>
           <button ref={prepareButtonRef} className="pc-primary-button" type="button" disabled={!active} onClick={prepareGeneration}>
-            <PlayIcon /><span>Generate with Codex</span>
+            <PlayIcon /><span>Ask Codex to generate</span>
           </button>
         </div>
       </header>
@@ -789,9 +981,17 @@ export default function App() {
         }}
       />
 
+      {shapeHelpOpen && active ? (
+        <ShapeHelpDialog
+          projectTitle={active.title}
+          onClose={closeShapeHelpDialog}
+        />
+      ) : null}
+
       {snapshot.preparedContext ? (
         <GenerationDialog
           context={snapshot.preparedContext}
+          project={active}
           onClose={closeGenerationDialog}
         />
       ) : null}

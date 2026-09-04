@@ -8,6 +8,12 @@ For official recipe selection, retrieve compact candidates first with `prompt_ca
 project with that same source identity. Inspect readiness and resolve generation context before one bounded native Codex
 generation. Return the validated image to its intended slot and confirm lineage.
 
+Treat the open Site as a shared workspace, not a passive prompt form. When the user asks for help shaping a project,
+inspect the active project, ask at most two focused questions only when genuinely needed, then update the visible brief or
+direction through the existing workspace tools. Do not generate until the user asks. When they do ask, use the newest live
+project state and return the result to the prepared output rather than explaining the tool sequence. When the Site provides
+a prepared human-readable request, act on it directly; do not ask the user to repeat project IDs, revisions, or tool names.
+
 Official recipes are repository-authored, owner-reviewed, first-party material published read-only through D1. User
 recipes stay local in IndexedDB. Do not add public writes, community submission flows, embeddings, accounts, a page-owned
 image model, or a duplicate chat surface. D1 connections and canvas arrows are retrieval and presentation aids, not an
