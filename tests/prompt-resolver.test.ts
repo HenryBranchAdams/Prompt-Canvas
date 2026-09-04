@@ -142,7 +142,37 @@ test('resolveGenerationContext produces an honest Codex handoff', () => {
     context.controlContext.chatDirection,
     'Keep the palette cooler and preserve more negative space.',
   )
+  assert.deepEqual(context.assetReturn, {
+    acceptedTransports: ['data_url'],
+    preferredTransport: 'data_url',
+    directDataUrlFields: ['image_url', 'result'],
+    rawBase64DataUrlTemplate: 'data:<mime-type>;base64,<result>',
+    ignoredLocalPathFields: ['savedPath'],
+    prohibitedSchemes: ['file://'],
+    fallbackTransport: null,
+  })
   assert.match(context.hostInstruction, /Codex native image generation/)
+  assert.match(context.hostInstruction, /image_url/)
+  assert.match(context.hostInstruction, /raw base64.*result/i)
+  assert.match(context.hostInstruction, /savedPath/)
+  assert.match(context.hostInstruction, /file:\/\//)
+})
+
+test('generation context offers host attachment fallback only when the host verified it', () => {
+  const manifest = createWorkspaceManifest(template)
+  const context = resolveGenerationContext({
+    manifest,
+    template,
+    rawPrompt: template.prompt.body,
+    controlValues: manifest.controlValues,
+    verifiedAssetTransports: ['data_url', 'host_attachment'],
+    requestId: 'generation:host-attachment-fallback',
+  })
+
+  assert.equal(context.assetReturn.preferredTransport, 'data_url')
+  assert.equal(context.assetReturn.fallbackTransport, 'host_attachment')
+  assert.match(context.hostInstruction, /real host_attachment token/)
+  assert.doesNotMatch(context.hostInstruction, /HOST_ASSET_TRANSFER_UNAVAILABLE/)
 })
 
 test('chat direction participates in the prompt digest', () => {

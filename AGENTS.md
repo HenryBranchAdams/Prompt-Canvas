@@ -8,6 +8,10 @@ For official recipe selection, retrieve compact candidates first with `prompt_ca
 project with that same source identity. Inspect readiness and resolve generation context before one bounded native Codex
 generation. Return the validated image to its intended slot and confirm lineage.
 
+Return native generator bytes directly through a transport advertised by the generation context. For `data_url`, pass
+`image_url` as `source.dataUrl` or prefix raw base64 `result` with `data:<mime-type>;base64,`. Ignore `savedPath`; never
+fetch or pass `file://` URLs as asset sources.
+
 Treat the open Site as a shared workspace, not a passive prompt form. When the user asks for help shaping a project,
 inspect the active project, ask at most two focused questions only when genuinely needed, then update the visible brief or
 direction through the existing workspace tools. Do not generate until the user asks. When they do ask, use the newest live

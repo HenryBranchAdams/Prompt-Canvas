@@ -476,6 +476,16 @@ export type FactualityContext = {
   creativeInterpretation: string | null
 }
 
+export type GeneratedAssetReturnInstructions = {
+  acceptedTransports: AssetTransportKind[]
+  preferredTransport: AssetTransportKind | null
+  directDataUrlFields: string[]
+  rawBase64DataUrlTemplate: string
+  ignoredLocalPathFields: string[]
+  prohibitedSchemes: string[]
+  fallbackTransport: 'host_attachment' | null
+}
+
 export type GenerationContext = {
   schema: 'prompt-canvas.generation-context@1'
   workspaceId: string
@@ -498,6 +508,7 @@ export type GenerationContext = {
   }
   selection: null | { semanticIds: string[]; assetIds: string[] }
   verifiedAssetTransports: AssetTransportKind[]
+  assetReturn: GeneratedAssetReturnInstructions
   factuality?: FactualityContext
   hostInstruction: string
 }
