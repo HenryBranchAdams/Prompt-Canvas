@@ -909,7 +909,14 @@ export default function App() {
               <button type="button" onClick={() => setInspectorOpen((value) => !value)}><LayersIcon /> {inspectorOpen ? 'Hide diagnostics' : 'Diagnostics'}</button>
             </div>
           </details>
-          <button ref={prepareButtonRef} className="pc-primary-button" type="button" disabled={!active} onClick={prepareGeneration}>
+          <button
+            ref={prepareButtonRef}
+            className="pc-primary-button"
+            type="button"
+            aria-label="Ask Codex to generate"
+            disabled={!active}
+            onClick={prepareGeneration}
+          >
             <PlayIcon /><span>Ask Codex to generate</span>
           </button>
         </div>

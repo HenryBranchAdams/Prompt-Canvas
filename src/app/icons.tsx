@@ -1,4 +1,5 @@
-import type { SVGProps } from 'react'
+import type { ImgHTMLAttributes, SVGProps } from 'react'
+import { PROMPT_CANVAS_MARK_SRC } from './brand-mark'
 
 function IconBase(props: SVGProps<SVGSVGElement>) {
   return (
@@ -15,12 +16,16 @@ function IconBase(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-export function AppMarkIcon(props: SVGProps<SVGSVGElement>) {
+export function AppMarkIcon(props: ImgHTMLAttributes<HTMLImageElement>) {
   return (
-    <IconBase {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="3" />
-      <path d="M8 3v18M16 3v18M3 12h18" />
-    </IconBase>
+    <img
+      src={PROMPT_CANVAS_MARK_SRC}
+      alt=""
+      aria-hidden="true"
+      draggable={false}
+      decoding="async"
+      {...props}
+    />
   )
 }
 
