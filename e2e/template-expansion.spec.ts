@@ -437,6 +437,15 @@ test('undersized canvas cards grow to reveal their full content', async ({ page 
       textareas.every((textarea) => textarea.scrollHeight - textarea.clientHeight <= 1)
   })).toBe(true)
 
+  await expect.poll(async () => {
+    const state = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
+      workspaceId: created.workspaceId,
+      include: ['layout'],
+    })
+    return ['all-controls', 'full-prompt'].every((semanticId) =>
+      (state.elements.find((element) => element.semanticId === semanticId)?.height ?? 0) > 90,
+    )
+  }).toBe(true)
   const inspected = await callTool<InspectResult>(page, 'prompt_canvas_inspect', {
     workspaceId: created.workspaceId,
     include: ['layout'],
